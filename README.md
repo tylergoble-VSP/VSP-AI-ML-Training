@@ -4,11 +4,12 @@ A comprehensive training pipeline organized as self-contained modules, taking pa
 
 ## Overview
 
-This repository contains **37 self-contained Jupyter notebooks** designed for intermediate developers with some programming background. Each module can be run independently to learn a specific topic, and all modules follow software engineering best practices with modular, well-documented code.
+This repository contains **46 self-contained Jupyter notebooks** designed for intermediate developers with some programming background. Each module can be run independently to learn a specific topic, and all modules follow software engineering best practices with modular, well-documented code.
 
 The notebooks are organized into:
 - **12 foundational notebooks** (01-12): Python fundamentals, ML introduction, and core topics
 - **25 algorithm-specific notebooks** (13-37): Deep dives into individual ML algorithms with theory, implementation, validation, benchmarking, and traceability
+- **9 GenerativeAI notebooks** (01-09): Advanced Generative AI frameworks and concepts including Hugging Face, llama.cpp, Ollama, LoRA/PEFT, Chain-of-Thought, Tool Calling, RAG, Neo4j, and Graph RAG
 
 ## Target Audience
 
@@ -66,6 +67,16 @@ VSP-AI-ML-Training/
 │       ├── 03_NeuralNetworks_Recurrent_Neural_Networks_LSTM.ipynb
 │       ├── 04_NeuralNetworks_Generative_Adversarial_Networks.ipynb
 │       └── 05_NeuralNetworks_Transformers.ipynb
+│   └── generative_ai/                  # Generative AI frameworks and concepts (01-09)
+│       ├── 01_GenerativeAI_HuggingFace_Transformers.ipynb
+│       ├── 02_GenerativeAI_LlamaCPP_Local_Models.ipynb
+│       ├── 03_GenerativeAI_Ollama_Model_Serving.ipynb
+│       ├── 04_GenerativeAI_LoRA_PEFT_FineTuning.ipynb
+│       ├── 05_GenerativeAI_ChainOfThought_Reasoning.ipynb
+│       ├── 06_GenerativeAI_Tool_Calling_Agents.ipynb
+│       ├── 07_GenerativeAI_Retrieval_Augmented_Generation.ipynb
+│       ├── 08_GenerativeAI_Neo4j_Knowledge_Graphs.ipynb
+│       └── 09_GenerativeAI_Graph_RAG.ipynb
 ├── requirements.txt                   # Python dependencies
 ├── README.md                          # This file
 ├── pytest.ini                         # Pytest configuration
@@ -74,6 +85,16 @@ VSP-AI-ML-Training/
 │   ├── processing/                    # Data preprocessing
 │   ├── models/                        # ML model utilities
 │   ├── llm/                           # LLM and embedding utilities
+│   │   ├── embeddings.py              # Embedding utilities
+│   │   ├── transformers_utils.py     # Hugging Face utilities
+│   │   ├── llama_cpp_utils.py        # llama.cpp utilities
+│   │   ├── ollama_utils.py           # Ollama utilities
+│   │   ├── peft_utils.py             # LoRA/PEFT utilities
+│   │   ├── chain_of_thought.py       # Chain-of-Thought utilities
+│   │   ├── tool_calling.py           # Tool calling utilities
+│   │   ├── rag_utils.py              # RAG utilities
+│   │   ├── neo4j_utils.py            # Neo4j utilities
+│   │   └── graph_rag_utils.py        # Graph RAG utilities
 │   └── utils/                         # General utilities (paths, timing)
 ├── tests/                             # Unit tests
 │   ├── test_paths.py
@@ -83,7 +104,17 @@ VSP-AI-ML-Training/
 │   ├── test_ensemble.py
 │   ├── test_validation.py
 │   ├── test_supervised.py
-│   └── test_unsupervised.py
+│   ├── test_unsupervised.py
+│   └── test_generative_ai/            # GenerativeAI utility tests
+│       ├── test_transformers_utils.py
+│       ├── test_llama_cpp_utils.py
+│       ├── test_ollama_utils.py
+│       ├── test_peft_utils.py
+│       ├── test_chain_of_thought.py
+│       ├── test_tool_calling.py
+│       ├── test_rag_utils.py
+│       ├── test_neo4j_utils.py
+│       └── test_graph_rag_utils.py
 ├── outputs/                           # Generated outputs
 │   ├── logs/                          # Timing and execution logs
 │   ├── processed/                     # Processed data files
@@ -235,6 +266,26 @@ Each algorithm notebook includes:
 **04_NeuralNetworks_Generative_Adversarial_Networks**: GANs with generator/discriminator training and sample generation.
 
 **05_NeuralNetworks_Transformers**: Transformer architecture with self-attention, multi-head attention, and positional encoding.
+
+### Generative AI Frameworks and Concepts (`notebooks/generative_ai/`)
+
+**01_GenerativeAI_HuggingFace_Transformers**: Hugging Face Transformers library for text generation, classification, and NLP tasks with Pipeline API and AutoModel usage.
+
+**02_GenerativeAI_LlamaCPP_Local_Models**: Running LLMs locally with llama.cpp, including quantization, CPU optimization, and performance benchmarking.
+
+**03_GenerativeAI_Ollama_Model_Serving**: Ollama platform for easy local model management, serving, and Python API integration with streaming responses.
+
+**04_GenerativeAI_LoRA_PEFT_FineTuning**: Parameter-efficient fine-tuning with LoRA (Low-Rank Adaptation) and PEFT library for adapting large models with minimal resources.
+
+**05_GenerativeAI_ChainOfThought_Reasoning**: Chain-of-Thought prompting techniques for improving reasoning capabilities, including self-consistency decoding.
+
+**06_GenerativeAI_Tool_Calling_Agents**: Building LLM agents that can call external tools, including OpenAI function calling, ReAct pattern, and agent loops.
+
+**07_GenerativeAI_Retrieval_Augmented_Generation**: RAG architecture combining vector embeddings, FAISS similarity search, and document chunking for grounded LLM responses.
+
+**08_GenerativeAI_Neo4j_Knowledge_Graphs**: Working with Neo4j graph database, Cypher queries, and knowledge graph creation for structured information storage.
+
+**09_GenerativeAI_Graph_RAG**: Graph RAG combining knowledge graphs with LLMs for multi-hop reasoning and hybrid vector + graph retrieval.
 
 ## Standard Datasets Used
 

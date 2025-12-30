@@ -17,6 +17,15 @@ gensim>=4.0.0
 transformers>=4.20.0
 sentence-transformers>=2.2.0
 
+# Generative AI & LLM Frameworks
+llama-cpp-python>=0.1.0  # For llama.cpp local model inference
+ollama>=0.1.0  # For Ollama model serving
+peft>=0.3.0  # For LoRA/PEFT fine-tuning
+accelerate>=0.20.0  # For model loading and device management
+bitsandbytes>=0.41.0  # For 8-bit quantization (optional, requires CUDA)
+faiss-cpu>=1.7.4  # For vector similarity search (use faiss-gpu if GPU available)
+neo4j>=5.0.0  # For Neo4j graph database driver
+
 # Deep Learning
 torch>=1.12.0
 torchvision>=0.13.0
@@ -34,16 +43,16 @@ pytest-cov>=3.0.0
 memory-profiler>=0.60.0
 
 # Model Interpretability (optional but recommended)
-# shap>=0.41.0  # Uncomment if needed for SHAP values
+shap>=0.41.0  # Uncomment if needed for SHAP values
 
 # Reinforcement Learning (optional)
-# gym>=0.21.0  # Uncomment if needed for RL environments
+gym>=0.21.0  # Uncomment if needed for RL environments
 
 # Association Rule Mining
 mlxtend>=0.22.0  # For Apriori algorithm
 
 # Enhanced Visualizations (optional)
-# plotly>=5.0.0  # Uncomment if needed for interactive plots
+plotly>=5.0.0  # Uncomment if needed for interactive plots
 
 # Optional but recommended (requires python3-dev to build)
 # scikit-survival>=0.19.0  # Uncomment after installing python3-dev
