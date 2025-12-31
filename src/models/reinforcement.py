@@ -3,12 +3,41 @@ Used in: 31_Reinforcement_QLearning.ipynb, 32_Reinforcement_Policy_Gradient.ipyn
 Purpose:
     Provide reinforcement learning utilities including Q-table management,
     policy evaluation, and reward tracking.
+    
+Educational Context:
+    Reinforcement Learning (RL) learns by trial and error through interaction.
+    
+    Key Concepts:
+    1. Agent: The learner (makes decisions)
+    2. Environment: The world the agent interacts with
+    3. State: Current situation
+    4. Action: What the agent does
+    5. Reward: Feedback (positive/negative)
+    6. Policy: Strategy for choosing actions
+    
+    Q-Learning:
+    - Learns Q-values: Expected future reward for state-action pairs
+    - Q-table: Stores Q-values for all state-action combinations
+    - Explores (tries new actions) and exploits (uses learned knowledge)
+    
+    Policy Gradient:
+    - Learns policy directly (probability distribution over actions)
+    - Uses gradient ascent to maximize expected reward
+    - Better for continuous action spaces
 """
 
-import numpy as np  # NumPy for numerical operations
-import pandas as pd  # Pandas for DataFrame operations
-from typing import Dict, Tuple, List, Optional, Callable  # Type hints
-from collections import defaultdict  # For default dictionaries
+# Import NumPy: For numerical operations
+import numpy as np
+
+# Import Pandas: For DataFrame operations
+import pandas as pd
+
+# Import type hints
+from typing import Dict, Tuple, List, Optional, Callable
+
+# Import defaultdict: Dictionary that creates default values for missing keys
+# Useful for Q-tables (automatically creates entries for new states)
+from collections import defaultdict
 
 
 class QTable:

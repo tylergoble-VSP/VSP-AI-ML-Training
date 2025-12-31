@@ -3,10 +3,43 @@ Used in: 01_GenerativeAI_HuggingFace_Transformers.ipynb
 Purpose:
     Provide utilities for working with Hugging Face Transformers library,
     including model loading, text generation, classification, and model information extraction.
+    
+Educational Context:
+    Hugging Face Transformers provides pre-trained language models.
+    
+    Key Concepts:
+    1. Tokenization: Convert text to numbers (tokens)
+       - Models work with token IDs, not raw text
+       - Tokenizer handles special characters, subwords
+    
+    2. Model Types:
+       - Causal LM: Generates text (GPT-style)
+       - Sequence Classification: Classifies text (sentiment, etc.)
+       - Auto classes: Automatically select correct architecture
+    
+    3. Generation Parameters:
+       - Temperature: Controls randomness (higher = more creative)
+       - Top-p: Nucleus sampling (diversity control)
+       - Max tokens: Length limit
+    
+    Why Hugging Face?
+    - Easy access to thousands of pre-trained models
+    - Consistent API across models
+    - Handles tokenization automatically
+    - Supports many tasks
 """
 
+# Import type hints
 from typing import Optional, Dict, List, Union, Any
-import torch  # PyTorch for tensor operations
+
+# Import PyTorch: Deep learning framework
+import torch  # Tensor operations, device management
+
+# Import Hugging Face Transformers
+# AutoTokenizer: Automatically loads correct tokenizer for model
+# AutoModelForCausalLM: Language models for text generation (GPT-style)
+# AutoModelForSequenceClassification: Models for classification tasks
+# pipeline: High-level API for common NLP tasks
 from transformers import (
     AutoTokenizer,
     AutoModelForCausalLM,

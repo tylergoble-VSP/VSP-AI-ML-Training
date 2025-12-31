@@ -5,16 +5,43 @@ Used in: 33_NeuralNetworks_Perceptron_MLP.ipynb, 34_NeuralNetworks_Convolutional
 Purpose:
     Provide neural network utilities including architecture visualization,
     gradient flow analysis, and activation visualization.
+    
+Educational Context:
+    Neural networks are computing systems inspired by biological brains.
+    
+    Key Concepts:
+    1. Perceptron: Single neuron (simplest neural network)
+    2. MLP (Multi-Layer Perceptron): Stack of layers (input → hidden → output)
+    3. CNNs: Convolutional layers for images (detect patterns, edges, shapes)
+    4. RNNs/LSTMs: Recurrent layers for sequences (text, time series)
+    5. GANs: Generative models (generator + discriminator)
+    6. Transformers: Attention-based models (BERT, GPT)
+    
+    How Neural Networks Learn:
+    - Forward pass: Data flows through layers
+    - Loss calculation: Compare prediction to truth
+    - Backpropagation: Calculate gradients
+    - Update weights: Adjust to reduce loss
 """
 
-import numpy as np  # NumPy for numerical operations
-import matplotlib.pyplot as plt  # For plotting
-from typing import List, Tuple, Optional, Dict, Any  # Type hints
+# Import NumPy: For numerical operations
+import numpy as np
+
+# Import matplotlib: For plotting visualizations
+import matplotlib.pyplot as plt
+
+# Import type hints
+from typing import List, Tuple, Optional, Dict, Any
+
+# Try to import PyTorch (optional dependency)
+# PyTorch is a deep learning framework for building neural networks
+# We use try/except because PyTorch might not be installed
 try:
-    import torch  # PyTorch for neural networks
-    import torch.nn as nn
-    TORCH_AVAILABLE = True
+    import torch  # PyTorch tensor library
+    import torch.nn as nn  # Neural network modules
+    TORCH_AVAILABLE = True  # Flag indicating PyTorch is available
 except ImportError:
+    # PyTorch not installed - some functions won't work
     TORCH_AVAILABLE = False
 
 

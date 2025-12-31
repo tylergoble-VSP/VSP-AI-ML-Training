@@ -3,34 +3,107 @@ Used in: 04_Machine_Learning_Algorithms, 05_Supervised_Learning, 06_Classifier_A
 Purpose:
     Provide wrapper functions and utilities for supervised learning models.
     Includes regression and classification helpers.
+    
+Educational Context:
+    Supervised learning uses labeled data (input-output pairs) to learn patterns.
+    
+    Key Concepts:
+    1. Train/Test Split: Separate data for training (learning) and testing (evaluation)
+    2. Cross-Validation: More robust evaluation using multiple train/test splits
+    3. Classification: Predicting categories (discrete labels)
+    4. Regression: Predicting continuous values (numbers)
+    
+    Why split data?
+    - Test on unseen data (simulates real-world performance)
+    - Prevents overfitting (model memorizing training data)
+    - Gives honest performance estimate
+    
+    Why cross-validation?
+    - Single split can be unlucky (bad random split)
+    - Multiple splits give more reliable estimate
+    - Better use of limited data
 """
 
-import numpy as np  # NumPy for numerical operations
-import pandas as pd  # Pandas for DataFrame operations
-from sklearn.model_selection import train_test_split, cross_val_score  # Scikit-learn model selection
-from sklearn.metrics import accuracy_score, mean_squared_error, classification_report, confusion_matrix  # Evaluation metrics
-from typing import Tuple, Any, Union  # Type hints
-import numpy as np  # NumPy for numerical operations
+# Import NumPy: For numerical operations on arrays
+import numpy as np
+
+# Import Pandas: For DataFrame operations
+import pandas as pd
+
+# Import scikit-learn model selection utilities
+# train_test_split: Split data into training and testing sets
+# cross_val_score: Perform k-fold cross-validation
+from sklearn.model_selection import train_test_split, cross_val_score
+
+# Import evaluation metrics
+# accuracy_score: For classification (proportion correct)
+# mean_squared_error: For regression (average squared error)
+# classification_report: Comprehensive classification metrics
+# confusion_matrix: Shows prediction vs actual class counts
+from sklearn.metrics import accuracy_score, mean_squared_error, classification_report, confusion_matrix
+
+# Import type hints for better code documentation
+from typing import Tuple, Any, Union
 
 
 def split_data(X: Union[pd.DataFrame, np.ndarray], y: Union[pd.Series, np.ndarray], test_size: float = 0.2, random_state: int = 42) -> Tuple:
     """
     Split data into training and testing sets.
-
+    
+    Educational Explanation:
+        This function separates data into two sets:
+        1. Training set: Used to teach the model (usually 80%)
+        2. Test set: Used to evaluate the model (usually 20%)
+        
+        Why split data?
+        - Test on unseen data (simulates real-world performance)
+        - Prevents data leakage (test data influencing training)
+        - Detects overfitting (model memorizing vs learning)
+        
+        Why random_state?
+        - Makes split reproducible (same random seed = same split)
+        - Essential for debugging and sharing results
+        - Allows comparing models on identical splits
+    
     Args:
-        X: Feature matrix (DataFrame or array).
-        y: Target vector (Series or array).
-        test_size: Proportion of data to use for testing (0.0 to 1.0).
-        random_state: Random seed for reproducibility.
-
+        X: Feature matrix (inputs)
+          - DataFrame: Tabular data with rows (samples) and columns (features)
+          - Array: 2D array with shape (samples, features)
+        y: Target vector (outputs to predict)
+          - Series: Pandas Series (1D labeled array)
+          - Array: 1D array with one label per sample
+        test_size: Proportion of data for testing (default 0.2 = 20%)
+                  - 0.2 means 20% test, 80% train
+                  - Common values: 0.2, 0.25, 0.3
+        random_state: Random seed for reproducibility (default 42)
+                     - Same seed = same split every time
+                     - Different seed = different split
+    
     Returns:
-        Tuple of (X_train, X_test, y_train, y_test).
+        Tuple containing four arrays/DataFrames:
+        - X_train: Training features (80% of data)
+        - X_test: Test features (20% of data)
+        - y_train: Training targets (corresponding labels)
+        - y_test: Test targets (corresponding labels)
     """
     # Use scikit-learn's train_test_split for consistent splitting
+    # This function:
+    # 1. Randomly shuffles data (if random_state provided)
+    # 2. Splits into train/test sets
+    # 3. Maintains correspondence between X and y (same samples together)
+    # 4. Handles both arrays and DataFrames automatically
+    
+    # Unpack the tuple returned by train_test_split
+    # The function returns (X_train, X_test, y_train, y_test)
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=test_size, random_state=random_state
+        X,  # Features to split
+        y,  # Targets to split
+        test_size=test_size,  # Proportion for test set (0.2 = 20%)
+        random_state=random_state  # Seed for reproducibility
     )
-
+    
+    # Return all four splits
+    # Caller can use these for training and evaluation
     return X_train, X_test, y_train, y_test
 
 

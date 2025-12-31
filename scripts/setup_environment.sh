@@ -1,11 +1,31 @@
 #!/bin/bash
 # Setup script for VSP AI/ML Training Pipeline
 # This script sets up the Python environment and installs dependencies
+#
+# Educational Context:
+# This is a bash shell script - a series of commands executed in sequence.
+# 
+# Key Concepts:
+# 1. Shebang (#!/bin/bash): Tells system to use bash interpreter
+# 2. Comments (#): Lines starting with # are ignored (documentation)
+# 3. Variables: Store values ($VARIABLE_NAME)
+# 4. Conditionals: if/then/else for decision making
+# 5. Error handling: Check exit codes ($?) to detect failures
+#
+# Why use a script?
+# - Automates repetitive setup tasks
+# - Ensures consistent environment
+# - Saves time (one command vs many)
+# - Can be shared and version controlled
 
+# Print header message to user
+# echo prints text to terminal
 echo "VSP AI/ML Training Pipeline - Environment Setup"
 echo "================================================"
 
-# Check Python version
+# Check Python version before proceeding
+# This verifies Python 3 is installed and accessible
+# --version flag shows version number
 echo "Checking Python version..."
 python3 --version
 

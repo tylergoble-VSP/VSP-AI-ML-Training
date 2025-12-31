@@ -3,10 +3,39 @@ Used in: 07_GenerativeAI_Retrieval_Augmented_Generation.ipynb
 Purpose:
     Provide utilities for Retrieval-Augmented Generation (RAG),
     including vector store creation, document chunking, retrieval, and context formatting.
+    
+Educational Context:
+    RAG (Retrieval-Augmented Generation) combines retrieval and generation.
+    
+    How RAG Works:
+    1. Chunk documents into smaller pieces
+    2. Create embeddings for each chunk
+    3. Store embeddings in vector database
+    4. When query comes in:
+       a. Embed the query
+       b. Find similar document chunks (retrieval)
+       c. Pass chunks as context to LLM
+       d. LLM generates answer using context
+    
+    Why RAG?
+    - LLMs have limited knowledge (training cutoff date)
+    - Can't update LLM knowledge easily
+    - RAG allows using external documents
+    - Reduces hallucinations (grounded in retrieved docs)
+    - Enables domain-specific knowledge
+    
+    Key Components:
+    - Document chunking: Split large docs into manageable pieces
+    - Vector store: Fast similarity search
+    - Retrieval: Find relevant chunks for query
+    - Context formatting: Prepare context for LLM
 """
 
+# Import type hints
 from typing import List, Dict, Any, Optional, Tuple
-import numpy as np  # NumPy for array operations
+
+# Import NumPy: For array operations
+import numpy as np
 
 
 def chunk_documents(

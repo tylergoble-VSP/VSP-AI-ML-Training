@@ -3,10 +3,39 @@ Used in: 05_GenerativeAI_ChainOfThought_Reasoning.ipynb
 Purpose:
     Provide utilities for Chain-of-Thought (CoT) prompting,
     including prompt formatting, reasoning extraction, and self-consistency decoding.
+    
+Educational Context:
+    Chain-of-Thought (CoT) prompting improves LLM reasoning.
+    
+    Key Concepts:
+    1. CoT Prompting: Ask model to show its reasoning steps
+       - Instead of: "What is 2+2?" → "4"
+       - Use: "What is 2+2? Let's think step by step: 2+2 = 4"
+       - Model shows intermediate steps
+    
+    2. Few-Shot CoT: Provide examples with reasoning
+       - Show model how to reason
+       - Model learns the pattern
+       - Improves complex reasoning tasks
+    
+    3. Self-Consistency: Generate multiple reasoning paths
+       - Run CoT multiple times
+       - Take majority vote on final answer
+       - More reliable than single generation
+    
+    Why CoT works:
+    - Breaks complex problems into steps
+    - Reduces errors (can catch mistakes in reasoning)
+    - Improves performance on math, logic, planning
+    - Makes model reasoning transparent
 """
 
+# Import type hints
 from typing import List, Dict, Any, Optional
-import re  # For regex pattern matching
+
+# Import re: Regular expressions for pattern matching
+# Used to extract reasoning steps from model output
+import re
 
 
 def apply_cot_prompting(

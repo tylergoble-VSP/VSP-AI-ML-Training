@@ -3,38 +3,126 @@ Used in: 14_Supervised_Logistic_Regression.ipynb and other classification notebo
 Purpose:
     Provide classification-specific utilities including extended metrics,
     ROC curve generation, and confusion matrix analysis.
+    
+Educational Context:
+    Classification is predicting discrete categories (classes) from data.
+    Examples: spam/not spam, cat/dog/bird, disease/no disease.
+    
+    Key Metrics:
+    1. Accuracy: Overall correctness (correct predictions / total)
+    2. Precision: Of predicted positives, how many were actually positive?
+    3. Recall: Of actual positives, how many did we find?
+    4. F1 Score: Harmonic mean of precision and recall (balanced metric)
+    5. ROC-AUC: Area under ROC curve (measures classifier quality)
+    
+    Confusion Matrix:
+    - Shows true positives, false positives, true negatives, false negatives
+    - Helps understand what types of errors the model makes
+    
+    ROC Curve:
+    - Plots True Positive Rate vs False Positive Rate
+    - Shows trade-off between sensitivity and specificity
+    - AUC (Area Under Curve) summarizes classifier performance
 """
 
-import numpy as np  # NumPy for numerical operations
-import pandas as pd  # Pandas for DataFrame operations
+# Import NumPy: For numerical operations on arrays
+import numpy as np
+
+# Import Pandas: For DataFrame operations
+import pandas as pd
+
+# Import scikit-learn classification metrics
+# These are standard metrics for evaluating classification models
 from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score,
-    roc_curve, auc, roc_auc_score, confusion_matrix,
-    classification_report, precision_recall_curve, average_precision_score
-)  # Classification metrics
-from typing import Tuple, Dict, Any, Optional  # Type hints
-import matplotlib.pyplot as plt  # For plotting
+    accuracy_score,  # Proportion of correct predictions
+    precision_score,  # Precision: TP / (TP + FP)
+    recall_score,  # Recall (Sensitivity): TP / (TP + FN)
+    f1_score,  # F1: harmonic mean of precision and recall
+    roc_curve,  # Generate points for ROC curve
+    auc,  # Calculate area under curve
+    roc_auc_score,  # Calculate ROC-AUC directly
+    confusion_matrix,  # Generate confusion matrix
+    classification_report,  # Comprehensive classification metrics
+    precision_recall_curve,  # Precision-recall curve
+    average_precision_score  # Average precision score
+)
+
+# Import type hints for better code documentation
+from typing import Tuple, Dict, Any, Optional
+
+# Import matplotlib for plotting visualizations
+import matplotlib.pyplot as plt
 
 
 def calculate_classification_metrics(y_true: np.ndarray, y_pred: np.ndarray, 
                                      y_proba: Optional[np.ndarray] = None) -> Dict[str, float]:
     """
     Calculate comprehensive classification metrics.
-
+    
+    Educational Explanation:
+        This function computes multiple metrics to thoroughly evaluate a classifier.
+        
+        Metrics Explained:
+        1. Accuracy: (TP + TN) / (TP + TN + FP + FN)
+           - Overall correctness
+           - Can be misleading with imbalanced classes
+        
+        2. Precision: TP / (TP + FP)
+           - "Of what we predicted as positive, how many were actually positive?"
+           - High precision = few false positives
+           - Important when false positives are costly
+        
+        3. Recall: TP / (TP + FN)
+           - "Of all actual positives, how many did we find?"
+           - High recall = few false negatives
+           - Important when missing positives is costly
+        
+        4. F1 Score: 2 × (precision × recall) / (precision + recall)
+           - Harmonic mean of precision and recall
+           - Balances both metrics
+           - Good single-number summary
+        
+        5. ROC-AUC: Area Under ROC Curve
+           - Measures classifier's ability to distinguish classes
+           - Range: 0.5 (random) to 1.0 (perfect)
+           - Requires probability predictions
+    
     Args:
-        y_true: True class labels.
-        y_pred: Predicted class labels.
-        y_proba: Predicted probabilities (optional, for ROC-AUC).
-
+        y_true: True class labels (ground truth)
+        y_pred: Predicted class labels (model predictions)
+        y_proba: Optional predicted probabilities
+                - Binary: 1D array of probabilities for positive class
+                - Multiclass: 2D array (samples × classes)
+    
     Returns:
-        Dictionary with accuracy, precision, recall, F1, and optionally ROC-AUC.
+        Dictionary with metrics:
+        - accuracy: Overall correctness (0.0 to 1.0)
+        - precision: Precision score (0.0 to 1.0)
+        - recall: Recall score (0.0 to 1.0)
+        - f1_score: F1 score (0.0 to 1.0)
+        - roc_auc: ROC-AUC score (if y_proba provided, 0.0 to 1.0)
     """
-    # Basic metrics
+    # Calculate basic classification metrics
+    # These metrics work with class labels (not probabilities)
+    
+    # Accuracy: Proportion of correct predictions
+    # Simple but can be misleading with imbalanced data
     accuracy = accuracy_score(y_true, y_pred)
+    
+    # Precision: Weighted average across all classes
+    # 'weighted' accounts for class imbalance (weights by class frequency)
+    # zero_division=0 handles edge case when no predictions of a class
     precision = precision_score(y_true, y_pred, average='weighted', zero_division=0)
+    
+    # Recall: Weighted average across all classes
+    # Also handles class imbalance with 'weighted' average
     recall = recall_score(y_true, y_pred, average='weighted', zero_division=0)
+    
+    # F1 Score: Harmonic mean of precision and recall
+    # Provides balanced view of model performance
     f1 = f1_score(y_true, y_pred, average='weighted', zero_division=0)
     
+    # Build metrics dictionary with basic metrics
     metrics = {
         "accuracy": accuracy,
         "precision": precision,
@@ -42,21 +130,32 @@ def calculate_classification_metrics(y_true: np.ndarray, y_pred: np.ndarray,
         "f1_score": f1
     }
     
-    # Add ROC-AUC if probabilities are provided
+    # Add ROC-AUC if probability predictions are provided
+    # ROC-AUC requires probabilities, not just class labels
     if y_proba is not None:
         try:
-            # Handle binary and multiclass cases
+            # Check if binary or multiclass classification
+            # .ndim returns number of dimensions
             if y_proba.ndim == 1:
-                # Binary classification
+                # Binary classification: 1D array of probabilities
+                # Each value is probability of positive class
                 roc_auc = roc_auc_score(y_true, y_proba)
             else:
-                # Multiclass - use one-vs-rest
+                # Multiclass: 2D array (samples × classes)
+                # Each row has probabilities for all classes
+                # 'ovr' = one-vs-rest (compare each class vs all others)
+                # 'weighted' = average across classes, weighted by frequency
                 roc_auc = roc_auc_score(y_true, y_proba, multi_class='ovr', average='weighted')
+            
+            # Add ROC-AUC to metrics dictionary
             metrics["roc_auc"] = roc_auc
         except Exception:
-            # If ROC-AUC calculation fails, skip it
+            # If ROC-AUC calculation fails (e.g., only one class in y_true),
+            # skip it rather than crashing
+            # This makes the function more robust
             pass
     
+    # Return all calculated metrics
     return metrics
 
 

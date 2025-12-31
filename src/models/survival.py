@@ -2,12 +2,45 @@
 Used in: 09_Survival_Analysis
 Purpose:
     Provide utilities for survival analysis including Kaplan-Meier and Cox models.
+    
+Educational Context:
+    Survival analysis studies time until an event occurs.
+    
+    Key Concepts:
+    1. Survival Time: Time until event (death, failure, etc.)
+    2. Censoring: Event hasn't occurred yet (still alive, still working)
+    3. Survival Function: Probability of surviving past time t
+    4. Hazard Function: Instantaneous risk of event at time t
+    
+    Methods:
+    1. Kaplan-Meier: Non-parametric (no assumptions about distribution)
+       - Estimates survival curve from data
+       - Handles censoring naturally
+    
+    2. Cox Proportional Hazards: Semi-parametric regression
+       - Models how covariates affect survival
+       - Assumes proportional hazards (risks scale multiplicatively)
+    
+    Applications:
+    - Medical: Patient survival, disease progression
+    - Engineering: Equipment failure, reliability
+    - Business: Customer churn, employee retention
 """
 
-import pandas as pd  # Pandas for DataFrame operations
-from lifelines import KaplanMeierFitter, CoxPHFitter  # Lifelines survival analysis library
-from lifelines.statistics import logrank_test  # Log-rank test for comparing survival curves
-from typing import Optional  # Type hints
+# Import Pandas: For DataFrame operations
+import pandas as pd
+
+# Import lifelines: Specialized library for survival analysis
+# KaplanMeierFitter: Estimates survival curves non-parametrically
+# CoxPHFitter: Fits Cox proportional hazards regression model
+from lifelines import KaplanMeierFitter, CoxPHFitter
+
+# Import logrank_test: Statistical test for comparing survival curves
+# Tests if two groups have different survival distributions
+from lifelines.statistics import logrank_test
+
+# Import type hints
+from typing import Optional
 
 
 def fit_kaplan_meier(durations: pd.Series, events: pd.Series, label: Optional[str] = None) -> KaplanMeierFitter:

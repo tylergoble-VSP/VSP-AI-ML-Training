@@ -3,11 +3,40 @@ Used in: 06_GenerativeAI_Tool_Calling_Agents.ipynb
 Purpose:
     Provide utilities for tool calling and agent implementation,
     including tool schema definition, safe execution, and agent loops.
+    
+Educational Context:
+    Tool calling allows LLMs to interact with external systems.
+    
+    Key Concepts:
+    1. Tool Schema: Describes available tools to LLM
+       - Function name, description, parameters
+       - LLM decides when and how to call tools
+    
+    2. Agent Loop: LLM can call tools repeatedly
+       - Think → Act → Observe → Think → ...
+       - Continues until task complete
+    
+    3. ReAct Pattern: Reasoning + Acting
+       - Reasoning: LLM explains what it's doing
+       - Acting: LLM calls appropriate tool
+       - Observation: Tool returns result
+       - Repeat until done
+    
+    Why tool calling?
+    - LLMs can't access real-time data
+    - Can't perform actions (send email, search web)
+    - Tool calling bridges this gap
+    - Enables autonomous agents
 """
 
+# Import type hints
 from typing import Dict, List, Any, Optional, Callable
-import json  # For JSON parsing
-import re  # For pattern matching
+
+# Import json: For parsing JSON (tool schemas, function calls)
+import json
+
+# Import re: For pattern matching (extracting function calls from text)
+import re
 
 
 def define_tool_schema(

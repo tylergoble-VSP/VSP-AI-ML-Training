@@ -3,10 +3,41 @@ Used in: 04_GenerativeAI_LoRA_PEFT_FineTuning.ipynb
 Purpose:
     Provide utilities for working with LoRA (Low-Rank Adaptation) and PEFT
     (Parameter-Efficient Fine-Tuning) for fine-tuning large language models.
+    
+Educational Context:
+    LoRA enables efficient fine-tuning of large models.
+    
+    Key Concepts:
+    1. Full Fine-Tuning Problem:
+       - Update all model parameters (billions)
+       - Requires huge memory and compute
+       - Slow and expensive
+    
+    2. LoRA Solution:
+       - Freeze original model weights
+       - Add small "adapter" matrices
+       - Only train adapters (much smaller)
+       - Combine adapters with base model at inference
+    
+    3. How LoRA Works:
+       - Original: W (large matrix)
+       - LoRA: W + BA (B and A are small matrices)
+       - Rank r << original dimension
+       - Example: 7B model → train only 8M parameters
+    
+    Why LoRA?
+    - 10-100x fewer parameters to train
+    - Much faster training
+    - Lower memory requirements
+    - Can fine-tune on single GPU
+    - Multiple LoRAs for different tasks
 """
 
+# Import type hints
 from typing import Optional, Dict, Any, List
-import torch  # PyTorch for tensor operations
+
+# Import PyTorch: For tensor operations
+import torch
 
 
 def setup_lora_model(

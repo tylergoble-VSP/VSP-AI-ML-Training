@@ -3,13 +3,44 @@ Used in: 11_Generative_Models
 Purpose:
     Provide utilities for generative models including VAE and GAN implementations.
     Uses PyTorch for neural network construction.
+    
+Educational Context:
+    Generative models create new data similar to training data.
+    
+    Key Concepts:
+    1. VAE (Variational Autoencoder):
+       - Encodes data to latent space (compressed representation)
+       - Decodes latent code back to data
+       - Learns smooth latent space (can generate new samples)
+       - Uses variational inference (probabilistic approach)
+    
+    2. GAN (Generative Adversarial Network):
+       - Generator: Creates fake data
+       - Discriminator: Distinguishes real from fake
+       - They compete (adversarial training)
+       - Generator improves by fooling discriminator
+    
+    Why generative models?
+    - Create new images, text, music
+    - Data augmentation (generate more training data)
+    - Understand data distribution
+    - Anomaly detection
 """
 
-import torch  # PyTorch for deep learning
-import torch.nn as nn  # Neural network modules
-import torch.optim as optim  # Optimizers
-from torch.utils.data import DataLoader  # Data loading utilities
-from typing import Tuple  # Type hints
+# Import PyTorch: Deep learning framework
+import torch  # Core PyTorch library (tensors, operations)
+
+# Import neural network modules
+import torch.nn as nn  # Layers, activation functions, loss functions
+
+# Import optimizers: Algorithms for updating model weights
+import torch.optim as optim  # SGD, Adam, etc.
+
+# Import DataLoader: Efficient data loading and batching
+from torch.utils.data import DataLoader
+
+# Import type hints
+from typing import Tuple
 
 
 class SimpleVAE(nn.Module):

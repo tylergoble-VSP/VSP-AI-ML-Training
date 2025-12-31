@@ -3,10 +3,39 @@ Used in: 02_GenerativeAI_LlamaCPP_Local_Models.ipynb
 Purpose:
     Provide utilities for working with llama.cpp Python bindings,
     including model loading, text generation, and performance benchmarking.
+    
+Educational Context:
+    llama.cpp enables running LLMs efficiently on CPU.
+    
+    Key Concepts:
+    1. Quantization: Reduce model precision
+       - Full precision: float32 (4 bytes per weight)
+       - Quantized: int8, int4 (1-2 bytes per weight)
+       - 2-4x smaller models, faster inference
+    
+    2. CPU Optimization: Efficient CPU inference
+       - Optimized C++ implementation
+       - No GPU required
+       - Works on any computer
+    
+    3. GGUF Format: Efficient model format
+       - Compressed and quantized
+       - Fast loading
+       - Cross-platform
+    
+    Why llama.cpp?
+    - Run models without GPU
+    - Lower memory usage
+    - Faster inference (optimized code)
+    - Privacy (local execution)
+    - Free and open source
 """
 
+# Import type hints
 from typing import Optional, Dict, Any, List
-import time  # For timing operations
+
+# Import time: For timing operations (benchmarking)
+import time
 
 
 def load_llama_model(

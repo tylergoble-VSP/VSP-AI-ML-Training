@@ -3,10 +3,36 @@ Used in: 08_GenerativeAI_Neo4j_Knowledge_Graphs.ipynb
 Purpose:
     Provide utilities for working with Neo4j graph database,
     including connection management, node/relationship creation, and Cypher query execution.
+    
+Educational Context:
+    Neo4j is a graph database that stores data as nodes and relationships.
+    
+    Key Concepts:
+    1. Nodes: Entities (people, places, things)
+       - Have labels (Person, Company, etc.)
+       - Have properties (name, age, etc.)
+    
+    2. Relationships: Connections between nodes
+       - Have types (KNOWS, WORKS_FOR, etc.)
+       - Can have properties (since, weight, etc.)
+       - Have direction (A → B)
+    
+    3. Cypher: Query language for Neo4j
+       - Similar to SQL but for graphs
+       - Pattern matching syntax
+    
+    Why graphs?
+    - Natural representation of relationships
+    - Fast traversal (follow connections)
+    - Multi-hop reasoning (A knows B, B knows C)
+    - Perfect for knowledge graphs
 """
 
+# Import type hints
 from typing import Optional, Dict, List, Any
-import os  # For environment variables
+
+# Import os: For accessing environment variables (secure credential storage)
+import os
 
 
 def connect_neo4j(

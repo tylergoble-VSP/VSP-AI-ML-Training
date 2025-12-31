@@ -4,12 +4,42 @@ Used in: 20_Ensemble_Random_Forest.ipynb, 21_Ensemble_AdaBoost.ipynb,
 Purpose:
     Provide ensemble-specific utilities including feature importance extraction,
     out-of-bag error calculation, and ensemble prediction aggregation.
+    
+Educational Context:
+    Ensemble methods combine multiple models to make better predictions.
+    
+    Key Concepts:
+    1. Bagging (Bootstrap Aggregating): Train multiple models on different data samples
+       - Random Forest: Many decision trees voting together
+       - Reduces variance (overfitting)
+    
+    2. Boosting: Train models sequentially, each fixing previous errors
+       - AdaBoost: Weighted combination of weak learners
+       - Gradient Boosting: Minimize loss function with gradient descent
+       - XGBoost: Optimized gradient boosting
+    
+    3. Voting/Averaging: Combine predictions from multiple models
+       - Classification: Majority vote
+       - Regression: Average predictions
+    
+    Why ensembles work:
+    - Multiple models catch different patterns
+    - Errors cancel out (one model wrong, others right)
+    - More robust than single model
+    - Often achieve state-of-the-art performance
 """
 
-import numpy as np  # NumPy for numerical operations
-import pandas as pd  # Pandas for DataFrame operations
-from typing import Dict, List, Any, Optional  # Type hints
-import matplotlib.pyplot as plt  # For plotting
+# Import NumPy: For numerical operations
+import numpy as np
+
+# Import Pandas: For DataFrame operations
+import pandas as pd
+
+# Import type hints
+from typing import Dict, List, Any, Optional
+
+# Import matplotlib: For plotting visualizations
+import matplotlib.pyplot as plt
 
 
 def extract_feature_importance(model: Any, feature_names: Optional[List[str]] = None) -> pd.DataFrame:

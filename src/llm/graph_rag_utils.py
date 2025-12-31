@@ -3,10 +3,37 @@ Used in: 09_GenerativeAI_Graph_RAG.ipynb
 Purpose:
     Provide utilities for Graph RAG (Retrieval-Augmented Generation with Knowledge Graphs),
     including graph-based retrieval, graph-to-text conversion, and hybrid retrieval.
+    
+Educational Context:
+    Graph RAG combines knowledge graphs with RAG for better retrieval.
+    
+    How Graph RAG Works:
+    1. Extract entities and relationships from documents
+    2. Build knowledge graph (nodes = entities, edges = relationships)
+    3. When query comes in:
+       a. Find relevant entities in graph
+       b. Traverse graph to find related entities (multi-hop)
+       c. Retrieve connected subgraph
+       d. Convert graph to text context
+       e. Pass to LLM for generation
+    
+    Advantages over Vector RAG:
+    - Multi-hop reasoning (A → B → C)
+    - Explicit relationships (not just similarity)
+    - Structured knowledge (not just text chunks)
+    - Better for complex queries
+    
+    Hybrid Approach:
+    - Combine vector search (semantic similarity)
+    - With graph traversal (structured relationships)
+    - Best of both worlds
 """
 
+# Import type hints
 from typing import List, Dict, Any, Optional, Tuple
-import numpy as np  # NumPy for array operations
+
+# Import NumPy: For array operations
+import numpy as np
 
 
 def graph_rag_retrieve(
