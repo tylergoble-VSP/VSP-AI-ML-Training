@@ -1,0 +1,16 @@
+{
+  "retrieved_text": "RAG improves factuality by grounding answers in retrieved context.",
+  "generation": "Use the context to answer the question.\nContext: RAG improves factuality by grounding answers in retrieved context.\nQuestion: Why is RAG helpful for factuality?\nAnswer:oho Jratisf intermittent intermittent Rh Participation reviewingoho intermittent pawnmediately scalp reviewingimura dispatch circumcised directly confirSherScene reviewing conservation substhibit Process Rh stairs004 Rhting credibility intermittentahn conservation credibility antibiotichibit Money Amph intermittent heirreementoho trilogy ESV sexuality ESVJD stairs Habit stairs administration ESVGaza things stairsiken stairs Rhohohibit Jr reborn",
+  "evaluation": {
+    "pass_rate": 0.0,
+    "total_cases": 1,
+    "results": [
+      {
+        "prompt": "Why is reproducibility important in ML?",
+        "expected_hits": [],
+        "forbidden_hits": [],
+        "passed": false
+      }
+    ]
+  }
+}

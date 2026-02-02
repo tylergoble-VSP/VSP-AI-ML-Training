@@ -1,0 +1,1 @@
+{"timestamp_utc": "20260121_173946Z", "run_id": "genai_interview", "model_id": "sshleifer/tiny-gpt2", "step_name": "model_and_tokenizer_load", "duration_ms": 3220.6389069906436, "device": "cpu", "torch_dtype": "float32", "batch_size": null, "sequence_length": null}

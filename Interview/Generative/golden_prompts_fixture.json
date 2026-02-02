@@ -1,0 +1,12 @@
+[
+  {
+    "prompt": "Why is reproducibility important in ML?",
+    "expected_substrings": ["reproduc"],
+    "forbidden_substrings": ["ignore"]
+  },
+  {
+    "prompt": "What should telemetry logs capture?",
+    "expected_substrings": ["token"],
+    "forbidden_substrings": ["skip"]
+  }
+]

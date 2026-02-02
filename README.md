@@ -11,6 +11,8 @@ The notebooks are organized into:
 - **25 algorithm-specific notebooks** (13-37): Deep dives into individual ML algorithms with theory, implementation, validation, benchmarking, and traceability
 - **9 GenerativeAI notebooks** (01-09): Advanced Generative AI frameworks and concepts including Hugging Face, llama.cpp, Ollama, LoRA/PEFT, Chain-of-Thought, Tool Calling, RAG, Neo4j, and Graph RAG
 
+This repository also includes interview-ready materials under `Interview/` for Traditional ML and Generative AI implementation assessments.
+
 ## Target Audience
 
 Intermediate developers with some programming background who want to:
@@ -77,6 +79,17 @@ VSP-AI-ML-Training/
 │       ├── 07_GenerativeAI_Retrieval_Augmented_Generation.ipynb
 │       ├── 08_GenerativeAI_Neo4j_Knowledge_Graphs.ipynb
 │       └── 09_GenerativeAI_Graph_RAG.ipynb
+│   └── interview/                      # Interview exercise notebooks (01-03)
+│       ├── 01_GenAI_Implementation_Junior.ipynb
+│       ├── 02_GenAI_Implementation_Mid.ipynb
+│       └── 03_GenAI_Implementation_Senior.ipynb
+├── Interview/                          # Interview materials (anonymized)
+│   ├── Generative/
+│   │   └── Generative_AI_Implementation_Section.md
+│   └── Machine_Learning/
+│       └── Traditional_ML_Interview_Section.md
+├── config/                             # YAML configs (no hard-coded model IDs)
+│   └── llm_interview.yaml
 ├── requirements.txt                   # Python dependencies
 ├── README.md                          # This file
 ├── pytest.ini                         # Pytest configuration
@@ -86,6 +99,12 @@ VSP-AI-ML-Training/
 │   ├── models/                        # ML model utilities
 │   ├── llm/                           # LLM and embedding utilities
 │   │   ├── embeddings.py              # Embedding utilities
+│   │   ├── config.py                  # LLM config parsing
+│   │   ├── tokenization.py            # Tokenizer utilities
+│   │   ├── model_loading.py           # Model loading utilities
+│   │   ├── generation.py              # Generation wrapper
+│   │   ├── eval.py                    # Golden prompt evaluation
+│   │   ├── telemetry.py               # Token/timing telemetry
 │   │   ├── transformers_utils.py     # Hugging Face utilities
 │   │   ├── llama_cpp_utils.py        # llama.cpp utilities
 │   │   ├── ollama_utils.py           # Ollama utilities
@@ -157,6 +176,15 @@ Open the notebooks in VS Code (recommended) or Jupyter:
 # Or use Jupyter:
 jupyter notebook
 ```
+
+## Interview Notebooks (Generative AI)
+
+Three interview exercises are available under `notebooks/interview/`:
+- `01_GenAI_Implementation_Junior.ipynb`
+- `02_GenAI_Implementation_Mid.ipynb`
+- `03_GenAI_Implementation_Senior.ipynb`
+
+Configuration is stored in `config/llm_interview.yaml`. Update model IDs, device strategy, and generation defaults there (no hard-coded IDs in code).
 
 ## Module Descriptions
 
@@ -325,6 +353,25 @@ All outputs are automatically written to `/outputs/` with timestamped filenames:
 - **Logs**: Written to `/outputs/logs/`
 - **Processed Data**: Written to `/outputs/processed/`
 
+## Notebook Import Bootstrap
+
+All notebooks must start with a repo-root bootstrap cell so `import src...` works
+regardless of the working directory. Keep this as the first code cell:
+
+```python
+# stdlib pathlib (filesystem paths)
+from pathlib import Path
+
+# src/utils/pathing.py
+from src.utils.pathing import ensure_repo_root_on_sys_path  # src/utils/pathing.py
+
+ensure_repo_root_on_sys_path(Path.cwd())
+```
+
+For Generative AI interview notebooks, logs follow:
+- `outputs/logs/llm_tokens_<YYYYMMDD_HHMMSSZ>.jsonl`
+- `outputs/logs/llm_timing_<YYYYMMDD_HHMMSSZ>.jsonl`
+
 ## Testing
 
 Run unit tests using pytest:
@@ -354,6 +401,7 @@ This is a training repository. When working with the notebooks:
 - Follow the existing code style and documentation standards
 - Test your code before committing
 - Add unit tests for any new helper functions
+- Keep the bootstrap import cell as the first code cell in each notebook
 
 ## License
 

@@ -58,6 +58,7 @@ torchvision>=0.13.0
 jupyter>=1.0.0
 ipykernel>=6.0.0
 notebook>=6.4.0
+pyyaml>=6.0.0  # YAML config parsing for reproducible runs
 
 # Testing
 pytest>=7.0.0

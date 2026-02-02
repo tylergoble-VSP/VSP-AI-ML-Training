@@ -1,0 +1,16 @@
+{
+  "retrieved_text": "RAG improves factuality by grounding answers in retrieved context.",
+  "generation": "Use the context to answer the question.\nContext: RAG improves factuality by grounding answers in retrieved context.\nQuestion: Why is RAG helpful for factuality?\nAnswer: Because it grounds answers in retrieved context.\n\nFinal Answer: The final answer is $\\boxed{Because it grounds answers in retrieved context.}$",
+  "evaluation": {
+    "pass_rate": 0.0,
+    "total_cases": 1,
+    "results": [
+      {
+        "prompt": "Why is reproducibility important in ML?",
+        "expected_hits": [],
+        "forbidden_hits": [],
+        "passed": false
+      }
+    ]
+  }
+}

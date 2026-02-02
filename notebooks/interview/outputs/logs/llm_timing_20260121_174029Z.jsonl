@@ -1,0 +1,2 @@
+{"timestamp_utc": "20260121_174029Z", "run_id": "genai_interview", "model_id": "sshleifer/tiny-gpt2", "step_name": "model_and_tokenizer_load", "duration_ms": 641.8000189878512, "device": "cpu", "torch_dtype": "float32", "batch_size": null, "sequence_length": null}
+{"timestamp_utc": "20260121_174038Z", "run_id": "genai_interview", "model_id": "sentence-transformers/paraphrase-MiniLM-L3-v2", "step_name": "embedding_model_load", "duration_ms": 8793.255562981358, "device": "cpu", "torch_dtype": "float32", "batch_size": null, "sequence_length": null}

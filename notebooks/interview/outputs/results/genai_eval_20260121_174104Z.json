@@ -1,0 +1,25 @@
+{
+  "retrieved_text": "Telemetry logs help trace latency and token usage.",
+  "generation": "Use the context to answer the question.\nContext: Telemetry logs help trace latency and token usage.\nQuestion: How do telemetry logs help with traceability?\nAnswer:oho Jratisf intermittent intermittent Rh Participation reviewingoho intermittent pawnmediately scalp reviewingimura dispatch circumcised directly confirSherScene reviewing conservation substhibit Process Rh stairs004 Rhting credibility intermittentahn conservation credibility antibiotichibit Money Amph intermittent heirreementoho trilogy ESV sexuality ESVJD stairs Habit stairs administration ESVGaza things stairsiken stairs Rhohohibit Jr reborn",
+  "evaluation": {
+    "pass_rate": 0.0,
+    "total_cases": 2,
+    "results": [
+      {
+        "prompt": "Why is reproducibility important in ML?",
+        "expected_hits": [],
+        "forbidden_hits": [],
+        "passed": false
+      },
+      {
+        "prompt": "What should telemetry logs capture?",
+        "expected_hits": [],
+        "forbidden_hits": [],
+        "passed": false
+      }
+    ]
+  },
+  "seed": 42,
+  "device": "cpu",
+  "torch_dtype": "float32"
+}

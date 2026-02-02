@@ -1,0 +1,2 @@
+{"timestamp_utc": "20260122_203056Z", "run_id": "genai_interview", "model_id": "google/gemma-3-1b-it", "step_name": "model_and_tokenizer_load", "duration_ms": 1986.4333639852703, "device": "cpu", "torch_dtype": "float32", "batch_size": null, "sequence_length": null}
+{"timestamp_utc": "20260122_203057Z", "run_id": "genai_interview", "model_id": "sentence-transformers/paraphrase-MiniLM-L3-v2", "step_name": "embedding_model_load", "duration_ms": 1370.2933539752848, "device": "cpu", "torch_dtype": "float32", "batch_size": null, "sequence_length": null}
