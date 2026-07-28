@@ -29,7 +29,7 @@ Kills the misconception that one headline number ("99% accurate!") settles wheth
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
 | 1 | Revisit your LSN-0.3 base-rate notes (the 1-in-10,000 fraud detector) | 15 min | One line: why is a 99%-accurate detector on a rare event mostly false alarms? |
-| 2 | Read the ML literacy deck (see PROGRAM_PLAN.md §8) grading/metrics section | 15 min | Nothing to submit |
+| 2 | Read the grading/metrics material — canonical target: `program/lessons/decks/LSN-1.3-grading-models.html` (mirrors the original ML literacy deck's grading section, not yet in repo) | 15 min | Nothing to submit |
 
 ## Session Plan
 
@@ -38,7 +38,7 @@ Kills the misconception that one headline number ("99% accurate!") settles wheth
 | MAE: the average miss | 20 min | talk + worked example | MAE in real units — a house-price model with MAE $23k: "on average we're off by $23k; is that livable for your decision?" Then the trap: an average hides the spread — a model that misses small items by a little and big items by a lot can have a flattering MAE. Ask for error broken out by segment. (This trap is homework card A.) |
 | Precision vs recall: two kinds of wrong | 30 min | talk + drill | The LSN-0.3 fraud detector, upgraded from base rates to metrics: precision = of what we flagged, how much was real; recall = of what was real, how much we caught. Compute both live from the LSN-0.3 numbers. Then the client question that matters: *which error is expensive for this client?* Missed fraud vs annoyed customers; missed defect vs unnecessary site inspection. Participants pick the priority metric for three quick-fire cases. |
 | Confusion matrix reading drill | 20 min | drill | Two 2×2 matrices on screen; participants extract accuracy, precision, recall by hand and say in one client-safe sentence what the model does well and badly. Matrix 2 is the always-say-no degenerate case — high accuracy, zero recall — the base-rate lesson wearing a metrics costume. |
-| AUC in one picture + "they quoted 99% accuracy" | 20 min | talk + discussion | AUC as "how well the model separates the classes across all thresholds" — one ROC picture, no math (`notebooks/foundations/12_Analytics_Performance.ipynb` renders it). Close with the checklist for when a client or vendor quotes one shiny number: What's the base rate? Accuracy on *what* data — did the model see it in training? Precision and recall, per class? What does each error cost you? |
+| AUC in one picture + "they quoted 99% accuracy" | 20 min | talk + discussion | AUC as "how well the model separates the classes across all thresholds" — one ROC picture, no math (the session notebook draws it; `notebooks/foundations/06_Classifier_Algorithms.ipynb` is the go-deeper with real `roc_curve`/`roc_auc_score` usage — NOT `foundations/12`, which is a runtime-timing notebook despite its name; see BUILD_LOG LL-32). Close with the checklist for when a client or vendor quotes one shiny number: What's the base rate? Accuracy on *what* data — did the model see it in training? Precision and recall, per class? What does each error cost you? |
 
 **Timing check:** 20 + 30 + 20 + 20 = 90 min = 1.5 h contract duration. ✓
 
@@ -60,10 +60,12 @@ Every metric is priced in a delivery-company scenario: MAE on effort estimates t
 
 | Material | Status | Path / source |
 |---|---|---|
-| ML literacy deck (grading/metrics section) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
-| Metrics/ROC rendering for the AUC picture | exists | `notebooks/foundations/12_Analytics_Performance.ipynb` |
-| Three model report cards + answer key | exists | This plan (Homework, above) |
-| Confusion-matrix drill slides (two matrices incl. always-say-no case) | adapt | Extract from deck at delivery prep |
+| **Session deck** — 11 slides w/ timed notes; carries the grading content (canonical, per SI-25) | exists | `program/lessons/decks/LSN-1.3-grading-models.html` |
+| **Session notebook** — MAE/precision-recall/AUC segments, fraud report card (LSN-0.3 continuity, pinned), confusion-matrix drill + three report-card homework w/ graded verdicts, executed end to end | exists | `notebooks/lessons/LSN-1.3_Grading_Models.ipynb` |
+| ML literacy deck (grading/metrics — original source) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
+| Go-deeper: real ROC/AUC usage | exists | `notebooks/foundations/06_Classifier_Algorithms.ipynb` (replaces the erroneous `foundations/12` citation — LL-32) |
+| Three model report cards + answer key | exists | This plan (Homework, above) + notebook homework cells (pinned arithmetic) |
+| Confusion-matrix drill slides (two matrices incl. always-say-no case) | exists | Deck + notebook drill section |
 | Optional pre-work video: StatQuest with Josh Starmer — "ROC and AUC, Clearly Explained!" | exists | (verify at delivery prep) |
 
 ## Delivery Notes

@@ -41,7 +41,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 |---|---|---|---|---|---|
 | `LSN-1.1` | The five ML jobs & the nesting doll | 1 h | Tyler | Live | Exists (ML literacy deck) |
 | `LSN-1.2` | Model I/O — inputs, outputs, interpretation | 1 h | Tyler | Live | Exists (deck + notebooks) |
-| `LSN-1.3` | Grading models — MAE, precision/recall, AUC | 1.5 h | Tyler | Live | Exists (deck + `foundations/12`) |
+| `LSN-1.3` | Grading models — MAE, precision/recall, AUC | 1.5 h | Tyler | Live | Built (deck + notebook) |
 | `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Build (**GAP-8**) |
 | `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded (45 min) + live Q&A/drill (15 min) | Exists (notebooks as refs) |
 | `LSN-1.6` | Data requirements, limitations & the pre-sales question bank | 1 h | Tyler + Vlad | Live | **BUILD — GAP-5** |
@@ -109,7 +109,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Homework:** Given three model report cards, write one paragraph each: ship it or not, and why.
 
-**Support material:** Exists — deck + `notebooks/foundations/12_Analytics_Performance.ipynb`.
+**Support material:** Built — deck `program/lessons/decks/LSN-1.3-grading-models.html`; session notebook `notebooks/lessons/LSN-1.3_Grading_Models.ipynb` (executed end to end). Go-deeper: `notebooks/foundations/06_Classifier_Algorithms.ipynb` (the earlier `foundations/12` citation was a name-based error — it's a runtime-timing notebook; BUILD_LOG LL-32).
 
 ---
 

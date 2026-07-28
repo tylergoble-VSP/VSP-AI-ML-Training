@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSN-1.3 — Grading Models: MAE, Precision/Recall, Confusion Matrix, AUC · VSP AI/ML Training</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  /* ============================================================
+     Victory Square Partners — Design System (inlined)
+     Source: Claude Design handoff bundle, June 2026 (mirrors index.html).
+     Dark near-black world · Navy=primary · Gold=accent/CTA · Green=support
+     Two-font: Syne (display) + Inter (body) · italic-gold headline accent.
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap');
+
+  :root {
+    --vsp-green-lightest: #97f377;
+    --vsp-green-light:     #7bd15d;
+    --vsp-green:           #65a74e;
+    --vsp-green-dark:      #4f813e;
+    --vsp-green-darkest:   #355629;
+    --vsp-yellow-lightest: #fff5c2;
+    --vsp-yellow-light:    #ffef96;
+    --vsp-yellow:          #ffe86b;
+    --vsp-navy-light:      #59709c;
+    --vsp-navy:            #46597c;
+    --vsp-navy-dark:       #344566;
+    --vsp-navy-darkest:    #2b374d;
+    --vsp-canvas:          #080c10;
+    --vsp-canvas-2:        #111820;
+    --vsp-canvas-3:        #1a2230;
+    --vsp-white:           #ffffff;
+    --vsp-black:           #0c0c0c;
+    --vsp-on-dark-strong:  rgba(255,255,255,0.85);
+    --vsp-on-dark:         rgba(255,255,255,0.70);
+    --vsp-on-dark-muted:   rgba(255,255,255,0.55);
+    --vsp-on-dark-faint:   rgba(255,255,255,0.40);
+    --vsp-on-dark-ghost:   rgba(255,255,255,0.25);
+    --vsp-primary:         var(--vsp-navy);
+    --vsp-accent:          var(--vsp-yellow);
+    --vsp-accent-ink:      var(--vsp-canvas);
+    --vsp-support:         var(--vsp-green);
+    --vsp-bg-gradient:     linear-gradient(160deg, var(--vsp-canvas) 0%, var(--vsp-canvas-2) 60%, var(--vsp-canvas-3) 100%);
+    --vsp-border:          rgba(255,255,255,0.10);
+    --vsp-font-display: 'Syne', 'Inter', system-ui, sans-serif;
+    --vsp-font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --vsp-tracking-kicker: 0.16em;
+    --vsp-radius-button: 6px;
+    --vsp-radius-card:   10px;
+    --vsp-radius-chip:   20px;
+  }
+
+  html, body { margin: 0; background: #0c0c0c; }
+  .reveal { font-family: var(--vsp-font-sans); }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 0; width: 1280px; height: 720px; background: transparent; box-sizing: border-box; }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; margin: 0; }
+
+  .vsp-slide {
+    position: relative; width: 1280px; height: 720px; overflow: hidden;
+    font-family: var(--vsp-font-sans); color: var(--vsp-on-dark-strong);
+    background: var(--vsp-bg-gradient); display: flex; flex-direction: column; box-sizing: border-box;
+  }
+  .vsp-grid {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .vsp-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .vsp-orb.yellow { background: var(--vsp-yellow); opacity: 0.08; }
+  .vsp-orb.green  { background: var(--vsp-green);  opacity: 0.10; }
+  .vsp-orb.green-l{ background: var(--vsp-green-lightest); opacity: 0.06; }
+  .vsp-orb.navy   { background: var(--vsp-navy-light); opacity: 0.16; }
+  .vsp-stage { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; padding: 64px 80px; }
+  .vsp-stage.center { justify-content: center; align-items: flex-start; }
+  .vsp-topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 28px 80px 0; }
+  .vsp-footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 80px 28px; font-size: 12px; font-weight: 500; color: var(--vsp-on-dark-ghost); }
+  .vsp-kicker { font-size: 13px; font-weight: 700; letter-spacing: var(--vsp-tracking-kicker); text-transform: uppercase; color: var(--vsp-accent); }
+  .vsp-rule { width: 64px; height: 4px; background: var(--vsp-accent); border-radius: 2px; }
+  .vsp-glow { font-style: italic; color: var(--vsp-accent); }
+  .vsp-h1 { font-family: var(--vsp-font-display); font-size: 64px; font-weight: 800; line-height: 1.02; color: var(--vsp-white); letter-spacing: -0.03em; margin: 0; }
+  .vsp-h2 { font-family: var(--vsp-font-display); font-size: 46px; font-weight: 800; line-height: 1.08; color: var(--vsp-white); letter-spacing: -0.025em; margin: 0; }
+  .vsp-lead { font-size: 21px; font-weight: 400; line-height: 1.55; color: var(--vsp-on-dark-muted); margin: 0; }
+  .vsp-card { position: relative; background: var(--vsp-canvas-2); border: 1px solid var(--vsp-border); border-radius: var(--vsp-radius-card); padding: 28px 28px 26px; overflow: hidden; }
+  .vsp-card .topbar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .vsp-card .topbar.green  { background: linear-gradient(90deg, var(--vsp-green), var(--vsp-green-lightest)); }
+  .vsp-card .topbar.yellow { background: linear-gradient(90deg, var(--vsp-yellow), var(--vsp-yellow-light)); }
+  .vsp-card h3 { font-family: var(--vsp-font-display); font-size: 24px; font-weight: 700; color: var(--vsp-white); margin: 0 0 8px; line-height: 1.15; letter-spacing: -0.02em; }
+  .vsp-card p  { font-size: 15px; line-height: 1.55; color: var(--vsp-on-dark); margin: 0; }
+  .vsp-wordmark { font-family: var(--vsp-font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.02em; color: var(--vsp-white); }
+  .vsp-wordmark span { color: var(--vsp-accent); }
+
+  .p-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .p-grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .p-chk { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  .p-chk li { position:relative; padding-left:30px; font-size:15px; line-height:1.45; color:var(--vsp-on-dark-strong); }
+  .p-chk li::before { content:''; position:absolute; left:0; top:3px; width:18px; height:18px; border-radius:50%; background:rgba(101,167,78,0.18); }
+  .p-chk li::after { content:''; position:absolute; left:6px; top:8px; width:5px; height:9px; border:2px solid var(--vsp-green-lightest); border-top:0; border-left:0; transform:rotate(40deg); }
+  .p-time { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:8px; }
+  .p-time::before { content:''; position:absolute; top:9px; left:6%; right:6%; height:2px; background:linear-gradient(90deg,var(--vsp-green),var(--vsp-accent)); }
+  .p-step { position:relative; padding-top:30px; text-align:center; padding-left:6px; padding-right:6px; }
+  .p-step .dot { position:absolute; top:2px; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--vsp-green); border:3px solid var(--vsp-canvas); }
+  .p-step.key .dot { background:var(--vsp-accent); }
+  .p-step .d { font-family:var(--vsp-font-display); font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:4px; }
+  .p-step .t { font-size:13.5px; font-weight:700; color:var(--vsp-white); margin-bottom:3px; line-height:1.2; }
+  .p-step .s { font-size:12px; color:var(--vsp-on-dark-muted); line-height:1.4; }
+  .p-callout { background:rgba(255,232,107,0.07); border-left:4px solid var(--vsp-accent); border-radius:0 10px 10px 0; padding:16px 20px; font-size:16px; font-weight:600; color:var(--vsp-white); line-height:1.45; }
+  .p-callout b { color:var(--vsp-accent); }
+  .p-ramp { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:end; }
+  .p-ramp .bar { background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:20px 18px; position:relative; overflow:hidden; }
+  .p-ramp .bar .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-ramp .bar .topbar.g  { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-ramp .bar .topbar.y  { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-ramp .lbl { font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:8px; }
+  .p-ramp .num { font-family:var(--vsp-font-display); font-size:46px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-ramp .sub { font-size:13px; color:var(--vsp-on-dark-muted); margin-top:8px; line-height:1.4; }
+  .p-pipe { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .p-pipe .node { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:16px 18px 15px; display:flex; align-items:flex-start; gap:13px; }
+  .p-pipe .node .n { font-family:var(--vsp-font-display); font-size:15px; font-weight:800; color:var(--vsp-accent-ink); background:var(--vsp-accent); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .p-pipe .node.moat .n { background:var(--vsp-green-lightest); }
+  .p-pipe .node .nt { font-size:15px; font-weight:700; color:var(--vsp-white); line-height:1.2; }
+  .p-pipe .node .ns { font-size:12.5px; color:var(--vsp-on-dark-muted); line-height:1.35; margin-top:3px; }
+  .code-chip { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:14px; background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:6px; padding:4px 10px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .p-count { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:18px 18px 16px; overflow:hidden; }
+  .p-count .topbar { position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-count.key .topbar { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-count .lbl { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:7px; line-height:1.3; }
+  .p-count .num { font-family:var(--vsp-font-display); font-size:38px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-count .sub { font-size:12.5px; color:var(--vsp-on-dark-muted); margin-top:7px; line-height:1.4; }
+  .p-tbl { width:100%; border-collapse:collapse; font-size:15px; }
+  .p-tbl th { text-align:left; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); padding:0 14px 9px 0; border-bottom:1px solid var(--vsp-border); }
+  .p-tbl td { padding:10px 14px 10px 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--vsp-on-dark); }
+  .p-tbl td b { color:var(--vsp-white); font-weight:700; }
+  .p-tbl tr.hi td { color:var(--vsp-on-dark-strong); background:rgba(255,232,107,0.06); }
+  .p-eq { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:15px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-quote { background:var(--vsp-canvas-2); border-left:4px solid var(--vsp-green); border-radius:0 10px 10px 0; padding:18px 22px; }
+  .p-quote .meta { font-size:11px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--vsp-green-lightest); margin-bottom:9px; }
+  .p-quote p { font-size:16.5px; line-height:1.5; color:var(--vsp-on-dark-strong); margin:0; font-style:italic; }
+  .p-tag { display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; border-radius:var(--vsp-radius-chip); padding:3px 10px; }
+  .p-tag.prop { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bug  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  /* ---- LSN-1.1 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-tag.job  { background:rgba(89,112,156,0.30); color:#cfe0ff; }
+  .p-tag.gen  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  .p-doll { display:flex; flex-direction:column; }
+  .p-doll .ring { border-radius:12px; padding:12px 16px 11px; }
+  .p-doll .ring + .ring, .p-doll .ring .ring { margin-top:9px; }
+  .p-doll .rl { display:block; font-family:var(--vsp-font-display); font-size:16px; font-weight:800;
+                color:var(--vsp-white); letter-spacing:-0.01em; }
+  .p-doll .rl em { font-family:var(--vsp-font-sans); font-style:italic; font-weight:400; font-size:12.5px;
+                   color:var(--vsp-on-dark-muted); letter-spacing:0; }
+  .p-doll .chip { display:block; font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:7px;
+                  line-height:1.35; }
+  .p-doll .ring.ai  { border:2px dashed rgba(255,255,255,0.26); }
+  .p-doll .ring.ml  { border:2px solid var(--vsp-navy-light);  background:rgba(89,112,156,0.12); }
+  .p-doll .ring.dl  { border:2px solid var(--vsp-green);       background:rgba(101,167,78,0.10); }
+  .p-doll .ring.gen { border:2px solid var(--vsp-yellow);      background:rgba(255,232,107,0.09); }
+  .p-scen { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .p-scen li { display:flex; gap:11px; align-items:flex-start; }
+  .p-scen .n { font-family:var(--vsp-font-sans); font-size:13px; font-weight:800;
+               color:var(--vsp-accent-ink); background:var(--vsp-accent); width:22px; height:22px;
+               border-radius:50%; display:flex; align-items:center; justify-content:center;
+               flex-shrink:0; margin-top:1px; }
+  .p-scen .who { font-size:12.5px; font-weight:700; color:var(--vsp-accent); text-transform:uppercase;
+                 letter-spacing:0.06em; }
+  .p-scen .q { font-size:13.5px; line-height:1.4; color:var(--vsp-on-dark-strong); font-style:italic; }
+  .p-io { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:12.5px;
+          color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-1.2 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-raw { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13px; line-height:1.5;
+           background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:8px;
+           padding:10px 13px; color:var(--vsp-green-lightest); white-space:pre; overflow:hidden; }
+  .p-raw b { color:var(--vsp-accent); font-weight:700; }
+  .p-tbl td.lab  { background:rgba(255,232,107,0.13); color:var(--vsp-white); font-weight:700; }
+  .p-tbl td.nolab{ color:var(--vsp-on-dark-ghost); font-style:italic; }
+  .p-tbl th.lab  { color:var(--vsp-accent); }
+  .p-tbl th.nolab{ color:var(--vsp-on-dark-ghost); }
+  .p-tbl.tight td { padding:6px 12px 6px 0; }
+  .p-tbl.tight th { padding:0 12px 7px 0; }
+  .p-dots { display:grid; grid-template-columns:repeat(10, 15px); gap:5px; }
+  .p-dots .d { width:15px; height:15px; border-radius:50%; border:1px solid rgba(0,0,0,0.35); }
+  .p-dots .d.y { background:var(--vsp-yellow); }
+  .p-dots .d.n { background:var(--vsp-navy-light); }
+  .p-dotcap { font-size:12.5px; font-weight:700; color:var(--vsp-on-dark-strong); margin-top:9px; }
+  .p-tag.shape { background:rgba(151,243,119,0.18); color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-1.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-cm { border-collapse:collapse; font-family:var(--vsp-font-sans); }
+  .p-cm th { font-size:10.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+             color:var(--vsp-accent); padding:0 10px 7px; text-align:center; border:0; }
+  .p-cm th.side { text-align:right; color:var(--vsp-on-dark-strong); padding:8px 11px 8px 0;
+                  font-size:10px; line-height:1.3; }
+  .p-cm td { border:1px solid var(--vsp-border); padding:9px 14px; text-align:center; }
+  .p-cm td .lbl { display:block; font-size:10px; font-weight:800; letter-spacing:0.09em;
+                  text-transform:uppercase; color:var(--vsp-on-dark-muted); }
+  .p-cm td .val { display:block; font-family:var(--vsp-font-display); font-size:24px; font-weight:800;
+                  color:var(--vsp-white); line-height:1.15; letter-spacing:-0.02em; }
+  .p-cm td.tp { background:rgba(101,167,78,0.24); }
+  .p-cm td.fp { background:rgba(255,232,107,0.18); }
+  .p-cm td.fn { background:rgba(255,255,255,0.055); }
+  .p-cm td.tn { background:rgba(255,255,255,0.025); }
+  .p-cm.small td { padding:11px 15px; }
+  .p-cm.small td .val { font-size:25px; }
+  .p-mrow { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+  .p-metric { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border);
+              border-radius:var(--vsp-radius-card); padding:13px 15px 12px; overflow:hidden; }
+  .p-metric .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-metric .topbar.g { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-metric .topbar.y { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-metric .topbar.n { background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-navy)); }
+  .p-metric .nm  { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                   color:var(--vsp-accent); }
+  .p-metric .num { font-family:var(--vsp-font-display); font-size:28px; font-weight:800;
+                   color:var(--vsp-white); line-height:1.05; margin-top:3px; letter-spacing:-0.025em; }
+  .p-metric .den { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:11px;
+                   color:var(--vsp-green-lightest); margin-top:5px; }
+  .p-metric .sub { font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:6px; line-height:1.35; }
+  .p-tag.metric { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bad    { background:rgba(255,232,107,0.20); color:var(--vsp-accent); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <section data-label="Cover">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:600px;height:600px;top:-220px;right:-150px"></div>
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-180px;left:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-topbar">
+        <div class="vsp-wordmark">VICTORY SQUARE <span>PARTNERS</span></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
+      </div>
+      <div class="vsp-stage center" style="gap:22px">
+        <div class="vsp-kicker">AI/ML Training Program · LSN-1.3 · Weeks 1–2</div>
+        <h1 class="vsp-h1" style="max-width:1090px">"It's 99% accurate."<br><span class="vsp-glow">So — is it any good?</span></h1>
+        <div class="vsp-rule"></div>
+        <p class="vsp-lead" style="max-width:1000px">Last hour you learned to read what a model <i>emits</i>. This hour is the question we deliberately parked. Four instruments — <b style="color:#fff">MAE</b>, <b style="color:#fff">precision</b>, <b style="color:#fff">recall</b>, <b style="color:#fff">AUC</b> — one <b style="color:#fff">confusion matrix</b> underneath all of them, and the one client question that decides everything: <b style="color:var(--vsp-accent)">which kind of wrong can they afford?</b></p>
+      </div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy · Grading Models: MAE, precision/recall, confusion matrix, AUC · serves OUT-1.3</span><span>Tyler Goble · 90 min · 20 / 30 / 20 / 20</span></div>
+    </div>
+    <aside class="notes">
+      2 min, and it comes out of segment 1's 20. The map: MAE 20 min (slides 1–4) · precision/recall via the LSN-0.3 fraud detector 30 min (slides 5–7) · the confusion-matrix drill 20 min (slide 8) · AUC and the four questions 20 min (slides 9–11) = 90.
+      Open cold, before any teaching, and this is the highest-value 90 seconds of the hour: go round the room and collect the ONE-LINE pre-work answer — "why is a 99%-accurate detector on a rare event mostly false alarms?". Do not correct anybody. Write two or three of the lines on the board verbatim; slide 5 pays them off.
+      Then set the frame in one sentence: nothing in this hour is new mathematics. Every number today comes out of four whole integers, and the skill is knowing which of them somebody left off the slide.
+      Say what this hour is NOT: it is not model selection, it is not statistics, and nobody trains anything (that is LSN-1.4, next session, and its pre-work is on the last slide — flag that now so nobody is surprised).
+      Everyone should have the LSN-1.3 notebook open and already executed. Every count on every slide is computed in it, with asserts, so if somebody challenges a number you can show them the cell.
+    </aside>
+  </section>
+  <section data-label="Bridge">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:22%;left:47%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Bridge from LSN-1.2 · Pre-work target · 30 min</div>
+          <h2 class="vsp-h2" style="font-size:35px">You can read <span class="vsp-glow">0.73</span>.<br>You still can't tell whether the model is <span class="vsp-glow">any good.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:17px 19px 15px"><span class="topbar green"></span>
+            <h3 style="font-size:17px">What you already own</h3>
+            <ul class="p-chk" style="margin-top:9px;gap:9px">
+              <li style="font-size:14px"><b style="color:#fff">LSN-1.2:</b> an output is not a verdict — 0.73 is a probability, and its threshold is the client's choice</li>
+              <li style="font-size:14px"><b style="color:#fff">LSN-0.3:</b> a 99%-catch fraud detector on a 1-in-10,000 event hands over a queue that is <b style="color:var(--vsp-accent)">0.98% real</b></li>
+              <li style="font-size:14px"><b style="color:#fff">LSN-0.2:</b> a model that never predicts churn is "92% accurate"</li>
+            </ul>
+            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:11px">Today adds no new arithmetic. It gives all of that its <b style="color:#fff">vocabulary</b>, so you can use it in a meeting.</p>
+          </div>
+          <div class="vsp-card" style="padding:17px 19px 15px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">The 90 minutes, in four moves</h3>
+            <table class="p-tbl tight" style="font-size:13.5px;margin-top:3px">
+              <tr class="hi"><td style="width:20%"><b>20 min</b></td><td><b>MAE</b> — the average miss, and what an average hides</td></tr>
+              <tr><td><b>30 min</b></td><td><b>Precision &amp; recall</b> — the LSN-0.3 detector, formally graded</td></tr>
+              <tr><td><b>20 min</b></td><td><b>The drill</b> — two matrices, six numbers, by hand</td></tr>
+              <tr><td><b>20 min</b></td><td><b>AUC</b> + "they quoted us 99% accuracy"</td></tr>
+            </table>
+            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:10px">Then the homework that is really the outcome: <b style="color:#fff">three report cards, ship-or-don't-ship.</b></p>
+          </div>
+        </div>
+        <div class="p-quote">
+          <div class="meta">Tyler Goble · the bar for this module, verbatim</div>
+          <p>"I can see the outputs of a model and I can interpret them."</p>
+        </div>
+        <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Pre-work, 30 min: <b>revisit your LSN-0.3 base-rate notes</b> — one line on why a 99%-accurate detector on a rare event is mostly false alarms — plus the <b>grading/metrics</b> material. <b>This is the one MOD-1 lesson with a hard MOD-0 prerequisite.</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Pre-work + bridge</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      3 min, inside segment 1's 20. Orientation only — do not start teaching MAE here.
+      Say the source-material line plainly, once: the lesson plan points the pre-work at Tyler's original ML literacy deck, which is not in this repo. THIS deck plus the notebook's four-instrument table are the canonical grading/metrics material — same call LSN-0.4, LSN-1.1 and LSN-1.2 made. Nobody should go hunting for a file.
+      Roll-call the pre-work by hands: who revisited their LSN-0.3 notes? The honest answer in the room matters, because segment 2 does NOT re-teach base rates — it puts a report card on the detector they already built.
+      Cash the three callbacks on the left card out loud, in order. They are three different lessons that all turn out to be the same lesson, and saying so is what makes today feel like a payoff rather than a new topic.
+      If somebody asks why grading comes after reading outputs: because you cannot judge a number you cannot read. That is why the order is 1.2 then 1.3 — it makes the sequence feel earned.
+    </aside>
+  </section>
+  <section data-label="MAE">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Segment 1 · 20 min · MAE, the average miss</div>
+          <h2 class="vsp-h2" style="font-size:35px">"On average we're off by <span class="vsp-glow">$23,000</span>."<br>Is that livable — for <span class="vsp-glow">which decision?</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:0.92fr 1.08fr;align-items:start;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">MAE, the whole definition</h3>
+              <p style="font-size:13.5px">Take every prediction, subtract the truth, <b style="color:#fff">throw away the minus sign</b>, average what's left. It comes out in <b style="color:#fff">the client's units</b> — which is why you can say it out loud and they can price it.</p>
+            </div>
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+              <h3 style="font-size:16px">Why the minus sign matters</h3>
+              <table class="p-tbl tight" style="font-size:13px;margin-top:5px">
+                <tr><td style="width:52%">mean <b>error</b> (signs kept)</td><td><span class="p-io">–$286</span> — "we're unbiased!"</td></tr>
+                <tr class="hi"><td>mean <b>miss</b> (signs gone) = <b>MAE</b></td><td><b>$23,000</b> — what they feel</td></tr>
+              </table>
+              <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:9px">400 homes. Same model. <b style="color:#fff">"Unbiased" and "accurate" are different words</b>, and vendors quote the first when they can't quote the second.</p>
+            </div>
+          </div>
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">Same $23,000. Four clients. Four answers.</h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:6px">
+              <tr><th style="width:27%">Client</th><th style="width:38%">The decision it feeds</th><th>Livable?</th></tr>
+              <tr><td><b>Mortgage lender</b></td><td>how much to lend on a $340k house</td><td><span class="p-tag prop">yes</span> they hold a 20% cushion</td></tr>
+              <tr><td><b>Tax assessor</b></td><td>the assessed value on a homeowner's bill</td><td><span class="p-tag bug">no</span> every miss is an appeal with a name on it</td></tr>
+              <tr class="hi"><td><b>An iBuyer</b></td><td>buy at the model's number, resell later</td><td><span class="p-tag bug">no</span> their whole margin is ~5% ≈ <b>$17k</b></td></tr>
+              <tr><td><b>"What's my home<br>worth?" widget</b></td><td>a lead-generation estimate</td><td><span class="p-tag prop">easily</span> nobody transacts on it</td></tr>
+            </table>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:9px">$23,000 is <b style="color:#fff">6.6%</b> of a $350,000 home. The metric didn't change; the money behind the decision did.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px;padding:13px 18px">The question that turns you from a reciter into an advisor: <b>"Which of your decisions has less than $23,000 of room in it?"</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 1 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      7 min. This is the segment's teaching half; the trap on the next slide is its selling half.
+      Define MAE by doing it, not by saying it: put two rows on the whiteboard — model said $315,387, sold for $291,080 — and walk the subtraction, the minus sign going away, the average. Ninety seconds, and from then on nobody in the room is bluffing about MAE.
+      Then the minus-sign demo, and make them feel it: the mean ERROR on these 400 homes is minus $286. A vendor could truthfully put "average error: under $300" on a slide. The average MISS is $23,000. Same model, same data, two true sentences, one of them useless.
+      Now the four-client table, and run it as a question, not a reading: cover the right column, read each client's decision, ask the room "livable?". They will get the lender and the widget instantly and argue about the assessor — let them, because the argument IS the lesson. The iBuyer is the one to land hard: a $23k average miss on a business whose entire margin is $17k means the model loses money on average.
+      Do NOT let anybody answer "is $23k good?" without asking what decision it feeds. If somebody tries, ask them for the decision. That reflex is the outcome of the segment.
+      Two side notes if asked, thirty seconds each: RMSE is also in client units but punishes big misses harder, so it is always at least MAE — if a vendor quotes only RMSE, ask for MAE too. R-squared is not in anybody's units and ends conversations.
+    </aside>
+  </section>
+  <section data-label="MAE trap">
+    <div class="vsp-slide">
+      <div class="vsp-orb green" style="width:380px;height:380px;bottom:-150px;left:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Segment 1 · The trap · homework card A lives here</div>
+          <h2 class="vsp-h2" style="font-size:36px">Two vendors. <span class="vsp-glow">Identical MAE.</span><br>One of them is unusable.</h2>
+        </div>
+        <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
+          <table class="p-tbl tight" style="font-size:14.5px">
+            <tr><th style="width:34%">The same 400 homes, by segment</th><th style="width:12%">homes</th><th style="width:27%">Vendor A — "even"</th><th>Vendor B — "lopsided"</th></tr>
+            <tr><td><b>starter</b> &lt; $420k</td><td>340</td><td>MAE <b>$22,979</b></td><td>MAE <b style="color:var(--vsp-green-lightest)">$8,000</b> — better!</td></tr>
+            <tr><td><b>luxury</b> &gt; $900k</td><td>60</td><td>MAE <b>$23,122</b></td><td>MAE <b style="color:var(--vsp-accent)">$108,000</b> — 4.7× its own headline</td></tr>
+            <tr class="hi"><td><b>ALL HOMES</b> — the only row on the vendor's slide</td><td><b>400</b></td><td>MAE <b>$23,000</b></td><td>MAE <b>$23,000</b></td></tr>
+          </table>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.05fr 0.95fr;align-items:start;gap:18px">
+          <div class="vsp-card" style="padding:14px 18px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">Vendor B's $23,000, in one line of arithmetic</h3>
+            <div style="margin-top:8px"><span class="p-eq">340 × $8,000&nbsp;&nbsp;&nbsp;= $2,720,000<br>&nbsp;60 × $108,000 = $6,480,000<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>$9,200,000</b> ÷ 400 = <b>$23,000</b></span></div>
+            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:10px"><b style="color:#fff">15%</b> of the homes own <b style="color:#fff">70%</b> of the error. If the client's business <i>is</i> luxury listings, vendor B's report card is a lie of omission — and vendor A, identical on the slide, is the model they want.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 18px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">Homework card A is this, with your margin on it</h3>
+            <p style="font-size:13.5px">An effort estimator: <b style="color:#fff">MAE 38 hours</b> across 2,400 work items — sold to back <b style="color:#fff">fixed-bid quotes on large projects</b>.</p>
+            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:8px">Small tasks: <b style="color:#fff">6 h</b>. Large epics: <b style="color:var(--vsp-accent)">330 h</b>, every one an under-estimate. At $95/h that is <b style="color:#fff">$31,350</b> of unbilled work per epic.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15.5px;padding:13px 18px">The one question that finds every version of this: <b>"Show me that error broken out by segment."</b> A vendor who volunteers the breakdown has done the work. One who has to be asked twice has usually already looked.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 1 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      8 min, and it closes segment 1. Do not let this slide get cut — it is where the pre-sales value of MAE lives.
+      Build the table left to right and stop after the starter row: "vendor B is three times better on 85% of the market. Buy vendor B?" Let the room commit. Then reveal the luxury row. The gasp is the lesson.
+      Then walk the arithmetic card slowly, because a client will make you do it live one day: 340 times eight thousand, sixty times a hundred and eight thousand, add, divide by four hundred, twenty-three thousand. An average over a mixed population is not a grade for any of its parts.
+      Say the general form out loud, because it transfers past house prices: any average can be dominated by whichever segment is most numerous, and the segment the CLIENT cares about is usually the rare one. Small items vs large. New customers vs tenured. Last quarter vs last year. Region by region.
+      Then hand them card A explicitly and tell them it is not a trick question: same move, delivery-company costume, and the money is theirs. Do not solve it for them — the temptation on this slide is to talk them all the way through the epics, and that is the homework.
+      One honest note if a sharp participant asks: the 38 hours on card A is 38.4 rounded, and the notebook prints both. Rounding is what vendors do; it is not the defect on that card.
+      Time check: you should be 20 minutes in and about to say the words "the LSN-0.3 fraud detector". If you are over, cut the four-client table's assessor row on the previous slide, not this slide.
+    </aside>
+  </section>
+  <section data-label="Fraud report card">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:540px;height:540px;top:-210px;right:-150px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 2 · 30 min · The heart of the hour</div>
+          <h2 class="vsp-h2" style="font-size:35px">The <span class="vsp-glow">LSN-0.3</span> fraud detector,<br>finally given a report card.</h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;align-items:start;gap:20px">
+          <div>
+            <table class="p-cm">
+              <tr><th></th><th>detector raised<br>an ALERT</th><th>detector stayed<br>QUIET</th></tr>
+              <tr><th class="side">really was<br>FRAUD</th><td class="tp"><span class="lbl">true positive</span><span class="val">99</span></td><td class="fn"><span class="lbl">false negative</span><span class="val">1</span></td></tr>
+              <tr><th class="side">really was<br>LEGITIMATE</th><td class="fp"><span class="lbl">false positive</span><span class="val">9,999</span></td><td class="tn"><span class="lbl">true negative</span><span class="val">989,901</span></td></tr>
+            </table>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:11px">1,000,000 transactions · fraud <b style="color:#fff">1 in 10,000</b> · catches <b style="color:#fff">99%</b> of fraud · flags <b style="color:#fff">1%</b> of the legit. <b style="color:var(--vsp-accent)">Exactly the LSN-0.3 numbers</b> — nothing re-simulated, nothing mis-stated anywhere.</p>
+            <div class="p-callout" style="font-size:14.5px;padding:12px 17px;margin-top:13px"><b>1 real alert in every 102.</b> Somebody at the client opens all <b>10,098</b>.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="p-mrow">
+              <div class="p-metric"><span class="topbar g"></span><div class="nm">Recall</div><div class="num">99%</div><div class="den">99 / 100</div><div class="sub">of the fraud, how much we caught</div></div>
+              <div class="p-metric"><span class="topbar y"></span><div class="nm">Precision</div><div class="num">0.98%</div><div class="den">99 / 10,098</div><div class="sub">of what we flagged, how much was real</div></div>
+              <div class="p-metric"><span class="topbar n"></span><div class="nm">Accuracy</div><div class="num">99.0%</div><div class="den">990,000 / 1,000,000</div><div class="sub">of all calls, how many were right</div></div>
+            </div>
+            <div class="vsp-card" style="padding:14px 18px 12px"><span class="topbar yellow"></span>
+              <h3 style="font-size:16px">The baseline that ends the argument</h3>
+              <table class="p-tbl tight" style="font-size:13.5px;margin-top:5px">
+                <tr><td style="width:62%">the vendor's 99%-catch detector</td><td><b>99.00%</b> accurate</td></tr>
+                <tr class="hi"><td>a rubber stamp that says "fine" to everything</td><td><b>99.99%</b> accurate</td></tr>
+              </table>
+              <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:9px"><b style="color:var(--vsp-accent)">The rubber stamp wins.</b> The model is <i>less</i> accurate than doing nothing — and it is still the one you want, because doing nothing catches zero fraud. That is the whole case for never letting accuracy be the number on the slide.</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px;padding:12px 18px">Nothing changed about the detector between <b>99%</b> and <b>0.98%</b>. Only the <b>denominator</b> did — and choosing which denominator to print is a marketing decision, not a mathematical one.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      10 min, and this is the slide the whole lesson turns on. Slow down.
+      Start by paying off the pre-work lines you wrote on the board at the start. Read two of them out and then say: everything you already worked out arithmetically in LSN-0.3 has names, and here they are.
+      Build the matrix out loud, one cell at a time, as WHOLE TRANSACTIONS, not rates: 100 frauds, 99 flagged, 1 slipped through; 999,900 legitimate, 1% of them flagged is 9,999, the other 989,901 cleared. Total a million. Nobody needs a formula and nobody needs Bayes.
+      Then the two metrics, and name the denominators explicitly with your hand on the slide: recall divides by the ROW — every fraud there was. Precision divides by the COLUMN — the whole alert queue, 10,098 of them. Same numerator, 99, in both.
+      Then the sentence that lands it commercially: "1 real alert in every 102. Somebody at the client opens all 10,098." Do the headcount arithmetic in front of them if there is time — that is the conversation the client's ops lead actually needs.
+      Now the rubber-stamp card, and let it be as uncomfortable as it is: 99.00% versus 99.99%. The detector is LESS accurate than a machine that approves everything. Then rescue it immediately, because the point is not that the model is bad — the model catches 99 frauds and the rubber stamp catches none. The point is that accuracy cannot see the difference. If you leave the room thinking the detector is worthless, you learned the wrong thing.
+      Say the flag-nothing baseline is a ten-second check they can run on ANY classifier report card, forever. It is the single most portable thing in this hour, and homework card B is built on it.
+      If somebody asks about F1: it is 1.94% here, it is the honest one-number summary, and it is the number nobody puts on a slide. Thirty seconds, then move.
+    </aside>
+  </section>
+  <section data-label="Two kinds of wrong">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:440px;height:440px;bottom:-170px;right:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Segment 2 · Two kinds of wrong, two price tags</div>
+          <h2 class="vsp-h2" style="font-size:36px">Same numerator. Two denominators.<br><span class="vsp-glow">Two different people at the client.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:18px">
+          <div class="vsp-card" style="padding:16px 19px 14px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px"><span class="p-tag bad">precision</span> &nbsp;"Can I trust an alert?"</h3>
+            <p style="font-size:13.5px;margin-top:8px"><span class="p-io">TP / everything we flagged</span></p>
+            <p style="font-size:13.5px;margin-top:8px">Falls when there are many <b style="color:#fff">false positives</b>. It is the metric of <b style="color:var(--vsp-accent)">whoever has to work the queue</b> — the analyst, the inspector, the CS rep.</p>
+            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:9px">A false positive is an analyst opening a file on a real customer's real purchase. There are <b style="color:#fff">9,999</b> of those per million.</p>
+          </div>
+          <div class="vsp-card" style="padding:16px 19px 14px"><span class="topbar green"></span>
+            <h3 style="font-size:17px"><span class="p-tag metric">recall</span> &nbsp;"How much are we missing?"</h3>
+            <p style="font-size:13.5px;margin-top:8px"><span class="p-io">TP / everything that was real</span></p>
+            <p style="font-size:13.5px;margin-top:8px">Falls when there are many <b style="color:#fff">false negatives</b>. It is the metric of <b style="color:var(--vsp-green-lightest)">whoever eats the loss</b> — the CFO, the warranty budget, the delivery margin.</p>
+            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:9px">A false negative is fraud paid out that <b style="color:#fff">nobody ever finds out about</b>. It never appears in a queue, so it never gets escalated.</p>
+          </div>
+        </div>
+        <div class="p-quote" style="border-left-color:var(--vsp-accent)">
+          <div class="meta" style="color:var(--vsp-accent)">The rule that does all the work</div>
+          <p style="font-style:normal">Look at <b style="color:#fff">what happens after the model speaks.</b> Cheap and reversible when it's wrong — a review, an inspection, a phone call → push <b style="color:var(--vsp-green-lightest)">recall</b>. Expensive or irreversible — a declined payment, a cancelled order, an accusation, an automated action nobody sees → push <b style="color:var(--vsp-accent)">precision</b>.</p>
+        </div>
+        <div class="p-callout" style="font-size:15px;padding:13px 18px">Which is why "is the model good?" has no answer yet: <b>the priority metric is a property of the ACTION, not of the model.</b> Change what happens when it says yes and the right metric flips — with nothing changed about the model at all.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      10 min. Slides 5 and 6 are one continuous 20-minute argument; this is the half that turns metrics into a client conversation.
+      Do the "two people" framing as a role-play, because it is what makes this stick: point at one side of the room — you are the fraud analyst, you have 10,098 files. Point at the other — you are the CFO, you lost one fraud. Ask each half which number they want on the dashboard. They will pick different ones, correctly, and neither is wrong. That IS the finding.
+      Then hammer the asymmetry in visibility, which almost nobody has noticed before: false positives arrive in a queue with somebody's name on them, so they get complained about. False negatives are invisible by construction — nobody files a ticket for the fraud that got paid. So organisations systematically over-weight precision, and part of your job in a discovery call is to make the invisible error visible.
+      Then the rule in the quote box, and give it to them as a script they can use tomorrow. Make them say it back with one example each.
+      Land the closing callout hard, because it is the transferable idea of the whole segment: same model, same metrics, change the ACTION and the answer flips. The next slide is three cases that prove it.
+      If someone asks "can't we just have both?": yes — better features, more data, months and money. It is a project, not a threshold. Everything else on this slide is a knob, and every knob trades one error for the other.
+    </aside>
+  </section>
+  <section data-label="Quick-fire cases">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:24%;left:46%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Segment 2 · Quick-fire drill · in pairs, 2 min each</div>
+          <h2 class="vsp-h2" style="font-size:36px">Which error is expensive for <span class="vsp-glow">THIS</span> client?</h2>
+        </div>
+        <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
+          <table class="p-tbl tight" style="font-size:13.5px">
+            <tr><th style="width:5%">#</th><th style="width:30%">The system</th><th style="width:32%">When it says YES and it's wrong</th><th>When it stays quiet and it's wrong</th></tr>
+            <tr><td><b>1</b></td><td><b>Card-fraud model</b> on a payments platform.<br><span style="color:var(--vsp-accent)">The action: an automatic hard decline at the till.</span></td><td>A real customer's card is refused in a shop. They call support. Some of them leave</td><td>A fraudulent charge goes through. The bank eats the chargeback</td></tr>
+            <tr><td><b>2</b></td><td><b>Defect detector on construction-site photos</b>, for a builder</td><td>An <b style="color:#fff">unnecessary site inspection</b> — a supervisor drives out, ~90 min gone</td><td>The defect gets built over. It surfaces at handover, as a rip-out with the client's name on it</td></tr>
+            <tr><td><b>3</b></td><td><b>"At-risk project" flag</b> for a delivery org's Monday review</td><td>A 30-minute review by a delivery lead</td><td>A fixed-bid project runs over quietly. Nobody looks until the margin is gone</td></tr>
+          </table>
+        </div>
+        <div class="p-grid3">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">Pick a metric, in one line</h3>
+            <p style="font-size:12.5px">"<b style="color:#fff">Precision</b>, because…" or "<b style="color:#fff">Recall</b>, because…" — and the <i>because</i> has to price the two errors against each other.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Then change one thing</h3>
+            <p style="font-size:12.5px">Case 1's action becomes <b style="color:#fff">"hold for a 90-second review"</b> instead of a decline. Now what?</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">The notebook grades it</h3>
+            <p style="font-size:12.5px">Three verdicts — <b style="color:#fff">match / defensible / miss</b> — on the metric <i>and</i> the reason, and it saves your picks.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px;padding:13px 18px">The sentence to leave the room with: <b>"Before I can tell you whether this model is good — what happens the moment it says yes, and what happens the day it stays quiet and shouldn't have?"</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      10 min and it closes segment 2. Answers are NOT on the screen; they are here, and in the notebook's key cell.
+      Run it fast: 2 minutes in pairs per case, 60 seconds of debrief each. Do not let case 1 eat the clock even though it is the most interesting.
+      CASE 1 — the answer is PRECISION. The action is irreversible and public: a false positive is a person whose card is refused at a till, a support call, possibly a lost customer. The model must only speak when it is right. Expect the room to split, and that is correct — the loss side is real. Grade "recall" as defensible if the reason prices the chargebacks, and MISS only if there is no reason at all.
+      CASE 1's TWIST, and this is the beat of the drill: change the action to "hold it for a 90-second review". A false positive is now 90 seconds of somebody's time, and RECALL leads. Same model, same metrics, opposite answer. Say the line: you cannot pick the priority metric until somebody tells you what happens after the model speaks.
+      CASE 2 — RECALL. Ninety minutes of a supervisor's day versus a defect built over and ripped out at handover: asymmetric by orders of magnitude, so catch everything and let the inspection filter. Honest caveat to add out loud: recall bought with a flood of false alarms fails a different way — the supervisor stops driving out. So ask how many inspections a week they can absorb and quote a precision FLOOR next to the recall target. A metric with no capacity number attached is not a specification. Mention that this is LSN-1.6's case brief arriving early — the construction-site photo prospect — so they hear the thread.
+      CASE 3 — RECALL, and it is card A's client. A 30-minute review versus a fixed-bid margin. Then the good-consultant move: if the review is that cheap, why not review every project? The answer is usually "we have 400 of them" — which turns this into a RANKING problem, LSN-1.2's recommender shape, not a yes/no one. Sometimes the honest pre-sales answer is that they need a sorted list, not a classifier.
+      Hard stop at 50 minutes elapsed. The drill on the next slide needs its full 20.
+    </aside>
+  </section>
+  <section data-label="Confusion-matrix drill">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-190px;right:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 3 · 20 min · Reading drill · on paper, no laptops</div>
+          <h2 class="vsp-h2" style="font-size:34px">Two matrices. Six numbers.<br><span class="vsp-glow">One client-safe sentence each.</span></h2>
+        </div>
+        <div class="p-callout" style="font-size:14.5px;padding:12px 18px">A logistics client wants to know, the morning a shipment leaves, whether it will be <b>late</b>. Two vendors, graded on the same <b>1,000 historical shipments</b> — of which <b>80 arrived late</b>.</div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:20px">
+          <div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--vsp-accent);margin-bottom:9px">Vendor A</div>
+            <table class="p-cm small">
+              <tr><th></th><th>said<br>LATE</th><th>said<br>ON TIME</th></tr>
+              <tr><th class="side">really<br>LATE</th><td class="tp"><span class="lbl">TP</span><span class="val">60</span></td><td class="fn"><span class="lbl">FN</span><span class="val">20</span></td></tr>
+              <tr><th class="side">really<br>ON TIME</th><td class="fp"><span class="lbl">FP</span><span class="val">90</span></td><td class="tn"><span class="lbl">TN</span><span class="val">830</span></td></tr>
+            </table>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--vsp-accent);margin-bottom:9px">Vendor B</div>
+            <table class="p-cm small">
+              <tr><th></th><th>said<br>LATE</th><th>said<br>ON TIME</th></tr>
+              <tr><th class="side">really<br>LATE</th><td class="tp"><span class="lbl">TP</span><span class="val">0</span></td><td class="fn"><span class="lbl">FN</span><span class="val">80</span></td></tr>
+              <tr><th class="side">really<br>ON TIME</th><td class="fp"><span class="lbl">FP</span><span class="val">0</span></td><td class="tn"><span class="lbl">TN</span><span class="val">920</span></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="p-grid3">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:14.5px">1 · Six figures, by hand</h3>
+            <p style="font-size:12.5px"><span class="p-io">accuracy = (TP+TN)/all</span><br><span class="p-io">precision = TP/(TP+FP)</span><br><span class="p-io">recall = TP/(TP+FN)</span></p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:14.5px">2 · One sentence each</h3>
+            <p style="font-size:12.5px"><b style="color:#fff">Client-safe</b> = no metric names, and it contains a number they can act on. "Precision is 40%" does not count.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:14.5px">3 · Which would you ship?</h3>
+            <p style="font-size:12.5px">And say <b style="color:#fff">what would change your mind.</b> One of these two is a trick, and it is not hidden.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 3 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      20 min, the whole segment, and answers are NOT on the screen. 8 min on paper in silence, 12 min of debrief.
+      Insist on paper. The point of the drill is that they can do this in front of a client with no laptop open, and the arithmetic is four integers and a calculator.
+      VENDOR A, the arithmetic: accuracy (60+830)/1,000 = 89%. Precision 60/150 = 40%. Recall 60/80 = 75%. F1 0.52.
+      VENDOR B: accuracy (0+920)/1,000 = 92%. Recall 0/80 = 0%. Precision 0/0 = UNDEFINED — and this is the field worth two minutes on its own. It is not zero. The model never spoke, so "of what it flagged, how much was real" has no subject. sklearn hands you 0.0 with a warning nobody reads. The honest answer in a client meeting is "undefined — it never speaks", and the notebook marks that as the senior answer.
+      THE REVEAL, and time it: vendor B is a rubber stamp that predicts ON TIME for everything, and it scores 92% accuracy — THREE POINTS HIGHER than vendor A's 89%. Rank these two by accuracy and you buy the one that does nothing. This is LSN-0.3's base-rate lesson in a metrics costume, and it is card B's structure with different numbers.
+      MODEL SENTENCE for A: "It spots about three out of every four shipments that end up late, early enough to do something about them — but three in five of the alerts you'd chase turn out to be shipments that would have arrived on time anyway. So: 150 shipments to look at per 1,000 you ship, to rescue 60."
+      MODEL SENTENCE for B: "It is right 92% of the time and it has never once told you a shipment would be late, because it says 'on time' about everything."
+      SHIP WHICH? Vendor A with a condition, or "neither yet" — both pass. A is the only model carrying information, but 150 alerts per 1,000 shipments is a staffing question, so the answer is "A, if you can work 150 alerts a week, and here is what a late shipment has to cost you for that to pay". Answering B because it is more accurate is the exact failure this drill exists to catch — and if anybody in the room does, thank them out loud, because they just made the lesson land for everybody.
+      Grade in three verdicts, not right/wrong: MATCH (both halves of the sentence, with numbers), DEFENSIBLE (one half — the commonest real outcome), MISS (metric names instead of consequences). The notebook grades the same way, accepts 0.89 or 89%, and saves it.
+    </aside>
+  </section>
+  <section data-label="AUC">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-170px;left:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Segment 4 · 20 min · AUC in one picture</div>
+          <h2 class="vsp-h2" style="font-size:36px">AUC <span class="vsp-glow">0.9995</span> — and the alert queue is still <span class="vsp-glow">99% false alarms.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:0.95fr 1.05fr;align-items:start;gap:18px">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">What AUC is, with no maths</h3>
+              <p style="font-size:13.5px">A <b style="color:#fff">ROC curve</b> is LSN-0.3's threshold sweep, drawn: how much real stuff you catch, against how much noise you take on to get it. <b style="color:#fff">AUC is the area under it.</b></p>
+              <p style="font-size:13.5px;margin-top:9px">Pick one real fraud and one legitimate transaction at random. <b style="color:var(--vsp-accent)">How often does the model score the fraud higher?</b> That is AUC. 0.5 is a coin flip; 1.0 is perfect separation.</p>
+            </div>
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+              <h3 style="font-size:16px">Two true things at once</h3>
+              <table class="p-tbl tight" style="font-size:13px;margin-top:5px">
+                <tr class="hi"><td style="width:50%">the fraud detector</td><td>AUC <b>0.9995</b>, precision <b>0.98%</b> — would need a 10,098-item review queue funded before it ships</td></tr>
+                <tr><td>homework card C's churn model</td><td>AUC <b>0.88</b> — a much worse number, and it is <b>the one you ship</b></td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">What AUC is blind to</h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:6px">
+              <tr><th style="width:34%">Blind to…</th><th>Which is why…</th></tr>
+              <tr class="hi"><td><b>the base rate</b></td><td>our detector scores <b>0.9995</b> and hands over a queue that is <b>99.02%</b> false alarms. AUC never divides by the alert queue</td></tr>
+              <tr><td><b>the threshold</b></td><td>it averages over <i>every</i> threshold, including ones nobody would ship. The client lives at exactly <b>one</b> point on that curve</td></tr>
+              <tr><td><b>cost</b></td><td>it weights a false positive and a false negative <b>identically</b>. No client does</td></tr>
+              <tr><td><b>whether the data was fair</b></td><td>a model graded on rows it trained on can score 0.99 and be worthless. Only the <b>split</b> can see that</td></tr>
+            </table>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:9px">Good for <b style="color:#fff">choosing between models</b>. Useless for <b style="color:#fff">deciding whether to ship one</b>.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px;padding:13px 18px">So ask for <b>the operating point</b>: "show me precision and recall at the threshold you're actually going to run." AUC picks the model; the operating point decides whether the client can afford it.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 4 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      8 min. Put the notebook's ROC figure on the screen next to this slide — the left panel (two score distributions and the shipped threshold) is what makes the right panel make sense.
+      Define AUC with the pairwise sentence and nothing else: one real fraud, one legitimate transaction, how often does the model rank the fraud higher. Nobody needs an integral, and that sentence is enough to hold a conversation with a data scientist.
+      Then the punchline, and let it sit: this is the SAME detector you spent thirty minutes on. AUC 0.9995. Essentially perfect separation. And its queue is 0.98% real, its accuracy is worse than a rubber stamp, and 10,098 people-hours a million transactions get spent finding 99 frauds. Every one of those statements is true simultaneously.
+      Point at the ROC figure's shipped marker while you say it: the curve looks perfect because the curve IS nearly perfect at RANKING. Ranking was never the client's question.
+      Then the reversal, which is the reason this slide exists at all: card C's churn model scores 0.88 — much worse — and it is the one you would ship. If AUC decided anything, that sentence would be nonsense.
+      Give them the one honest use of AUC in a client meeting beyond model selection: it is a smell test on the other numbers. Card C's report card in the notebook checks that a reported AUC of 0.88 is even reachable from its own precision and recall — it has to sit between 0.838 and 0.977, and it does. A vendor quoting 0.80 alongside those numbers has metrics from two different runs. That is one polite question, and it is worth having.
+      PREP NOTE, not for the room: the lesson plan says the ROC picture is rendered by notebooks/foundations/12_Analytics_Performance.ipynb. It is not — that notebook reads timing logs and plots execution durations, and has three cells. The LSN-1.3 notebook draws the ROC itself from the LSN-0.3 scorer, and the verified repo reference for a ROC on a real fitted classifier is notebooks/foundations/06_Classifier_Algorithms.ipynb (it calls roc_curve and roc_auc_score, and all of its imports are in the venv). Use that one if somebody wants to poke at code.
+      If somebody asks about PR-AUC / average precision: yes, that is the rare-event-friendly cousin because its denominator IS the flagged set. Name it, say it is the right chart for imbalanced problems, and move — the takeaway today is "ask for the operating point", not a metric zoo.
+    </aside>
+  </section>
+  <section data-label="Homework">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Homework · three report cards · one paragraph each</div>
+          <h2 class="vsp-h2" style="font-size:37px">Ship it or not — <span class="vsp-glow">and why.</span></h2>
+        </div>
+        <div class="p-grid3" style="gap:16px;align-items:start">
+          <div class="vsp-card" style="padding:15px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">A · Effort estimator</h3>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-bottom:8px">regression · backs <b style="color:#fff">fixed-bid quotes</b></p>
+            <p style="font-size:13px"><b style="color:#fff">MAE 38 h</b> over 2,400 items. Unstated: small tasks miss by <b style="color:#fff">6 h</b>, the 10% that are large epics by <b style="color:var(--vsp-accent)">330 h</b>. The client wants it <i>for the epics</i>.</p>
+          </div>
+          <div class="vsp-card" style="padding:15px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">B · Warranty-fraud detector</h3>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-bottom:8px">classifier · 10,000 claims, 80 fraudulent</p>
+            <p style="font-size:13px"><b style="color:#fff">Accuracy 99.26%</b>, precision 75%. Matrix: <span class="p-io">TP 9 · FN 71 · FP 3 · TN 9,917</span>. Unstated: <b style="color:var(--vsp-accent)">recall 11%</b>. Flagging nothing scores <b>99.2%</b>.</p>
+          </div>
+          <div class="vsp-card" style="padding:15px 17px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">C · Churn early-warning</h3>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-bottom:8px">classifier · base rate 18% · <b style="color:var(--vsp-green-lightest)">held-out most-recent quarter</b></p>
+            <p style="font-size:13px">Precision <b style="color:#fff">62%</b>, recall <b style="color:#fff">78%</b>, AUC <b style="color:#fff">0.88</b>. Costs stated: a call is <b style="color:#fff">$50</b>, a lost account is <b style="color:#fff">$2,000</b>.</p>
+          </div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.1fr 0.9fr;align-items:start;gap:18px">
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">The pass bar: the right call on all three <i>for the right reason</i></h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:5px">
+              <tr><td style="width:12%"><b>A</b></td><td>the <b>segment-level</b> error hiding behind the headline MAE</td></tr>
+              <tr><td><b>B</b></td><td><b>recall and the base rate</b> — not "accuracy is low", not "precision is only 75%"</td></tr>
+              <tr class="hi"><td><b>C</b></td><td>metrics matched to the client's <b>error costs</b> + the <b>temporal holdout</b></td></tr>
+            </table>
+          </div>
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">C is the one people fail</h3>
+            <p style="font-size:13px">Two traps and a good model is <b style="color:#fff">not three traps</b>. After an hour of headline numbers lying, the reflex is to find something wrong with everything.</p>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:8px"><b style="color:var(--vsp-accent)">"Ship it, and here's what I'd monitor"</b> is the harder half of this skill — and the half that wins work.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Homework · serves OUT-1.3, verified by ASM-1</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      5 min. Read the three cards out; do not solve any of them. Submit by referencing LSN-1.3.
+      Set up the mechanics: each card is in the notebook with its own data, its own printed report card, and a fill-in verdict cell. One paragraph per card, 150+ characters, plus a one-word call — ship / don't ship / ship with conditions. Then one answer key at the bottom that grades the CALL and the REASON separately, three verdicts each.
+      Say explicitly that the reason is the graded half, and give the example of why: you can reach "don't ship" on card B by disliking its 75% precision. Wrong reason — 75% is the vendor's BEST number and it would be respectable. The disqualifying fact is recall, 9 of 80, next to a flag-nothing baseline of 99.2%. A right answer from a wrong argument fails on the next report card they see.
+      Flag card C hard, because the failure mode is predictable and it is the most useful thing you will say all hour. Two traps and a good model is not three traps. Somebody will reject C because 62% precision means "four in ten calls wasted" — and 38% of a fifty-dollar call is the cheapest thing on that report card, while the model was graded the honest way on a quarter it had never seen.
+      Tell them the notebook does the money arithmetic for card C so they can argue with it: 906 calls at $50 is $45,300, so 23 of the 562 real churners they reach — 4.1% of those calls — have to work for the programme to pay for itself. Nobody has to guess a save rate; invert the question instead. That is a move worth stealing for any business case.
+      Last thing: these three paragraphs are the raw material for ASM-1's mock pre-sales conversation, where Vlad or Dorel plays the client and asks "so is it any good?" about a real model. Keep them.
+    </aside>
+  </section>
+  <section data-label="Close">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">The close · the artifact to keep · and next session</div>
+          <h2 class="vsp-h2" style="font-size:35px">"99% accurate" is not a claim you can evaluate.<br>It is a <span class="vsp-glow">prompt for four questions.</span></h2>
+        </div>
+        <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:13px">
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">1 · What's the base rate?</h3>
+            <p style="font-size:12.5px">On our detector: 1 in 10,000, so predicting "not fraud" about everything scores <b style="color:#fff">99.99%</b> — the 99% headline is <b style="color:var(--vsp-accent)">below the do-nothing baseline</b>.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">2 · Accuracy on <i>what data</i>?</h3>
+            <p style="font-size:12.5px">Did the model see it in training? Ask for the split <b style="color:#fff">and the dates</b>. What you want to hear is a <b style="color:#fff">holdout from a later period</b>.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">3 · Precision and recall, per class?</h3>
+            <p style="font-size:12.5px">A model can be excellent on the majority class and <b style="color:#fff">useless on the one they're paying for</b>. Two numbers, both true, and the gap is the conversation.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">4 · What does each error <i>cost</i> you?</h3>
+            <p style="font-size:12.5px">Until somebody at the client prices the two errors, nobody can say which threshold is right — and <b style="color:#fff">"is it good?" has no answer</b>.</p>
+          </div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:0.98fr 1.02fr;align-items:start;gap:18px">
+          <div class="p-callout" style="font-size:14.5px;padding:14px 18px">Every number a vendor quotes has a <b>denominator</b>, and the denominator is where the argument lives. <b>LSN-0.3</b> taught you that arithmetically; today gave the pieces their names.</div>
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">Next: <span class="code-chip">LSN-1.4</span> — train MNIST · 2.5 h lab</h3>
+            <p style="font-size:12.5px;margin-bottom:7px">Pre-work <b style="color:#fff">~45 min, mandatory — the lab will not wait:</b></p>
+            <ul class="p-chk" style="gap:6px">
+              <li style="font-size:12.5px"><b style="color:var(--vsp-accent)">Re-verify your environment.</b> Re-run LSN-0.1's checkpoints; import <span class="p-io">torch</span> and <span class="p-io">torchvision</span> and print both versions</li>
+              <li style="font-size:12.5px">Confirm the <b style="color:#fff">MNIST cache</b> at <span class="p-io">~/.cache/vsp-training-data</span></li>
+              <li style="font-size:12.5px">Finish the LSN-0.1 <b style="color:#fff">Python refresher</b>; read the lab's intro cells</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vsp-wordmark" style="margin-top:1px;opacity:0.9;align-self:center">VICTORY SQUARE <span>PARTNERS</span></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Close · next: LSN-1.4 MNIST lab</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+    </div>
+    <aside class="notes">
+      7 min, the tail of segment 4's 20. Hard-stop at 90.
+      Work the four questions as a script they can use tomorrow, in order, and say why the order matters: question 1 can invalidate the headline on its own, so it goes first. Have them write all four on the inside cover of whatever they carry to client meetings.
+      Insist on the tone: none of the four is an attack, and that is the point. Every one is answerable by the client in the room, so asking them makes you sound like an advisor rather than a sceptic. A vendor with the answers ready has done the work; a vendor who has to come back to you has just told you something too.
+      Then the reflex, which is the single sentence to leave with: every number has a denominator, and the denominator is where the argument lives.
+      NOW THE PRE-WORK, and do not soften this one. LSN-1.4 is a 2.5-hour live lab where eight people train a model, and a lab cannot debug one laptop. Everybody re-verifies their environment BEFORE they arrive — re-run LSN-0.1's checkpoints, import torch and torchvision, print the versions. An environment that worked in week 1 is not evidence it works today: that was the very first lesson this programme learned about itself, and it is why the line is on the slide.
+      Also confirm the MNIST cache is on their machine and outside the repo. A cold download eats the first twenty minutes of the lab, and 60,000 images do not belong in a git clone.
+      Sell the next session in one sentence: you have now graded five models without training any. Next time you train one, watch the loss fall, and read the confusion matrix on YOUR OWN results — which digits your network confuses. Everything today was practice for that last half hour.
+      Final beat, no answers out loud: "think of a number a client or a vendor has quoted at you that you nodded along to." Everybody has one. That flinch is the outcome of the hour.
+    </aside>
+  </section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: false,
+  showSlideNumber: 'speaker',
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  plugins: [ RevealNotes ],
+  keyboard: {}
+});
+</script>
+</body>
+</html>

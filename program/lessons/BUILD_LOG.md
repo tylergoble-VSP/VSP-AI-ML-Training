@@ -54,6 +54,9 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 - **SI-24** — MOD-1 environment policy (supersedes SI-1's "core only" for MOD-1 lessons): the venv now also carries **scikit-learn 1.9, torch 2.13, torchvision 0.28** (Apple MPS available). Rules: (a) still no transformers/LLM libraries — those arrive in MOD-2; (b) datasets cache OUTSIDE the repo at `~/.cache/vsp-training-data` (MNIST train+test already pre-downloaded there — use `datasets.MNIST(root=Path.home()/".cache"/"vsp-training-data", download=True)`); never write datasets into the repo; (c) bound per-cell runtime — training cells must finish in well under 5 minutes on CPU/MPS (subset the data or cap epochs), and execute with `--ExecutePreprocessor.timeout=600`; state expected runtime in *markdown* and never print measured wall-clock — variable timings break SI-22 byte-identity (LL-24); (d) `torch.manual_seed` + `numpy` seeding both required (SI-3 applies to torch too); note that bit-identical torch outputs across machines are NOT guaranteed — keep SI-22's byte-comparison for numpy/prints, and use tolerance asserts for torch numbers.
 - **SI-25** — MOD-1 lessons 1.1–1.3 lean on Tyler's original "ML literacy deck," which is NOT in the repo (LL-21 precedent). The session deck you build IS the canonical deck for the lesson: carry the needed content yourself, cite the original as source, and report the workaround. Do not block on the missing file.
 
+### Added after Round 6
+- **SI-26** — Three trust rules learned the hard way: (a) **read what you cite** — open every referenced notebook and confirm it contains what its name implies (`12_Analytics_Performance` = runtime timing, not model metrics; LL-32); (b) **no pandas `DataFrame.style` in committed notebooks** — Styler output embeds a random uuid + memory address and silently breaks SI-22 byte-identity (LL-33); (c) **test graders with planted answers** (good / deliberately thin / wrong) before shipping — reading the probe list is not enough (LL-35, LL-30's substring traps).
+
 ---
 
 ## Build log
@@ -159,7 +162,19 @@ brief dependency; LSN-1.4 is `GAP-8` (a synthesis, not an adaptation — see Rou
 | LL-30 | content | Keeper patterns: one coherent dataset world across the whole lesson (`#30xx` closed history / `#41xx` open pipeline — no deal both trains and predicts); reverse-engineering a few rows to land the plan's scripted numbers, *disclosed in the setup markdown*; grader keyword probes need word-boundary matching ("lose"⊂"close", "bet"⊂"better" false-positives found in testing) | Kept as house patterns | — |
 | LL-31 | process | Reviewer-side: notebooks that walk up to find the repo root cannot execute from the scratchpad — re-execution copies must live inside the repo (builder had already worked inside the repo for the same reason) | Battery uses in-repo hidden temp copies | reviewer battery |
 
-### Round 6 — LSN-1.3 (builder: Opus 5) — *pending*
+### Round 6 — LSN-1.3 (builder: Opus 5, agent a4e107fe039cabb2e) — 2026-07-28 — **ACCEPTED**
+
+**Artifacts:** `notebooks/lessons/LSN-1.3_Grading_Models.ipynb` (38 cells, 3 figures, 44 pinning asserts) · `program/lessons/decks/LSN-1.3-grading-models.html` (11 slides, timed notes sum to 90).
+
+**Review verification:** independent in-repo re-execution → zero mismatches (rich-output comparison incl. HTML block lengths); all three report cards recomputed by hand (A: 92,160 h / 2,400 = 38.4; B: 99.26% accuracy / 75% precision / 11.25% recall / 99.20% flag-nothing baseline; C: matrix sums to 4,000, 62.03%/78.06%); fraud continuity with LSN-0.3 pinned by asserts (same 100/99/9,999/10,098 → 0.98%); AUC concave-ROC bounds verified by hull geometry (0.8378–0.9770 through the operating point); the plan's `foundations/12` citation confirmed wrong (timing notebook, no ROC) and `foundations/06` confirmed right. No fix round.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-32 | content | **Name-based citation error in the plan:** `12_Analytics_Performance.ipynb` sounds like model metrics but is a runtime-timing notebook (3 cells, no ROC). Planning rounds cited it by name without reading it; the real ROC/AUC content lives in `06_Classifier_Algorithms.ipynb` | Citations fixed in plan + module spec; "read what you cite" now explicit | SI-26 |
+| LL-33 | process | pandas `DataFrame.style` stamps a random uuid into HTML and a live memory address into text/plain — three tables silently broke SI-22 byte-identity | Styler banned in committed notebooks (plain-DataFrame `show()` helper instead) | SI-26 |
+| LL-34 | content | Card C's reported AUC 0.88 is **not reachable** from a standard bi-normal scorer at the stated precision/recall (that gives 0.924) — builder turned the impossibility into a *feasibility check*: quoted AUC must lie within the concave-ROC bounds implied by the quoted precision/recall (0.8378–0.9770). A genuinely new pre-sales tool: "is the vendor's metrics triple even internally consistent?" | Kept; presented as "reported, not simulated" — honest | — |
+| LL-35 | process | Grader probes with overlapping patterns (`recall*` and `recall`) double-counted one word, promoting thin answers to MATCH — found by *testing* the grader with planted answers, not by reading it | `probe_spans()` counts distinct matched words; in-notebook self-tests; graders must be tested with planted good/thin/wrong answers | SI-26 |
+| LL-36 | content | Keeper beats: the rubber-stamp comparison (a 99.0%-accurate detector is *worse* than a 99.99% do-nothing stamp); per-segment MAE decomposition (38 h headline hides 330 h epic misses, 85.9% of error in 10% of items) | Kept as house patterns | — |
 
 ### Round 7 — LSN-1.4 (builder: Opus 5) — *pending*
 
