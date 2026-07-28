@@ -72,9 +72,10 @@ Three scenario questions, async, graded pass/fail; submission references LSN-0.3
 
 | Material | Status | Path / source |
 |---|---|---|
-| Stats II deck (conditioning, base rates, causation) | build (`GAP-1`) | `program/` — new |
-| Base-rate fraud one-pager (pre-work handout) | build (`GAP-1`) | numbers in this file, segment 2 |
-| Drill scenario card + homework questions | build (`GAP-1`) | this file — extract to cards |
+| **Stats II deck** — 10 slides w/ timing notes, VSP design system | exists | `program/lessons/decks/LSN-0.3-statistics-2.html` |
+| **Session notebook** — pre-work counts table + all four segments + drill reveal + self-checking homework, executed end to end | exists | `notebooks/lessons/LSN-0.3_Statistics_2_Probability_Correlation_Causation.ipynb` |
+| Base-rate fraud one-pager (pre-work handout) | exists | notebook pre-work cell (fill-in counts table) |
+| Drill scenario card + homework questions | exists | this file + notebook drill/homework sections + deck slide 8 |
 | 3Blue1Brown — "The medical test paradox, and redesigning Bayes' rule" | exists | https://www.youtube.com/watch?v=lG4VkPoG3ko |
 | StatQuest with Josh Starmer — "Conditional Probability, Clearly Explained" (optional reinforcement) | exists | youtube.com/@statquest (verify exact link at delivery prep) |
 | Tyler Vigen — Spurious Correlations | exists | tylervigen.com |

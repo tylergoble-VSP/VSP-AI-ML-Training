@@ -107,7 +107,7 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 
 **Homework:** Three short scenario questions (async, graded pass/fail).
 
-**Support material:** **BUILD (`GAP-1`)** — new deck + scenarios.
+**Support material:** Built — deck `program/lessons/decks/LSN-0.3-statistics-2.html`; session notebook `notebooks/lessons/LSN-0.3_Statistics_2_Probability_Correlation_Causation.ipynb` (pre-work counts table + session + self-checking homework, executed end to end).
 
 ---
 

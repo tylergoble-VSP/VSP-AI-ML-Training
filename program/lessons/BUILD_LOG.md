@@ -39,8 +39,12 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 
 ### Added after Round 1
 - **SI-17** — Pre-compute every scripted statistic in a scratch script **before** embedding it in a notebook or deck, and cross-check against the notebook's own printed output. Lesson-plan numbers are not automatically achievable — two of LSN-0.2's were arithmetically impossible as written. Where the plan's number is unreachable, build the closest honest construction and report it (SI-15).
-- **SI-18** — Graded stats cells must tolerate legitimate convention differences: accept both variance conventions (ddof=0 and ddof=1), use numeric tolerances rather than exact equality, and require substance (e.g., minimum length) for free-text answers — never exact strings.
+- **SI-18** — Graded stats cells must tolerate legitimate convention differences: accept both variance conventions (ddof=0 and ddof=1), use numeric tolerances rather than exact equality, and require substance (40–60 char minimum) for free-text answers — never exact strings. When the true numeric answer could collide with a convention or a misconception (e.g., 0.98% true vs 0.99 misconception, percent vs fraction), ask for a second, unit-free representation ("1 real alert per N") that cannot be confused.
 - **SI-19** — Render-verify everything visual: execute and *look at* every figure (redesign illegible panels — log-scale wide-tailed axes, fix label collisions); render decks headless at 1280×720 and check for overflow/clipping before handoff.
+
+### Added after Round 2
+- **SI-20** — Exit-code-clean is not content-correct. After generating a notebook, verify its *mass*: expected file size, output/figure counts, and spot-read a cell — a generator bug once produced a notebook that executed "cleanly" because every cell had collapsed to a single comment line.
+- **SI-21** — Drill reveals should decompose, not gotcha: give the scripted effect a real (small) true value the honest method recovers, so the debrief ends on "measuring this properly makes the client money" rather than "your feature is worthless." (Pattern from LSN-0.3's revenue drill: +18% observed = +14.6% seasonality + 3% real effect; the simulated holdout finds the 3%.)
 
 ---
 
@@ -74,6 +78,18 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 | LL-11 | process | Materials tables written before artifact-location conventions existed pointed to wrong homes (`notebooks/foundations/`, `program/`) | Reviewer updates tables at acceptance; homes codified | SI-16 |
 | LL-12 | content | Builder's unprompted good moves worth keeping: second-vendor comparison (accuracy ranks two models backwards — sets up LSN-1.3 without teaching it), gamma instead of normal for cycle times (normals go negative), per-cell seeded generators (single-cell re-runs can't drift), survivorship bait planted in the homework dataset for task 4b | Kept; patterns noted for future stats lessons | — |
 
-### Round 2 — LSN-0.3 (builder: Opus 5) — *pending*
+### Round 2 — LSN-0.3 (builder: Opus 5, agent a3679d7909cb9b3fd) — 2026-07-28 — **ACCEPTED**
+
+**Artifacts:** `notebooks/lessons/LSN-0.3_Statistics_2_Probability_Correlation_Causation.ipynb` (34 cells, 7 figures, executed clean — independently re-executed by reviewer) · `program/lessons/decks/LSN-0.3-statistics-2.html` (10 slides, timed notes, minutes sum to 90).
+
+**Review verification:** independent re-execution clean; fraud construction recomputed against the plan (100/99/9,999/10,098 → 0.98%, plus the 99.0%-accuracy callback to LSN-0.2); homework Q3 arithmetic verified (98/1,497/1,595 → 6.1%); threshold-sweep model pinned by in-cell asserts to exactly 1% FPR / 99% sensitivity; trap-3 wobble and weekly/monthly reconciliation honestly disclosed in-notebook; SI sweep clean (imports, 7 seeded rngs, palette, CSS core identical, CDN-only externals, 10/10 timed notes). Builder applied Round-1 patterns (LL-12) unprompted. No fix round needed.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-13 | process | **Silent no-op notebook:** a generator bug (splitting sources without newlines) collapsed every code cell to one comment line — the notebook executed "cleanly" with zero errors and zero outputs. Caught only via file-size anomaly (69 KB vs ~800 KB expected) | Builder caught + rebuilt; mass-verification codified | SI-20 |
+| LL-14 | content | Units trap in graded numerics: true answer 0.98% collides with the 99% misconception when a field accepts both percent and fraction — no single number disambiguates | Dual representation: percent + "1 real alert per N" (102) | SI-18 (extended) |
+| LL-15 | content | Drill design upgrade: giving the widget a real +3% effect (not zero) turns the reveal from gotcha into attribution, and the simulated holdout *recovers* the true number — better pre-sales pedagogy | Kept; codified | SI-21 |
+| LL-16 | content | Weekly and monthly revenue series came from separate generators, so cross-views only approximately reconcile — builder disclosed it in the cell output rather than hiding it | Accepted with disclosure; prefer one generator for related views next time | note |
+| LL-17 | process | Plan quality improving upstream: LSN-0.3's scripted numbers were all internally consistent (verified independently by builder and reviewer) — the SI-17 discipline is working at authoring time too | — | — |
 
 ### Round 3 — LSN-0.4 (builder: Opus 5) — *pending*
