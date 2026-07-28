@@ -87,7 +87,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Homework:** None.
 
-**Support material:** Exists — deck + outputs pulled from `notebooks/supervised/`, `unsupervised/` (rendered, not run live).
+**Support material:** Built — deck `program/lessons/decks/LSN-1.2-model-io.html`; session notebook `notebooks/lessons/LSN-1.2_Model_IO.ipynb` (live output safari + graded drill, executed end to end); `notebooks/supervised/`, `unsupervised/` as go-deeper references.
 
 ---
 

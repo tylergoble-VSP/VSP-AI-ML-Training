@@ -146,7 +146,18 @@ brief dependency; LSN-1.4 is `GAP-8` (a synthesis, not an adaptation — see Rou
 | LL-26 | content | Keeper patterns: three-verdict drill grading (MATCH / DEFENSIBLE / MISS, each with prose reasons — richer than right/wrong and matches how triage really works); the fourth dashed nesting-doll ring ("also sold as AI: rule engines · RPA · dashboards") ; teaching a genuine tie (construction "% complete" → classify *or* regress) instead of hiding it | Kept as house patterns | — |
 | LL-27 | content | Discussion-lesson notebooks (vs labs/checkpoint lessons) need no checkpoint battery — companion + drill workspace is the right shape. First non-checkpoint notebook in the series establishes the template | Shape noted for LSN-1.2/1.5 (also discussion-shaped) | — |
 
-### Round 5 — LSN-1.2 (builder: Opus 5) — *pending*
+### Round 5 — LSN-1.2 (builder: Opus 5, agent ae91d1ecb64eb6dea) — 2026-07-28 — **ACCEPTED**
+
+**Artifacts:** `notebooks/lessons/LSN-1.2_Model_IO.ipynb` (32 cells, 3 figures, 6 pinning asserts — `#4127 → 0.73` etc. fail loudly if numbers drift) · `program/lessons/decks/LSN-1.2-model-io.html` (10 slides, timed notes 15/30/15 = 60).
+
+**Review verification:** independent in-repo re-execution → zero reproducibility mismatches (concatenated-stream comparison); drill scenario + both curveballs verbatim in notebook and deck; scripted numbers (0.73/0.51/0.31/$29,375) present in executed outputs; no mlxtend import (string hit is the disclosed go-deeper caveat); deck CSS core identical, CDN-only, 10/10 timed notes. Plan's "rendered, not run live" safari design superseded by live tiny fits — spec updated. No fix round.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-28 | process | Jupyter may split one cell's stdout into different `stream`-block boundaries across runs (transport artifact) — block-by-block comparison can false-alarm on identical output | SI-22 comparisons (builder + reviewer battery) now compare *concatenated* stream text per cell | SI-22 (practice) |
+| LL-29 | environment | Repo notebooks cited as go-deeper references can import libraries the venv lacks (`unsupervised/07` needs `mlxtend`) — a citation is a dependency claim | Builder computed the same support/confidence/lift in pandas; citation carries the caveat; check cited notebooks' imports before pointing at them | SI-6 (practice) |
+| LL-30 | content | Keeper patterns: one coherent dataset world across the whole lesson (`#30xx` closed history / `#41xx` open pipeline — no deal both trains and predicts); reverse-engineering a few rows to land the plan's scripted numbers, *disclosed in the setup markdown*; grader keyword probes need word-boundary matching ("lose"⊂"close", "bet"⊂"better" false-positives found in testing) | Kept as house patterns | — |
+| LL-31 | process | Reviewer-side: notebooks that walk up to find the repo root cannot execute from the scratchpad — re-execution copies must live inside the repo (builder had already worked inside the repo for the same reason) | Battery uses in-repo hidden temp copies | reviewer battery |
 
 ### Round 6 — LSN-1.3 (builder: Opus 5) — *pending*
 

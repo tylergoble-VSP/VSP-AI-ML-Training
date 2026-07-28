@@ -28,7 +28,7 @@ Kills the misconception that a model output is a verdict. Installs Tyler's bar: 
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Read the ML literacy deck (see PROGRAM_PLAN.md §8) sections on model types and reading outputs | 15 min | Nothing to submit |
+| 1 | Read the model-I/O material — canonical target: `program/lessons/decks/LSN-1.2-model-io.html` (mirrors the original ML literacy deck's model-types + reading-outputs sections, not yet in repo) | 15 min | Nothing to submit |
 | 2 | Write one sentence: what do you think a "lead score of 0.73" means, exactly? | 5 min | Your sentence — it gets stress-tested in the drill |
 
 ## Session Plan
@@ -36,7 +36,7 @@ Kills the misconception that a model output is a verdict. Installs Tyler's bar: 
 | Segment | Time | Method | Detail |
 |---|---|---|---|
 | Features and labels | 15 min | talk | What training data actually is: a table where columns are features, one column is the label, rows are examples. Supervised = the label column exists; unsupervised = it doesn't (callback to LSN-1.1's cluster job). One slide of the same CRM table shown twice — once with the "closed?" column (propensity training data), once without (segmentation data). |
-| Output safari | 30 min | demo | Four real outputs from repo notebooks, rendered ahead of time and shown side by side — not run live: (1) logistic regression → per-class probabilities (`notebooks/supervised/02_Supervised_Logistic_Regression.ipynb`); (2) linear regression → a number with units (`notebooks/supervised/01_Supervised_Linear_Regression.ipynb`); (3) K-Means → a bare cluster id, meaningless until named (`notebooks/unsupervised/01_Unsupervised_KMeans_Clustering.ipynb`); (4) Apriori association rules → a ranked "people who X also Y" list, the recommender's shape (`notebooks/unsupervised/07_Unsupervised_Apriori.ipynb`). For each: what went in, what came out, the one-sentence client-safe reading. |
+| Output safari | 30 min | demo | Four real output types generated live in the session notebook from tiny seeded fits (instant; supersedes the earlier "rendered, not run live" design — see BUILD_LOG Round 5), with per-type "go deeper" pointers to the repo notebooks: (1) logistic regression → per-class probabilities (`notebooks/supervised/02_Supervised_Logistic_Regression.ipynb`); (2) linear regression → a number with units (`notebooks/supervised/01_Supervised_Linear_Regression.ipynb`); (3) K-Means → a bare cluster id, meaningless until named (`notebooks/unsupervised/01_Unsupervised_KMeans_Clustering.ipynb`); (4) Apriori association rules → a ranked "people who X also Y" list, the recommender's shape (`notebooks/unsupervised/07_Unsupervised_Apriori.ipynb`). For each: what went in, what came out, the one-sentence client-safe reading. |
 | Interpretation drill: "the model says 0.73" | 15 min | drill | Scenario below run as a role-play — instructor plays the client, participants answer, group critiques against the model answer. Pre-work sentences read back first: most will say "73% chance," and the drill sharpens what that does and does not license. |
 
 **Timing check:** 15 + 30 + 15 = 60 min = 1 h contract duration. ✓
@@ -64,12 +64,14 @@ None. The output-reading skill is verified in the ASM-1 quiz; keep your correcte
 
 | Material | Status | Path / source |
 |---|---|---|
-| ML literacy deck (model types + reading outputs sections) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
-| Rendered output: classifier probabilities | exists (render at delivery prep) | `notebooks/supervised/02_Supervised_Logistic_Regression.ipynb` |
-| Rendered output: regression number | exists (render at delivery prep) | `notebooks/supervised/01_Supervised_Linear_Regression.ipynb` |
-| Rendered output: cluster assignment | exists (render at delivery prep) | `notebooks/unsupervised/01_Unsupervised_KMeans_Clustering.ipynb` |
-| Rendered output: ranked association rules | exists (render at delivery prep) | `notebooks/unsupervised/07_Unsupervised_Apriori.ipynb` |
-| "The model says 0.73" scenario + model answer | exists | This plan (above) |
+| **Session deck** — 10 slides w/ timed notes; carries features/labels + reading-outputs content (canonical, per SI-25) | exists | `program/lessons/decks/LSN-1.2-model-io.html` |
+| **Session notebook** — pre-work fill-in + live output safari (4 types, raw outputs interpreted line by line) + "0.73" drill workspace w/ graded key, executed end to end | exists | `notebooks/lessons/LSN-1.2_Model_IO.ipynb` |
+| ML literacy deck (model types + reading outputs — original source) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
+| Go-deeper: classifier probabilities | exists | `notebooks/supervised/02_Supervised_Logistic_Regression.ipynb` |
+| Go-deeper: regression number | exists | `notebooks/supervised/01_Supervised_Linear_Regression.ipynb` |
+| Go-deeper: cluster assignment | exists | `notebooks/unsupervised/01_Unsupervised_KMeans_Clustering.ipynb` |
+| Go-deeper: ranked association rules (note: imports `mlxtend`, not in the MOD-1 venv — see BUILD_LOG LL-29) | exists | `notebooks/unsupervised/07_Unsupervised_Apriori.ipynb` |
+| "The model says 0.73" scenario + model answer | exists | This plan (above) + notebook drill cells (verbatim) |
 
 ## Delivery Notes
 
