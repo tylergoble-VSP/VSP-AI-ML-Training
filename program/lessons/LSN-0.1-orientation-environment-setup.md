@@ -32,7 +32,7 @@ This session is the program's contract made physical: everyone hears why pre-wor
 | 2 | Clone the `VSP-AI-ML-Training` repo | 5 min | Local clone path |
 | 3 | Create the virtualenv and install dependencies per `ACTIVATE_VENV.md` + `requirements.txt` | 15 min | Terminal output: activated venv prompt + `python --version` + clean `pip install` finish (or the failure output) |
 | 4 | If step 3 failed: work through `INSTALL_TROUBLESHOOTING.md` | 10 min | The exact error message, copied as text — this is a valid pre-work artifact; broken setups get fixed live |
-| 5 | Launch Jupyter and open `notebooks/foundations/01_Beginning_Python.ipynb`; run the first cell if you can | 5 min | Screenshot of the open notebook (executed cell if it worked) |
+| 5 | Launch Jupyter and open `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb`; run the first cells if you can | 5 min | Screenshot of the open notebook (executed cell if it worked) |
 
 ## Session Plan
 
@@ -40,8 +40,8 @@ This session is the program's contract made physical: everyone hears why pre-wor
 |---|---|---|---|
 | Program walkthrough | 15 min | talk | Three pillars (ML / LLM / agentic) × three tiers (basics 1 mo / advanced 3 mo / expert 6 mo); why agentic is the lion's share and ML is ~5%; the cadence and the pre-work rule with the Ciobanu story told straight; checkpoint gates `ASM-0`–`ASM-3` and the GOAL-7 deal: do the work or you're out; hackathon graduation Dec 14–18 |
 | Environment triage | 25 min | lab | Working setups pair with broken ones; Tyler + Marius float. Every failure and its fix gets logged into `INSTALL_TROUBLESHOOTING.md` on the spot. Checkpoints, in order: (1) venv activates, (2) `import numpy, pandas, matplotlib` succeeds, (3) Jupyter server opens in the browser |
-| Run the notebook together | 15 min | lab | All together: open `notebooks/foundations/01_Beginning_Python.ipynb` and execute the opening cells (variables, printing, list operations). Checkpoint: every screen shows executed cell output. Each participant captures the screenshot that becomes their `ASM-0` setup evidence |
-| Baseline self-rating | 5 min | exercise | Rate yourself 1–5 against every basics outcome (`OUT-0.1`–`OUT-3.4`, from the module specs) in the shared form. Said explicitly: not a filter — the baseline that measures the program's lift at graduation (per the enrollment gate) |
+| Run the notebook together | 15 min | lab | All together: `Run All` on `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb` — five checkpoints (interpreter/venv, core imports, compute & plot, repo layout, later-module preview). Checkpoint: every screen shows the summary cell with five ✅s. Each participant screenshots that summary — it is their `ASM-0` setup evidence (a JSON copy lands in `outputs/lsn-0.1/`) |
+| Baseline self-rating | 5 min | exercise | In the same notebook's final cells: rate yourself 1–5 against all 21 basics outcomes (`OUT-0.1`–`OUT-3.5`, from the module specs); the cell validates and saves to `outputs/lsn-0.1/`. Said explicitly: not a filter — the baseline that measures the program's lift at graduation (per the enrollment gate) |
 
 **Timing check:** 15 + 25 + 15 + 5 = 60 min = 1 h contract duration.
 
@@ -61,8 +61,9 @@ Participants who don't work in Python daily: complete `notebooks/foundations/01_
 | Dependency list | exists | `requirements.txt` |
 | Troubleshooting guide (living doc — updated during triage) | exists | `INSTALL_TROUBLESHOOTING.md` |
 | Python foundations notebooks | exists | `notebooks/foundations/01_Beginning_Python.ipynb`, `02_Intermediate_Python.ipynb`, `03_Advanced_Python.ipynb` |
-| Program walkthrough deck (~10 slides) | adapt | from `program/program-spec.md` + `program/PROGRAM_PLAN.md` |
-| Baseline self-rating form | adapt | outcome tables in `program/modules/module-0` through `module-3` |
+| **Session notebook** — 5 checkpoints + ASM-0 evidence + baseline self-rating, executed end to end | exists | `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb` |
+| **Program walkthrough deck** — 10 slides w/ speaker notes, VSP design system (reveal.js) | exists | `program/lessons/decks/LSN-0.1-orientation.html` |
+| Baseline self-rating form | exists | final cells of the session notebook (all 21 outcomes, saves to `outputs/lsn-0.1/`) |
 
 ## Delivery Notes
 

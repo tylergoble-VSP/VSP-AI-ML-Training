@@ -56,12 +56,12 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 **Session outline:**
 1. Program walkthrough: three pillars, tiers, cadence, the pre-work rule and why (the Ciobanu story), checkpoint gates (15 min)
 2. Environment triage: fix every broken setup live (25 min)
-3. All together: open and run `notebooks/foundations/01_Beginning_Python.ipynb` first cells (15 min)
+3. All together: `Run All` on `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb` — five checkpoints ending in the ASM-0 evidence screenshot (15 min)
 4. Baseline self-rating against all basics outcomes (5 min)
 
 **Homework:** Non-Python participants work through `foundations/01_Beginning_Python.ipynb` (and `02_Intermediate_Python.ipynb` as needed) before `LSN-1.4`.
 
-**Support material:** `ACTIVATE_VENV.md`, `INSTALL_TROUBLESHOOTING.md`, `notebooks/foundations/01–03`.
+**Support material:** `ACTIVATE_VENV.md`, `INSTALL_TROUBLESHOOTING.md`, `notebooks/foundations/01–03`; session notebook `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb`; deck `program/lessons/decks/LSN-0.1-orientation.html`.
 
 ---
 
