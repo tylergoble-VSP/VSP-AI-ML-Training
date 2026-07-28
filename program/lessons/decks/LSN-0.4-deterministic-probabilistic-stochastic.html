@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSN-0.4 — Deterministic, Probabilistic, Stochastic · VSP AI/ML Training</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  /* ============================================================
+     Victory Square Partners — Design System (inlined)
+     Source: Claude Design handoff bundle, June 2026 (mirrors index.html).
+     Dark near-black world · Navy=primary · Gold=accent/CTA · Green=support
+     Two-font: Syne (display) + Inter (body) · italic-gold headline accent.
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap');
+
+  :root {
+    --vsp-green-lightest: #97f377;
+    --vsp-green-light:     #7bd15d;
+    --vsp-green:           #65a74e;
+    --vsp-green-dark:      #4f813e;
+    --vsp-green-darkest:   #355629;
+    --vsp-yellow-lightest: #fff5c2;
+    --vsp-yellow-light:    #ffef96;
+    --vsp-yellow:          #ffe86b;
+    --vsp-navy-light:      #59709c;
+    --vsp-navy:            #46597c;
+    --vsp-navy-dark:       #344566;
+    --vsp-navy-darkest:    #2b374d;
+    --vsp-canvas:          #080c10;
+    --vsp-canvas-2:        #111820;
+    --vsp-canvas-3:        #1a2230;
+    --vsp-white:           #ffffff;
+    --vsp-black:           #0c0c0c;
+    --vsp-on-dark-strong:  rgba(255,255,255,0.85);
+    --vsp-on-dark:         rgba(255,255,255,0.70);
+    --vsp-on-dark-muted:   rgba(255,255,255,0.55);
+    --vsp-on-dark-faint:   rgba(255,255,255,0.40);
+    --vsp-on-dark-ghost:   rgba(255,255,255,0.25);
+    --vsp-primary:         var(--vsp-navy);
+    --vsp-accent:          var(--vsp-yellow);
+    --vsp-accent-ink:      var(--vsp-canvas);
+    --vsp-support:         var(--vsp-green);
+    --vsp-bg-gradient:     linear-gradient(160deg, var(--vsp-canvas) 0%, var(--vsp-canvas-2) 60%, var(--vsp-canvas-3) 100%);
+    --vsp-border:          rgba(255,255,255,0.10);
+    --vsp-font-display: 'Syne', 'Inter', system-ui, sans-serif;
+    --vsp-font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --vsp-tracking-kicker: 0.16em;
+    --vsp-radius-button: 6px;
+    --vsp-radius-card:   10px;
+    --vsp-radius-chip:   20px;
+  }
+
+  html, body { margin: 0; background: #0c0c0c; }
+  .reveal { font-family: var(--vsp-font-sans); }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 0; width: 1280px; height: 720px; background: transparent; box-sizing: border-box; }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; margin: 0; }
+
+  .vsp-slide {
+    position: relative; width: 1280px; height: 720px; overflow: hidden;
+    font-family: var(--vsp-font-sans); color: var(--vsp-on-dark-strong);
+    background: var(--vsp-bg-gradient); display: flex; flex-direction: column; box-sizing: border-box;
+  }
+  .vsp-grid {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .vsp-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .vsp-orb.yellow { background: var(--vsp-yellow); opacity: 0.08; }
+  .vsp-orb.green  { background: var(--vsp-green);  opacity: 0.10; }
+  .vsp-orb.green-l{ background: var(--vsp-green-lightest); opacity: 0.06; }
+  .vsp-orb.navy   { background: var(--vsp-navy-light); opacity: 0.16; }
+  .vsp-stage { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; padding: 64px 80px; }
+  .vsp-stage.center { justify-content: center; align-items: flex-start; }
+  .vsp-topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 28px 80px 0; }
+  .vsp-footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 80px 28px; font-size: 12px; font-weight: 500; color: var(--vsp-on-dark-ghost); }
+  .vsp-kicker { font-size: 13px; font-weight: 700; letter-spacing: var(--vsp-tracking-kicker); text-transform: uppercase; color: var(--vsp-accent); }
+  .vsp-rule { width: 64px; height: 4px; background: var(--vsp-accent); border-radius: 2px; }
+  .vsp-glow { font-style: italic; color: var(--vsp-accent); }
+  .vsp-h1 { font-family: var(--vsp-font-display); font-size: 64px; font-weight: 800; line-height: 1.02; color: var(--vsp-white); letter-spacing: -0.03em; margin: 0; }
+  .vsp-h2 { font-family: var(--vsp-font-display); font-size: 46px; font-weight: 800; line-height: 1.08; color: var(--vsp-white); letter-spacing: -0.025em; margin: 0; }
+  .vsp-lead { font-size: 21px; font-weight: 400; line-height: 1.55; color: var(--vsp-on-dark-muted); margin: 0; }
+  .vsp-card { position: relative; background: var(--vsp-canvas-2); border: 1px solid var(--vsp-border); border-radius: var(--vsp-radius-card); padding: 28px 28px 26px; overflow: hidden; }
+  .vsp-card .topbar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .vsp-card .topbar.green  { background: linear-gradient(90deg, var(--vsp-green), var(--vsp-green-lightest)); }
+  .vsp-card .topbar.yellow { background: linear-gradient(90deg, var(--vsp-yellow), var(--vsp-yellow-light)); }
+  .vsp-card h3 { font-family: var(--vsp-font-display); font-size: 24px; font-weight: 700; color: var(--vsp-white); margin: 0 0 8px; line-height: 1.15; letter-spacing: -0.02em; }
+  .vsp-card p  { font-size: 15px; line-height: 1.55; color: var(--vsp-on-dark); margin: 0; }
+  .vsp-wordmark { font-family: var(--vsp-font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.02em; color: var(--vsp-white); }
+  .vsp-wordmark span { color: var(--vsp-accent); }
+
+  .p-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .p-grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .p-chk { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  .p-chk li { position:relative; padding-left:30px; font-size:15px; line-height:1.45; color:var(--vsp-on-dark-strong); }
+  .p-chk li::before { content:''; position:absolute; left:0; top:3px; width:18px; height:18px; border-radius:50%; background:rgba(101,167,78,0.18); }
+  .p-chk li::after { content:''; position:absolute; left:6px; top:8px; width:5px; height:9px; border:2px solid var(--vsp-green-lightest); border-top:0; border-left:0; transform:rotate(40deg); }
+  .p-time { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:8px; }
+  .p-time::before { content:''; position:absolute; top:9px; left:6%; right:6%; height:2px; background:linear-gradient(90deg,var(--vsp-green),var(--vsp-accent)); }
+  .p-step { position:relative; padding-top:30px; text-align:center; padding-left:6px; padding-right:6px; }
+  .p-step .dot { position:absolute; top:2px; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--vsp-green); border:3px solid var(--vsp-canvas); }
+  .p-step.key .dot { background:var(--vsp-accent); }
+  .p-step .d { font-family:var(--vsp-font-display); font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:4px; }
+  .p-step .t { font-size:13.5px; font-weight:700; color:var(--vsp-white); margin-bottom:3px; line-height:1.2; }
+  .p-step .s { font-size:12px; color:var(--vsp-on-dark-muted); line-height:1.4; }
+  .p-callout { background:rgba(255,232,107,0.07); border-left:4px solid var(--vsp-accent); border-radius:0 10px 10px 0; padding:16px 20px; font-size:16px; font-weight:600; color:var(--vsp-white); line-height:1.45; }
+  .p-callout b { color:var(--vsp-accent); }
+  .p-ramp { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:end; }
+  .p-ramp .bar { background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:20px 18px; position:relative; overflow:hidden; }
+  .p-ramp .bar .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-ramp .bar .topbar.g  { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-ramp .bar .topbar.y  { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-ramp .lbl { font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:8px; }
+  .p-ramp .num { font-family:var(--vsp-font-display); font-size:46px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-ramp .sub { font-size:13px; color:var(--vsp-on-dark-muted); margin-top:8px; line-height:1.4; }
+  .p-pipe { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .p-pipe .node { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:16px 18px 15px; display:flex; align-items:flex-start; gap:13px; }
+  .p-pipe .node .n { font-family:var(--vsp-font-display); font-size:15px; font-weight:800; color:var(--vsp-accent-ink); background:var(--vsp-accent); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .p-pipe .node.moat .n { background:var(--vsp-green-lightest); }
+  .p-pipe .node .nt { font-size:15px; font-weight:700; color:var(--vsp-white); line-height:1.2; }
+  .p-pipe .node .ns { font-size:12.5px; color:var(--vsp-on-dark-muted); line-height:1.35; margin-top:3px; }
+  .code-chip { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:14px; background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:6px; padding:4px 10px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .p-count { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:18px 18px 16px; overflow:hidden; }
+  .p-count .topbar { position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-count.key .topbar { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-count .lbl { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:7px; line-height:1.3; }
+  .p-count .num { font-family:var(--vsp-font-display); font-size:38px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-count .sub { font-size:12.5px; color:var(--vsp-on-dark-muted); margin-top:7px; line-height:1.4; }
+  .p-tbl { width:100%; border-collapse:collapse; font-size:15px; }
+  .p-tbl th { text-align:left; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); padding:0 14px 9px 0; border-bottom:1px solid var(--vsp-border); }
+  .p-tbl td { padding:10px 14px 10px 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--vsp-on-dark); }
+  .p-tbl td b { color:var(--vsp-white); font-weight:700; }
+  .p-tbl tr.hi td { color:var(--vsp-on-dark-strong); background:rgba(255,232,107,0.06); }
+  .p-eq { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:15px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-quote { background:var(--vsp-canvas-2); border-left:4px solid var(--vsp-green); border-radius:0 10px 10px 0; padding:18px 22px; }
+  .p-quote .meta { font-size:11px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--vsp-green-lightest); margin-bottom:9px; }
+  .p-quote p { font-size:16.5px; line-height:1.5; color:var(--vsp-on-dark-strong); margin:0; font-style:italic; }
+  .p-tag { display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; border-radius:var(--vsp-radius-chip); padding:3px 10px; }
+  .p-tag.prop { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bug  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 01 · COVER -->
+  <section data-label="Cover">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:600px;height:600px;top:-220px;right:-150px"></div>
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-180px;left:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-topbar">
+        <div class="vsp-wordmark">VICTORY SQUARE <span>PARTNERS</span></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
+      </div>
+      <div class="vsp-stage center" style="gap:22px">
+        <div class="vsp-kicker">AI/ML Training Program · LSN-0.4 · Week 1</div>
+        <h1 class="vsp-h1" style="max-width:1080px">Same question. Different answer.<br><span class="vsp-glow">Bug or property?</span></h1>
+        <div class="vsp-rule"></div>
+        <p class="vsp-lead" style="max-width:900px">Deterministic, probabilistic, stochastic. Sixty minutes to stop promising sameness from a system that samples — and to say what you <i>can</i> promise instead. Two true things at once: the wording changes on <b style="color:#fff">71.8%</b> of repeat questions, and <b style="color:#fff">nothing is broken.</b></p>
+      </div>
+      <div class="vsp-footer"><span>MOD-0 Foundations · Deterministic, Probabilistic, Stochastic · serves OUT-0.2</span><span>Tyler Goble · 60 min · 25 / 20 / 15</span></div>
+    </div>
+    <aside class="notes">
+      2 min, and the session budget must hold: the three-bucket sort 25 min (this slide + slides 2–4) · commercial expectations 20 min (slides 5–8) · bridge to MOD-1 15 min (slides 9–10) = 60 min. There is no slack anywhere; the sort is the segment that overruns.
+      Open with the headline and a real story if you have one: a client (or a colleague) filing "it gave a different answer" as a defect. Do not resolve it yet. The whole session is the answer, and the answer is "which part are you pointing at?"
+      Say the frame out loud once: senior engineers spend careers making systems deterministic, so this instinct is not stupidity — it is professional reflex pointed at the wrong kind of system. Nobody gets mocked today.
+      Everyone should have the LSN-0.4 notebook open and their three pre-work examples in front of them. The notebook is already executed, so nothing depends on their machine keeping up.
+    </aside>
+  </section>
+
+  <!-- 02 · THE THREE KEYWORDS (pre-work target) -->
+  <section data-label="Keywords">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:24%;left:46%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="vsp-kicker">Pre-work · 20 min · The Keywords</div>
+          <h2 class="vsp-h2" style="font-size:44px">Three words, <span class="vsp-glow">one test each.</span></h2>
+        </div>
+        <div class="p-grid3">
+          <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar green"></span>
+            <h3 style="font-size:20px">Deterministic</h3>
+            <p style="margin-bottom:10px">Same input → same output, <b style="color:#fff">every</b> time, on your machine and in CI. The output is a function of the input and nothing else.</p>
+            <p><b style="color:#fff">Anchors:</b> <span class="code-chip">2 + 2</span> · a SQL <span class="code-chip">SUM</span> · a build with pinned deps · a <span class="code-chip">sha256</span>. If you can cache it forever, it is this.</p>
+          </div>
+          <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar yellow"></span>
+            <h3 style="font-size:20px">Probabilistic</h3>
+            <p style="margin-bottom:10px">The output is a <b style="color:#fff">guess with a stated confidence</b> — and the confidence is an auditable claim, not a decoration.</p>
+            <p><b style="color:#fff">Anchor:</b> <i>"spam, confidence 0.87"</i> — of the mail it scores near 0.87, about 87 in 100 should really be spam. Go and check.</p>
+          </div>
+          <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar green"></span>
+            <h3 style="font-size:20px">Stochastic</h3>
+            <p style="margin-bottom:10px">There is <b style="color:#fff">randomness inside the process</b>, so the same input can give different outputs on different runs.</p>
+            <p><b style="color:#fff">Anchors:</b> retry jitter · load-balancer routing · SGD training · an LLM sampling at temperature &gt; 0.</p>
+          </div>
+        </div>
+        <div class="p-callout">Probabilistic is about the <b>shape of the answer</b>. Stochastic is about the <b>machinery</b>. A system can be one, both, or neither — and most ML systems are <b>different ones in different places.</b> That is today's whole skill.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Pre-work</span><span>25 sort · 20 commercial · 15 bridge</span></div>
+    </div>
+    <aside class="notes">
+      5 min, inside segment 1's 25. This slide IS the pre-work target: the lesson plan says "re-read the keywords section of the ML literacy deck", and that deck is not in the repo yet — so these three definitions (and the same three in the notebook's pre-work section) are the canonical version until it lands. Say that plainly; do not send people hunting for a file.
+      Roll-call, not interrogation: who has their three examples? Do not read them out yet — they go on the board on the next slide. Anyone without them stays after and writes them.
+      Add the two supporting words if the room is new to them: confidence (the auditable number) and inference (running a trained model, as opposed to training it). Those two are what make slide 4's punchline possible.
+      One sentence you will reuse all session: "probabilistic answers can come out of perfectly deterministic machinery — a trained model with pinned weights is deterministic and still hands you a guess."
+    </aside>
+  </section>
+
+  <!-- 03 · SEGMENT 1 · THE SORT, LIVE -->
+  <section data-label="The Sort">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 1 · 25 min · The Three-Bucket Sort</div>
+          <h2 class="vsp-h2" style="font-size:42px">Your examples, <span class="vsp-glow">on the board.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:0.92fr 1.08fr;align-items:start">
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar yellow"></span>
+            <h3 style="font-size:18px">How this runs</h3>
+            <ul class="p-chk" style="margin-top:10px">
+              <li>Three columns, pre-seeded with the anchors from slide 2</li>
+              <li>Every participant's three examples go up — <b style="color:#fff">right or wrong</b></li>
+              <li>Start with the column the room said it was <b style="color:#fff">least sure about</b></li>
+              <li>Debate the misfiles last — that is where the vocabulary sticks</li>
+            </ul>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar green"></span>
+            <h3 style="font-size:18px">The anchors, executed in the notebook</h3>
+            <table class="p-tbl" style="font-size:14.5px;margin-top:6px">
+              <tr><td>500 runs of the same <b>GROUP BY</b></td><td style="text-align:right"><b>1</b> answer</td></tr>
+              <tr><td>1,000 <b>sha256</b> calls, same payload</td><td style="text-align:right"><b>1</b> digest</td></tr>
+              <tr><td>One cent changed → digest characters kept</td><td style="text-align:right"><b>4</b> of 64</td></tr>
+              <tr><td>8 sampler runs at <b>temperature 0</b></td><td style="text-align:right"><b>1</b> answer</td></tr>
+              <tr class="hi"><td>8 sampler runs at <b>temperature 1</b></td><td style="text-align:right"><b>3</b> answers</td></tr>
+            </table>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted);line-height:1.5;margin-top:12px">Five candidate phrasings of the same RAG answer, <b style="color:#fff">identical facts and citation in all five.</b> Two runs return the same wording <b style="color:#fff">28.2%</b> of the time.</p>
+          </div>
+        </div>
+        <div class="p-callout">The seed trick: <b>one parent seed → eight child seeds.</b> The notebook <b>shows</b> eight different runs and <b>reproduces</b> them identically on every machine — which is exactly why production systems pin seeds, model version and temperature. The randomness is real, and it is <b>addressable.</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 1 of 3</span><span>Notebook: buckets 1–3, executed</span></div>
+    </div>
+    <aside class="notes">
+      11 min, and this is the segment that overruns — keep a clock visible. Roughly 7 min sorting examples, 4 min on the three notebook anchor cells.
+      Sort the board fast and out loud. When two people disagree, do not adjudicate from the front: ask both to say which of the three tests their example passes. The tests decide, not seniority.
+      Run the notebook's deterministic cell live (the GROUP BY and the hash) and the sampler cell live (the eight runs). The sampler table is the moment the room stops treating "stochastic" as an abstraction: same code, same question, three different sentences.
+      Explain the seed trick explicitly — it is on the slide because it is itself a teachable point, not a notebook convenience. Ask: "if every request is a fresh roll of the dice, how would you reproduce a customer's bad answer next Tuesday?" Answer: you log the seed and pin everything else. That question comes back in segment 2.
+      Cash the LSN-0.2 / LSN-0.3 callback in one line: those sessions asked how many, collected how, conditional on what. Today: does this thing owe me the same answer twice — and which part of it?
+    </aside>
+  </section>
+
+  <!-- 04 · SEGMENT 1 · CONFIDENCE + THE MISFILES -->
+  <section data-label="Confidence">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:420px;height:420px;bottom:-170px;right:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 1 · Reading a Confidence · and the Misfiles</div>
+          <h2 class="vsp-h2" style="font-size:40px">Same accuracy.<br><span class="vsp-glow">One of them is lying.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.05fr 0.95fr;align-items:start">
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17.5px">Two scorers · 200,000 emails · one truth</h3>
+            <table class="p-tbl" style="font-size:14.5px;margin-top:6px">
+              <tr><th>&nbsp;</th><th>Scorer A</th><th>Scorer B</th></tr>
+              <tr><td>Spam / ham decisions</td><td colspan="2"><b>identical on all 200,000</b></td></tr>
+              <tr><td>Accuracy</td><td><b>82.9%</b></td><td><b>82.9%</b></td></tr>
+              <tr class="hi"><td>Of the mail it called <b>0.95</b>, really spam</td><td><b>95.3%</b></td><td><b>76.9%</b></td></tr>
+              <tr><td>Mean gap: what it said vs what happened</td><td><b>0.6</b> pts</td><td><b>9.6</b> pts</td></tr>
+            </table>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted);line-height:1.5;margin-top:11px">Only one reading of <i>"95% confident"</i> is legitimate: <b style="color:#fff">of the cases it calls 0.95, about 95 in 100 should be right — and we check.</b> Not "95% accurate", not "treat it as a yes".</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:15px 19px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">Misfile · a flaky test</h3>
+              <p style="font-size:13.5px">Deterministic <b style="color:#fff">code</b> in a stochastic <b style="color:#fff">environment</b>. Nothing samples — you are missing an input (clock, port, thread schedule).</p>
+            </div>
+            <div class="vsp-card" style="padding:15px 19px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">Misfile · a hash</h3>
+              <p style="font-size:13.5px">Looks random, <b style="color:#fff">is deterministic.</b> 1,000 calls, one digest. <i>Looks random</i> and <i>is random</i> are unrelated properties.</p>
+            </div>
+            <div class="vsp-card" style="padding:15px 19px 13px"><span class="topbar yellow"></span>
+              <h3 style="font-size:16px">Misfile · an LLM at temperature 0</h3>
+              <p style="font-size:13.5px">Near-deterministic in practice, <b style="color:#fff">not contractually.</b> Float addition is not associative: batching moves a score by <b style="color:#fff">4.5e-13</b>, and tied candidates flip. <b style="color:#fff">Two minutes, then park it.</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="p-callout">One model, all three buckets: <b>training is stochastic</b> — 8 retrains move accuracy <b>0.8 points</b> and one deal's score <b>4.5 points</b> — <b>inference is deterministic</b> once weights are pinned, and <b>the output is probabilistic.</b> So never answer "is it deterministic?" — ask <b>"which part?"</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 1 of 3</span><span>OUT-0.2 · notebook: calibration, misfiles, eight retrains</span></div>
+    </div>
+    <aside class="notes">
+      7 min, the rest of segment 1: about 4 on the two scorers, 2 on the misfiles, 1 on the retrain fan.
+      Run the calibration cell live and let the accuracy row land before you show the 0.95 row. Two vendors, identical decisions, identical accuracy — and one of them is selling a confidence number that is off by nearly ten points. That is why OUT-0.2 exists.
+      The question to hand them for the rest of their careers: "when your model says 0.9, how often is it right?" It takes five minutes to answer if anyone has ever looked. The silence when nobody has is the diagnostic.
+      Misfiles: run the temperature-0 cell, show the 4.5e-13 gap and the flipped argmax, and then STOP — the lesson plan caps this at two minutes and LSN-2.1 owns the rest. If someone wants to argue vendor guarantees, park it on the board.
+      Retrain fan, one sentence: the client's dashboard shows the score, not the accuracy — so if you publish two decimals and retrain on Tuesday, you have published noise as fact. That is the design decision segment 2 is about.
+    </aside>
+  </section>
+
+  <!-- 05 · SEGMENT 2 · THE TICKET -->
+  <section data-label="SUP-2291">
+    <div class="vsp-slide">
+      <div class="vsp-orb green" style="width:380px;height:380px;bottom:-150px;left:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 2 · 20 min · Why This Matters Commercially</div>
+          <h2 class="vsp-h2" style="font-size:38px">"It answered differently this afternoon."<br><span class="vsp-glow">Was that a defect?</span></h2>
+        </div>
+        <div class="p-quote">
+          <div class="meta">SUP-2291 · Priority P2 · client-side product owner · meeting-RAG, in production</div>
+          <p>"Asked the assistant what we committed to on the Meridian integration. Got one answer this morning and a differently-worded answer this afternoon — same question, same account. If it can't answer consistently we can't put it in front of our own customers. Please advise."</p>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.12fr 0.88fr;align-items:start">
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">Bug or property — triage it in front of the client</h3>
+            <table class="p-tbl" style="font-size:14px;margin-top:6px">
+              <tr class="hi"><td>Different <b>wording</b>, same facts, same citation</td><td style="text-align:right"><span class="p-tag prop">Property</span></td></tr>
+              <tr><td>Different <b>facts</b> between runs — "Q2" vs "Q3"</td><td style="text-align:right"><span class="p-tag bug">Bug</span></td></tr>
+              <tr><td><b>No citation</b>, or one that does not resolve</td><td style="text-align:right"><span class="p-tag bug">Bug</span></td></tr>
+              <tr><td>Content this user <b>may not read</b></td><td style="text-align:right"><span class="p-tag bug">Sev 1</span></td></tr>
+              <tr><td>Same question, <b>different quality</b> AM vs PM</td><td style="text-align:right"><span class="p-tag bug">Investigate</span></td></tr>
+            </table>
+          </div>
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar green"></span>
+            <h3 style="font-size:17px">What was actually promised?</h3>
+            <p style="font-size:14px;margin-bottom:9px">Nobody wrote <i>"answers will be worded identically."</i> Nobody wrote that they won't, either.</p>
+            <p style="font-size:14px"><b style="color:#fff">Silence is a promise.</b> The client filled it in with the only model they had — a database query. That is the real defect, and it is <b style="color:#fff">ours.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 2 of 3</span><span>Dorel's rule · the in-production meeting-RAG system (LSN-3.6)</span></div>
+    </div>
+    <aside class="notes">
+      9 min, worked as a group discussion, not a talk. Read the ticket out loud in the product owner's voice — slightly worried, entirely reasonable. Then ask the room: is it a defect? Take a show of hands before anyone argues.
+      Show the two answers from the notebook's sampler cell side by side. Same meeting, same timestamp, same commitment, different sentence — and the arithmetic says 71.8% of repeat questions land that way. Now re-take the hands.
+      Then the turn that matters: what did we promise? Push until somebody says "nothing" — and then land "silence is a promise." Every engineer in the room has shipped an implicit contract they never wrote down.
+      Walk the triage table row by row and make them price the two failure modes: calling a real content bug "just sampling" ships something unreliable; calling sampling a bug burns a sprint chasing a property. Row 4 is not negotiable — permission filtering happens at retrieval time (LSN-3.6), never in a prompt.
+      This is a real VSP system and a live support question. Say so. The room takes it differently when it is not hypothetical.
+    </aside>
+  </section>
+
+  <!-- 06 · SEGMENT 2 · WHAT YOU PIN -->
+  <section data-label="Pins">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-190px;right:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="vsp-kicker">Segment 2 · Expectation-Setting</div>
+          <h2 class="vsp-h2" style="font-size:44px">Pin it, or <span class="vsp-glow">don't promise it.</span></h2>
+          <p class="vsp-lead" style="max-width:1080px;font-size:19px"><i>"It varies"</i> is not something a client can buy. <b style="color:#fff">"It varies in these ways, within these bounds, and here is what is nailed down"</b> is.</p>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar green"></span>
+            <h3 style="font-size:17px">Pinned — so a ticket becomes a replay</h3>
+            <ul class="p-chk" style="margin-top:9px">
+              <li><b style="color:#fff">Temperature</b> — explicit, never a default</li>
+              <li><b style="color:#fff">Model version</b> — a dated snapshot, not a floating alias</li>
+              <li><b style="color:#fff">Prompt + template version</b> — stamped on every logged answer</li>
+              <li><b style="color:#fff">Retrieval config</b> — index snapshot, chunking, top-k, filters</li>
+              <li><b style="color:#fff">Seeds</b>, where the API exposes them — logged with the request id</li>
+            </ul>
+          </div>
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">Cannot promise — say this instead</h3>
+            <table class="p-tbl" style="font-size:13.5px;margin-top:4px">
+              <tr><td>Byte-identical wording</td><td>"Identical <b>facts and citations</b>; wording may vary — here is the measured rate."</td></tr>
+              <tr><td>Sameness after an upgrade</td><td>"Upgrades are scheduled and we re-run the eval set. You see both numbers."</td></tr>
+              <tr><td>Sameness after re-indexing</td><td>"New content changes answers — that is the product working."</td></tr>
+              <tr class="hi"><td>100% correctness</td><td>"≥ <b>N%</b> on a versioned golden set, every answer citable."</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="p-callout">Acceptance criteria for a probabilistic system are <b>eval sets and thresholds</b> — never exact-match outputs. The lesson plan's example: <b>"≥ 90% of a 50-question test set judged correct."</b> Good sentence. Next slide does the arithmetic on it.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 2 of 3</span><span>The pin list is a commercial artifact, not engineering hygiene</span></div>
+    </div>
+    <aside class="notes">
+      3 min. Ask first — "what would you write into the SOW?" — and let somebody propose exact-match outputs or "it must be consistent" before you show either list. That instinct is the thing being retired.
+      Walk the pin list fast. The line that matters is the last one: pinning is what turns a support ticket into a replay. If you cannot reproduce an answer you dislike, you have no engineering process, only apologies.
+      On the right-hand table, read the replacement sentences out loud as sentences — they are scripts, and the room should hear that each one gives the client something concrete in exchange for what it takes away.
+      Model version deserves ten extra seconds: a floating alias means your system's behaviour can change on a Tuesday because a provider shipped. Dated snapshot plus a scheduled upgrade with an eval re-run is the whole answer.
+    </aside>
+  </section>
+
+  <!-- 07 · SEGMENT 2 · THE ACCEPTANCE CRITERION, PRICED -->
+  <section data-label="Acceptance">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:24%;left:47%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="vsp-kicker">Segment 2 · The Acceptance Criterion, Priced</div>
+          <h2 class="vsp-h2" style="font-size:42px">The threshold is <span class="vsp-glow">also a measurement.</span></h2>
+          <p class="vsp-lead" style="max-width:1080px;font-size:19px">A system that is <b style="color:#fff">genuinely better than the bar</b> still fails the test one run in five. Nobody is cheating; the eval set is a sample.</p>
+        </div>
+        <div class="p-grid4">
+          <div class="p-count"><span class="topbar"></span>
+            <div class="lbl">The plan's criterion</div>
+            <div class="num">45 / 50</div>
+            <div class="sub">"≥ 90% of a 50-question test set judged correct."</div>
+          </div>
+          <div class="p-count key"><span class="topbar"></span>
+            <div class="lbl">A truly 92% system fails it</div>
+            <div class="num">20.8%</div>
+            <div class="sub">of runs — <b style="color:#fff">1 in 5</b>, forever, on a system <b style="color:#fff">better</b> than the bar.</div>
+          </div>
+          <div class="p-count"><span class="topbar"></span>
+            <div class="lbl">What 50 questions measures</div>
+            <div class="num" style="font-size:32px">84 – 98%</div>
+            <div class="sub">95% central range. That whole spread is the <b style="color:#fff">same system.</b></div>
+          </div>
+          <div class="p-count"><span class="topbar"></span>
+            <div class="lbl">For a 5% failure rate</div>
+            <div class="num">470</div>
+            <div class="sub">questions. Or keep a margin: at 95% true quality, 50 fails only <b style="color:#fff">3.8%.</b></div>
+          </div>
+        </div>
+        <div class="p-callout">Two exits, and you pick one <b>before signing</b>: <b>grow the set</b> (470 questions) or <b>keep a margin</b> over the bar (95% vs 90%). Best is both — plus <b>"measured on golden set v1.3, re-run every release"</b> in writing.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 2 of 3</span><span>Notebook: exact binomial + 400,000 simulated runs</span></div>
+    </div>
+    <aside class="notes">
+      5 min. Run the notebook's acceptance cell and respect the order: the eight acceptance runs first — two of them fail, at 84% and 88% — and only THEN the exact 20.8%. Watching a genuinely good system fail its own acceptance test twice out of eight is what makes this stick.
+      Be precise about what is wrong: not the model. A threshold measured on 50 samples. This is LSN-0.2's sample-size lesson wearing a contract: n=50 is a small sample, and a bar on a small sample is a coin toss with good manners.
+      If somebody asks whether real eval sets behave like coin flips — good question, and the notebook prices it: 40 always-right questions plus 10 borderline ones at 60% gives the same 92% average and a 16.6% failure rate instead of 20.8%. Smaller, never zero, and the borderline questions are exactly the ones a client picks for the demo.
+      The pre-sales landing, and the sentence to keep if you cut everything else: walking in with the eval set as a deliverable — built from the client's own questions — is what turns a probabilistic system from a leap of faith into a contract.
+    </aside>
+  </section>
+
+  <!-- 08 · SEGMENT 2 · BOX -->
+  <section data-label="Box">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:440px;height:440px;bottom:-180px;left:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="vsp-kicker">Segment 2 · The Working Attitude</div>
+          <h2 class="vsp-h2" style="font-size:44px">"All models are wrong,<br><span class="vsp-glow">some are useful."</span></h2>
+          <p class="vsp-lead" style="max-width:1000px">Usually deployed as a shrug. It is the opposite of a shrug — it is a job description, and it is what you are actually selling.</p>
+        </div>
+        <div class="p-grid3">
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar green"></span>
+            <h3 style="font-size:19px">Understood</h3>
+            <p>You know <b style="color:#fff">which kind</b> of wrong: a missed fraud or a false alarm, a wrong fact or a clumsy sentence. Naming the error is half the deliverable.</p>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar yellow"></span>
+            <h3 style="font-size:19px">Bounded</h3>
+            <p>You know <b style="color:#fff">how big and how often</b> — a measured rate on a versioned set, not an adjective. "Mostly reliable" is not a bound.</p>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar green"></span>
+            <h3 style="font-size:19px">Priced in</h3>
+            <p>The workflow <b style="color:#fff">survives</b> the errors, and somebody has decided <b style="color:#fff">who eats the cost</b> — a reviewer, a threshold, a human sign-off.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15.5px;font-weight:500">Three sentences, in order: <b>1.</b> "It samples, so wording varies — facts and citations don't; here is the measured rate." <b>2.</b> "We pin temperature, model version, prompt version and the index snapshot, and log the request id — any answer can be replayed." <b>3.</b> "We contract on a number: ≥ 90% on a versioned golden set, re-run every release — <b>let's build that set from your questions.</b>"</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 2 of 3</span><span>GOAL-1 talk intelligently in pre-sales · GOAL-4 close the translation gap</span></div>
+    </div>
+    <aside class="notes">
+      3 min, and it is the emotional close of segment 2 — slow down rather than speeding up. Read Box's line, then immediately reject the shrug reading: the deliverable is never "a system that is right", it is a system whose errors are understood, bounded and priced in.
+      Point out that this applies to deterministic systems too. Your beautifully deterministic revenue report is also a model of the business, and it is also wrong — it just fails quietly.
+      Have someone read sentence 3 out loud. Then say why it is the sale: a client's own questions inside the eval set is the moment a probabilistic system stops being a leap of faith. Write it down before the demo, not after the ticket.
+      Then the notebook's rehearsal cell if the clock allows: five minutes in pairs, one plays the product owner, one answers in writing. The cell flags "guarantee", "identical", "just" and "bug" — the four words that create the next SUP-2291. If time is tight, assign it as optional and move on; there is no homework to trade against.
+    </aside>
+  </section>
+
+  <!-- 09 · SEGMENT 3 · BRIDGE TO MOD-1 -->
+  <section data-label="Bridge">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:26%;left:47%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 3 · 15 min · Bridge to MOD-1</div>
+          <h2 class="vsp-h2" style="font-size:40px">Five ML jobs. <span class="vsp-glow">Five probabilistic answers.</span></h2>
+          <p class="vsp-lead" style="max-width:1080px;font-size:19px">No new theory — a map. Every job in <b style="color:#fff">LSN-1.1</b> returns a guess with a confidence; only the shape changes.</p>
+        </div>
+        <div class="vsp-card" style="padding:18px 22px 16px"><span class="topbar yellow"></span>
+          <table class="p-tbl" style="font-size:14px">
+            <tr><th>The job</th><th>What comes out</th><th>The confidence with it</th><th>Where</th></tr>
+            <tr><td><b>Classify</b> — sort it</td><td>a label per item</td><td>a probability <b>per class</b>; the label is just the biggest one</td><td>LSN-1.2 · 1.3</td></tr>
+            <tr><td><b>Cluster</b> — group it</td><td>a group id</td><td>a fit or a distance — <b>not</b> a probability, and meaningless until a human names the group</td><td>LSN-1.2</td></tr>
+            <tr><td><b>Regress</b> — guess a number</td><td>a number, <b>with units</b></td><td>a typical miss and a spread — an error bar, not a decimal place</td><td>LSN-1.3</td></tr>
+            <tr class="hi"><td><b>Propensity</b> — give the odds</td><td>a probability</td><td>the number <b>is</b> the answer, so calibration is the whole game</td><td>LSN-1.2 · 1.3</td></tr>
+            <tr><td><b>Recommend</b> — next move</td><td>a <b>ranked</b> list</td><td>a relative score: rank 1 beats rank 2, and neither is a percentage</td><td>LSN-1.2</td></tr>
+            <tr><td><i>(not ML)</i> <b>Generate</b></td><td>text, ideally cited</td><td><b>usually none at all</b> — so you pin temperature and manufacture the number on an eval set</td><td>MOD-2</td></tr>
+          </table>
+        </div>
+        <div class="p-callout">Same three buckets for every row: the <b>output is probabilistic</b>, <b>inference is deterministic</b> once the weights are pinned, and the <b>training was stochastic</b> — so next month's retrain is a different model. <b>LSN-1.3</b> reopens <b>LSN-0.3's fraud detector</b> with a formal report card: keep the counts table.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 3 of 3</span><span>Previews LSN-1.1 → LSN-1.2 → LSN-1.3 · no new theory</span></div>
+    </div>
+    <aside class="notes">
+      10 min, a talk — resist turning it into LSN-1.1. Do not teach the five jobs; name them, show the output column, and move on. If somebody starts triaging their own project, bank it: "that is exactly the LSN-1.1 pre-work, bring it."
+      The row to dwell on is the last one. The reason MOD-2 needs its own module is not that the models are bigger — it is that the output arrives with no confidence attached, so you have to manufacture the number yourself, on a golden set. That connects segment 2 to the whole of MOD-2 in one sentence.
+      Then the three-bucket line applied to a real model, using the retrain fan they already saw: probabilistic output, deterministic inference, stochastic training. Anyone who can say that sentence about a client's model passes today.
+      Close the loop across MOD-0: LSN-0.2 how many and collected how · LSN-0.3 conditional on what · LSN-0.4 does it owe me the same answer twice, and which part. Those three questions are the foundations pillar; ASM-0 asks them as scenarios.
+    </aside>
+  </section>
+
+  <!-- 10 · CLOSE -->
+  <section data-label="Close">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage center" style="gap:20px;align-items:center;text-align:center">
+        <div class="vsp-kicker">Checkpoint Week</div>
+        <h2 class="vsp-h2" style="font-size:46px">No homework.<br><span class="vsp-glow">ASM-0 opens.</span></h2>
+        <p class="vsp-lead" style="max-width:940px">Async quiz, <b style="color:#fff">~20 questions, 30 min, pass bar 80%</b>, one retake this week. Verifies OUT-0.1 through OUT-0.4 — <b style="color:#fff">scenario questions, not definitions</b> — across LSN-0.2, LSN-0.3 and today. <b style="color:#fff">It gates the start of MOD-1.</b></p>
+        <div style="display:flex;gap:44px;flex-wrap:wrap;justify-content:center;margin-top:4px;text-align:left">
+          <div style="max-width:360px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Bring your setup evidence</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">The screenshot of your executed <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--vsp-green-lightest)">LSN-0.1</span> notebook — checkpoint 5. That is the OUT-0.1 artifact.</div></div>
+          <div style="max-width:400px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-1.1</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">The five ML jobs &amp; the nesting doll. Pre-work ~30 min: the deck through the five-jobs section, plus <b style="color:var(--vsp-accent)">one real "AI" ask from your own projects and your guess at which job it is.</b></div></div>
+        </div>
+        <div class="p-callout" style="text-align:left;max-width:1000px">The one sentence to leave with: <b>"Which part are you asking about — the output, the inference, or the training?"</b> Nobody who asks that gets talked into promising determinism.</div>
+        <div class="vsp-wordmark" style="margin-top:6px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
+      </div>
+    </div>
+    <aside class="notes">
+      5 min, the tail of segment 3's 15. Do not run past 60 — this is a one-hour session and the room has a checkpoint quiz to sit.
+      Be explicit that ASM-0 is a gate, per GOAL-7: no pass and no engagement means out of the program. Say it once, without drama, and remind them there is one retake inside the week.
+      Set expectations about the quiz's shape: no "define stochastic". It hands them a paragraph — a client complaining that two runs disagree, a vendor quoting a confidence, a chart that moved — and asks what they would say. Everything needed is in the three MOD-0 notebooks, already executed.
+      Collect the pre-work artifacts if you have not: the three examples per person, and the segment-2 sentence from anyone who wrote one. Those are the raw material for the MOD-0 retro and they tell you which bucket the cohort finds hardest.
+      Last thing before they leave, no answers out loud: "think of one thing you have told a client would be consistent, that samples." Everybody has one. That reflex is the outcome.
+    </aside>
+  </section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: false,
+  showSlideNumber: 'speaker',
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  plugins: [ RevealNotes ],
+  keyboard: {}
+});
+</script>
+</body>
+</html>

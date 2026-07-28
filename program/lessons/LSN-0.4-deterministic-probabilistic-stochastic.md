@@ -28,7 +28,7 @@ Senior engineers spend careers making systems deterministic, so "the same questi
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Re-read the **keywords** section of the ML literacy deck (deterministic, probabilistic, stochastic, confidence, inference) | 10 min | None — feeds task 2 |
+| 1 | Read the **keywords** definitions (deterministic, probabilistic, stochastic, confidence, inference) — canonical target: LSN-0.4 deck slide 2 / session-notebook pre-work section (mirrors the ML literacy deck's keywords section, which is not yet in the repo) | 10 min | None — feeds task 2 |
 | 2 | Write one example of each term from your own project experience — one line each, e.g. a system you built that is deterministic, an output you've seen that was a guess with a confidence, a process with randomness inside it | 10 min | Three one-line examples, submitted before session (they are the raw material for segment 1) |
 
 ## Session Plan
@@ -36,7 +36,7 @@ Senior engineers spend careers making systems deterministic, so "the same questi
 | Segment | Time | Method | Detail |
 |---|---|---|---|
 | The three-bucket sort | 25 min | discussion | Participants' pre-work examples go on a shared board, sorted live into deterministic / probabilistic / stochastic. Anchors: deterministic — `2+2`, a SQL `SUM`, a build with pinned deps (same input, same output, every time); probabilistic — "spam, confidence 0.87": a guess with stated uncertainty; stochastic — randomness in the process itself: retry jitter, load-balancer routing, SGD training, LLM sampling at temperature > 0. Debate the misfiled favorites: a "flaky test" (deterministic code in a stochastic environment), a hash function (deterministic, however random it looks), an LLM at temperature 0 (near-deterministic in practice, not contractually — batching and floating-point effects) |
-| Why this matters commercially | 20 min | case discussion | The in-production meeting-RAG case: a user asks the same question twice, gets two differently-worded answers, and files a defect. Was it one? Work it as a group: what was (implicitly) promised vs. what should have been. The fix is upstream, in expectation-setting: acceptance criteria for probabilistic systems are eval sets and thresholds ("≥ 90% of a 50-question test set judged correct"), never exact-match outputs. Close with Box — "all models are wrong, some are useful": the deliverable is a system whose errors are understood, bounded, and priced in |
+| Why this matters commercially | 20 min | case discussion | The in-production meeting-RAG case: a user asks the same question twice, gets two differently-worded answers, and files a defect. Was it one? Work it as a group: what was (implicitly) promised vs. what should have been. The fix is upstream, in expectation-setting: acceptance criteria for probabilistic systems are eval sets and thresholds ("≥ 90% of a 50-question test set judged correct"), never exact-match outputs — and the eval set must be *sized*: a genuinely-92% system fails that 50-question bar one run in five (the session works the arithmetic; ~470 questions makes the bar reliable). Close with Box — "all models are wrong, some are useful": the deliverable is a system whose errors are understood, bounded, and priced in |
 | Bridge to MOD-1 | 15 min | talk | Preview: the five ML jobs — classify, cluster, regress, propensity, recommend (`LSN-1.1`) — every one returns a probabilistic answer. Today's vocabulary is how you'll read those outputs in `LSN-1.2` and grade them in `LSN-1.3`; the fraud detector from `LSN-0.3` comes back with its formal report card. Reminder: `ASM-0` opens this week — scenario questions, and the `LSN-0.1` notebook screenshot is the setup evidence |
 
 **Timing check:** 25 + 20 + 15 = 60 min = 1 h contract duration.
@@ -53,9 +53,11 @@ None — checkpoint week. `ASM-0` (async quiz, ~30 min, pass bar 80%) runs this 
 
 | Material | Status | Path / source |
 |---|---|---|
-| ML literacy deck — keywords section | exists (light polish at delivery prep) | Tyler's deck, not yet in repo — link at delivery prep |
+| **Session deck** — 10 slides w/ timed notes incl. the keywords slide (pre-work target) | exists | `program/lessons/decks/LSN-0.4-deterministic-probabilistic-stochastic.html` |
+| **Session notebook** — pre-work fill-in + three-bucket demos (SeedSequence-spawned "runs") + SUP-2291 case + acceptance arithmetic + MOD-1 bridge, executed end to end | exists | `notebooks/lessons/LSN-0.4_Deterministic_Probabilistic_Stochastic.ipynb` |
+| ML literacy deck — keywords section (original source; deck slide 2 mirrors it) | exists (light polish at delivery prep) | Tyler's deck, not yet in repo — link at delivery prep |
 | Shared sorting board (three columns, pre-seeded with anchors) | adapt | any shared whiteboard tool; anchors from segment 1 |
-| Meeting-RAG expectation-setting mini-case (½-page) | build (share of `GAP-1` polish) | segment 2 of this file — extract |
+| Meeting-RAG expectation-setting mini-case (½-page) | exists | notebook segment-2 section (ticket SUP-2291) + deck |
 
 ## Delivery Notes
 

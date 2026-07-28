@@ -36,9 +36,9 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 | ID | Lesson | Duration | Owner | Format | Material status |
 |---|---|---|---|---|---|
 | `LSN-0.1` | Orientation & environment setup | 1 h | Tyler + Marius | Live, hands-on | Exists (repo) |
-| `LSN-0.2` | Statistics I — distributions, sampling, variance | 1.5 h | Tyler | Live | **BUILD — GAP-1** |
-| `LSN-0.3` | Statistics II — probability, conditioning, correlation ≠ causation | 1.5 h | Tyler | Live | **BUILD — GAP-1** |
-| `LSN-0.4` | Deterministic, probabilistic, stochastic — reading uncertainty | 1 h | Tyler | Live or recorded | Partial (ML literacy deck §keywords) |
+| `LSN-0.2` | Statistics I — distributions, sampling, variance | 1.5 h | Tyler | Live | Built (deck + notebook) |
+| `LSN-0.3` | Statistics II — probability, conditioning, correlation ≠ causation | 1.5 h | Tyler | Live | Built (deck + notebook) |
+| `LSN-0.4` | Deterministic, probabilistic, stochastic — reading uncertainty | 1 h | Tyler | Live or recorded | Built (deck + notebook) |
 | — | `ASM-0` checkpoint quiz | 0.5 h | Tyler | Async | **BUILD — GAP-6** |
 
 ---
@@ -128,7 +128,7 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 
 **Homework:** None — checkpoint week.
 
-**Support material:** Exists — ML literacy deck (keywords section); light polish at lesson-plan time.
+**Support material:** Built — deck `program/lessons/decks/LSN-0.4-deterministic-probabilistic-stochastic.html` (slide 2 carries the keywords, the pre-work target); session notebook `notebooks/lessons/LSN-0.4_Deterministic_Probabilistic_Stochastic.ipynb` (executed end to end). Original ML literacy deck keywords section remains the source (not yet in repo).
 
 ---
 
@@ -155,5 +155,5 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 
 | ID | Item | Owner | Needed by |
 |---|---|---|---|
-| `GAP-1` | Stats I & II decks + exercise notebooks + drills | Tyler | Week 1 |
+| `GAP-1` | ~~Stats I & II decks + exercise notebooks + drills~~ **CLOSED** — built Rounds 1–2 (see `program/lessons/BUILD_LOG.md`) | Tyler | done |
 | `GAP-6` (share) | ASM-0 quiz | Tyler | End of Week 1 |

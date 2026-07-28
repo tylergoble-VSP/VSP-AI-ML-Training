@@ -19,7 +19,7 @@ All open `GAP-n` items across modules, by priority (details live in each module 
 
 | ID | Build item | Module | Priority |
 |---|---|---|---|
-| `GAP-1` | Statistics foundation material (2 sessions + exercises) | MOD-0 | P0 |
+| `GAP-1` | ~~Statistics foundation material (2 sessions + exercises)~~ **CLOSED** — LSN-0.2/0.3 decks + notebooks built (BUILD_LOG Rounds 1–2) | MOD-0 | done |
 | `GAP-2` | Agentic framework landscape lesson (LangChain/LangGraph/LangSmith/Haystack) | MOD-3 | P0 — program's center of gravity |
 | `GAP-3` | Cloud provider landscape lesson (Vertex, Bedrock, Microsoft Foundry) | MOD-3 | P0 |
 | `GAP-4` | Production concerns lesson — observability, reliability, evals, KPIs, cost | MOD-3 | P0 — the translation-gap lesson |
