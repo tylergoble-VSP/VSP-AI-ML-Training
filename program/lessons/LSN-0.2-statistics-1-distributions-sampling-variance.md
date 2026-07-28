@@ -36,8 +36,8 @@ The misconception this session kills: a single number — a mean, an accuracy sc
 | Segment | Time | Method | Detail |
 |---|---|---|---|
 | Distributions as pictures of uncertainty | 20 min | talk + demo | Open with 3–4 pre-work plots on screen: same mean, different worlds. Then histograms of real engineering data: production API latency (p50 = 180 ms, mean = 240 ms, p99 = 2.1 s — right-skewed, the mean sits where almost no request lives) vs. adult heights (symmetric — the mean is a fine summary). The rule: a distribution answers "which values are plausible, and how plausible?"; a mean answers almost nothing without the shape |
-| Sampling: n = 30 vs n = 30,000 | 25 min | demo + discussion | Live notebook: a 100,000-value latency "population"; repeatedly draw samples of n = 30 and n = 3,000 and plot the sample means — watch n = 30 bounce by tens of ms while n = 3,000 barely moves. Then bias, which no sample size fixes: an NPS survey only angry users answer; latency measured only during EU business hours; Wald's WWII bombers (armor where the returning planes *weren't* hit). Two questions for any number: how many, and collected how? |
-| Variance and outliers: when the average lies | 20 min | demo + discussion | Two delivery teams, both mean cycle time 5 days: Team A σ = 0.5 days, Team B σ = 4 days — whose estimate do you put in a client commitment? One $2M outlier deal drags "average deal size" from $80k to $210k. Fixes: median, percentiles, and always plotting before summarizing (Anscombe's quartet, one slide) |
+| Sampling: n = 30 vs n = 30,000 | 25 min | demo + discussion | Live notebook: a 100,000-value latency "population"; repeatedly draw samples of n = 30, n = 3,000, and n = 30,000 (with replacement) and plot the sample means — watch n = 30 bounce by tens of ms while the larger samples barely move. Then bias, which no sample size fixes: an NPS survey only angry users answer; latency measured only during EU business hours; Wald's WWII bombers (armor where the returning planes *weren't* hit). Two questions for any number: how many, and collected how? |
+| Variance and outliers: when the average lies | 20 min | demo + discussion | Two delivery teams, both mean cycle time 5 days: Team A σ = 0.5 days, Team B σ = 4 days — whose estimate do you put in a client commitment? One $2M outlier deal drags "average deal size" from $80k to $208k (15 deals: 14 averaging exactly $80k + the whale — 2.6×) while the median barely moves. Fixes: median, percentiles, and always plotting before summarizing (Anscombe's quartet, one slide) |
 | Client drill: "our model is 92% accurate" | 25 min | drill | Scenario written below. Pairs get the card, 5 min prep; 2–3 pairs run the conversation live against Tyler playing the prospect; 8 min debrief against the three questions |
 
 **Timing check:** 20 + 25 + 20 + 25 = 90 min = 1.5 h contract duration.
@@ -66,9 +66,9 @@ Notebook (from the GAP-1 exercise notebook): a provided 32-row dataset of schedu
 
 | Material | Status | Path / source |
 |---|---|---|
-| Stats I deck (distributions, sampling, variance) | build (`GAP-1`) | `program/` — new |
-| Exercise notebook (sampling demo + homework dataset) | build (`GAP-1`) | `notebooks/foundations/` — new |
-| "92% accurate" drill scenario card | build (`GAP-1`) | this file, section above — extract to card |
+| **Stats I deck** — 10 slides w/ timing notes, VSP design system | exists | `program/lessons/decks/LSN-0.2-statistics-1.html` |
+| **Session notebook** — pre-work + all four segments + homework (32-row slip dataset, self-checking), executed end to end | exists | `notebooks/lessons/LSN-0.2_Statistics_1_Distributions_Sampling_Variance.ipynb` |
+| "92% accurate" drill scenario card | exists | this file (section above) + notebook drill section + deck slide 8 |
 | StatQuest with Josh Starmer — "Histograms, Clearly Explained"; "The Main Ideas behind Probability Distributions" | exists | youtube.com/@statquest (verify exact links at delivery prep) |
 | Stanford intro-stats excerpts | adapt | Tyler's academic contacts (candidate companion per module spec) |
 

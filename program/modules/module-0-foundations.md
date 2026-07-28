@@ -83,7 +83,7 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 
 **Homework:** Short notebook — given a small dataset, compute and interpret mean/variance, then write two sentences on whether you'd trust a model trained on it.
 
-**Support material:** **BUILD (`GAP-1`)** — new deck + exercise notebook. Candidate companions: Stanford intro-stats excerpts (Tyler pulling from academic contacts).
+**Support material:** Built — deck `program/lessons/decks/LSN-0.2-statistics-1.html`; session notebook `notebooks/lessons/LSN-0.2_Statistics_1_Distributions_Sampling_Variance.ipynb` (pre-work + session + self-checking homework, executed end to end). Candidate companions: Stanford intro-stats excerpts (Tyler pulling from academic contacts).
 
 **Client tie-in (Dorel's rule):** the "92% accurate" drill uses a VSP-shaped scenario.
 
