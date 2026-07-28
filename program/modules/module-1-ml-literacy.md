@@ -39,10 +39,10 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 | ID | Lesson | Duration | Owner | Format | Material status |
 |---|---|---|---|---|---|
-| `LSN-1.1` | The five ML jobs & the nesting doll | 1 h | Tyler | Live | Exists (ML literacy deck) |
-| `LSN-1.2` | Model I/O — inputs, outputs, interpretation | 1 h | Tyler | Live | Exists (deck + notebooks) |
+| `LSN-1.1` | The five ML jobs & the nesting doll | 1 h | Tyler | Live | Built (deck + notebook) |
+| `LSN-1.2` | Model I/O — inputs, outputs, interpretation | 1 h | Tyler | Live | Built (deck + notebook) |
 | `LSN-1.3` | Grading models — MAE, precision/recall, AUC | 1.5 h | Tyler | Live | Built (deck + notebook) |
-| `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Build (**GAP-8**) |
+| `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Built (lab notebook + deck) |
 | `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded (45 min) + live Q&A/drill (15 min) | Exists (notebooks as refs) |
 | `LSN-1.6` | Data requirements, limitations & the pre-sales question bank | 1 h | Tyler + Vlad | Live | **BUILD — GAP-5** |
 | — | `ASM-1` — quiz + mock pre-sales conversation | 1 h | Tyler + Vlad | Live roleplay | **BUILD — GAP-6** |
@@ -66,7 +66,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Homework:** None (pre-work for 1.2 instead).
 
-**Support material:** Exists — ML literacy deck.
+**Support material:** Built — deck `program/lessons/decks/LSN-1.1-five-ml-jobs.html` (canonical per SI-25); session notebook `notebooks/lessons/LSN-1.1_Five_ML_Jobs_Nesting_Doll.ipynb` (executed end to end). Original ML literacy deck remains the source (not in repo).
 
 ---
 
@@ -206,6 +206,6 @@ The mock conversation is the point of the module — it rehearses the exact skil
 
 | ID | Item | Owner | Needed by |
 |---|---|---|---|
-| `GAP-8` | Guided MNIST lab notebook (synthesized from `neural_networks/01–02` — see LSN-1.4) | Tyler (+ Stefana review) | Week 2 |
+| `GAP-8` | ~~Guided MNIST lab notebook~~ **CLOSED** — built Round 7 (`notebooks/lessons/LSN-1.4_Hands_On_Train_MNIST.ipynb`, BUILD_LOG) | Tyler (+ Stefana review) | done |
 | `GAP-5` (share) | Construction-site case brief + question bank template | Vlad/Dorel + Tyler | Week 2 |
 | `GAP-6` (share) | ASM-1 quiz + mock-conversation rubric | Tyler | End of Week 2 |

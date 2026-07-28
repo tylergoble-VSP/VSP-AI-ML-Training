@@ -26,7 +26,7 @@ All open `GAP-n` items across modules, by priority (details live in each module 
 | `GAP-5` | Real VSP case walkthrough material (needs Vlad + Dorel input) | MOD-1, MOD-3 | P1 |
 | `GAP-6` | Checkpoint quizzes, final exam, mock-conversation rubric | all | P1 |
 | `GAP-7` | LLM limitations / client-expectations lesson | MOD-2 | P1 |
-| `GAP-8` | MNIST hands-on for non-ML engineers (new guided notebook synthesized from `neural_networks/01–02`) | MOD-1 | P1 |
+| `GAP-8` | ~~MNIST hands-on for non-ML engineers~~ **CLOSED** — built Round 7 (BUILD_LOG) | MOD-1 | done |
 | `GAP-9` | RAG hands-on adapted with a VSP-relevant corpus | MOD-2 | P2 |
 
 ## Adding a module (advanced/expert tiers)

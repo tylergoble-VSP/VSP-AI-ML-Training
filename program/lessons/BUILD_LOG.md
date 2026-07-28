@@ -57,6 +57,9 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 ### Added after Round 6
 - **SI-26** — Three trust rules learned the hard way: (a) **read what you cite** — open every referenced notebook and confirm it contains what its name implies (`12_Analytics_Performance` = runtime timing, not model metrics; LL-32); (b) **no pandas `DataFrame.style` in committed notebooks** — Styler output embeds a random uuid + memory address and silently breaks SI-22 byte-identity (LL-33); (c) **test graders with planted answers** (good / deliberately thin / wrong) before shipping — reading the probe list is not enough (LL-35, LL-30's substring traps).
 
+### Added after Round 7 (torch-lab practices)
+- **SI-27** — Torch labs: (a) pin `device="cpu"` for committed runs (deterministic; MPS is a curiosity beat); (b) **re-pin `loader.generator.manual_seed(SEED)` at `train()` entry** — a DataLoader's generator is consumed by every `iter()`, so a peeked batch silently changes the shuffle (LL-37); (c) never write an expected accuracy/metric into a plan or checkpoint without training the actual config (LL-38 — the plan's "≥95%" was unreachable); (d) offline fallback = synthetic data + a `DATA_IS_REAL` flag that skips data-pinned asserts, keeping Run All clean without faking results; (e) tolerance asserts for all trained numbers, exact asserts only for counts and hand-matched matrix math.
+
 ---
 
 ## Build log
@@ -176,7 +179,18 @@ brief dependency; LSN-1.4 is `GAP-8` (a synthesis, not an adaptation — see Rou
 | LL-35 | process | Grader probes with overlapping patterns (`recall*` and `recall`) double-counted one word, promoting thin answers to MATCH — found by *testing* the grader with planted answers, not by reading it | `probe_spans()` counts distinct matched words; in-notebook self-tests; graders must be tested with planted good/thin/wrong answers | SI-26 |
 | LL-36 | content | Keeper beats: the rubber-stamp comparison (a 99.0%-accurate detector is *worse* than a 99.99% do-nothing stamp); per-segment MAE decomposition (38 h headline hides 330 h epic misses, 85.9% of error in 10% of items) | Kept as house patterns | — |
 
-### Round 7 — LSN-1.4 (builder: Opus 5) — *pending*
+### Round 7 — LSN-1.4 (builder: Opus 5, agent aa07a8eed94d3cfe2) — 2026-07-28 — **ACCEPTED**
+
+**Artifacts:** `notebooks/lessons/LSN-1.4_Hands_On_Train_MNIST.ipynb` (55 cells, 6 figures, 52 asserts, 11 trained models, **~6 s total runtime**) · `program/lessons/decks/LSN-1.4-hands-on-mnist.html` (11 slides, runbook surface — checkpoints/failures/recoveries in the notes — timed to 150).
+
+**Review verification:** independent re-execution in 7.6 s wall → zero mismatches; key numbers confirmed in outputs (lab model 92.77% test / full-60k 97.04% / degradation 23.88→53.38→84.23→92.77 / forward-pass hand-match 0.00e+00); CPU pinned, 12 seed calls, torchvision cache used (fetch_openml superseded), no Styler; deck CSS core identical, CDN-only, checkpoint/failure/recovery vocabulary present in notes. GAP-8 closed. No fix round.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-37 | process | **DataLoader shuffle hazard:** a loader's `generator` is consumed by every `iter()` — displaying one batch before training silently changes the shuffle and every downstream number (723 → 786 errors). Load-bearing fix: `train()` re-pins `loader.generator.manual_seed(SEED)` at entry | Fixed + documented in-notebook | SI-27 |
+| LL-38 | content | The plan's "expect ≥95%" lab checkpoint is **unreachable at the plan's own config** (784-128-10 / 3 epochs / 10k → 92.77%; 36-config sweep confirmed). Model-performance expectations in plans are eval-shaped numbers (LL-19 generalized): never write an expected accuracy without training the actual config | Honest resolution: full-60k run (97.04%) meets the bar and *becomes* the break-it thesis; plan wording fixed | SI-27 |
+| LL-39 | content | Keeper beats: equal-compute control (same gradient steps, small data → 75.63% — "you cannot buy your way out of a small dataset with compute"); the compounding beat (92.77%⁵ = 68.7% on a 5-digit invoice); stale-weights trap demonstrated (91.16% lie vs 53.38% truth); the 200-photo client point *trained*, not interpolated | Kept as house patterns | — |
+| LL-40 | process | Torch-on-CPU with pinned seeds proved bit-exact and thread-count-independent for this workload; synthetic-digit fallback with a `DATA_IS_REAL` flag that skips data-pinned asserts keeps the notebook runnable offline without faking results | Kept; codified | SI-27 |
 
 ### Round 8 — LSN-1.5 (builder: Opus 5) — *pending*
 

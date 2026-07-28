@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSN-1.4 — Hands-On: Train MNIST with PyTorch · VSP AI/ML Training</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  /* ============================================================
+     Victory Square Partners — Design System (inlined)
+     Source: Claude Design handoff bundle, June 2026 (mirrors index.html).
+     Dark near-black world · Navy=primary · Gold=accent/CTA · Green=support
+     Two-font: Syne (display) + Inter (body) · italic-gold headline accent.
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap');
+
+  :root {
+    --vsp-green-lightest: #97f377;
+    --vsp-green-light:     #7bd15d;
+    --vsp-green:           #65a74e;
+    --vsp-green-dark:      #4f813e;
+    --vsp-green-darkest:   #355629;
+    --vsp-yellow-lightest: #fff5c2;
+    --vsp-yellow-light:    #ffef96;
+    --vsp-yellow:          #ffe86b;
+    --vsp-navy-light:      #59709c;
+    --vsp-navy:            #46597c;
+    --vsp-navy-dark:       #344566;
+    --vsp-navy-darkest:    #2b374d;
+    --vsp-canvas:          #080c10;
+    --vsp-canvas-2:        #111820;
+    --vsp-canvas-3:        #1a2230;
+    --vsp-white:           #ffffff;
+    --vsp-black:           #0c0c0c;
+    --vsp-on-dark-strong:  rgba(255,255,255,0.85);
+    --vsp-on-dark:         rgba(255,255,255,0.70);
+    --vsp-on-dark-muted:   rgba(255,255,255,0.55);
+    --vsp-on-dark-faint:   rgba(255,255,255,0.40);
+    --vsp-on-dark-ghost:   rgba(255,255,255,0.25);
+    --vsp-primary:         var(--vsp-navy);
+    --vsp-accent:          var(--vsp-yellow);
+    --vsp-accent-ink:      var(--vsp-canvas);
+    --vsp-support:         var(--vsp-green);
+    --vsp-bg-gradient:     linear-gradient(160deg, var(--vsp-canvas) 0%, var(--vsp-canvas-2) 60%, var(--vsp-canvas-3) 100%);
+    --vsp-border:          rgba(255,255,255,0.10);
+    --vsp-font-display: 'Syne', 'Inter', system-ui, sans-serif;
+    --vsp-font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --vsp-tracking-kicker: 0.16em;
+    --vsp-radius-button: 6px;
+    --vsp-radius-card:   10px;
+    --vsp-radius-chip:   20px;
+  }
+
+  html, body { margin: 0; background: #0c0c0c; }
+  .reveal { font-family: var(--vsp-font-sans); }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 0; width: 1280px; height: 720px; background: transparent; box-sizing: border-box; }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; margin: 0; }
+
+  .vsp-slide {
+    position: relative; width: 1280px; height: 720px; overflow: hidden;
+    font-family: var(--vsp-font-sans); color: var(--vsp-on-dark-strong);
+    background: var(--vsp-bg-gradient); display: flex; flex-direction: column; box-sizing: border-box;
+  }
+  .vsp-grid {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .vsp-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .vsp-orb.yellow { background: var(--vsp-yellow); opacity: 0.08; }
+  .vsp-orb.green  { background: var(--vsp-green);  opacity: 0.10; }
+  .vsp-orb.green-l{ background: var(--vsp-green-lightest); opacity: 0.06; }
+  .vsp-orb.navy   { background: var(--vsp-navy-light); opacity: 0.16; }
+  .vsp-stage { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; padding: 64px 80px; }
+  .vsp-stage.center { justify-content: center; align-items: flex-start; }
+  .vsp-topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 28px 80px 0; }
+  .vsp-footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 80px 28px; font-size: 12px; font-weight: 500; color: var(--vsp-on-dark-ghost); }
+  .vsp-kicker { font-size: 13px; font-weight: 700; letter-spacing: var(--vsp-tracking-kicker); text-transform: uppercase; color: var(--vsp-accent); }
+  .vsp-rule { width: 64px; height: 4px; background: var(--vsp-accent); border-radius: 2px; }
+  .vsp-glow { font-style: italic; color: var(--vsp-accent); }
+  .vsp-h1 { font-family: var(--vsp-font-display); font-size: 64px; font-weight: 800; line-height: 1.02; color: var(--vsp-white); letter-spacing: -0.03em; margin: 0; }
+  .vsp-h2 { font-family: var(--vsp-font-display); font-size: 46px; font-weight: 800; line-height: 1.08; color: var(--vsp-white); letter-spacing: -0.025em; margin: 0; }
+  .vsp-lead { font-size: 21px; font-weight: 400; line-height: 1.55; color: var(--vsp-on-dark-muted); margin: 0; }
+  .vsp-card { position: relative; background: var(--vsp-canvas-2); border: 1px solid var(--vsp-border); border-radius: var(--vsp-radius-card); padding: 28px 28px 26px; overflow: hidden; }
+  .vsp-card .topbar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .vsp-card .topbar.green  { background: linear-gradient(90deg, var(--vsp-green), var(--vsp-green-lightest)); }
+  .vsp-card .topbar.yellow { background: linear-gradient(90deg, var(--vsp-yellow), var(--vsp-yellow-light)); }
+  .vsp-card h3 { font-family: var(--vsp-font-display); font-size: 24px; font-weight: 700; color: var(--vsp-white); margin: 0 0 8px; line-height: 1.15; letter-spacing: -0.02em; }
+  .vsp-card p  { font-size: 15px; line-height: 1.55; color: var(--vsp-on-dark); margin: 0; }
+  .vsp-wordmark { font-family: var(--vsp-font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.02em; color: var(--vsp-white); }
+  .vsp-wordmark span { color: var(--vsp-accent); }
+
+  .p-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .p-grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .p-chk { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  .p-chk li { position:relative; padding-left:30px; font-size:15px; line-height:1.45; color:var(--vsp-on-dark-strong); }
+  .p-chk li::before { content:''; position:absolute; left:0; top:3px; width:18px; height:18px; border-radius:50%; background:rgba(101,167,78,0.18); }
+  .p-chk li::after { content:''; position:absolute; left:6px; top:8px; width:5px; height:9px; border:2px solid var(--vsp-green-lightest); border-top:0; border-left:0; transform:rotate(40deg); }
+  .p-time { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:8px; }
+  .p-time::before { content:''; position:absolute; top:9px; left:6%; right:6%; height:2px; background:linear-gradient(90deg,var(--vsp-green),var(--vsp-accent)); }
+  .p-step { position:relative; padding-top:30px; text-align:center; padding-left:6px; padding-right:6px; }
+  .p-step .dot { position:absolute; top:2px; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--vsp-green); border:3px solid var(--vsp-canvas); }
+  .p-step.key .dot { background:var(--vsp-accent); }
+  .p-step .d { font-family:var(--vsp-font-display); font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:4px; }
+  .p-step .t { font-size:13.5px; font-weight:700; color:var(--vsp-white); margin-bottom:3px; line-height:1.2; }
+  .p-step .s { font-size:12px; color:var(--vsp-on-dark-muted); line-height:1.4; }
+  .p-callout { background:rgba(255,232,107,0.07); border-left:4px solid var(--vsp-accent); border-radius:0 10px 10px 0; padding:16px 20px; font-size:16px; font-weight:600; color:var(--vsp-white); line-height:1.45; }
+  .p-callout b { color:var(--vsp-accent); }
+  .p-ramp { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:end; }
+  .p-ramp .bar { background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:20px 18px; position:relative; overflow:hidden; }
+  .p-ramp .bar .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-ramp .bar .topbar.g  { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-ramp .bar .topbar.y  { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-ramp .lbl { font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:8px; }
+  .p-ramp .num { font-family:var(--vsp-font-display); font-size:46px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-ramp .sub { font-size:13px; color:var(--vsp-on-dark-muted); margin-top:8px; line-height:1.4; }
+  .p-pipe { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .p-pipe .node { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:16px 18px 15px; display:flex; align-items:flex-start; gap:13px; }
+  .p-pipe .node .n { font-family:var(--vsp-font-display); font-size:15px; font-weight:800; color:var(--vsp-accent-ink); background:var(--vsp-accent); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .p-pipe .node.moat .n { background:var(--vsp-green-lightest); }
+  .p-pipe .node .nt { font-size:15px; font-weight:700; color:var(--vsp-white); line-height:1.2; }
+  .p-pipe .node .ns { font-size:12.5px; color:var(--vsp-on-dark-muted); line-height:1.35; margin-top:3px; }
+  .code-chip { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:14px; background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:6px; padding:4px 10px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .p-count { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:18px 18px 16px; overflow:hidden; }
+  .p-count .topbar { position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-count.key .topbar { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-count .lbl { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:7px; line-height:1.3; }
+  .p-count .num { font-family:var(--vsp-font-display); font-size:38px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-count .sub { font-size:12.5px; color:var(--vsp-on-dark-muted); margin-top:7px; line-height:1.4; }
+  .p-tbl { width:100%; border-collapse:collapse; font-size:15px; }
+  .p-tbl th { text-align:left; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); padding:0 14px 9px 0; border-bottom:1px solid var(--vsp-border); }
+  .p-tbl td { padding:10px 14px 10px 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--vsp-on-dark); }
+  .p-tbl td b { color:var(--vsp-white); font-weight:700; }
+  .p-tbl tr.hi td { color:var(--vsp-on-dark-strong); background:rgba(255,232,107,0.06); }
+  .p-eq { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:15px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-quote { background:var(--vsp-canvas-2); border-left:4px solid var(--vsp-green); border-radius:0 10px 10px 0; padding:18px 22px; }
+  .p-quote .meta { font-size:11px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--vsp-green-lightest); margin-bottom:9px; }
+  .p-quote p { font-size:16.5px; line-height:1.5; color:var(--vsp-on-dark-strong); margin:0; font-style:italic; }
+  .p-tag { display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; border-radius:var(--vsp-radius-chip); padding:3px 10px; }
+  .p-tag.prop { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bug  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  /* ---- LSN-1.1 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-tag.job  { background:rgba(89,112,156,0.30); color:#cfe0ff; }
+  .p-tag.gen  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  .p-doll { display:flex; flex-direction:column; }
+  .p-doll .ring { border-radius:12px; padding:12px 16px 11px; }
+  .p-doll .ring + .ring, .p-doll .ring .ring { margin-top:9px; }
+  .p-doll .rl { display:block; font-family:var(--vsp-font-display); font-size:16px; font-weight:800;
+                color:var(--vsp-white); letter-spacing:-0.01em; }
+  .p-doll .rl em { font-family:var(--vsp-font-sans); font-style:italic; font-weight:400; font-size:12.5px;
+                   color:var(--vsp-on-dark-muted); letter-spacing:0; }
+  .p-doll .chip { display:block; font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:7px;
+                  line-height:1.35; }
+  .p-doll .ring.ai  { border:2px dashed rgba(255,255,255,0.26); }
+  .p-doll .ring.ml  { border:2px solid var(--vsp-navy-light);  background:rgba(89,112,156,0.12); }
+  .p-doll .ring.dl  { border:2px solid var(--vsp-green);       background:rgba(101,167,78,0.10); }
+  .p-doll .ring.gen { border:2px solid var(--vsp-yellow);      background:rgba(255,232,107,0.09); }
+  .p-scen { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .p-scen li { display:flex; gap:11px; align-items:flex-start; }
+  .p-scen .n { font-family:var(--vsp-font-sans); font-size:13px; font-weight:800;
+               color:var(--vsp-accent-ink); background:var(--vsp-accent); width:22px; height:22px;
+               border-radius:50%; display:flex; align-items:center; justify-content:center;
+               flex-shrink:0; margin-top:1px; }
+  .p-scen .who { font-size:12.5px; font-weight:700; color:var(--vsp-accent); text-transform:uppercase;
+                 letter-spacing:0.06em; }
+  .p-scen .q { font-size:13.5px; line-height:1.4; color:var(--vsp-on-dark-strong); font-style:italic; }
+  .p-io { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:12.5px;
+          color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-1.2 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-raw { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13px; line-height:1.5;
+           background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:8px;
+           padding:10px 13px; color:var(--vsp-green-lightest); white-space:pre; overflow:hidden; }
+  .p-raw b { color:var(--vsp-accent); font-weight:700; }
+  .p-tbl td.lab  { background:rgba(255,232,107,0.13); color:var(--vsp-white); font-weight:700; }
+  .p-tbl td.nolab{ color:var(--vsp-on-dark-ghost); font-style:italic; }
+  .p-tbl th.lab  { color:var(--vsp-accent); }
+  .p-tbl th.nolab{ color:var(--vsp-on-dark-ghost); }
+  .p-tbl.tight td { padding:6px 12px 6px 0; }
+  .p-tbl.tight th { padding:0 12px 7px 0; }
+  .p-dots { display:grid; grid-template-columns:repeat(10, 15px); gap:5px; }
+  .p-dots .d { width:15px; height:15px; border-radius:50%; border:1px solid rgba(0,0,0,0.35); }
+  .p-dots .d.y { background:var(--vsp-yellow); }
+  .p-dots .d.n { background:var(--vsp-navy-light); }
+  .p-dotcap { font-size:12.5px; font-weight:700; color:var(--vsp-on-dark-strong); margin-top:9px; }
+  .p-tag.shape { background:rgba(151,243,119,0.18); color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-1.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-cm { border-collapse:collapse; font-family:var(--vsp-font-sans); }
+  .p-cm th { font-size:10.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+             color:var(--vsp-accent); padding:0 10px 7px; text-align:center; border:0; }
+  .p-cm th.side { text-align:right; color:var(--vsp-on-dark-strong); padding:8px 11px 8px 0;
+                  font-size:10px; line-height:1.3; }
+  .p-cm td { border:1px solid var(--vsp-border); padding:9px 14px; text-align:center; }
+  .p-cm td .lbl { display:block; font-size:10px; font-weight:800; letter-spacing:0.09em;
+                  text-transform:uppercase; color:var(--vsp-on-dark-muted); }
+  .p-cm td .val { display:block; font-family:var(--vsp-font-display); font-size:24px; font-weight:800;
+                  color:var(--vsp-white); line-height:1.15; letter-spacing:-0.02em; }
+  .p-cm td.tp { background:rgba(101,167,78,0.24); }
+  .p-cm td.fp { background:rgba(255,232,107,0.18); }
+  .p-cm td.fn { background:rgba(255,255,255,0.055); }
+  .p-cm td.tn { background:rgba(255,255,255,0.025); }
+  .p-cm.small td { padding:11px 15px; }
+  .p-cm.small td .val { font-size:25px; }
+  .p-mrow { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+  .p-metric { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border);
+              border-radius:var(--vsp-radius-card); padding:13px 15px 12px; overflow:hidden; }
+  .p-metric .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-metric .topbar.g { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-metric .topbar.y { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-metric .topbar.n { background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-navy)); }
+  .p-metric .nm  { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                   color:var(--vsp-accent); }
+  .p-metric .num { font-family:var(--vsp-font-display); font-size:28px; font-weight:800;
+                   color:var(--vsp-white); line-height:1.05; margin-top:3px; letter-spacing:-0.025em; }
+  .p-metric .den { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:11px;
+                   color:var(--vsp-green-lightest); margin-top:5px; }
+  .p-metric .sub { font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:6px; line-height:1.35; }
+  .p-tag.metric { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bad    { background:rgba(255,232,107,0.20); color:var(--vsp-accent); }
+
+  /* ---- LSN-1.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-run { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+  .p-run .r { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border);
+              border-radius:var(--vsp-radius-card); padding:13px 15px 12px; overflow:hidden; }
+  .p-run .r .topbar { position:absolute; top:0; left:0; right:0; height:3px;
+                      background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-run .r.warn .topbar { background:linear-gradient(90deg,var(--vsp-yellow),#e8863f); }
+  .p-run .r .n  { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                  color:var(--vsp-accent); }
+  .p-run .r .v  { font-family:var(--vsp-font-display); font-size:31px; font-weight:800;
+                  color:var(--vsp-white); line-height:1.05; margin-top:3px; letter-spacing:-0.025em; }
+  .p-run .r .s  { font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:6px; line-height:1.35; }
+  .p-lab { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .p-lab .box { position:relative; border-radius:var(--vsp-radius-card); padding:12px 15px 11px;
+                border:1px solid var(--vsp-border); background:var(--vsp-canvas-2); }
+  .p-lab .box.chk  { border-left:4px solid var(--vsp-green); }
+  .p-lab .box.fail { border-left:4px solid var(--vsp-yellow); }
+  .p-lab .box.rec  { border-left:4px solid var(--vsp-navy-light); }
+  .p-lab .box .h { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                   margin-bottom:6px; }
+  .p-lab .box.chk .h  { color:var(--vsp-green-lightest); }
+  .p-lab .box.fail .h { color:var(--vsp-accent); }
+  .p-lab .box.rec .h  { color:#cfe0ff; }
+  .p-lab .box p { font-size:12.5px; line-height:1.4; color:var(--vsp-on-dark); margin:0; }
+  .p-lab .box p b { color:var(--vsp-white); }
+  .p-code { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13.5px; line-height:1.55;
+            background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:8px;
+            padding:12px 15px; color:var(--vsp-green-lightest); white-space:pre; overflow:hidden; }
+  .p-code b { color:var(--vsp-accent); font-weight:700; }
+  .p-code i { color:var(--vsp-on-dark-muted); font-style:normal; }
+  .p-chain { display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .p-chain .sh { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13px;
+                 background:rgba(89,112,156,0.22); border:1px solid var(--vsp-border);
+                 border-radius:6px; padding:5px 10px; color:#cfe0ff; }
+  .p-chain .op { font-size:12px; color:var(--vsp-accent); font-weight:700; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <section data-label="Cover">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:600px;height:600px;top:-220px;right:-150px"></div>
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-180px;left:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-topbar">
+        <div class="vsp-wordmark">VICTORY SQUARE <span>PARTNERS</span></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal · Live lab</div>
+      </div>
+      <div class="vsp-stage center" style="gap:20px">
+        <div class="vsp-kicker">AI/ML Training Program · LSN-1.4 · Weeks 1–2 · 150 minutes, hands on keyboards</div>
+        <h1 class="vsp-h1" style="max-width:1120px">Today you <span class="vsp-glow">train a real model.</span></h1>
+        <div class="vsp-rule"></div>
+        <p class="vsp-lead" style="max-width:1010px">70,000 hand-labelled digits. A neural network you write in six lines. A loss that falls from <b style="color:#fff">2.31 to 0.26</b> in a quarter of a second. Then <b style="color:#fff">your own confusion matrix</b> — and finally we starve the thing until it collapses, because <b style="color:var(--vsp-accent)">that</b> is the chart you will use in front of clients.</p>
+        <div class="p-grid3" style="gap:14px;margin-top:4px">
+          <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Vlad's ask, verbatim</h3>
+            <p style="font-size:12.5px">"Start up a Jupyter notebook… do that classical exercise, use PyTorch." This is that session.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">Karpathy-spirit</h3>
+            <p style="font-size:12.5px">Enough mechanics to believe <i>"it's all linear algebra"</i> — one forward pass by hand. No calculus.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">The artifact</h3>
+            <p style="font-size:12.5px">Your homework notebook <b style="color:#fff">is</b> what verifies <span class="code-chip">OUT-1.4</span> at <span class="code-chip">ASM-1</span>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy · Hands-on: train MNIST with PyTorch · serves OUT-1.4 · verified by ASM-1 (artifact)</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      2 min. Say it in one sentence and then get out of the way: by lunch everybody in this room will have trained a neural network, and the training is not the interesting part.
+      THE MAP, on the footer of every slide: 15 dataset tour · 60 guided build · 30 evaluate · 30 break it on purpose · 15 wrap = 150. Slides 1-4 are the first 15. Slides 5-6 are the 60. Slides 7-8 are the 30. Slides 9-10 are the second 30. Slide 11 is the last 15.
+      This deck is a RUNBOOK, not a lecture. Every segment slide carries the lab checkpoint, the failure that is actually going to happen, and the recovery move. Read those out; do not improvise them.
+      Everyone should already have notebooks/lessons/LSN-1.4_Hands_On_Train_MNIST.ipynb open AND executed once (that was pre-work). If somebody has not executed it, they are already behind - deal with that on the next slide, not now.
+      Two co-facilitators is the right shape for this one: Tyler drives, Stefana walks the room. The single biggest risk today is one laptop eating twenty minutes.
+      Say the honest expectation out loud: their model will land around 93%, not 99%. The gap between those two numbers is the most valuable thing in the lab, and slide 8 is where it pays off.
+    </aside>
+  </section>
+  <section data-label="Pre-work gate">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Pre-work check · 45 min, mandatory · the first 5 minutes of the lab</div>
+          <h2 class="vsp-h2" style="font-size:38px">A lab of eight people <span class="vsp-glow">cannot debug one laptop.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.05fr 0.95fr;align-items:start;gap:18px">
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">Run the gate cell. Hands up on green.</h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:5px">
+              <tr><td style="width:38%"><b>kernel is the repo .venv</b></td><td>Kernel &gt; Change Kernel if not</td></tr>
+              <tr><td><b>torch + torchvision + sklearn</b></td><td>prints all six versions</td></tr>
+              <tr class="hi"><td><b>MNIST cache is warm</b></td><td><span class="p-io">~/.cache/vsp-training-data</span> · 4/4 files · 55 MB</td></tr>
+            </table>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:10px">Every failure prints <b style="color:#fff">what to do</b>, not what went wrong — including the one-line cache warm-up command and a pointer to <span class="p-io">INSTALL_TROUBLESHOOTING.md</span>.</p>
+          </div>
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">If somebody is red</h3>
+            <ul class="p-chk" style="gap:8px;margin-top:8px">
+              <li style="font-size:13px"><b style="color:var(--vsp-accent)">Cache cold, network fine:</b> run the warm-up line. Two minutes, unattended.</li>
+              <li style="font-size:13px"><b style="color:var(--vsp-accent)">Cache cold, network blocked:</b> shared-drive copy of the cache folder. <b style="color:#fff">Nobody debugs networking live.</b></li>
+              <li style="font-size:13px"><b style="color:var(--vsp-accent)">Torch missing:</b> pair them with a neighbour <i>now</i>, fix at the break. Two people, one keyboard beats one person, no lab.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-quote">
+          <div class="meta">LL-1 · the first thing this programme learned about itself</div>
+          <p>"An environment document claimed a .venv existed when it did not. An environment that worked in week 1 is not evidence it works today."</p>
+        </div>
+        <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Also collected at the door: <b>the one written question</b> from pre-work task 3, and a show of hands on the <b>LSN-0.1 Python refresher</b>. The lab is fill-in-the-blank — but the blanks are Python.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Pre-work gate · the lab will not wait</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      5 min, and it comes out of the dataset tour's 15. Do it before a single word of teaching.
+      Mechanics: everybody runs the gate cell NOW, out loud, together. Hands up when the block says green. Count the hands - you need the number before you decide anything else about the next two hours.
+      Two greens short of the room? Pair them up immediately and carry on. Four or more red? Stop, spend ten minutes, and drop the 10,000-example row from the break-it segment later to buy the time back. That is the pressure valve and it is pre-authorised.
+      Say the LL-1 line as a fact about this programme, not as a scolding. It is true, it is ours, and it is why the gate exists.
+      Collect the written questions physically - index cards or Slack thread, either. You will answer two of them in segment 2 and the rest at the wrap. Naming who asked what is what makes a lab feel like a workshop instead of a lecture.
+      The MPS beat is on the gate cell's output: torch.backends.mps.is_available() prints True on these laptops. Thirty seconds, no more: yes, your Mac has a GPU; no, we are not using it, because MPS does not promise the same floating-point answer twice and today's whole contract is "your numbers are the same numbers twice". Real projects make the opposite trade the moment the model stops being small.
+    </aside>
+  </section>
+  <section data-label="The arc">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:20%;left:46%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">The 150 minutes · and what each one is for</div>
+          <h2 class="vsp-h2" style="font-size:37px">Data → model → loss → gradient descent → evaluation.<br><span class="vsp-glow">That is the whole of supervised learning.</span></h2>
+        </div>
+        <div class="p-time" style="grid-template-columns:repeat(5,1fr)">
+          <div class="p-step"><div class="dot"></div><div class="d">15 min</div><div class="t">Dataset tour</div><div class="s">60,000 labelled digits. A digit <i>is</i> 784 numbers.</div></div>
+          <div class="p-step key"><div class="dot"></div><div class="d">60 min</div><div class="t">Guided build</div><div class="s">DataLoader → MLP → train loop → the loss falls</div></div>
+          <div class="p-step"><div class="dot"></div><div class="d">30 min</div><div class="t">Evaluate</div><div class="s">accuracy + <b>your</b> confusion matrix</div></div>
+          <div class="p-step key"><div class="dot"></div><div class="d">30 min</div><div class="t">Break it</div><div class="s">starve the model, plot the collapse</div></div>
+          <div class="p-step"><div class="dot"></div><div class="d">15 min</div><div class="t">Wrap</div><div class="s">the vocabulary, and the homework</div></div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:18px">
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">What you already own (three callbacks)</h3>
+            <ul class="p-chk" style="gap:8px;margin-top:8px">
+              <li style="font-size:13px"><b style="color:#fff">LSN-1.2:</b> features and labels — today a 28×28 image becomes <b style="color:var(--vsp-accent)">one row of 784 features</b></li>
+              <li style="font-size:13px"><b style="color:#fff">LSN-0.2:</b> a sample's composition is checked, never assumed — is 60,000 digits balanced?</li>
+              <li style="font-size:13px"><b style="color:#fff">LSN-1.3:</b> you can read a confusion matrix. In 90 minutes it will be <b style="color:var(--vsp-accent)">yours</b></li>
+            </ul>
+          </div>
+          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">The two things we do <i>not</i> do today</h3>
+            <p style="font-size:13px;margin-bottom:8px"><b style="color:#fff">No calculus.</b> Nobody derives backpropagation. You call <span class="p-io">loss.backward()</span> and trust the chain rule the way you trust a compiler.</p>
+            <p style="font-size:13px"><b style="color:#fff">No leaderboard.</b> We are not chasing 99%. We are chasing <i>understanding what the number means</i> — and 93% has more to teach than 99% does.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · The arc · everything else is scale</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      3 min, the last of the tour's 15 before the notebook. Orientation only - do not start teaching.
+      Walk the timeline left to right once, and flag the two segments that carry the risk: the 60-minute build is the one that overruns (paste-ready known-good cells are the valve), and the 30-minute break-it segment is the one they will still be using in client meetings next year. If you have to steal time, steal it from the build, never from break-it.
+      Then say the headline sentence and mean it: data, model, loss, gradient descent, evaluation. Those five words are the whole of supervised learning, and by the wrap they will have built one of each. Everything after today - CNNs, transformers, GPT - is the same loop with more zeroes.
+      Cash the three callbacks by name. This is the fourth session in a row that pays off an earlier one, and saying so is what makes the programme feel like a sequence rather than a series.
+      Kill the leaderboard instinct early, because engineers have it. Nobody is grading on accuracy today. Announce the target number now - about 93% - so that when it appears nobody feels short-changed, and so slide 8's "why not 95%?" lands as a finding rather than a failure.
+    </aside>
+  </section>
+  <section data-label="Dataset tour">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:440px;height:440px;bottom:-160px;right:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 1 · 15 min · notebook §"Dataset tour"</div>
+          <h2 class="vsp-h2" style="font-size:36px">A digit image <span class="vsp-glow">is a feature row.</span> 784 numbers.</h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;align-items:start;gap:18px">
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">What is on their screens</h3>
+            <div class="p-raw" style="font-size:12px;margin-top:7px">X_train_full.shape = <b>(60000, 784)</b>
+X_test.shape       = <b>(10000, 784)</b>   <i>MNIST's own split</i>
+total labelled digits = <b>70,000</b>
+pixel range = [0.0, 1.0]   dtype = float32</div>
+            <p style="font-size:12.5px;margin-top:9px">28 × 28 = 784. Flatten the grid and the image <b style="color:#fff">is</b> a spreadsheet row — 784 feature columns and one label column. The network never learns that pixel 100 sits above pixel 128, <b style="color:var(--vsp-accent)">and it still gets 93% right.</b></p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">The LSN-0.2 question: is it balanced?</h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:4px">
+              <tr><td style="width:52%">rarest digit</td><td><b>5</b> — 5,421 examples</td></tr>
+              <tr><td>most common</td><td><b>1</b> — 6,742 examples</td></tr>
+              <tr class="hi"><td>spread</td><td><b>24.4% more 1s than 5s</b></td></tr>
+            </table>
+            <p style="font-size:12.5px;margin-top:9px"><b style="color:#fff">"Balanced enough, and not equal"</b> — the most common answer real data ever gives. Which is why the honest report is <b style="color:var(--vsp-accent)">per-class recall</b>, not one accuracy number.</p>
+            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">Plant this now: digit <b style="color:#fff">5</b> is the rarest — and in 90 minutes it is one of the two worst-recalled. Not a coincidence.</p>
+          </div>
+        </div>
+        <div class="p-lab">
+          <div class="box chk"><div class="h">Lab checkpoint</div><p>Everyone has <b>(60000, 784)</b> printed and the <b>5×5 digit grid</b> rendered.</p></div>
+          <div class="box fail"><div class="h">Likely failure</div><p>Dataset download blocked (proxy / no network) despite pre-work.</p></div>
+          <div class="box rec"><div class="h">Recovery</div><p>The loader reads the <b>local cache only</b>; if cold it prints the warm-up command and falls back to <b>synthetic digits</b> so every step still runs.</p></div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 1 · dataset tour · LSN-1.2 + LSN-0.2 callbacks</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      5 min, the rest of segment 1's 15. Notebook open, cells running along with you.
+      Run the load cell together and read the shapes out loud. The point of this segment is not MNIST, it is the sentence "a digit image is a feature row" - and the cell that prints one digit three ways (as ASCII art, as 784 numbers, as a row in a table) is the whole segment in one screen. Linger there. Ask somebody to say what the 784 columns are.
+      SUPERSESSION, say it once so nobody is confused by the lesson plan: the plan and source notebook 02 both use fetch_openml('mnist_784'). We do not. torchvision reads the pre-warmed local cache instead - instant, offline, and identical for everyone. That is what pre-work task 1 bought.
+      Then the digit grid. Get them to point at the 4 that could be a 9 and the 5 that could be a 3 BEFORE the model has an opinion; when their own confusion matrix names those pairs in segment 3 it feels earned rather than told.
+      The balance chart is a 90-second LSN-0.2 callback, no more. Two questions, in this order: is anything starved (no), and is it equal (no). Then the sentence: balanced enough and not equal, so report per-class recall.
+      Drop the seed: digit 5 is the rarest class. Do not explain why that matters. It pays off on slide 7.
+      If anybody is on synthetic fallback, say so publicly and kindly - their loss will still fall, their accuracy will not match the room, and every pinned check in their notebook is deliberately skipped.
+    </aside>
+  </section>
+  <section data-label="Guided build">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 2 · 60 min · notebook §"Guided build", steps 1–4</div>
+          <h2 class="vsp-h2" style="font-size:35px">Four steps. Six lines of model.<br><span class="vsp-glow">101,770 numbers that start as noise.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.06fr 0.94fr;align-items:start;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="p-code">model = nn.Sequential(
+    nn.Linear(<b>784</b>, <b>128</b>),   <i># 100,352 weights + 128 biases</i>
+    nn.ReLU(),               <i># max(0,x) · ZERO parameters</i>
+    nn.Linear(<b>128</b>, <b>10</b>),    <i># 1,280 weights + 10 biases</i>
+)</div>
+            <div class="p-code">for images, labels in train_loader:
+    predictions = model(images)          <i># FORWARD</i>
+    loss = loss_fn(predictions, labels)  <i># SCORE</i>
+    optimizer.zero_grad()                <i># RESET</i>
+    loss.backward()                      <i># BACKWARD</i>
+    <b>optimizer.step()</b>                     <i># the only line that moves a weight</i></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+              <h3 style="font-size:15px">The numbers to expect on every screen</h3>
+              <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
+                <tr class="hi"><td style="width:52%">first batch, before training</td><td><b>2.3117</b> ≈ ln 10</td></tr>
+                <tr><td>epoch 1 average loss</td><td><b>0.7554</b></td></tr>
+                <tr><td>epoch 2</td><td><b>0.3195</b></td></tr>
+                <tr><td>epoch 3</td><td><b>0.2585</b> — below 0.5 ✓</td></tr>
+                <tr><td>gradient steps</td><td><b>471</b> · 157 per epoch</td></tr>
+              </table>
+            </div>
+            <div class="p-callout" style="font-size:13.5px;padding:12px 16px"><b>2.3026 = −log(1/10).</b> A ten-class model that knows nothing scores exactly that. Verify the loss at init, every time, forever — it is the cheapest bug-catch in machine learning.</div>
+          </div>
+        </div>
+        <div class="p-lab">
+          <div class="box chk"><div class="h">Lab checkpoint</div><p>Loss <b>visibly falling: 2.31 → below 0.5 by epoch 3</b>, on every screen.</p></div>
+          <div class="box fail"><div class="h">Likely failure</div><p>Shape mismatch — 28×28 fed in without flattening, or labels not <span class="p-io">long</span> dtype.</p></div>
+          <div class="box rec"><div class="h">Recovery</div><p>The <b>shape-debug ritual</b> (print <span class="p-io">.shape</span> at every layer boundary) + a <b>paste-ready canonical cell under every guided cell</b>.</p></div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 2 · guided build · sources: neural_networks/01 (MLP) + 02 (PyTorch pipeline)</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      35 min of segment 2's 60. This is the segment that overruns. Watch the clock at every step boundary.
+      SHAPE: each of the four steps is a guided cell (numbers blanked out in the comments, plus a small fill-in you can get wrong for free) followed immediately by the canonical runnable cell. Say the rule once: do the guided cell, and if you are stuck, run the canonical one and keep moving. Nobody falls behind on step 2, because step 2 is where the linear-algebra beat lives and that is the part they remember next year.
+      Step 1, DataLoader, 7 min. 157 batches - 156 of 64 plus a last one of 16, which is why the loop says len(images) and not 64. The fill-in worth arguing about is shuffle on the TEST loader: the answer is False, and the reason is better than the answer - you are counting right answers, and a count does not care about order, but segment 3 needs predictions lined up with images so it can show them their own mistakes.
+      Step 2, the model, 10 min. Read the shapes as a sentence out loud: take 784 numbers, mix them into 128, throw away the negatives, mix those into 10, call the biggest one your answer. Then make them count the parameters on paper: 784x128 + 128 + 128x10 + 10 = 101,770. Most people forget the biases; the checker says so kindly.
+      Also, on step 2, plant the trap that segment 4 depends on: the model is built inside fresh_model(), and there is a reason. Do not explain it yet. Just insist they always call it.
+      Step 3, loss and optimiser, 5 min - and do NOT skip the loss-at-init check. -log(1/10) = 2.3026, their untrained model prints 2.32, and that agreement means the labels line up with the images and nothing is transposed. This is the single most transferable habit in the lab.
+      Step 4, the train loop, 13 min. Put the five lines on the board in the wrong order and have the room sort them. Then the distinction that makes the whole thing click: loss.backward() COMPUTES gradients, optimizer.step() APPLIES them, and zero_grad() is there because torch ADDS each new gradient onto the old one. Forget zero_grad and nothing crashes - the loss just quietly stops improving. That is the worst kind of bug and they should meet it as a story, not a surprise.
+      Then run it. Quarter of a second. Let the room react to that, because the reaction is the misconception dying.
+      TIMING VALVE: if you are past the 35-minute mark on this slide, skip the loss-curve figure discussion and go straight to the linear-algebra beat. Never cut the linear-algebra beat.
+    </aside>
+  </section>
+  <section data-label="It's all linear algebra">
+    <div class="vsp-slide">
+      <div class="vsp-orb green" style="width:420px;height:420px;top:-140px;left:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 2, second half · the Karpathy beat · notebook §"It really is all linear algebra"</div>
+          <h2 class="vsp-h2" style="font-size:36px">Compute one forward pass <span class="vsp-glow">by hand.</span> Match the model to 1e-5.</h2>
+        </div>
+        <div class="p-code" style="font-size:15px;text-align:center">logits = relu(x @ <b>W1</b>.T + <b>b1</b>) @ <b>W2</b>.T + <b>b2</b></div>
+        <div class="p-chain" style="justify-content:center">
+          <span class="sh">x (784,)</span><span class="op">@ W1.T (784,128)</span><span class="sh">→ (128,)</span>
+          <span class="op">+ b1 · ReLU</span><span class="sh">(128,)</span><span class="op">@ W2.T (128,10)</span>
+          <span class="sh">→ (10,)</span><span class="op">argmax</span><span class="sh">7</span>
+        </div>
+        <div class="p-run">
+          <div class="r"><div class="topbar"></div><div class="n">W1</div><div class="v">128×784</div><div class="s">100,352 numbers<br>layer-1 weights</div></div>
+          <div class="r"><div class="topbar"></div><div class="n">b1 · b2</div><div class="v">138</div><div class="s">the biases nobody counts</div></div>
+          <div class="r"><div class="topbar"></div><div class="n">W2</div><div class="v">10×128</div><div class="s">1,280 numbers<br>layer-2 weights</div></div>
+          <div class="r warn"><div class="topbar"></div><div class="n">max |hand − model|</div><div class="v">0.0</div><div class="s">tolerance 1e-5 · torch <i>and</i> numpy</div></div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:16px">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Why <span class="p-io">.T</span> is there — and why it is the bug</h3>
+            <p style="font-size:12.5px"><span class="p-io">nn.Linear</span> stores weights as <b style="color:#fff">(out, in)</b> — 128 rows of 784 — so it can compute <span class="p-io">x @ W.T</span>. Shape confusion lives at exactly this boundary. Which is why the shape-debug ritual is a <b style="color:var(--vsp-accent)">rehearsed</b> move, not an improvisation.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">Where the "non-linearity" actually is</h3>
+            <p style="font-size:12.5px">For this image <b style="color:#fff">48 of the 128</b> hidden units came out negative and ReLU set them to exactly zero — so 80 units did all the work. <b style="color:var(--vsp-accent)">Different image, different 80.</b> That switching is the whole of it. Without it, two stacked Linears collapse into one.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 2 · the linear-algebra beat · x @ W1.T + b1</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      25 min, the second half of segment 2's 60. Protect this. It is the reason the lab exists.
+      Open by naming the promise from slide 1: we said enough mechanics to believe "it's all linear algebra". Here is the receipt.
+      Run the shapes cell first. Four arrays, 101,770 numbers, printed with their shapes. Then read the shape chain left to right and watch the mythology drain out of the word "neural".
+      Then the hand-computed forward pass, and do it slowly. Two matmuls and a max(0,x), in torch; then the SAME arithmetic in plain numpy with no torch anywhere; then model(x). All three columns agree to the last printed decimal, and max |difference| prints as 0.00e+00 against a tolerance of 1e-5. Ask the room what that proves. The answer you want: model(x) was never doing anything else.
+      Say why the assert uses a tolerance and not ==: floating-point matmuls are bit-identical on THIS machine and are not guaranteed across machines or torch versions. That is a real engineering fact about ML systems and it is worth thirty seconds (SI-24d, for the record).
+      Then the two side beats, both short. The .T: nn.Linear stores (out, in), which is exactly where shape bugs happen - so print shapes, do not guess. And ReLU: 48 of 128 units zeroed for this image, a different 48 for the next one. That switching IS the non-linearity; without it the two Linears collapse into one matrix and the network can only draw straight lines. That is also the honest one-sentence answer to "what does deep mean?"
+      Last: the logits are not probabilities. They run -9.5 to 7.7; softmax makes the percentages. That is LSN-1.2's distinction landing on their own model, and it is the smoothest possible bridge into segment 3.
+      If somebody asks about backprop: today you trust the chain rule the way you trust a compiler. Offer the 3Blue1Brown chapter as the optional pre-work for LSN-1.5 and move on. Do not start deriving anything.
+    </aside>
+  </section>
+  <section data-label="Evaluate">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-170px;left:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 3 · 30 min · notebook §"Evaluate" · the LSN-1.3 callback</div>
+          <h2 class="vsp-h2" style="font-size:35px">92.77% on 10,000 digits it had never seen.<br><span class="vsp-glow">Now read it like a report card.</span></h2>
+        </div>
+        <div class="p-run">
+          <div class="r warn"><div class="topbar"></div><div class="n">on data it trained on</div><div class="v">94.33%</div><div class="s"><b>not a result</b></div></div>
+          <div class="r"><div class="topbar"></div><div class="n">held-out test set</div><div class="v">92.77%</div><div class="s">723 errors of 10,000 — <b>this</b> is the number</div></div>
+          <div class="r"><div class="topbar"></div><div class="n">best digit — recall</div><div class="v">1 · 98.2%</div><div class="s">worst: <b>8 · 87.4%</b></div></div>
+          <div class="r warn"><div class="topbar"></div><div class="n">spread, best to worst</div><div class="v">11 pts</div><div class="s">hidden inside one headline number</div></div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:16px">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">The worst pairs — and the plan called both</h3>
+            <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
+              <tr class="hi"><td style="width:22%"><b>3 ↔ 5</b></td><td>66 mistakes (33 each way)</td></tr>
+              <tr><td><b>4 ↔ 9</b></td><td>65 mistakes (29 + 36)</td></tr>
+              <tr><td><b>8 → 3</b></td><td>37 — the biggest single arrow</td></tr>
+            </table>
+            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">3 and 5 share a spine and an open top; 4 and 9 differ by whether one stroke closes. <b style="color:#fff">The model fails exactly where a human hesitates</b> — the most reassuring thing a matrix can say.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">And the seed from slide 4, cashed</h3>
+            <p style="font-size:12.5px">Digit <b style="color:#fff">5</b> was the <b>rarest</b> class in training (5,421). It is now <b style="color:var(--vsp-accent)">second-worst on recall</b> (90.3%), and digit <b style="color:#fff">3</b> — which 5s and 8s both collapse into — is the <b>least trustworthy answer the model gives</b> (precision 87.5%).</p>
+            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:7px">LSN-0.2 → LSN-1.3 → their own matrix, in one line.</p>
+          </div>
+        </div>
+        <div class="p-lab">
+          <div class="box chk"><div class="h">Lab checkpoint</div><p>Test accuracy <b>+</b> a rendered 10×10 matrix, and each person can <b>name their worst digit pair</b>.</p></div>
+          <div class="box fail"><div class="h">Likely failure</div><p><i>"I got 99.8%!"</i> — evaluated on training data. Or transposed axes.</p></div>
+          <div class="box rec"><div class="h">Recovery</div><p>The helper <b>hard-labels TRUE (rows) vs PREDICTED (columns)</b>. Any suspicious score gets one question first: <b>"which loader did you use?"</b></p></div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 3 · accuracy + your own confusion matrix</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      18 min of segment 3's 30. The notebook does the arithmetic; you run the conversation.
+      Open with the trap, deliberately, because the notebook prints both numbers side by side: 94.33% on the data it trained on, 92.77% on data it has never seen. Ask which one they would put in a proposal. Then the rule: when somebody reports an accuracy, the first question is not "how high" - it is "on what data?".
+      Be honest that our gap is small, only 1.6 points, and say why: three epochs on 10,000 digits has not memorised much yet. Promise them a model that memorises PERFECTLY in segment 4, because that is where the "99.8%" story actually lands.
+      Then the matrix. Point at the axes and say them out loud - rows are truth, columns are what the model said - because a transposed matrix is the single most common misreading and the plot is hard-labelled to prevent it. Note that the notebook builds the matrix by hand from two arrays of 10,000 integers and then has sklearn confirm it cell for cell. Library confirms, never replaces. That is LSN-1.3's discipline.
+      Now the reading, and this is the part worth the 30 minutes: 92.77% hides an eleven-point spread. Digit 1 at 98.2%, digit 8 at 87.4%. One number, and it averages over a class that is genuinely much harder.
+      Cash the digit-5 seed from slide 4 explicitly. Rarest class in training, second-worst recall. That is not a coincidence, and it is the whole of LSN-1.6 in one row of a table.
+      Then the error-examples figure - the actual images the model got wrong, with its confidence. Two things to say: some are genuinely ambiguous, which is where more data stops helping; and some it was over 90% sure about, which is the most expensive output any model produces because nothing downstream flags it.
+      Keep an eye on the room: everybody should be able to answer "what is your worst pair?" before you move on. That is the checkpoint, and it is per-person, not per-room.
+    </aside>
+  </section>
+  <section data-label="Reading drill">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 3, second half · the drill, asked out loud · 10 min</div>
+          <h2 class="vsp-h2" style="font-size:35px">"Would you ship this for reading<br><span class="vsp-glow">handwritten invoice totals?"</span></h2>
+        </div>
+        <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:13px">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">1 · Which digit is most mistaken <i>for</i> a 9?</h3>
+            <p style="font-size:12.5px"><b style="color:#fff">4</b> — 29 of them, read <b>down</b> the "said 9" column. And the mirror: <b style="color:#fff">36</b> nines were called 4, read <b>across</b> the row.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">2 · Precision or recall problem for class 9?</h3>
+            <p style="font-size:12.5px"><b style="color:#fff">Both — and the direction decides which.</b> A 4 called 9 is a false positive → <b style="color:var(--vsp-accent)">precision</b>. A 9 called 4 is a miss → <b style="color:var(--vsp-accent)">recall</b>. One pair of digits, two different complaints.</p>
+          </div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.04fr 0.96fr;align-items:start;gap:17px">
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">3 · The arithmetic nobody does in the meeting</h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:3px">
+              <tr><td style="width:56%">per-<b>digit</b> accuracy</td><td><b>92.77%</b></td></tr>
+              <tr class="hi"><td>a 5-digit invoice total, all five right</td><td><b>0.9277<sup>5</sup> = 68.7%</b></td></tr>
+              <tr><td>same, with the best model here (97.04%)</td><td><b>86.1%</b></td></tr>
+            </table>
+            <p style="font-size:12.5px;margin-top:9px">One 4 read as a 9 turns <b style="color:#fff">$4,231</b> into <b style="color:var(--vsp-accent)">$9,231</b> — and nothing downstream flags it, because the model was confident. <b style="color:#fff">Per-digit accuracy compounds.</b></p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">The plan expected ≥95%. We got 92.77%.</h3>
+            <p style="font-size:12.5px;margin-bottom:8px">Not a bug — <b style="color:#fff">the first finding of the lab.</b> Same architecture, same 3 epochs, all <b>60,000</b> digits instead of 10,000:</p>
+            <table class="p-tbl tight" style="font-size:13px">
+              <tr><td style="width:52%">10,000 digits</td><td><b>92.77%</b> · 723 errors</td></tr>
+              <tr class="hi"><td>60,000 digits</td><td><b>97.04%</b> · 296 errors</td></tr>
+            </table>
+            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">Nobody tuned anything. <b style="color:var(--vsp-accent)">Data did that</b> — and it is exactly the next 30 minutes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 3 · the reading drill · and the ≥95% finding</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      12 min, the tail of segment 3's 30. Three questions, asked live, answered by people not by you.
+      Q1 first, and make them read the matrix rather than remember the slide. The answer is 4, twenty-nine of them, read DOWN the "said 9" column. Half the room will read the row instead and answer 4 as well - which happens to be right here, so make the distinction explicit anyway: the column is what gets mistaken FOR a 9, the row is what a 9 gets turned INTO.
+      Q2 is the one that earns the LSN-1.3 callback. Fours called 9 are false positives for class 9, so precision. Nines called 4 are misses, so recall. Same two digits, two different metrics, and which one the client cares about depends entirely on what happens downstream. If a participant answers "both", that is DEFENSIBLE and worth saying so - the notebook's grader gives exactly that verdict.
+      Q3 is the pre-sales question and it has no numeric answer. Let two or three people answer before you show the arithmetic. Then show it: 0.9277 to the fifth power is 68.7%. Their model reads a five-digit invoice total correctly about two times in three. Even the 97% model gets 86%. Per-digit accuracy compounds, and almost nobody does that multiplication in a meeting.
+      Then the money: a 4 read as a 9 turns $4,231 into $9,231, and the model was confident, so nothing flags it. Both directions are defensible here - "no, not unattended, ship it behind a confidence threshold with human review" or "yes, as a first pass, since a human checks every total anyway". What fails is either answer with no number attached. Say that; it is the grading standard.
+      NOW THE ≥95% BEAT, and frame it as a finding, not an apology. The lesson plan said expect ≥95%. Their model got 92.77% because it saw a sixth of the data. Run the all-60,000 cell live - it takes a second - and get 97.04%. Same architecture, same epochs, nobody tuned anything. Ask the room what changed. The answer they give you is the thesis of the next thirty minutes, and it is much better coming from them.
+    </aside>
+  </section>
+  <section data-label="Break it">
+    <div class="vsp-slide">
+      <div class="vsp-orb green" style="width:430px;height:430px;top:-150px;left:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 4 · 30 min · notebook §"Break it on purpose" · built for GAP-8</div>
+          <h2 class="vsp-h2" style="font-size:35px">Starve it. Same model, same epochs — <span class="vsp-glow">only the data shrinks.</span></h2>
+        </div>
+        <div class="p-run">
+          <div class="r"><div class="topbar"></div><div class="n">10,000 examples</div><div class="v">92.77%</div><div class="s">471 gradient steps</div></div>
+          <div class="r"><div class="topbar"></div><div class="n">1,000</div><div class="v">84.23%</div><div class="s">−8.5 points for 90% less data</div></div>
+          <div class="r warn"><div class="topbar"></div><div class="n">100</div><div class="v">53.38%</div><div class="s">−30.8 points · <b>the cliff</b></div></div>
+          <div class="r warn"><div class="topbar"></div><div class="n">10</div><div class="v">23.88%</div><div class="s">guessing scores 10%</div></div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:16px">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">The trap, first — <span class="p-io">fresh_model()</span></h3>
+            <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
+              <tr><td style="width:58%">reuse a trained model on 100 rows</td><td><b>91.16%</b> 🙃</td></tr>
+              <tr class="hi"><td>call <span class="p-io">fresh_model()</span> first</td><td><b>53.38%</b></td></tr>
+            </table>
+            <p style="font-size:12.5px;margin-top:8px">A <b style="color:var(--vsp-accent)">38-point lie</b> that does not raise, warn or look odd — it just flattens the curve, which tells a client that data volume does not matter. <b style="color:#fff">The tell is the first-batch loss: an honest run starts at ≈2.30 every time.</b></p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">"Just give the small ones more compute" — the control run</h3>
+            <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
+              <tr><td style="width:34%">100 rows<br>3 epochs</td><td>own data 73%<br>test <b>53.4%</b></td></tr>
+              <tr class="hi"><td>100 rows<br><b>236 epochs</b></td><td>own data <b>100.00%</b><br>test <b>75.6%</b></td></tr>
+            </table>
+            <p style="font-size:12.5px;margin-top:8px"><b style="color:#fff">That</b> is the "99.8%!" your colleague reports. 40× the training buys a third of the gap and then stops. <b style="color:var(--vsp-accent)">You cannot buy your way out of a small dataset with compute.</b></p>
+          </div>
+        </div>
+        <div class="p-lab">
+          <div class="box chk"><div class="h">Lab checkpoint</div><p>The <b>4-row size-vs-accuracy table</b> and the degradation curve plotted.</p></div>
+          <div class="box fail"><div class="h">Likely failure</div><p>Forgetting to re-initialise, so run <i>n</i> fine-tunes run <i>n−1</i> — <b>the curve comes out flat</b>.</p></div>
+          <div class="box rec"><div class="h">Recovery</div><p><span class="p-io">fresh_model()</span> on every run, and check the first-batch-loss column: <b>2.31 · 2.34 · 2.34 · 2.34</b>. If time is tight, drop the 10,000 row.</p></div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 4 · break it on purpose · sets up LSN-1.6</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      16 min of segment 4's 30. This half hour is the one they keep. Do not let the build overrun into it.
+      RUN THE TRAP FIRST, before the four honest runs, because a mistake you have seen is not a mistake you make twice. The notebook takes a throwaway clone of the trained lab model and "retrains" it on 100 examples without re-initialising: 91.16%. Then fresh_model() and the same 100 examples: 53.38%. Ask what the difference is. Then name the diagnostic, because it is one line and it generalises: an honest run's first batch loss is ~2.30. If run 2 starts at 0.19, run 2 is not a new model.
+      Then the four runs. Everything held fixed - architecture, epochs, batch size, learning rate, seed, test set - and only the data shrinks. 92.77, 84.23, 53.38, 23.88. Point at the first-batch-loss column and say it is their proof they did not fall into the trap.
+      Read the deltas out loud in order, because the SHAPE is the lesson: dropping 90% of the data costs 8.5 points, the next 90% costs 30.8. It is not linear, it is a cliff, and the cliff is exactly where most client conversations live.
+      NOW TAKE THE OBJECTION SERIOUSLY, because an engineer in the room is about to make it: "you only gave them three epochs." Correct, and the notebook answers it with a control run - every size retrained to the same ~471 gradient steps. 100 examples with 236 epochs goes from 53.4% to 75.6%. So the objection is half right, and the half it gets wrong is the important half.
+      Then land the memorisation beat, which is the best thing in this segment: that 236-epoch model scores 100.00% on its own 100 images. Perfect. THAT is the "99.8%" people report - not a lie and not a bug, because there was nothing else in 100 examples to learn, so learning and memorising became the same operation.
+      Finish with the sentence, and make them write it down: you cannot buy your way out of a small dataset with compute. The missing thing is not GPU hours, it is labelled examples.
+      TIMING: if you arrived at this slide with less than 20 minutes left, drop the 10,000-example row (start the table at 1,000) and keep the control run. The control run is what makes the argument unanswerable.
+    </aside>
+  </section>
+  <section data-label="The curve">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:540px;height:540px;top:-200px;right:-150px"></div>
+      <div class="vsp-orb navy" style="width:380px;height:380px;bottom:-140px;left:-100px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 4, second half · the artifact of the whole lab · <b>reused in LSN-1.6</b></div>
+          <h2 class="vsp-h2" style="font-size:36px">No data, no model. <span class="vsp-glow">And here is the chart.</span></h2>
+        </div>
+        <div class="vsp-card" style="padding:13px 18px 11px"><span class="topbar yellow"></span>
+          <table class="p-tbl tight" style="font-size:13.5px">
+            <tr><th style="width:24%">labelled examples</th><th style="width:19%">3 epochs</th><th style="width:23%">equal compute</th><th>what it means</th></tr>
+            <tr><td><b>10</b></td><td><b>23.88%</b></td><td>34.86%</td><td>barely above the 10% a coin-flip-with-ten-sides gets</td></tr>
+            <tr><td><b>100</b></td><td><b>53.38%</b></td><td>75.63%</td><td>memorises its own data perfectly; useless on yours</td></tr>
+            <tr class="hi"><td><b>200</b></td><td><b>64.41%</b></td><td>82.90%</td><td><b>the construction-site prospect is here</b></td></tr>
+            <tr><td><b>1,000</b></td><td><b>84.23%</b></td><td>88.46%</td><td>a demo that impresses, a product that cannot ship</td></tr>
+            <tr><td><b>10,000</b></td><td><b>92.77%</b></td><td>92.77%</td><td>the model you trained an hour ago</td></tr>
+            <tr><td><b>60,000</b></td><td><b>97.04%</b></td><td>97.04%</td><td>every digit MNIST has</td></tr>
+          </table>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;align-items:start;gap:17px">
+          <div class="p-quote">
+            <div class="meta">Vlad · on what he carried out of 6MAP · Dorel's rule in action</div>
+            <p>"I need data in order for the model — it was a truism, but it's the truth. It can only infer to a certain point."</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Why this is a <i>sales</i> asset, not a "no"</h3>
+            <p style="font-size:12.5px">Every point above was trained <b style="color:#fff">from scratch</b> — and nobody in industry does that on images any more. Starting from a network pre-trained on millions of photos shifts this curve <b style="color:var(--vsp-accent)">left</b>, sometimes by an order of magnitude. That is a real, sellable answer to "we only have 200 photos" — and it is the same trade-off you meet again in <span class="code-chip">LSN-2.5</span>.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Straight line against a <b>log</b> x-axis: every <b>10×</b> more labelled data buys a roughly constant number of points — and costs 10× more to label. <b>That is the economics of every supervised ML proposal VSP will ever write.</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 4 · the degradation curve · bring it to LSN-1.6</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      14 min, the tail of segment 4's 30. Slow down here; this is the slide they will quote back to a client.
+      Put the plotted figure on screen from the notebook, not just this table, and read the SHAPE first: it is close to a straight line against a log x-axis. Say what that means in business terms - every 10x more labelled data buys roughly the same number of points, and every 10x costs about 10x more to label. That single sentence is the economics of every supervised ML proposal we will ever write.
+      The 200-example row is not interpolated - the notebook trains it, because the LSN-1.6 prospect says "a few hundred site photos". 64.41% at the lab's budget, 82.90% trained to exhaustion, on a problem VASTLY easier than construction photos: ten classes, centred, 28x28, no lighting, no occlusion, no camera angle, and every label already correct by hand.
+      Then the client move, and this is the pre-sales skill the module exists for. When a client says "we have some data", our next question is not a raised eyebrow, it is arithmetic: how much, how labelled, how fresh, and who decides what the label means? Asked from a chart you plotted yourself, that sounds like competence. Asked from a slide, it sounds like a stall.
+      Read Vlad's 6MAP quote out loud, once, and let it sit. Everyone in this room has now measured the thing he is describing.
+      CRITICAL - do not let the segment end on pessimism, because a "no" loses the deal and it is also not true. Every point on that curve was trained from scratch, and nobody does that on images any more. Transfer learning shifts the whole curve left. So the honest answer to "we only have 200 photos" is not "impossible", it is "not from scratch - here is what a pilot with a pre-trained backbone would look like, and here is the labelling we would need alongside it". Flag that this is the same prompt / RAG / fine-tune trade-off they meet in MOD-2.
+      Last thirty seconds, and it is administrative but it matters: the curve is saved to outputs/lsn-1.4/degradation_curve_<user>.json AND printed as a table in the notebook. LSN-1.6 opens on it. Tell them to keep it.
+    </aside>
+  </section>
+  <section data-label="Wrap">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-130px;left:-90px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 5 · 15 min · the vocabulary, the homework, and what is next</div>
+          <h2 class="vsp-h2" style="font-size:35px">What you just did <span class="vsp-glow">is the whole supervised-learning story.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.06fr 0.94fr;align-items:start;gap:17px">
+          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Every step, in the vocabulary you already had</h3>
+            <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
+              <tr><td style="width:47%">784 numbers per image</td><td><b>features</b> · LSN-1.2</td></tr>
+              <tr><td>the digit a human wrote</td><td><b>the label</b> · LSN-1.2</td></tr>
+              <tr><td>Linear→ReLU→Linear</td><td><b>the model</b> · LSN-1.1 "sort it"</td></tr>
+              <tr><td>CrossEntropyLoss</td><td><b>the loss</b></td></tr>
+              <tr class="hi"><td>backward + step, ×471</td><td><b>gradient descent</b></td></tr>
+              <tr><td>92.77% on unseen data</td><td><b>held-out accuracy</b> · LSN-1.3</td></tr>
+              <tr><td>the 10×10 table</td><td><b>confusion matrix</b> · LSN-1.3</td></tr>
+              <tr><td>the accuracy-vs-size curve</td><td><b>data requirements</b> · LSN-1.6</td></tr>
+            </table>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+              <h3 style="font-size:15px">Homework — graded · this <i>is</i> the ASM-1 artifact</h3>
+              <p style="font-size:12.5px;margin-bottom:7px">Re-run with <b style="color:var(--vsp-accent)">exactly one change</b> — layer width, epochs, or training-set size — plus <b style="color:#fff">three sentences</b>:</p>
+              <ul class="p-chk" style="gap:6px">
+                <li style="font-size:12.5px">what you changed, and to what</li>
+                <li style="font-size:12.5px">what moved — <b style="color:#fff">which</b> digits, <b style="color:#fff">which</b> direction</li>
+                <li style="font-size:12.5px">why — attribute the shift to the change</li>
+              </ul>
+              <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px"><b style="color:var(--vsp-accent)">"It got better" fails.</b> The notebook prints per-digit recall deltas — the sentence is in that column.</p>
+            </div>
+            <div class="p-callout" style="font-size:13.5px;padding:12px 16px">Exit question, one sentence each, round the room: <b>"a client says they have 200 labelled photos — what does your curve say?"</b></div>
+          </div>
+        </div>
+        <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:13px">
+          <div class="vsp-card" style="padding:12px 16px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:14.5px">Next: <span class="code-chip">LSN-1.5</span> — conversational deep learning · 1 h</h3>
+            <p style="font-size:12.5px">You have <i>trained</i> a neural network, so <i>layers</i> are the two Linears and <i>learning</i> is <span class="p-io">optimizer.step()</span>. The one thing ours could not do — know that pixel 100 sits above pixel 128 — is exactly what a <b style="color:#fff">CNN</b> adds.</p>
+          </div>
+          <div class="vsp-card" style="padding:12px 16px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:14.5px">Then: <span class="code-chip">LSN-1.6</span> — data requirements · 1 h</h3>
+            <p style="font-size:12.5px"><b style="color:var(--vsp-accent)">Bring the degradation curve.</b> That session opens on it, and the construction-site case is the point you marked at 200 examples.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Wrap + homework · serves OUT-1.4, verified by ASM-1 (artifact)</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+    </div>
+    <aside class="notes">
+      15 min, segment 5, and hard-stop at 150. Two things happen here: the mapping, and the homework.
+      Walk the mapping table row by row, and after each one say the session number out loud. This is the payoff of the whole module ordering - eight rows, and they built every one of them today rather than being shown it. When you reach gradient descent, note it is the only genuinely new word of the day.
+      Then the sentence that is the point of the lesson: everything else is scale. A frontier model swaps 784 inputs for text tokens, 101,770 parameters for hundreds of billions, 10,000 examples for a large slice of the public internet, and 471 gradient steps for months of GPU time. The loop is the same five lines, and they have read them. So "we trained a model" is no longer a sentence that should impress anybody in this room.
+      HOMEWORK, and be precise because it is graded and it is the ASM-1 artifact for OUT-1.4. Exactly one change. Three sentences. The grading standard: the notebook runs top to bottom, the change is isolated and named, and the sentences attribute the metric shift to the change. "It got better" fails - which digits, which direction, why.
+      Point them at the machinery: the notebook has a worked example (hidden 128 to 32, accuracy 92.77 to 91.38) with a full before/after comparison and three model sentences, then their own cell that runs their variant and prints the same comparison. It also refuses politely if they change two things at once, because then no sentence can honestly attribute anything.
+      Tell them the interesting submissions are often the deliberately bad ones - hidden=1 is a genuinely instructive experiment - and that the per-digit recall column is where the third sentence comes from.
+      Then the exit question, round the room, one sentence each, no discussion. "A client says they have 200 labelled photos - what does your curve say?" What you want to hear is a number and a next step. If somebody only says "not enough", ask them "and then what?" - that follow-up is the actual outcome of the session.
+      Close on LSN-1.5 and LSN-1.6 in two sentences, and say "bring the curve" last so it is the thing they walk out holding.
+    </aside>
+  </section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: false,
+  showSlideNumber: 'speaker',
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  plugins: [ RevealNotes ],
+  keyboard: {}
+});
+</script>
+</body>
+</html>
