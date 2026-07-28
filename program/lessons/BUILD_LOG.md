@@ -50,6 +50,10 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 - **SI-22** — Prove reproducibility, don't assert it: after executing, re-execute a copy and compare output blocks byte-for-byte (including PNG byte lengths). Byte-identical re-runs are the actual SI-3 acceptance test.
 - **SI-23** — 720 px is the law; slide counts are guidance. If a slide overflows at 1280×720, split it — never shrink content into illegibility to hit a target count. Any eval-shaped number in a plan or artifact (test-set size + pass bar) gets a sizing sanity check: compute P(false fail) at plausible true quality before shipping it.
 
+### Added for the MOD-1 cycle (Rounds 4–9)
+- **SI-24** — MOD-1 environment policy (supersedes SI-1's "core only" for MOD-1 lessons): the venv now also carries **scikit-learn 1.9, torch 2.13, torchvision 0.28** (Apple MPS available). Rules: (a) still no transformers/LLM libraries — those arrive in MOD-2; (b) datasets cache OUTSIDE the repo at `~/.cache/vsp-training-data` (MNIST train+test already pre-downloaded there — use `datasets.MNIST(root=Path.home()/".cache"/"vsp-training-data", download=True)`); never write datasets into the repo; (c) bound per-cell runtime — training cells must finish in well under 5 minutes on CPU/MPS (subset the data or cap epochs), and execute with `--ExecutePreprocessor.timeout=600`; state expected runtime in *markdown* and never print measured wall-clock — variable timings break SI-22 byte-identity (LL-24); (d) `torch.manual_seed` + `numpy` seeding both required (SI-3 applies to torch too); note that bit-identical torch outputs across machines are NOT guaranteed — keep SI-22's byte-comparison for numpy/prints, and use tolerance asserts for torch numbers.
+- **SI-25** — MOD-1 lessons 1.1–1.3 lean on Tyler's original "ML literacy deck," which is NOT in the repo (LL-21 precedent). The session deck you build IS the canonical deck for the lesson: carry the needed content yourself, cite the original as source, and report the workaround. Do not block on the missing file.
+
 ---
 
 ## Build log
@@ -120,3 +124,34 @@ The compounding worked: Round 1 surfaced arithmetic-defect and render-verificati
 executed those flawlessly and added content-mass + reveal-design lessons (SI-20/21); Round 3 executed *those*
 flawlessly and added reproducibility-proof + eval-sizing lessons (SI-22/23). Each builder independently applied the
 prior rounds' LL patterns unprompted. Next builds (MOD-1: LSN-1.1–1.6, incl. the GAP-8 MNIST lab) start from SI-1..23.
+
+---
+
+## MOD-1 cycle (Rounds 4–9) — LSN-1.1 through LSN-1.6
+
+Environment prepped 2026-07-28: sklearn/torch/torchvision installed, MNIST pre-cached (see SI-24). Known
+dependencies going in: LSN-1.6's case brief is `GAP-5` (Vlad/Dorel input) — build the runnable structure, mark the
+brief dependency; LSN-1.4 is `GAP-8` (a synthesis, not an adaptation — see Round 1 of the lesson-plan builds).
+
+### Round 4 — LSN-1.1 (builder: Opus 5, agent add410c2e98dd3016) — 2026-07-28 — **ACCEPTED**
+
+**Artifacts:** `notebooks/lessons/LSN-1.1_Five_ML_Jobs_Nesting_Doll.ipynb` (28 cells, 5 figures, executed clean; builder proved byte-identical re-run) · `program/lessons/decks/LSN-1.1-five-ml-jobs.html` (10 slides, timed notes 15/25/20 = 60).
+
+**Review verification:** independent re-execution clean; all 7 drill scenarios (6 + reserve) confirmed verbatim in notebook AND deck; answer key audited against the plan's key (all six match; builder's DEFENSIBLE-tier extensions on scenarios 1 and 5 accepted as pedagogically sound); no LLM libs imported (string hits were a compliance comment + diagram label); deck CSS core identical, CDN-only, 10/10 timed notes. Builder self-caught two figure defects and one prose-vs-computed-number drift. No fix round.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-24 | process | SI-24(c)'s "state the wall-clock" collides with SI-22 byte-identity for fast cells: printed timings vary run to run. Builder's resolution: stable `[PASS] fit finished in well under a second` text; measured timings never printed | Codified: expected runtime goes in *markdown*; never print measured wall-clock | SI-24 (amended) |
+| LL-25 | process | **Reviewer-side defect:** the review battery's verbatim check used a greedy quote regex that matched across markdown table cells → false 0/13 alarm on scenarios that were in fact verbatim. Cost one investigation loop | Battery fixed: verbatim checks extract exact scenario strings and compare whitespace-normalized | reviewer battery |
+| LL-26 | content | Keeper patterns: three-verdict drill grading (MATCH / DEFENSIBLE / MISS, each with prose reasons — richer than right/wrong and matches how triage really works); the fourth dashed nesting-doll ring ("also sold as AI: rule engines · RPA · dashboards") ; teaching a genuine tie (construction "% complete" → classify *or* regress) instead of hiding it | Kept as house patterns | — |
+| LL-27 | content | Discussion-lesson notebooks (vs labs/checkpoint lessons) need no checkpoint battery — companion + drill workspace is the right shape. First non-checkpoint notebook in the series establishes the template | Shape noted for LSN-1.2/1.5 (also discussion-shaped) | — |
+
+### Round 5 — LSN-1.2 (builder: Opus 5) — *pending*
+
+### Round 6 — LSN-1.3 (builder: Opus 5) — *pending*
+
+### Round 7 — LSN-1.4 (builder: Opus 5) — *pending*
+
+### Round 8 — LSN-1.5 (builder: Opus 5) — *pending*
+
+### Round 9 — LSN-1.6 (builder: Opus 5) — *pending*

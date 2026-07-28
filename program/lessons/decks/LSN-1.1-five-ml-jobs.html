@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSN-1.1 — The Five ML Jobs &amp; the Nesting Doll · VSP AI/ML Training</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  /* ============================================================
+     Victory Square Partners — Design System (inlined)
+     Source: Claude Design handoff bundle, June 2026 (mirrors index.html).
+     Dark near-black world · Navy=primary · Gold=accent/CTA · Green=support
+     Two-font: Syne (display) + Inter (body) · italic-gold headline accent.
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap');
+
+  :root {
+    --vsp-green-lightest: #97f377;
+    --vsp-green-light:     #7bd15d;
+    --vsp-green:           #65a74e;
+    --vsp-green-dark:      #4f813e;
+    --vsp-green-darkest:   #355629;
+    --vsp-yellow-lightest: #fff5c2;
+    --vsp-yellow-light:    #ffef96;
+    --vsp-yellow:          #ffe86b;
+    --vsp-navy-light:      #59709c;
+    --vsp-navy:            #46597c;
+    --vsp-navy-dark:       #344566;
+    --vsp-navy-darkest:    #2b374d;
+    --vsp-canvas:          #080c10;
+    --vsp-canvas-2:        #111820;
+    --vsp-canvas-3:        #1a2230;
+    --vsp-white:           #ffffff;
+    --vsp-black:           #0c0c0c;
+    --vsp-on-dark-strong:  rgba(255,255,255,0.85);
+    --vsp-on-dark:         rgba(255,255,255,0.70);
+    --vsp-on-dark-muted:   rgba(255,255,255,0.55);
+    --vsp-on-dark-faint:   rgba(255,255,255,0.40);
+    --vsp-on-dark-ghost:   rgba(255,255,255,0.25);
+    --vsp-primary:         var(--vsp-navy);
+    --vsp-accent:          var(--vsp-yellow);
+    --vsp-accent-ink:      var(--vsp-canvas);
+    --vsp-support:         var(--vsp-green);
+    --vsp-bg-gradient:     linear-gradient(160deg, var(--vsp-canvas) 0%, var(--vsp-canvas-2) 60%, var(--vsp-canvas-3) 100%);
+    --vsp-border:          rgba(255,255,255,0.10);
+    --vsp-font-display: 'Syne', 'Inter', system-ui, sans-serif;
+    --vsp-font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --vsp-tracking-kicker: 0.16em;
+    --vsp-radius-button: 6px;
+    --vsp-radius-card:   10px;
+    --vsp-radius-chip:   20px;
+  }
+
+  html, body { margin: 0; background: #0c0c0c; }
+  .reveal { font-family: var(--vsp-font-sans); }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 0; width: 1280px; height: 720px; background: transparent; box-sizing: border-box; }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; margin: 0; }
+
+  .vsp-slide {
+    position: relative; width: 1280px; height: 720px; overflow: hidden;
+    font-family: var(--vsp-font-sans); color: var(--vsp-on-dark-strong);
+    background: var(--vsp-bg-gradient); display: flex; flex-direction: column; box-sizing: border-box;
+  }
+  .vsp-grid {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .vsp-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .vsp-orb.yellow { background: var(--vsp-yellow); opacity: 0.08; }
+  .vsp-orb.green  { background: var(--vsp-green);  opacity: 0.10; }
+  .vsp-orb.green-l{ background: var(--vsp-green-lightest); opacity: 0.06; }
+  .vsp-orb.navy   { background: var(--vsp-navy-light); opacity: 0.16; }
+  .vsp-stage { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; padding: 64px 80px; }
+  .vsp-stage.center { justify-content: center; align-items: flex-start; }
+  .vsp-topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 28px 80px 0; }
+  .vsp-footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 80px 28px; font-size: 12px; font-weight: 500; color: var(--vsp-on-dark-ghost); }
+  .vsp-kicker { font-size: 13px; font-weight: 700; letter-spacing: var(--vsp-tracking-kicker); text-transform: uppercase; color: var(--vsp-accent); }
+  .vsp-rule { width: 64px; height: 4px; background: var(--vsp-accent); border-radius: 2px; }
+  .vsp-glow { font-style: italic; color: var(--vsp-accent); }
+  .vsp-h1 { font-family: var(--vsp-font-display); font-size: 64px; font-weight: 800; line-height: 1.02; color: var(--vsp-white); letter-spacing: -0.03em; margin: 0; }
+  .vsp-h2 { font-family: var(--vsp-font-display); font-size: 46px; font-weight: 800; line-height: 1.08; color: var(--vsp-white); letter-spacing: -0.025em; margin: 0; }
+  .vsp-lead { font-size: 21px; font-weight: 400; line-height: 1.55; color: var(--vsp-on-dark-muted); margin: 0; }
+  .vsp-card { position: relative; background: var(--vsp-canvas-2); border: 1px solid var(--vsp-border); border-radius: var(--vsp-radius-card); padding: 28px 28px 26px; overflow: hidden; }
+  .vsp-card .topbar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .vsp-card .topbar.green  { background: linear-gradient(90deg, var(--vsp-green), var(--vsp-green-lightest)); }
+  .vsp-card .topbar.yellow { background: linear-gradient(90deg, var(--vsp-yellow), var(--vsp-yellow-light)); }
+  .vsp-card h3 { font-family: var(--vsp-font-display); font-size: 24px; font-weight: 700; color: var(--vsp-white); margin: 0 0 8px; line-height: 1.15; letter-spacing: -0.02em; }
+  .vsp-card p  { font-size: 15px; line-height: 1.55; color: var(--vsp-on-dark); margin: 0; }
+  .vsp-wordmark { font-family: var(--vsp-font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.02em; color: var(--vsp-white); }
+  .vsp-wordmark span { color: var(--vsp-accent); }
+
+  .p-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .p-grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .p-chk { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  .p-chk li { position:relative; padding-left:30px; font-size:15px; line-height:1.45; color:var(--vsp-on-dark-strong); }
+  .p-chk li::before { content:''; position:absolute; left:0; top:3px; width:18px; height:18px; border-radius:50%; background:rgba(101,167,78,0.18); }
+  .p-chk li::after { content:''; position:absolute; left:6px; top:8px; width:5px; height:9px; border:2px solid var(--vsp-green-lightest); border-top:0; border-left:0; transform:rotate(40deg); }
+  .p-time { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:8px; }
+  .p-time::before { content:''; position:absolute; top:9px; left:6%; right:6%; height:2px; background:linear-gradient(90deg,var(--vsp-green),var(--vsp-accent)); }
+  .p-step { position:relative; padding-top:30px; text-align:center; padding-left:6px; padding-right:6px; }
+  .p-step .dot { position:absolute; top:2px; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--vsp-green); border:3px solid var(--vsp-canvas); }
+  .p-step.key .dot { background:var(--vsp-accent); }
+  .p-step .d { font-family:var(--vsp-font-display); font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:4px; }
+  .p-step .t { font-size:13.5px; font-weight:700; color:var(--vsp-white); margin-bottom:3px; line-height:1.2; }
+  .p-step .s { font-size:12px; color:var(--vsp-on-dark-muted); line-height:1.4; }
+  .p-callout { background:rgba(255,232,107,0.07); border-left:4px solid var(--vsp-accent); border-radius:0 10px 10px 0; padding:16px 20px; font-size:16px; font-weight:600; color:var(--vsp-white); line-height:1.45; }
+  .p-callout b { color:var(--vsp-accent); }
+  .p-ramp { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:end; }
+  .p-ramp .bar { background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:20px 18px; position:relative; overflow:hidden; }
+  .p-ramp .bar .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-ramp .bar .topbar.g  { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-ramp .bar .topbar.y  { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-ramp .lbl { font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:8px; }
+  .p-ramp .num { font-family:var(--vsp-font-display); font-size:46px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-ramp .sub { font-size:13px; color:var(--vsp-on-dark-muted); margin-top:8px; line-height:1.4; }
+  .p-pipe { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .p-pipe .node { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:16px 18px 15px; display:flex; align-items:flex-start; gap:13px; }
+  .p-pipe .node .n { font-family:var(--vsp-font-display); font-size:15px; font-weight:800; color:var(--vsp-accent-ink); background:var(--vsp-accent); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .p-pipe .node.moat .n { background:var(--vsp-green-lightest); }
+  .p-pipe .node .nt { font-size:15px; font-weight:700; color:var(--vsp-white); line-height:1.2; }
+  .p-pipe .node .ns { font-size:12.5px; color:var(--vsp-on-dark-muted); line-height:1.35; margin-top:3px; }
+  .code-chip { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:14px; background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:6px; padding:4px 10px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .p-count { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:18px 18px 16px; overflow:hidden; }
+  .p-count .topbar { position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-count.key .topbar { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-count .lbl { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:7px; line-height:1.3; }
+  .p-count .num { font-family:var(--vsp-font-display); font-size:38px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-count .sub { font-size:12.5px; color:var(--vsp-on-dark-muted); margin-top:7px; line-height:1.4; }
+  .p-tbl { width:100%; border-collapse:collapse; font-size:15px; }
+  .p-tbl th { text-align:left; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); padding:0 14px 9px 0; border-bottom:1px solid var(--vsp-border); }
+  .p-tbl td { padding:10px 14px 10px 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--vsp-on-dark); }
+  .p-tbl td b { color:var(--vsp-white); font-weight:700; }
+  .p-tbl tr.hi td { color:var(--vsp-on-dark-strong); background:rgba(255,232,107,0.06); }
+  .p-eq { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:15px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-quote { background:var(--vsp-canvas-2); border-left:4px solid var(--vsp-green); border-radius:0 10px 10px 0; padding:18px 22px; }
+  .p-quote .meta { font-size:11px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--vsp-green-lightest); margin-bottom:9px; }
+  .p-quote p { font-size:16.5px; line-height:1.5; color:var(--vsp-on-dark-strong); margin:0; font-style:italic; }
+  .p-tag { display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; border-radius:var(--vsp-radius-chip); padding:3px 10px; }
+  .p-tag.prop { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bug  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  /* ---- LSN-1.1 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-tag.job  { background:rgba(89,112,156,0.30); color:#cfe0ff; }
+  .p-tag.gen  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  .p-doll { display:flex; flex-direction:column; }
+  .p-doll .ring { border-radius:12px; padding:12px 16px 11px; }
+  .p-doll .ring + .ring, .p-doll .ring .ring { margin-top:9px; }
+  .p-doll .rl { display:block; font-family:var(--vsp-font-display); font-size:16px; font-weight:800;
+                color:var(--vsp-white); letter-spacing:-0.01em; }
+  .p-doll .rl em { font-family:var(--vsp-font-sans); font-style:italic; font-weight:400; font-size:12.5px;
+                   color:var(--vsp-on-dark-muted); letter-spacing:0; }
+  .p-doll .chip { display:block; font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:7px;
+                  line-height:1.35; }
+  .p-doll .ring.ai  { border:2px dashed rgba(255,255,255,0.26); }
+  .p-doll .ring.ml  { border:2px solid var(--vsp-navy-light);  background:rgba(89,112,156,0.12); }
+  .p-doll .ring.dl  { border:2px solid var(--vsp-green);       background:rgba(101,167,78,0.10); }
+  .p-doll .ring.gen { border:2px solid var(--vsp-yellow);      background:rgba(255,232,107,0.09); }
+  .p-scen { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .p-scen li { display:flex; gap:11px; align-items:flex-start; }
+  .p-scen .n { font-family:var(--vsp-font-sans); font-size:13px; font-weight:800;
+               color:var(--vsp-accent-ink); background:var(--vsp-accent); width:22px; height:22px;
+               border-radius:50%; display:flex; align-items:center; justify-content:center;
+               flex-shrink:0; margin-top:1px; }
+  .p-scen .who { font-size:12.5px; font-weight:700; color:var(--vsp-accent); text-transform:uppercase;
+                 letter-spacing:0.06em; }
+  .p-scen .q { font-size:13.5px; line-height:1.4; color:var(--vsp-on-dark-strong); font-style:italic; }
+  .p-io { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:12.5px;
+          color:var(--vsp-green-lightest); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 01 · COVER -->
+  <section data-label="Cover">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:600px;height:600px;top:-220px;right:-150px"></div>
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-180px;left:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-topbar">
+        <div class="vsp-wordmark">VICTORY SQUARE <span>PARTNERS</span></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
+      </div>
+      <div class="vsp-stage center" style="gap:22px">
+        <div class="vsp-kicker">AI/ML Training Program · LSN-1.1 · Weeks 1–2</div>
+        <h1 class="vsp-h1" style="max-width:1090px">They said "AI."<br><span class="vsp-glow">Which of six things did they mean?</span></h1>
+        <div class="vsp-rule"></div>
+        <p class="vsp-lead" style="max-width:960px">Five ML jobs — <b style="color:#fff">sort it, group it, guess a number, give the odds, pick the next move</b> — and the sixth answer, <b style="color:#fff">"that isn't ML at all."</b> Sixty minutes to make the triage a reflex, because the job you name in the first ten minutes of a call decides the data you ask for, the timeline you quote, and whether the proposal survives contact with reality.</p>
+      </div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy · The Five ML Jobs &amp; the Nesting Doll · serves OUT-1.1</span><span>Tyler Goble · 60 min · 15 / 25 / 20</span></div>
+    </div>
+    <aside class="notes">
+      2 min, and the budget is unforgiving: two meanings 15 min (slides 1–5) · the five jobs 25 min (slides 6–8) · triage drill 20 min (slides 9–10) = 60. The five jobs is the segment that wants to run long; the drill is the segment that must not be cut, because the drill is the outcome.
+      Open by asking the room for the word "AI" as they last heard a client use it. Take two or three, write them on the board, do not sort them yet. Slide 3 sorts them.
+      Set the frame: this is a vocabulary hour, not a modelling hour. Nobody trains anything today. The deliverable is that they can hear a sentence and name the job — that is OUT-1.1, and ASM-1 tests it twice (quiz scenarios + the mock pre-sales conversation where Vlad or Dorel plays the client).
+      Everyone should have the LSN-1.1 notebook open with their pre-work ask filled in, and the notebook is already executed — nothing depends on their machine keeping up.
+    </aside>
+  </section>
+
+  <!-- 02 · BRIDGE FROM MOD-0 + PRE-WORK -->
+  <section data-label="Bridge">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:22%;left:47%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div class="vsp-kicker">Bridge from MOD-0 · Pre-work target · 30 min</div>
+          <h2 class="vsp-h2" style="font-size:35px">Last week: every answer is a guess.<br><span class="vsp-glow">This week the guesses get job titles.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar green"></span>
+            <h3 style="font-size:17.5px">What you already own (MOD-0)</h3>
+            <ul class="p-chk" style="margin-top:9px">
+              <li>An ML answer is <b style="color:#fff">probabilistic</b> — a guess with a confidence you can audit</li>
+              <li><b style="color:#fff">Inference is deterministic</b> once the weights are pinned; the <b style="color:#fff">training was stochastic</b></li>
+              <li>Base rates, sample size, correlation ≠ causation — <b style="color:#fff">ASM-0 passed</b></li>
+            </ul>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted);margin-top:11px">Today adds no new theory. It adds <b style="color:#fff">names</b>, because the name is what you triage with.</p>
+          </div>
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17.5px">Where MOD-1 goes — and what today owes it</h3>
+            <table class="p-tbl" style="font-size:13px;margin-top:2px">
+              <tr class="hi"><td><b>1.1</b> today</td><td>which job is it — or is it not ML at all</td></tr>
+              <tr><td><b>1.2</b></td><td>what that job's model takes in and kicks out</td></tr>
+              <tr><td><b>1.3</b></td><td>is it any good — MAE, precision/recall, AUC</td></tr>
+              <tr><td><b>1.4</b></td><td>you train one yourself (MNIST, PyTorch)</td></tr>
+              <tr><td><b>1.5</b></td><td>NN · CNN · deep learning · RL, conversationally</td></tr>
+              <tr><td><b>1.6</b></td><td>the data questions that decide feasibility</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="p-quote">
+          <div class="meta">Vlad Damian · the module's scope, verbatim · ML is ~5% of this program</div>
+          <p>"Just enough ML to go through a pre-sales… to have a mini conversation about this and not look completely stupid."</p>
+        </div>
+        <div class="p-callout" style="font-size:15px;padding:13px 18px">Pre-work on the table now: <b>one real "AI" ask</b>, in the client's own words, <b>plus your guess at the job.</b> Segment 3 sorts them — and <b>somebody else triages yours.</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Pre-work + bridge</span><span>15 two meanings · 25 five jobs · 20 drill</span></div>
+    </div>
+    <aside class="notes">
+      2 min, inside segment 1's 15. Do not teach anything on this slide — it is orientation and a roll-call.
+      Say the source-material line plainly, once: the lesson plan points the pre-work at Tyler's original ML literacy deck, which is not in the repo. THIS deck plus the notebook's triage card are the canonical five-jobs material, exactly as LSN-0.4 did for the keywords. Nobody should go hunting for a file.
+      Roll-call the pre-work asks: hands up who has one. Do not read them out yet — they are the raw material for the back half of segment 3, and reading them now spends them.
+      Cash the MOD-0 callback in one sentence: last week you learned that the answer is a guess with a confidence; today you learn that there are exactly five shapes of that guess a client can buy from us, plus one thing they often want instead.
+      Vlad's quote is the scope, and it is also permission: nobody in the room needs to become an ML engineer. The bar is a conversation you do not embarrass yourself in — and, per Tyler, being able to look at an output and interpret it.
+    </aside>
+  </section>
+
+  <!-- 03 · THE TWO MEANINGS + THE TELLS -->
+  <section data-label="Two meanings">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:19px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 1 · "When they say AI…"</div>
+          <h2 class="vsp-h2" style="font-size:44px">Two meanings, <span class="vsp-glow">one word.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar green"></span>
+            <h3 style="font-size:19px">"I want to <span style="color:var(--vsp-green-lightest)">KNOW</span> x"</h3>
+            <p style="margin-bottom:9px">Predictive ML. The output is something you could put in a <b style="color:#fff">spreadsheet column</b>: a label, a number, a group id, a ranked list.</p>
+            <p style="font-size:14px"><b style="color:#fff">Sounds like:</b> <i>"tell us which / how many / how likely / what's next."</i></p>
+            <p style="font-size:14px;margin-top:8px"><b style="color:#fff">Lives or dies on:</b> where the labelled history is. <span class="code-chip">MOD-1</span></p>
+          </div>
+          <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar yellow"></span>
+            <h3 style="font-size:19px">"I want it to <span style="color:var(--vsp-accent)">CONVERSE</span> / write / reason"</h3>
+            <p style="margin-bottom:9px">Generative AI. The output is made of <b style="color:#fff">sentences</b> — an answer, a draft, a summary, a chat.</p>
+            <p style="font-size:14px"><b style="color:#fff">Sounds like:</b> <i>"a chatbot / draft it / summarise / answer questions from our documents."</i></p>
+            <p style="font-size:14px;margin-top:8px"><b style="color:#fff">Lives or dies on:</b> retrieval, and who owns a wrong answer. <span class="code-chip">MOD-2</span></p>
+          </div>
+        </div>
+        <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
+          <h3 style="font-size:17px">Three questions that settle almost every ask</h3>
+          <table class="p-tbl" style="font-size:14px;margin-top:5px">
+            <tr><td style="width:31%"><b>1. What comes out?</b></td><td>A number, a label, a group id, a ranked list — or sentences? <b>Sentences → MOD-2.</b> Make them describe <i>one row</i> of the output.</td></tr>
+            <tr><td><b>2. Is the answer written down for past cases?</b></td><td>Yes — a <span class="p-io">resolved_by_team</span>, a <span class="p-io">closed_won</span>, a <span class="p-io">delivered_late</span> — then it is <b>classify / regress / propensity</b>. No → <b>cluster</b>, or a labelling project nobody has priced.</td></tr>
+            <tr class="hi"><td><b>3. What will they DO with it?</b></td><td>The <b>action names the job</b> better than the ask does — and this is the question clients have not thought about.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 1 of 3</span><span>Notebook: the tell tables + a keyword lint you can run on your own ask</span></div>
+    </div>
+    <aside class="notes">
+      4 min. Take the client sentences you collected on slide 1 and sort them into the two columns, fast, out loud. Wrong sorts are useful; do not correct them yet.
+      The line to land: neither meaning is harder or better. What kills projects is confusing them — an LLM ask scoped as a model build, or a prediction problem answered with a chatbot. That is a proposal wrong by a factor of three, and it happens because one word covers both.
+      Walk the three questions and stress question 3. Question 1 gets you out of the "AI" fog, question 2 tells you whether it is buildable at all (that is LSN-1.6's whole hour), and question 3 is the one that makes you sound senior because the client usually has not decided.
+      If somebody asks about the keyword helper in the notebook: it is twenty lines of string matching, deliberately not ML — and knowing when NOT to reach for a model is part of the outcome. It refuses to answer when it finds no tells, which is the commonest real case.
+      Do not start naming the five jobs here. That is the next segment and it has its own 25 minutes.
+    </aside>
+  </section>
+
+  <!-- 04 · THE NESTING DOLL -->
+  <section data-label="Nesting doll">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:440px;height:440px;bottom:-170px;right:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 · The Nesting Doll</div>
+          <h2 class="vsp-h2" style="font-size:40px">ML ⊃ deep learning ⊃ generative AI.<br><span class="vsp-glow">Rings, not rivals.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.18fr 0.82fr;align-items:start">
+          <div class="p-doll">
+            <div class="ring ai">
+              <span class="rl">"AI" <em>— what the client says</em></span>
+              <div class="ring ml">
+                <span class="rl">MACHINE LEARNING <em>— behaviour learned from data, not written rule by rule</em></span>
+                <div class="ring dl">
+                  <span class="rl">DEEP LEARNING <em>— many layers; for raw inputs: pixels, audio, text</em></span>
+                  <div class="ring gen">
+                    <span class="rl">GENERATIVE AI <em>— the output is new content</em></span>
+                    <span class="chip">LLMs · chatbots · RAG · image generation &nbsp;·&nbsp; <b style="color:var(--vsp-accent)">MOD-2</b></span>
+                  </div>
+                  <span class="chip">MLP · CNN (images) · RNN · transformers &nbsp;·&nbsp; LSN-1.4 trains one · LSN-1.5 names them</span>
+                </div>
+                <span class="chip">logistic regression · gradient boosting · k-means · <b style="color:#fff">the five ML jobs</b> &nbsp;·&nbsp; MOD-1</span>
+              </div>
+              <span class="chip">also sold as "AI": rule engines · RPA · an optimiser · a SQL dashboard with a threshold on it</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
+              <h3 style="font-size:16px">Inner rings are not upgrades</h3>
+              <p style="font-size:13.5px">Deeper is for <b style="color:#fff">messier inputs</b>, not for harder problems. Solving a tabular classification with an LLM is the market's most common expensive mistake.</p>
+            </div>
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">Two independent questions</h3>
+              <p style="font-size:13.5px"><b style="color:#fff">Which job</b> (the five) and <b style="color:#fff">how deep</b> (the rings). Photos push you into the green ring even when the job is a plain classification.</p>
+            </div>
+            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">"Do you do AI or ML?"</h3>
+              <p style="font-size:13.5px">Unanswerable as asked. Answer with the rings, then ask which one their problem lives in. Thirty seconds, and the call changes tone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 1 of 3</span><span>Notebook: the same diagram, drawn in matplotlib</span></div>
+    </div>
+    <aside class="notes">
+      3 min, and draw it on the whiteboard while you talk rather than just showing it — people remember the drawing.
+      Outside-in, one sentence per ring: the client's "AI" is a marketing word · ML is anything that learns from data · deep learning is the part that handles raw inputs · generative AI is the part that writes things. Then the punchline: they are nested, so "AI or ML" is not a choice.
+      The outermost dashed ring matters commercially. Plenty of things sold as AI are not even ML — a rule engine, an optimiser, a threshold on a dashboard — and sometimes that IS the right answer for the client. Saying so is worth more than a model.
+      Then the caveat that saves money: inner rings are subsets, not upgrades. In 2026 the default reflex is "throw an LLM at it", and for a tabular classification problem that is ten times the cost for worse accuracy and no error bar.
+      Flag the two-questions card, because it sets up the next slide: the construction-site ask is a classification job AND a deep-learning build. Which job, and how deep — independent.
+    </aside>
+  </section>
+
+  <!-- 05 · WORKED EXAMPLE · CONSTRUCTION SITE -->
+  <section data-label="Worked example">
+    <div class="vsp-slide">
+      <div class="vsp-orb green" style="width:380px;height:380px;bottom:-150px;left:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 · Worked live · a real VSP prospect</div>
+          <h2 class="vsp-h2" style="font-size:38px">Same client, same photos.<br><span class="vsp-glow">One word changed the project.</span></h2>
+        </div>
+        <div class="p-quote">
+          <div class="meta">Construction-site completion prospect · Dorel's rule · walked in full in LSN-1.6</div>
+          <p>"We fly a drone over each site every week. Tell us from the photos whether each milestone is done."</p>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:17px 19px 15px"><span class="topbar green"></span>
+            <h3 style="font-size:17px">As asked → <span class="p-tag job">classification</span></h3>
+            <p style="font-size:14px;margin-bottom:8px">One answer per milestone per visit: <b style="color:#fff">done / not done</b>. A bucket, and a bucket is what releases a progress payment or sends a human to look.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)">Scope note: not "AI that watches your sites" — <b style="color:#fff">one decision per milestone</b>. Far more sellable, far more testable.</p>
+          </div>
+          <div class="vsp-card" style="padding:17px 19px 15px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">Change one word → <span class="p-tag gen">regression</span></h3>
+            <p style="font-size:14px;margin-bottom:8px"><i>"Tell us the <b style="color:#fff">% complete</b> for each site."</i> Now the output is a number with units — and everything downstream moves.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)">Different labels (somebody had to write down <b style="color:#fff">34%</b>, and two site managers won't agree within ten points), different grading, different way to be wrong in front of a client.</p>
+          </div>
+        </div>
+        <div class="p-callout">The job is set by <b>the sentence</b> — not the industry, not the data, not the technology. And because the input is <b>photographs</b>, both versions live in the <b>deep-learning ring</b> (a CNN, LSN-1.5), which is a <b>separate</b> question from which job it is.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 1 of 3</span><span>Seeds LSN-1.6: same case, run through the data-reality checklist</span></div>
+    </div>
+    <aside class="notes">
+      4 min, and work it as a live triage, not a reveal. Read the ask in the prospect's voice, then run the three questions from slide 3 at the room and make them answer: what comes out (done/not done per milestone) · is it written down anywhere (site managers sign milestones off, and there are photo archives — whether the two can be JOINED is the whole feasibility question) · what will they do with it (release a payment, or send someone to look).
+      Then change the word and let them feel the project move. "% complete" is regression: new labels somebody has to invent, a grading conversation in percentage points instead of right/wrong, and a much harder promise. Same client, same drone, same photos.
+      Do NOT run the data-reality checklist here — name the four questions and park them (who labelled the archive photos as complete; how many examples per milestone type; same camera angles and seasons; workers identifiable in frame and who owns the footage). That is LSN-1.6's 25-minute case walkthrough, and it lands harder if this hour only sets it up.
+      If the room wants to argue that "done/not done" is really a propensity model because the CNN outputs a probability: excellent, park it two minutes and cash it on slide 8. It is the classify-vs-propensity boundary, and the answer is what the client acts on — a payment release is a bucket.
+      Cash Dorel's rule out loud: this is a real prospect, not a textbook example. The room takes it differently when it is not hypothetical.
+    </aside>
+  </section>
+
+  <!-- 06 · THE FIVE JOBS · THE MAP -->
+  <section data-label="Five jobs map">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-190px;right:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:19px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 2 · 25 min · The Five Jobs</div>
+          <h2 class="vsp-h2" style="font-size:42px">Five jobs. <span class="vsp-glow">And the sixth answer.</span></h2>
+        </div>
+        <div class="vsp-card" style="padding:18px 22px 16px"><span class="topbar yellow"></span>
+          <table class="p-tbl" style="font-size:14px">
+            <tr><th>The job</th><th>The client's words</th><th>What comes out</th><th>Sales-world example</th></tr>
+            <tr><td><b>Classify</b> — sort it</td><td>"which bucket / which team / flag the ones that…"</td><td>one label from a <b>known, fixed</b> list</td><td>which inbound buyers convert</td></tr>
+            <tr><td><b>Cluster</b> — group it</td><td>"segment them — we don't know our categories"</td><td>a group <b>id</b>, meaningless until a human names it</td><td>account segments</td></tr>
+            <tr><td><b>Regress</b> — guess a number</td><td>"how much / how many / how long"</td><td>a number <b>with units</b>, and a typical miss</td><td>next year's spend per account</td></tr>
+            <tr class="hi"><td><b>Propensity</b> — give the odds</td><td>"how likely — so we can act early"</td><td>a <b>probability per entity</b>, built to be ranked</td><td>odds this deal closes</td></tr>
+            <tr><td><b>Recommend</b> — next move</td><td>"what should we do / offer / load next?"</td><td>a <b>ranked short list</b>, relative scores</td><td>next best action per account</td></tr>
+            <tr><td><i>(not ML)</i> <b>Generate / retrieve</b></td><td>"a chatbot; answer questions from our manual; draft it"</td><td><b>sentences</b> — and no target anywhere</td><td>→ MOD-2 · VSP's meeting-RAG</td></tr>
+          </table>
+        </div>
+        <div class="p-callout">Every row of that third column is a <b>probabilistic</b> answer — LSN-0.4, cashed. What changes across the five is the <b>shape</b> of the guess, and the shape is what the client's workflow has to swallow.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 2 of 3</span><span>Notebook: one small executed example per job</span></div>
+    </div>
+    <aside class="notes">
+      5 min. Read the table down the "client's words" column first, not the job column — that is the direction the skill actually runs in. They hear words; they produce a job name.
+      Keep this fast. The next two slides do the work; this one is the map, and the map's job is to show that the list is short and closed. Five, plus "not ML". A closed list is what makes a reflex possible.
+      Say the sales-world examples are all one industry on purpose (our own): the same five jobs recur in logistics, retail, field services and healthcare, and the words barely change. That transfer is the point.
+      The callback in the callout is worth ten seconds: all five outputs are guesses with confidences. The difference is the shape — a label, an id, a number, a probability, a list — and the shape is what has to fit into the client's workflow.
+      Do not read the whole table out loud verbatim. Pick two rows the room reacted to and move on.
+    </aside>
+  </section>
+
+  <!-- 07 · SORT IT · GROUP IT · GUESS A NUMBER -->
+  <section data-label="Jobs 1-3">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:24%;left:46%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:19px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 2 · Jobs 1–3</div>
+          <h2 class="vsp-h2" style="font-size:40px">Sort it · group it · <span class="vsp-glow">guess a number.</span></h2>
+        </div>
+        <div class="p-grid3">
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar green"></span>
+            <h3 style="font-size:20px">Classify <span style="font-size:14px;color:var(--vsp-on-dark-muted)">— sort it</span></h3>
+            <p style="margin-bottom:9px"><span class="p-io">features → one label</span> from a known, fixed list.</p>
+            <p style="font-size:14px;margin-bottom:9px"><b style="color:#fff">Sales:</b> which inbound buyers convert, so reps work the right list.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)"><b style="color:var(--vsp-green-lightest)">The money question:</b> who already wrote the answer down? A resolver, a <span class="p-io">closed_won</span> flag, an approval. <b style="color:#fff">Free labels are the difference between six weeks and a labelling programme.</b></p>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar yellow"></span>
+            <h3 style="font-size:20px">Cluster <span style="font-size:14px;color:var(--vsp-on-dark-muted)">— group it</span></h3>
+            <p style="margin-bottom:9px"><span class="p-io">features, no labels → a group id</span> per item.</p>
+            <p style="font-size:14px;margin-bottom:9px"><b style="color:#fff">Sales:</b> account segments marketing can treat differently.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)"><b style="color:var(--vsp-accent)">The trap:</b> the model returns <span class="p-io">0, 1, 2</span>. Those mean <b style="color:#fff">nothing</b> until a human names them — so never scope "a clustering model". Scope <b style="color:#fff">"3–6 named groups that differ on something you'd act on."</b></p>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar green"></span>
+            <h3 style="font-size:20px">Regress <span style="font-size:14px;color:var(--vsp-on-dark-muted)">— guess a number</span></h3>
+            <p style="margin-bottom:9px"><span class="p-io">features → one number, with units</span>.</p>
+            <p style="font-size:14px;margin-bottom:9px"><b style="color:#fff">Sales:</b> what this account will spend next year. A <b style="color:#fff">forecast</b> is this job with time in the features.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)"><b style="color:var(--vsp-green-lightest)">Say two things, always:</b> the units, and the <b style="color:#fff">typical miss</b>. A number with no error bar is a wish, and clients plan to your decimal places.</p>
+          </div>
+        </div>
+        <div class="p-callout">Notebook, one figure each: a fitted <b>split line</b> (which side is the label) · three <b>discovered groups</b> with a blank "name" column · a fitted line with a <b>±miss band</b> in dollars. Three lines of scikit-learn apiece — <b>props, not models.</b> Grading is LSN-1.3.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 2 of 3</span><span>Notebook figures: classify · cluster · regress</span></div>
+    </div>
+    <aside class="notes">
+      10 min — the longest single stretch of the hour, and the one to protect. Roughly 3 min per card and 1 min on the notebook figures.
+      Classify: lead with the labels-are-free point, because it is the most commercially useful sentence in the module. Ask the room where labels hide in a system they know: a resolver field, a disposition code, an approval, a refund reason. That question in a discovery call is worth an hour of architecture talk.
+      Cluster: this is where clients are most often disappointed, so spend the extra thirty seconds. Show the notebook's summary table with the blank "the name marketing needs" column and say it out loud: no model produces that column. The deliverable is named groups, and the judge is whether the head of marketing recognises their own customers.
+      Regress: force the two-part sentence — the number AND the miss. Use the notebook's numbers: $39,936, typically within $3,131. Then ask what happens when the client's slide says $39,936 and the quarter comes in at $36,000. That is a support ticket you created by omitting a range.
+      Keep saying "the model here is a prop". Nobody should leave thinking a 240-row logistic regression is a deliverable — LSN-1.4 is where they train something real, and LSN-1.3 is where "is it good?" gets an answer.
+      If you are behind the clock, cut the notebook-figures minute, not a card.
+    </aside>
+  </section>
+
+  <!-- 08 · GIVE THE ODDS · PICK THE NEXT MOVE + BOUNDARIES -->
+  <section data-label="Jobs 4-5">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:420px;height:420px;bottom:-170px;right:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 · Jobs 4–5 · and the arguments</div>
+          <h2 class="vsp-h2" style="font-size:38px">Give the odds · pick the next move.<br><span class="vsp-glow">Then the boundary fights.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:16px 19px 14px"><span class="topbar yellow"></span>
+            <h3 style="font-size:18px">Propensity <span style="font-size:13.5px;color:var(--vsp-on-dark-muted)">— give the odds</span></h3>
+            <p style="font-size:14px;margin-bottom:7px"><span class="p-io">one entity → one probability</span>. Often the <b style="color:#fff">same model</b> as classify; the client acts on <b style="color:#fff">the number</b>.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)"><b style="color:var(--vsp-accent)">Why they want odds:</b> capacity. They can work 40 deals, call 20 depots. A probability is what you sort a limited day by — and <b style="color:#fff">the threshold is a business decision, not a modelling one.</b></p>
+          </div>
+          <div class="vsp-card" style="padding:16px 19px 14px"><span class="topbar green"></span>
+            <h3 style="font-size:18px">Recommend <span style="font-size:13.5px;color:var(--vsp-on-dark-muted)">— pick the next move</span></h3>
+            <p style="font-size:14px;margin-bottom:7px"><span class="p-io">history + context → a ranked short list</span> with relative scores.</p>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted)"><b style="color:var(--vsp-green-lightest)">Read it relatively:</b> rank 1 beats rank 2; <span class="p-io">0.31</span> alone means nothing. Judged on whether the <b style="color:#fff">short list</b> was useful and the human took it. Ask: <b style="color:#fff">how many slots are there?</b></p>
+          </div>
+        </div>
+        <div class="vsp-card" style="padding:15px 20px 13px"><span class="topbar yellow"></span>
+          <h3 style="font-size:16.5px">The four boundaries people actually argue about — settled by <span class="vsp-glow" style="font-style:normal">what the client does with the output</span>, never by the maths</h3>
+          <table class="p-tbl" style="font-size:13.5px;margin-top:4px">
+            <tr><td style="width:24%"><b>classify vs propensity</b></td><td>Bucket or number? <i>"Flag the late ones"</i> → classify. <i>"Rank tomorrow's shipments so dispatch calls the top 20"</i> → propensity. <b>Propensity is classify whose threshold the client owns.</b></td></tr>
+            <tr><td><b>cluster vs classify</b></td><td>Has anyone ever written the answer next to a past example? Yes → classify. No → cluster. <b>Today's clustering is next year's classifier.</b></td></tr>
+            <tr><td><b>regress vs propensity</b></td><td>Units, or the odds of an event? Dollars, days, seats → regress. A probability of something happening → propensity.</td></tr>
+            <tr class="hi"><td><b>recommend vs classify</b></td><td>One winner from a handful of known buckets → classify. A ranked short list out of thousands → recommend. <b>The tell is capacity.</b></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 2 of 3</span><span>The fifth boundary: is it in the five at all? Sentences out → MOD-2</span></div>
+    </div>
+    <aside class="notes">
+      10 min: about 2 per card and 6 on the boundary table, which is where the drill is won or lost.
+      Propensity: show the notebook's ranked-odds chart and point at the dashed capacity line. Say it plainly — that line is not a model output, it is how many deals a human can work before Friday. Then the LSN-0.4 sentence: "0.74 is not a promise about this deal; of the deals we score near 0.74, about 74 in 100 close, and we re-check quarterly."
+      Recommend: the shape is a list, which is why the notebook prints a table instead of a chart. Kill the instinct to read the score as a probability. "How many slots are there" is the spec question: five offers on a screen, one truckload of parts.
+      The boundary table is the segment's real payload — do not rush it, and use the room's own disagreements from slide 5 (the "isn't done/not-done really a probability?" argument). Every row resolves the same way: what does the client DO with the output.
+      Nobody gets the five names wrong in a drill. What they get wrong is the boundary, under pressure, with a client pushing. Say that, then go straight to the drill.
+      If somebody asks about the fifth boundary in the footer: yes — the most expensive one is "is this even in the five?" and the drill's scenario 6 is exactly that.
+    </aside>
+  </section>
+
+  <!-- 09 · THE TRIAGE DRILL -->
+  <section data-label="Triage drill">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:17px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 3 · 20 min · The Triage Drill</div>
+          <h2 class="vsp-h2" style="font-size:38px">Six asks, cold. <span class="vsp-glow">One word each, in writing, first.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:0.86fr 1.14fr;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:16px 19px 14px"><span class="topbar yellow"></span>
+              <h3 style="font-size:16.5px">How this runs</h3>
+              <ul class="p-chk" style="margin-top:9px;gap:9px">
+                <li style="font-size:14px">One ask read out at a time — <b style="color:#fff">everyone commits a word</b> in the notebook cell <b style="color:#fff">before</b> anyone speaks</li>
+                <li style="font-size:14px">Then hands up per job, and the room argues</li>
+                <li style="font-size:14px">The instructor <b style="color:#fff">plays the client and pushes back</b></li>
+                <li style="font-size:14px">Answer key cell runs <b style="color:#fff">after</b> the argument, never before</li>
+              </ul>
+            </div>
+            <div class="vsp-card" style="padding:15px 19px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">The pushbacks, in character</h3>
+              <p style="font-size:13.5px;font-style:italic;color:var(--vsp-on-dark-strong)">"But surely you can just tell us yes or no?" · "Can't ChatGPT do this?" · "We don't have any of that written down — is that a problem?"</p>
+              <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:8px">Half of these legitimately move when one detail changes. What is graded is <b style="color:#fff">holding the call or changing it for a stated reason.</b></p>
+            </div>
+          </div>
+          <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16.5px">The six</h3>
+            <ul class="p-scen" style="margin-top:10px">
+              <li><span class="n">1</span><span><span class="who">Logistics client</span><br><span class="q">"We have three years of delivery records. Can AI tell us the odds a given shipment arrives late, so dispatch can intervene early?"</span></span></li>
+              <li><span class="n">2</span><span><span class="who">Retail client</span><br><span class="q">"We have 40,000 customers. Group them into meaningful segments so marketing can target each differently."</span></span></li>
+              <li><span class="n">3</span><span><span class="who">SaaS client</span><br><span class="q">"Support gets 800 tickets a day. Route each one to the right team automatically."</span></span></li>
+              <li><span class="n">4</span><span><span class="who">CFO</span><br><span class="q">"Forecast next quarter's cloud spend from usage history."</span></span></li>
+              <li><span class="n">5</span><span><span class="who">Field-services client</span><br><span class="q">"Given the job description, tell the technician which spare parts to load on the truck."</span></span></li>
+              <li><span class="n">6</span><span><span class="who">Ops director</span><br><span class="q">"We want a chatbot that answers staff questions from our 500-page policy manual."</span></span></li>
+            </ul>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:10px"><b style="color:var(--vsp-accent)">Reserve, if the group is fast:</b> <i>"Can AI draft our proposals from past winning bids?"</i></p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.1 · Segment 3 of 3</span><span>Notebook: fill-in cell, then the answer key with reasoning</span></div>
+    </div>
+    <aside class="notes">
+      14 min — roughly 2 min per ask plus the reserve if the room is fast. Do not put the answers on the screen; they are in the notebook's key cell and below, here, for you.
+      KEY 1 · PROPENSITY. Three years of records means it is supervised; they asked for the ODDS and said why — "so dispatch can intervene early". Odds are what you rank a capacity-limited morning by. CLASSIFY is defensible and the lesson plan says so: if all they wanted was a late/on-time flag it collapses to classification. Push back with "can't you just tell us yes or no?" and see who holds the distinction.
+      KEY 2 · CLUSTER. No labels exist; the model proposes groups, humans name them. If someone says classify, ask them to name the label column — then agree that once marketing names four segments and tags a few thousand customers, the NEXT project is a classifier.
+      KEY 3 · CLASSIFY. Fixed known buckets, and the labels are free: every historical ticket carries the team that resolved it. Push back with "can't ChatGPT do this?" — the honest answer is that an LLM might be the cheapest implementation, and the JOB is still classification. Do not let the tool rename the job.
+      KEY 4 · REGRESS. A number with units, no event to be the odds of. Accept "forecast" and "time-series" — a forecast is regression with time in the features. Add the missing half yourself: the range. Then upsell the propensity question: "the odds we blow the budget" is a different, sellable model.
+      KEY 5 · RECOMMEND. Thousands of SKUs, one truck: a ranked short list from co-occurrence in past jobs. CLASSIFY (multi-label, one yes/no per part) is genuinely defensible and is how many real systems are built — the tell that decides it is the truck, i.e. capacity.
+      KEY 6 · NOT ML. No target column anywhere; they want retrieval plus generation over a manual. Route to MOD-2, and reference VSP's own meeting-RAG rather than a classifier. The best wrong answer is "recommend" — retrieval really is a ranking problem (LSN-2.3) — but what the client buys is the generated answer. RESERVE: also not ML, generative — and the honest question is who signs off on a drafted proposal.
+      Then hand over to slide 10 for the participants' own asks. If the six ran long, cut the reserve, never the own-asks round.
+    </aside>
+  </section>
+
+  <!-- 10 · CLOSE -->
+  <section data-label="Close">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage center" style="gap:18px;align-items:center;text-align:center">
+        <div class="vsp-kicker">Segment 3 · Your own asks · then the close</div>
+        <h2 class="vsp-h2" style="font-size:42px">Your ask, <span class="vsp-glow">triaged by somebody else.</span></h2>
+        <p class="vsp-lead" style="max-width:1000px">Two minutes each, three parts, out loud: <b style="color:#fff">one word</b> · <b style="color:#fff">the tell</b> — a phrase from <i>their</i> sentence, not your paraphrase · <b style="color:#fff">one sentence back to that client, containing a question.</b> A triage that ends in a job title is half a triage.</p>
+        <div style="display:flex;gap:34px;flex-wrap:wrap;justify-content:center;margin-top:2px;text-align:left">
+          <div class="vsp-card" style="padding:16px 19px 14px;max-width:390px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">No homework</h3>
+            <p style="font-size:13.5px">It feeds <b style="color:#fff">LSN-1.2</b> instead. Pre-work, 20 min: the deck sections on model types and reading outputs, plus <b style="color:var(--vsp-accent)">one sentence — what does a "lead score of 0.73" mean, exactly?</b></p>
+          </div>
+          <div class="vsp-card" style="padding:16px 19px 14px;max-width:390px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">Keep your triaged ask</h3>
+            <p style="font-size:13.5px">It is the thread: <b style="color:#fff">1.2</b> asks what that model takes in and kicks out · <b style="color:#fff">1.3</b> how you would grade it · <b style="color:#fff">1.6</b> whether the data exists · <b style="color:#fff">ASM-1</b> a client asks you about it.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="text-align:left;max-width:1010px">The sentence to leave with: <b>"Before I answer — is this something you want to KNOW, or something you want it to SAY?"</b> Ask that in the first ten minutes and you never scope the wrong project.</div>
+        <div class="vsp-wordmark" style="margin-top:2px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
+      </div>
+    </div>
+    <aside class="notes">
+      6 min, the tail of segment 3's 20. Run as many own-asks as the clock allows — six to eight is realistic — and hard-stop at 60.
+      Enforce the three-part shape: word, tell, one sentence back to the client. The tell has to be a phrase from the client's own sentence; if it is the participant's inference, they must say so. That habit is the difference between a triage and a guess.
+      The no-verb case will show up: "we want to use AI to be more efficient." Full marks for refusing to guess and asking "what decision would this output drive, and who acts on it?" Say explicitly that this answer also scores in ASM-1 — honesty is graded, per the rubric's honesty-about-limitations dimension.
+      No homework, and say why: the ask they brought today is the thread through 1.2, 1.3, 1.6 and the ASM-1 mock conversation. Tell them to keep the saved outputs/lsn-1.1 file.
+      Last thing, no answers out loud: "think of one client ask you have already answered with the wrong one of these six." Everybody has one. That flinch is the outcome.
+    </aside>
+  </section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: false,
+  showSlideNumber: 'speaker',
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  plugins: [ RevealNotes ],
+  keyboard: {}
+});
+</script>
+</body>
+</html>

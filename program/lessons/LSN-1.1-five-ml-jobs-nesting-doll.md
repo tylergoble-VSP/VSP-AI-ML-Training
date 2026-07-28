@@ -28,7 +28,7 @@ Kills the misconception that "AI" means one thing — clients use the word for b
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Read the ML literacy deck (see PROGRAM_PLAN.md §8) through the five-jobs section | 20 min | Nothing to submit — quizzed cold in the drill |
+| 1 | Read the five-jobs material — canonical target: `program/lessons/decks/LSN-1.1-five-ml-jobs.html` slides 3–6 (mirrors the original ML literacy deck's five-jobs section, not yet in repo) | 20 min | Nothing to submit — quizzed cold in the drill |
 | 2 | Write down one real "AI" ask from a project or client you've been on, plus your guess at which job it is | 10 min | The ask + your guess, one or two sentences |
 
 ## Session Plan
@@ -66,10 +66,14 @@ None — feeds into LSN-1.2 pre-work. Keep your triaged ask; LSN-1.2 asks what t
 
 | Material | Status | Path / source |
 |---|---|---|
-| ML literacy deck (five-jobs + nesting-doll sections) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
-| Triage drill scenarios + answer key | exists | This plan (above) |
-| Participants' pre-work asks | exists | Collected at session start |
+| **Session deck** — 10 slides w/ timed notes; carries five jobs, tells, nesting doll (canonical, per SI-25) | exists | `program/lessons/decks/LSN-1.1-five-ml-jobs.html` |
+| **Session notebook** — pre-work fill-in + per-job visuals + triage-drill workspace w/ graded key + construction-site worked example, executed end to end | exists | `notebooks/lessons/LSN-1.1_Five_ML_Jobs_Nesting_Doll.ipynb` |
+| ML literacy deck (five-jobs + nesting-doll sections — original source) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
+| Triage drill scenarios + answer key | exists | This plan (above) + notebook drill cells (verbatim) |
+| Participants' pre-work asks | exists | Collected at session start (notebook pre-work cell saves to `outputs/lsn-1.1/`) |
 
 ## Delivery Notes
 
 To be filled after first delivery: what landed, what dragged, timing reality. Feeds the MOD-1 retro.
+
+Pre-delivery watch item (from the Round-4 build): segment 1's 15 minutes carry the two meanings *and* the nesting doll *and* the worked example — deliverable as budgeted (2/2/4/3/4) but with zero slack; if it drags, steal from the drill's rapid-fire portion, not from the five jobs.
