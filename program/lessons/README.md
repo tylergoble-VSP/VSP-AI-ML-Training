@@ -8,28 +8,28 @@ One file per lesson, named `LSN-<n>.<m>-<kebab-title>.md`, authored from [`TEMPL
 
 | Lesson | Title | Owner | Plan status |
 |---|---|---|---|
-| `LSN-0.1` | Orientation & environment setup | Tyler + Marius | not started |
-| `LSN-0.2` | Statistics I — distributions, sampling, variance | Tyler | not started |
-| `LSN-0.3` | Statistics II — probability, correlation ≠ causation | Tyler | not started |
-| `LSN-0.4` | Deterministic, probabilistic, stochastic | Tyler | not started |
-| `LSN-1.1` | The five ML jobs & the nesting doll | Tyler | not started |
-| `LSN-1.2` | Model I/O | Tyler | not started |
-| `LSN-1.3` | Grading models | Tyler | not started |
-| `LSN-1.4` | Hands-on: train MNIST | Tyler / Stefana | not started |
-| `LSN-1.5` | Conversational deep learning | Tyler | not started |
-| `LSN-1.6` | Data requirements & pre-sales question bank | Tyler + Vlad | not started |
-| `LSN-2.1` | How LLMs actually work | Tyler | not started |
-| `LSN-2.2` | Prompting as engineering | Tyler | not started |
-| `LSN-2.3` | Embeddings & vector search | Tyler | not started |
-| `LSN-2.4` | Hands-on: build a RAG | Tyler | not started |
-| `LSN-2.5` | Prompt vs RAG vs fine-tune | Tyler | not started |
-| `LSN-2.6` | Limitations & what to promise a client | Tyler | not started |
-| `LSN-3.1` | What is an agent | Tyler | not started |
-| `LSN-3.2` | Framework landscape | Guest / TBD | not started |
-| `LSN-3.3` | Cloud landscape | Per-cloud owners TBD | not started |
-| `LSN-3.4` | Hands-on: build a tool-calling agent | Tyler | not started |
-| `LSN-3.5` | Production concerns | Tyler + guest | not started |
-| `LSN-3.6` | Real VSP cases, end to end | Vlad + Dorel + Tyler | not started |
+| `LSN-0.1` | Orientation & environment setup | Tyler + Marius | draft |
+| `LSN-0.2` | Statistics I — distributions, sampling, variance | Tyler | draft |
+| `LSN-0.3` | Statistics II — probability, correlation ≠ causation | Tyler | draft |
+| `LSN-0.4` | Deterministic, probabilistic, stochastic | Tyler | draft |
+| `LSN-1.1` | The five ML jobs & the nesting doll | Tyler | draft |
+| `LSN-1.2` | Model I/O | Tyler | draft |
+| `LSN-1.3` | Grading models | Tyler | draft |
+| `LSN-1.4` | Hands-on: train MNIST | Tyler / Stefana | draft |
+| `LSN-1.5` | Conversational deep learning | Tyler | draft |
+| `LSN-1.6` | Data requirements & pre-sales question bank | Tyler + Vlad | draft |
+| `LSN-2.1` | How LLMs actually work | Tyler | draft |
+| `LSN-2.2` | Prompting as engineering | Tyler | draft |
+| `LSN-2.3` | Embeddings & vector search | Tyler | draft |
+| `LSN-2.4` | Hands-on: build a RAG | Tyler | draft |
+| `LSN-2.5` | Prompt vs RAG vs fine-tune | Tyler | draft |
+| `LSN-2.6` | Limitations & what to promise a client | Tyler | draft |
+| `LSN-3.1` | What is an agent | Tyler | draft |
+| `LSN-3.2` | Framework landscape | Guest / TBD | draft |
+| `LSN-3.3` | Cloud landscape | Per-cloud owners TBD | draft |
+| `LSN-3.4` | Hands-on: build a tool-calling agent | Tyler | draft |
+| `LSN-3.5` | Production concerns | Tyler + guest | draft |
+| `LSN-3.6` | Real VSP cases, end to end | Vlad + Dorel + Tyler | draft |
 
 Status vocabulary (matches `TEMPLATE.md` frontmatter): `not started → draft → reviewed → approved → delivered`. Update this board whenever a plan changes status.
 

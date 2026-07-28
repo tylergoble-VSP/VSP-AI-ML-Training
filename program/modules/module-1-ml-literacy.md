@@ -13,7 +13,7 @@ description: ML literacy — triage a client ask into the five ML jobs, interpre
 | **Tier** | Basics |
 | **Pillar** | ML (~5% of the total program — scoped to pre-sales fluency, per Vlad) |
 | **Week** | 1–2 |
-| **Total effort** | ~8.5 h sessions + ~3 h pre-work/homework |
+| **Total effort** | ~9 h sessions incl. checkpoint + ~3 h pre-work/homework |
 | **Module owner** | Tyler Goble |
 | **Prerequisite** | `ASM-0` passed |
 | **Checkpoint** | `ASM-1` |
@@ -42,8 +42,8 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 | `LSN-1.1` | The five ML jobs & the nesting doll | 1 h | Tyler | Live | Exists (ML literacy deck) |
 | `LSN-1.2` | Model I/O — inputs, outputs, interpretation | 1 h | Tyler | Live | Exists (deck + notebooks) |
 | `LSN-1.3` | Grading models — MAE, precision/recall, AUC | 1.5 h | Tyler | Live | Exists (deck + `foundations/12`) |
-| `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Adapt (**GAP-8**) |
-| `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded + Q&A | Exists (notebooks as refs) |
+| `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Build (**GAP-8**) |
+| `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded (45 min) + live Q&A/drill (15 min) | Exists (notebooks as refs) |
 | `LSN-1.6` | Data requirements, limitations & the pre-sales question bank | 1 h | Tyler + Vlad | Live | **BUILD — GAP-5** |
 | — | `ASM-1` — quiz + mock pre-sales conversation | 1 h | Tyler + Vlad | Live roleplay | **BUILD — GAP-6** |
 
@@ -132,7 +132,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Homework (artifact, graded):** Re-run with one change (layer size, epochs, training-set size) and submit the notebook + three sentences on what changed and why.
 
-**Support material:** Adapt (**GAP-8**) — `notebooks/neural_networks/01_Perceptron_MLP.ipynb` and `02_CNN.ipynb` reworked into a guided fill-in lab for non-ML engineers.
+**Support material:** Build (**GAP-8**) — new guided fill-in lab for non-ML engineers, synthesized from `notebooks/neural_networks/01_NeuralNetworks_Perceptron_MLP.ipynb` (MLP framing — but sklearn, no MNIST) and `02_NeuralNetworks_Convolutional_Neural_Networks.ipynb` (PyTorch + MNIST — but CNN). Neither is a PyTorch MLP on MNIST as-is; this is a synthesis, not a light adaptation.
 
 ---
 
@@ -206,6 +206,6 @@ The mock conversation is the point of the module — it rehearses the exact skil
 
 | ID | Item | Owner | Needed by |
 |---|---|---|---|
-| `GAP-8` | Guided MNIST lab notebook (adapted from `neural_networks/01–02`) | Tyler (+ Stefana review) | Week 2 |
+| `GAP-8` | Guided MNIST lab notebook (synthesized from `neural_networks/01–02` — see LSN-1.4) | Tyler (+ Stefana review) | Week 2 |
 | `GAP-5` (share) | Construction-site case brief + question bank template | Vlad/Dorel + Tyler | Week 2 |
 | `GAP-6` (share) | ASM-1 quiz + mock-conversation rubric | Tyler | End of Week 2 |

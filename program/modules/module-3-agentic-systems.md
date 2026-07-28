@@ -27,7 +27,7 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 | ID | After MOD-3 you can… | Serves |
 |---|---|---|
 | `OUT-3.1` | Explain what an agent is — tools, loops, harnesses — and judge when an agent beats a plain workflow | GOAL-3, GOAL-4 |
-| `OUT-3.2` | Map the framework landscape (LangChain, LangGraph, LangSmith, Haystack) and cloud offerings (GCP Vertex, AWS Bedrock, Azure AI Foundry) to use cases | GOAL-3 |
+| `OUT-3.2` | Map the framework landscape (LangChain, LangGraph, LangSmith, Haystack) and cloud offerings (GCP Vertex, AWS Bedrock, Microsoft Foundry — formerly Azure AI Foundry) to use cases | GOAL-3 |
 | `OUT-3.3` | Personally build a tool-calling agent end to end | GOAL-3, GOAL-6 |
 | `OUT-3.4` | Ask the production questions: observability, reliability, evals, KPIs, hardware, cost | GOAL-3, GOAL-4 |
 | `OUT-3.5` | Walk a real VSP case from client ask → architecture → production concerns, speaking both languages | GOAL-1, GOAL-2, GOAL-3, GOAL-4 |
@@ -64,7 +64,7 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 
 **Homework:** None (pre-work for the lab).
 
-**Support material:** Exists — `notebooks/generative_ai/06_Tool_Calling_Agents.ipynb` (concept sections); curated reading list at lesson-plan time.
+**Support material:** Exists — `notebooks/generative_ai/06_GenerativeAI_Tool_Calling_Agents.ipynb` (concept sections); curated reading list at lesson-plan time.
 
 ---
 
@@ -90,7 +90,7 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 
 ---
 
-### LSN-3.3 — Cloud Landscape: Vertex, Bedrock, Azure AI Foundry
+### LSN-3.3 — Cloud Landscape: Vertex, Bedrock, Microsoft Foundry
 
 | Duration | Owner | Serves |
 |---|---|---|
@@ -101,9 +101,9 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 **Pre-work (~30 min):** Each participant skims one assigned cloud's AI landing page and brings one "what is this actually?" question.
 
 **Session outline:**
-1. The rubric — how to compare clouds without marketing fog (10 min)
-2. GCP Vertex AI (25 min) · AWS Bedrock (25 min) · Azure AI Foundry (25 min) — same rubric each
-3. Cross-examination: participants' questions (15 min)
+1. The rubric — how to compare clouds without marketing fog (5 min)
+2. GCP Vertex AI (25 min) · AWS Bedrock (25 min) · Microsoft Foundry (25 min) — same rubric each
+3. Cross-examination: participants' questions (10 min)
 
 **Homework:** None.
 
@@ -130,7 +130,7 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 
 **Homework (artifact, graded):** Add a third tool and one eval check (does the agent's final answer match a known-good answer on 3 test tasks?); submit notebook + traces.
 
-**Support material:** Extend — `notebooks/generative_ai/06_Tool_Calling_Agents.ipynb` reworked into a guided lab with tracing + guardrail sections (fold into GAP-2 build effort).
+**Support material:** Extend — `notebooks/generative_ai/06_GenerativeAI_Tool_Calling_Agents.ipynb` reworked into a guided lab with tracing + guardrail sections (fold into GAP-2 build effort). Note: the existing notebook and `src/llm/tool_calling.py` run a local HF model; the lab extension adds a hosted-API path alongside it.
 
 ---
 

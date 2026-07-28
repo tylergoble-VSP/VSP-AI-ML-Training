@@ -89,7 +89,7 @@ The Karpathy "build an LLM from scratch" series is this module's spirit referenc
 
 **Homework (artifact):** Build a prompt that reliably extracts structured fields from a messy document; submit prompt + 3 outputs.
 
-**Support material:** Exists — `notebooks/generative_ai/05_ChainOfThought_Reasoning.ipynb` + tool-calling teaser from `06`.
+**Support material:** Exists — `notebooks/generative_ai/05_GenerativeAI_ChainOfThought_Reasoning.ipynb` + tool-calling teaser from `06`.
 
 ---
 
@@ -133,7 +133,7 @@ The Karpathy "build an LLM from scratch" series is this module's spirit referenc
 
 **Homework (artifact, graded):** Point the pipeline at a different small corpus; submit notebook + one paragraph on retrieval quality.
 
-**Support material:** Adapt (**GAP-9**) — `notebooks/generative_ai/07_Retrieval_Augmented_Generation.ipynb` reworked with a VSP-shaped corpus (e.g., anonymized meeting notes — the "RAG for meetings" system Vlad referenced is the in-house proof point).
+**Support material:** Adapt (**GAP-9**) — `notebooks/generative_ai/07_GenerativeAI_Retrieval_Augmented_Generation.ipynb` reworked with a VSP-shaped corpus (e.g., anonymized meeting notes — the "RAG for meetings" system Vlad referenced is the in-house proof point).
 
 ---
 
