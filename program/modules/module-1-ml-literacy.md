@@ -43,7 +43,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 | `LSN-1.2` | Model I/O — inputs, outputs, interpretation | 1 h | Tyler | Live | Built (deck + notebook) |
 | `LSN-1.3` | Grading models — MAE, precision/recall, AUC | 1.5 h | Tyler | Live | Built (deck + notebook) |
 | `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Built (lab notebook + deck) |
-| `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded (45 min) + live Q&A/drill (15 min) | Exists (notebooks as refs) |
+| `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded (45 min) + live Q&A/drill (15 min) | Built (deck + notebook) |
 | `LSN-1.6` | Data requirements, limitations & the pre-sales question bank | 1 h | Tyler + Vlad | Live | **BUILD — GAP-5** |
 | — | `ASM-1` — quiz + mock pre-sales conversation | 1 h | Tyler + Vlad | Live roleplay | **BUILD — GAP-6** |
 
@@ -154,7 +154,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Homework:** None.
 
-**Support material:** Exists as reference — `notebooks/neural_networks/*`, `notebooks/reinforcement/*`; cheat sheet to be extracted at lesson-plan time.
+**Support material:** Built — `notebooks/lessons/LSN-1.5_Conversational_Deep_Learning.ipynb` (session companion + drill workspace; carries the canonical one-page NN/CNN/DL/RL cheat sheet) and `program/lessons/decks/LSN-1.5-conversational-deep-learning.html` (16 slides, notes timed to 60). References: `notebooks/neural_networks/01`, `02`, `notebooks/reinforcement/01` — caveats disclosed in the companion (`02` downloads MNIST via `fetch_openml`, bypassing the warm cache; `reinforcement/01` is unseeded).
 
 ---
 

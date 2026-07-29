@@ -39,7 +39,7 @@ Kills the fear of the vocabulary. You are not learning what a neural network is 
 | What you trained *was* a neural net | 15 min | recorded talk | Replay of the LSN-1.4 lab in vocabulary: the MLP you built is layers of weighted sums plus squashing functions; "training" was nudging weights until outputs matched labels; the falling loss curve was learning. "Deep learning" = the same thing with many layers, so the network learns its own features instead of being handed them. Reference build: `notebooks/neural_networks/01_NeuralNetworks_Perceptron_MLP.ipynb`. |
 | CNNs: why images want convolutions | 15 min | recorded talk | One picture, no math: a small pattern-detector (edge, corner, texture) slid across the whole image, layers stacking detectors into shapes into objects. Why that beats a plain MLP on pixels: reuse and locality. This is the architecture the construction-site photo prospect would need. Reference: `notebooks/neural_networks/02_NeuralNetworks_Convolutional_Neural_Networks.ipynb`. |
 | RL: learning by reward | 15 min | recorded talk | No labels — an agent acts, gets a reward, adjusts. Where it earns its keep: games, robotics, route/sequence optimization — anywhere you can fail cheaply a million times (usually a simulator). One-slide teaser: RLHF, the RL that shaped the LLMs in MOD-2. Reference: `notebooks/reinforcement/01_Reinforcement_QLearning.ipynb`. |
-| Live Q&A + pair drill | 15 min | drill (live) | Q&A on the recording (5 min), then pairs: each person draws one prompt below, delivers the 2-minute explanation to their partner playing the named client, partner scores against the rubric, swap. Two rounds fit; instructor pulls one strong and one shaky delivery for whole-group feedback. |
+| Live Q&A + pair drill | 15 min | drill (live) | Q&A on the recording (5 min), then pairs: each person draws one prompt below, delivers the 2-minute explanation to their partner playing the named client, partner scores against the rubric, swap. Two deliveries fit — one per partner (5 min Q&A + 2 × (2 min delivery + 1 min scoring) + 4 min whole-group = 15); instructor pulls one strong and one shaky delivery for whole-group feedback. |
 
 **Timing check:** 15 + 15 + 15 + 15 = 60 min = 1 h contract duration (45 min recorded + 15 min live Q&A/drill). ✓
 
@@ -71,8 +71,10 @@ None — the pair drill is the rehearsal; the graded performance is the ASM-1 mo
 
 | Material | Status | Path / source |
 |---|---|---|
+| **Session companion notebook** — pre-work + cheat sheet + three segments (live demos as props) + drill workspace with tested advisor | exists | `notebooks/lessons/LSN-1.5_Conversational_Deep_Learning.ipynb` |
+| **Session deck** — 16 slides, speaker notes timed 15/15/15/15 = 60 | exists | `program/lessons/decks/LSN-1.5-conversational-deep-learning.html` |
 | Karpathy excerpt (pre-work #1) | exists | Andrej Karpathy, "The spelled-out intro to neural networks and backpropagation: building micrograd" — Neural Networks: Zero to Hero series (excerpt + timestamps chosen at delivery prep; verify at delivery prep) |
-| One-page NN/CNN/DL/RL cheat sheet | build (no GAP id — distill from deck + notebooks at delivery prep) | ML literacy deck (see PROGRAM_PLAN.md §8) + notebook intros below |
+| One-page NN/CNN/DL/RL cheat sheet | exists | Canonical home: the cheat-sheet markdown cells in `notebooks/lessons/LSN-1.5_Conversational_Deep_Learning.ipynb` (distilled from the reference notebooks' intros + Tyler's original ML literacy deck per SI-25) |
 | NN reference notebook | exists | `notebooks/neural_networks/01_NeuralNetworks_Perceptron_MLP.ipynb` |
 | CNN reference notebook | exists | `notebooks/neural_networks/02_NeuralNetworks_Convolutional_Neural_Networks.ipynb` |
 | RL reference notebook | exists | `notebooks/reinforcement/01_Reinforcement_QLearning.ipynb` |
