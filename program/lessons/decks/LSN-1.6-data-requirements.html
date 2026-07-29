@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSN-1.6 &mdash; Data Requirements, Limitations &amp; the Pre-Sales Question Bank &middot; VSP AI/ML Training</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  /* ============================================================
+     Victory Square Partners — Design System (inlined)
+     Source: Claude Design handoff bundle, June 2026 (mirrors index.html).
+     Dark near-black world · Navy=primary · Gold=accent/CTA · Green=support
+     Two-font: Syne (display) + Inter (body) · italic-gold headline accent.
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap');
+
+  :root {
+    --vsp-green-lightest: #97f377;
+    --vsp-green-light:     #7bd15d;
+    --vsp-green:           #65a74e;
+    --vsp-green-dark:      #4f813e;
+    --vsp-green-darkest:   #355629;
+    --vsp-yellow-lightest: #fff5c2;
+    --vsp-yellow-light:    #ffef96;
+    --vsp-yellow:          #ffe86b;
+    --vsp-navy-light:      #59709c;
+    --vsp-navy:            #46597c;
+    --vsp-navy-dark:       #344566;
+    --vsp-navy-darkest:    #2b374d;
+    --vsp-canvas:          #080c10;
+    --vsp-canvas-2:        #111820;
+    --vsp-canvas-3:        #1a2230;
+    --vsp-white:           #ffffff;
+    --vsp-black:           #0c0c0c;
+    --vsp-on-dark-strong:  rgba(255,255,255,0.85);
+    --vsp-on-dark:         rgba(255,255,255,0.70);
+    --vsp-on-dark-muted:   rgba(255,255,255,0.55);
+    --vsp-on-dark-faint:   rgba(255,255,255,0.40);
+    --vsp-on-dark-ghost:   rgba(255,255,255,0.25);
+    --vsp-primary:         var(--vsp-navy);
+    --vsp-accent:          var(--vsp-yellow);
+    --vsp-accent-ink:      var(--vsp-canvas);
+    --vsp-support:         var(--vsp-green);
+    --vsp-bg-gradient:     linear-gradient(160deg, var(--vsp-canvas) 0%, var(--vsp-canvas-2) 60%, var(--vsp-canvas-3) 100%);
+    --vsp-border:          rgba(255,255,255,0.10);
+    --vsp-font-display: 'Syne', 'Inter', system-ui, sans-serif;
+    --vsp-font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --vsp-tracking-kicker: 0.16em;
+    --vsp-radius-button: 6px;
+    --vsp-radius-card:   10px;
+    --vsp-radius-chip:   20px;
+  }
+
+  html, body { margin: 0; background: #0c0c0c; }
+  .reveal { font-family: var(--vsp-font-sans); }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 0; width: 1280px; height: 720px; background: transparent; box-sizing: border-box; }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; margin: 0; }
+
+  .vsp-slide {
+    position: relative; width: 1280px; height: 720px; overflow: hidden;
+    font-family: var(--vsp-font-sans); color: var(--vsp-on-dark-strong);
+    background: var(--vsp-bg-gradient); display: flex; flex-direction: column; box-sizing: border-box;
+  }
+  .vsp-grid {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .vsp-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .vsp-orb.yellow { background: var(--vsp-yellow); opacity: 0.08; }
+  .vsp-orb.green  { background: var(--vsp-green);  opacity: 0.10; }
+  .vsp-orb.green-l{ background: var(--vsp-green-lightest); opacity: 0.06; }
+  .vsp-orb.navy   { background: var(--vsp-navy-light); opacity: 0.16; }
+  .vsp-stage { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; padding: 64px 80px; }
+  .vsp-stage.center { justify-content: center; align-items: flex-start; }
+  .vsp-topbar { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 28px 80px 0; }
+  .vsp-footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 80px 28px; font-size: 12px; font-weight: 500; color: var(--vsp-on-dark-ghost); }
+  .vsp-kicker { font-size: 13px; font-weight: 700; letter-spacing: var(--vsp-tracking-kicker); text-transform: uppercase; color: var(--vsp-accent); }
+  .vsp-rule { width: 64px; height: 4px; background: var(--vsp-accent); border-radius: 2px; }
+  .vsp-glow { font-style: italic; color: var(--vsp-accent); }
+  .vsp-h1 { font-family: var(--vsp-font-display); font-size: 64px; font-weight: 800; line-height: 1.02; color: var(--vsp-white); letter-spacing: -0.03em; margin: 0; }
+  .vsp-h2 { font-family: var(--vsp-font-display); font-size: 46px; font-weight: 800; line-height: 1.08; color: var(--vsp-white); letter-spacing: -0.025em; margin: 0; }
+  .vsp-lead { font-size: 21px; font-weight: 400; line-height: 1.55; color: var(--vsp-on-dark-muted); margin: 0; }
+  .vsp-card { position: relative; background: var(--vsp-canvas-2); border: 1px solid var(--vsp-border); border-radius: var(--vsp-radius-card); padding: 28px 28px 26px; overflow: hidden; }
+  .vsp-card .topbar { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .vsp-card .topbar.green  { background: linear-gradient(90deg, var(--vsp-green), var(--vsp-green-lightest)); }
+  .vsp-card .topbar.yellow { background: linear-gradient(90deg, var(--vsp-yellow), var(--vsp-yellow-light)); }
+  .vsp-card h3 { font-family: var(--vsp-font-display); font-size: 24px; font-weight: 700; color: var(--vsp-white); margin: 0 0 8px; line-height: 1.15; letter-spacing: -0.02em; }
+  .vsp-card p  { font-size: 15px; line-height: 1.55; color: var(--vsp-on-dark); margin: 0; }
+  .vsp-wordmark { font-family: var(--vsp-font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.02em; color: var(--vsp-white); }
+  .vsp-wordmark span { color: var(--vsp-accent); }
+
+  .p-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .p-grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .p-chk { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px; }
+  .p-chk li { position:relative; padding-left:30px; font-size:15px; line-height:1.45; color:var(--vsp-on-dark-strong); }
+  .p-chk li::before { content:''; position:absolute; left:0; top:3px; width:18px; height:18px; border-radius:50%; background:rgba(101,167,78,0.18); }
+  .p-chk li::after { content:''; position:absolute; left:6px; top:8px; width:5px; height:9px; border:2px solid var(--vsp-green-lightest); border-top:0; border-left:0; transform:rotate(40deg); }
+  .p-time { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:8px; }
+  .p-time::before { content:''; position:absolute; top:9px; left:6%; right:6%; height:2px; background:linear-gradient(90deg,var(--vsp-green),var(--vsp-accent)); }
+  .p-step { position:relative; padding-top:30px; text-align:center; padding-left:6px; padding-right:6px; }
+  .p-step .dot { position:absolute; top:2px; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--vsp-green); border:3px solid var(--vsp-canvas); }
+  .p-step.key .dot { background:var(--vsp-accent); }
+  .p-step .d { font-family:var(--vsp-font-display); font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:4px; }
+  .p-step .t { font-size:13.5px; font-weight:700; color:var(--vsp-white); margin-bottom:3px; line-height:1.2; }
+  .p-step .s { font-size:12px; color:var(--vsp-on-dark-muted); line-height:1.4; }
+  .p-callout { background:rgba(255,232,107,0.07); border-left:4px solid var(--vsp-accent); border-radius:0 10px 10px 0; padding:16px 20px; font-size:16px; font-weight:600; color:var(--vsp-white); line-height:1.45; }
+  .p-callout b { color:var(--vsp-accent); }
+  .p-ramp { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:end; }
+  .p-ramp .bar { background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:20px 18px; position:relative; overflow:hidden; }
+  .p-ramp .bar .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-ramp .bar .topbar.g  { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-ramp .bar .topbar.y  { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-ramp .lbl { font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:8px; }
+  .p-ramp .num { font-family:var(--vsp-font-display); font-size:46px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-ramp .sub { font-size:13px; color:var(--vsp-on-dark-muted); margin-top:8px; line-height:1.4; }
+  .p-pipe { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .p-pipe .node { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:16px 18px 15px; display:flex; align-items:flex-start; gap:13px; }
+  .p-pipe .node .n { font-family:var(--vsp-font-display); font-size:15px; font-weight:800; color:var(--vsp-accent-ink); background:var(--vsp-accent); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .p-pipe .node.moat .n { background:var(--vsp-green-lightest); }
+  .p-pipe .node .nt { font-size:15px; font-weight:700; color:var(--vsp-white); line-height:1.2; }
+  .p-pipe .node .ns { font-size:12.5px; color:var(--vsp-on-dark-muted); line-height:1.35; margin-top:3px; }
+  .code-chip { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:14px; background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:6px; padding:4px 10px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .p-count { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border); border-radius:var(--vsp-radius-card); padding:18px 18px 16px; overflow:hidden; }
+  .p-count .topbar { position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-count.key .topbar { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-count .lbl { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); margin-bottom:7px; line-height:1.3; }
+  .p-count .num { font-family:var(--vsp-font-display); font-size:38px; font-weight:800; color:var(--vsp-white); line-height:1; letter-spacing:-0.03em; }
+  .p-count .sub { font-size:12.5px; color:var(--vsp-on-dark-muted); margin-top:7px; line-height:1.4; }
+  .p-tbl { width:100%; border-collapse:collapse; font-size:15px; }
+  .p-tbl th { text-align:left; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--vsp-accent); padding:0 14px 9px 0; border-bottom:1px solid var(--vsp-border); }
+  .p-tbl td { padding:10px 14px 10px 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--vsp-on-dark); }
+  .p-tbl td b { color:var(--vsp-white); font-weight:700; }
+  .p-tbl tr.hi td { color:var(--vsp-on-dark-strong); background:rgba(255,232,107,0.06); }
+  .p-eq { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:15px; color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-0.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-quote { background:var(--vsp-canvas-2); border-left:4px solid var(--vsp-green); border-radius:0 10px 10px 0; padding:18px 22px; }
+  .p-quote .meta { font-size:11px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--vsp-green-lightest); margin-bottom:9px; }
+  .p-quote p { font-size:16.5px; line-height:1.5; color:var(--vsp-on-dark-strong); margin:0; font-style:italic; }
+  .p-tag { display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; border-radius:var(--vsp-radius-chip); padding:3px 10px; }
+  .p-tag.prop { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bug  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  /* ---- LSN-1.1 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-tag.job  { background:rgba(89,112,156,0.30); color:#cfe0ff; }
+  .p-tag.gen  { background:rgba(255,232,107,0.18); color:var(--vsp-accent); }
+  .p-doll { display:flex; flex-direction:column; }
+  .p-doll .ring { border-radius:12px; padding:12px 16px 11px; }
+  .p-doll .ring + .ring, .p-doll .ring .ring { margin-top:9px; }
+  .p-doll .rl { display:block; font-family:var(--vsp-font-display); font-size:16px; font-weight:800;
+                color:var(--vsp-white); letter-spacing:-0.01em; }
+  .p-doll .rl em { font-family:var(--vsp-font-sans); font-style:italic; font-weight:400; font-size:12.5px;
+                   color:var(--vsp-on-dark-muted); letter-spacing:0; }
+  .p-doll .chip { display:block; font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:7px;
+                  line-height:1.35; }
+  .p-doll .ring.ai  { border:2px dashed rgba(255,255,255,0.26); }
+  .p-doll .ring.ml  { border:2px solid var(--vsp-navy-light);  background:rgba(89,112,156,0.12); }
+  .p-doll .ring.dl  { border:2px solid var(--vsp-green);       background:rgba(101,167,78,0.10); }
+  .p-doll .ring.gen { border:2px solid var(--vsp-yellow);      background:rgba(255,232,107,0.09); }
+  .p-scen { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .p-scen li { display:flex; gap:11px; align-items:flex-start; }
+  .p-scen .n { font-family:var(--vsp-font-sans); font-size:13px; font-weight:800;
+               color:var(--vsp-accent-ink); background:var(--vsp-accent); width:22px; height:22px;
+               border-radius:50%; display:flex; align-items:center; justify-content:center;
+               flex-shrink:0; margin-top:1px; }
+  .p-scen .who { font-size:12.5px; font-weight:700; color:var(--vsp-accent); text-transform:uppercase;
+                 letter-spacing:0.06em; }
+  .p-scen .q { font-size:13.5px; line-height:1.4; color:var(--vsp-on-dark-strong); font-style:italic; }
+  .p-io { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:12.5px;
+          color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-1.2 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-raw { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13px; line-height:1.5;
+           background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:8px;
+           padding:10px 13px; color:var(--vsp-green-lightest); white-space:pre; overflow:hidden; }
+  .p-raw b { color:var(--vsp-accent); font-weight:700; }
+  .p-tbl td.lab  { background:rgba(255,232,107,0.13); color:var(--vsp-white); font-weight:700; }
+  .p-tbl td.nolab{ color:var(--vsp-on-dark-ghost); font-style:italic; }
+  .p-tbl th.lab  { color:var(--vsp-accent); }
+  .p-tbl th.nolab{ color:var(--vsp-on-dark-ghost); }
+  .p-tbl.tight td { padding:6px 12px 6px 0; }
+  .p-tbl.tight th { padding:0 12px 7px 0; }
+  .p-dots { display:grid; grid-template-columns:repeat(10, 15px); gap:5px; }
+  .p-dots .d { width:15px; height:15px; border-radius:50%; border:1px solid rgba(0,0,0,0.35); }
+  .p-dots .d.y { background:var(--vsp-yellow); }
+  .p-dots .d.n { background:var(--vsp-navy-light); }
+  .p-dotcap { font-size:12.5px; font-weight:700; color:var(--vsp-on-dark-strong); margin-top:9px; }
+  .p-tag.shape { background:rgba(151,243,119,0.18); color:var(--vsp-green-lightest); }
+
+  /* ---- LSN-1.3 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-cm { border-collapse:collapse; font-family:var(--vsp-font-sans); }
+  .p-cm th { font-size:10.5px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+             color:var(--vsp-accent); padding:0 10px 7px; text-align:center; border:0; }
+  .p-cm th.side { text-align:right; color:var(--vsp-on-dark-strong); padding:8px 11px 8px 0;
+                  font-size:10px; line-height:1.3; }
+  .p-cm td { border:1px solid var(--vsp-border); padding:9px 14px; text-align:center; }
+  .p-cm td .lbl { display:block; font-size:10px; font-weight:800; letter-spacing:0.09em;
+                  text-transform:uppercase; color:var(--vsp-on-dark-muted); }
+  .p-cm td .val { display:block; font-family:var(--vsp-font-display); font-size:24px; font-weight:800;
+                  color:var(--vsp-white); line-height:1.15; letter-spacing:-0.02em; }
+  .p-cm td.tp { background:rgba(101,167,78,0.24); }
+  .p-cm td.fp { background:rgba(255,232,107,0.18); }
+  .p-cm td.fn { background:rgba(255,255,255,0.055); }
+  .p-cm td.tn { background:rgba(255,255,255,0.025); }
+  .p-cm.small td { padding:11px 15px; }
+  .p-cm.small td .val { font-size:25px; }
+  .p-mrow { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+  .p-metric { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border);
+              border-radius:var(--vsp-radius-card); padding:13px 15px 12px; overflow:hidden; }
+  .p-metric .topbar { position:absolute; top:0; left:0; right:0; height:3px; }
+  .p-metric .topbar.g { background:linear-gradient(90deg,var(--vsp-green),var(--vsp-green-lightest)); }
+  .p-metric .topbar.y { background:linear-gradient(90deg,var(--vsp-yellow),var(--vsp-yellow-light)); }
+  .p-metric .topbar.n { background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-navy)); }
+  .p-metric .nm  { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                   color:var(--vsp-accent); }
+  .p-metric .num { font-family:var(--vsp-font-display); font-size:28px; font-weight:800;
+                   color:var(--vsp-white); line-height:1.05; margin-top:3px; letter-spacing:-0.025em; }
+  .p-metric .den { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:11px;
+                   color:var(--vsp-green-lightest); margin-top:5px; }
+  .p-metric .sub { font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:6px; line-height:1.35; }
+  .p-tag.metric { background:rgba(101,167,78,0.22); color:var(--vsp-green-lightest); }
+  .p-tag.bad    { background:rgba(255,232,107,0.20); color:var(--vsp-accent); }
+
+  /* ---- LSN-1.4 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-run { display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+  .p-run .r { position:relative; background:var(--vsp-canvas-2); border:1px solid var(--vsp-border);
+              border-radius:var(--vsp-radius-card); padding:13px 15px 12px; overflow:hidden; }
+  .p-run .r .topbar { position:absolute; top:0; left:0; right:0; height:3px;
+                      background:linear-gradient(90deg,var(--vsp-navy-light),var(--vsp-green)); }
+  .p-run .r.warn .topbar { background:linear-gradient(90deg,var(--vsp-yellow),#e8863f); }
+  .p-run .r .n  { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                  color:var(--vsp-accent); }
+  .p-run .r .v  { font-family:var(--vsp-font-display); font-size:31px; font-weight:800;
+                  color:var(--vsp-white); line-height:1.05; margin-top:3px; letter-spacing:-0.025em; }
+  .p-run .r .s  { font-size:11.5px; color:var(--vsp-on-dark-muted); margin-top:6px; line-height:1.35; }
+  .p-lab { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .p-lab .box { position:relative; border-radius:var(--vsp-radius-card); padding:12px 15px 11px;
+                border:1px solid var(--vsp-border); background:var(--vsp-canvas-2); }
+  .p-lab .box.chk  { border-left:4px solid var(--vsp-green); }
+  .p-lab .box.fail { border-left:4px solid var(--vsp-yellow); }
+  .p-lab .box.rec  { border-left:4px solid var(--vsp-navy-light); }
+  .p-lab .box .h { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+                   margin-bottom:6px; }
+  .p-lab .box.chk .h  { color:var(--vsp-green-lightest); }
+  .p-lab .box.fail .h { color:var(--vsp-accent); }
+  .p-lab .box.rec .h  { color:#cfe0ff; }
+  .p-lab .box p { font-size:12.5px; line-height:1.4; color:var(--vsp-on-dark); margin:0; }
+  .p-lab .box p b { color:var(--vsp-white); }
+  .p-code { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13.5px; line-height:1.55;
+            background:var(--vsp-canvas-3); border:1px solid var(--vsp-border); border-radius:8px;
+            padding:12px 15px; color:var(--vsp-green-lightest); white-space:pre; overflow:hidden; }
+  .p-code b { color:var(--vsp-accent); font-weight:700; }
+  .p-code i { color:var(--vsp-on-dark-muted); font-style:normal; }
+  .p-chain { display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .p-chain .sh { font-family:'SF Mono',ui-monospace,Menlo,monospace; font-size:13px;
+                 background:rgba(89,112,156,0.22); border:1px solid var(--vsp-border);
+                 border-radius:6px; padding:5px 10px; color:#cfe0ff; }
+  .p-chain .op { font-size:12px; color:var(--vsp-accent); font-weight:700; }
+
+  /* ---- LSN-1.5 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-tbl th.num, .p-tbl td.num { text-align:right; }
+  .p-tbl td.num b { font-family:var(--vsp-font-display); letter-spacing:-0.01em; }
+
+  /* ---- LSN-1.6 additions, in the same idiom as the .p-* utilities above ---- */
+  .p-tag.gap  { background:rgba(255,232,107,0.20); color:var(--vsp-accent);
+                border:1px solid rgba(255,232,107,0.45); }
+  .p-tag.row  { background:rgba(89,112,156,0.30); color:#cfe0ff; }
+  .p-gap { background:rgba(255,232,107,0.08); border-left:4px solid var(--vsp-accent);
+           border-radius:0 10px 10px 0; padding:13px 18px 12px; }
+  .p-gap .h { font-size:10.5px; font-weight:800; letter-spacing:0.09em; text-transform:uppercase;
+              color:var(--vsp-accent); margin-bottom:6px; }
+  .p-gap p { font-size:13px; line-height:1.42; color:var(--vsp-on-dark); margin:0; }
+  .p-gap p b { color:var(--vsp-white); }
+  .p-run.five  { grid-template-columns:repeat(5,1fr); }
+  .p-run.three { grid-template-columns:repeat(3,1fr); }
+  .p-tbl.xtight td { padding:5px 11px 5px 0; }
+  .p-tbl.xtight th { padding:0 11px 6px 0; }
+  .p-tbl td.gold, .p-tbl td.gold b { color:var(--vsp-accent); }
+  .vsp-card.bad  { border-left:4px solid #e8863f; }
+  .vsp-card.good { border-left:4px solid var(--vsp-green); }
+  .p-q { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+  .p-q li { display:flex; gap:11px; align-items:flex-start; }
+  .p-q .n { font-family:var(--vsp-font-sans); font-size:12px; font-weight:800;
+            color:var(--vsp-accent-ink); background:var(--vsp-accent); min-width:24px; height:22px;
+            border-radius:11px; display:flex; align-items:center; justify-content:center;
+            flex-shrink:0; margin-top:1px; }
+  .p-q .t { font-size:14px; line-height:1.36; color:var(--vsp-on-dark-strong); }
+  .p-q .p { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+            color:var(--vsp-green-lightest); white-space:nowrap; margin-top:3px; }
+  .p-q .p.thin { color:var(--vsp-accent); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 01 &middot; COVER -->
+  <section data-label="Cover">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:600px;height:600px;top:-220px;right:-150px"></div>
+      <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-180px;left:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-topbar">
+        <div class="vsp-wordmark">VICTORY SQUARE <span>PARTNERS</span></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training &middot; Internal &middot; Live 60 min &middot; MOD-1 closes here</div>
+      </div>
+      <div class="vsp-stage center" style="gap:15px">
+        <div class="vsp-kicker">AI/ML Training Program &middot; LSN-1.6 &middot; Weeks 1&ndash;2 &middot; 60 minutes</div>
+        <h1 class="vsp-h1" style="font-size:52px;max-width:1120px">&ldquo;No data, no model.&rdquo;<br>Which is <span class="vsp-glow">a scoping conversation,</span> not a no.</h1>
+        <div class="vsp-rule"></div>
+        <p class="vsp-lead" style="font-size:19px;max-width:1080px">Vlad, out of 6MAP: <i>&ldquo;I need data in order for the model &mdash; it was a truism, but it&rsquo;s the truth. It can only infer to a certain point.&rdquo;</i> Everyone nods at that. Then a deal wobbles because nobody asked <b style="color:var(--vsp-accent)">how many examples of the rare thing</b> before the SOW.</p>
+        <div class="p-grid3" style="gap:14px;margin-top:2px">
+          <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">20 min &middot; the checklist</h3>
+            <p style="font-size:12.5px">Five checks &mdash; <b style="color:#fff">exists / labeled / enough / fresh / legal</b> &mdash; each with a failure story and a number.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">25 min &middot; the case</h3>
+            <p style="font-size:12.5px">The construction-site prospect, end to end. You supply the answers. <span class="p-tag gap">GAP-5 brief pending</span></p>
+          </div>
+          <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">15 min &middot; the bank</h3>
+            <p style="font-size:12.5px">Eleven questions, refined by this room. The module&rsquo;s take-home artifact, and your <span class="code-chip">ASM-1</span> prop.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy &middot; Data requirements, limitations &amp; the pre-sales question bank &middot; serves OUT-1.6 &middot; verified by ASM-1</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      2 min. Open on the reframe, because it is the whole hour: every &quot;no&quot; on this checklist is a scoping conversation you want BEFORE the SOW, not after. You cannot lose a deal by asking. You can only lose it by not asking and then discovering.
+      THE MAP, on every footer: 20 min data reality checklist (slides 2-7) &middot; 25 min case walkthrough (8-13) &middot; 15 min question-bank workshop (14-17) = 60.
+      Say what is new and what is not: nothing here is a new ML concept. 1.1 gave the five jobs, 1.2 inputs and outputs, 1.3 how to grade, 1.4 a network they trained, 1.5 the words. This hour is the commercial skill, and it is the second ASM-1 rubric dimension - honesty about limitations.
+      PRE-WORK CHECK, now not at minute 40: one data-reality risk from the case brief, and one edit to the starter bank. The risks get read out at step 3 of the walkthrough; the bank edits open segment 3. If somebody has neither, the last 15 minutes does not work for them.
+      GAP-5 STATUS, say it out loud: the anonymized case brief is Vlad/Dorel's build item and it is not here yet. The walkthrough is designed to run without it - the plan says so explicitly. Where the brief's facts belong, this deck and the notebook carry a marked placeholder and nothing is invented. If the brief HAS landed by delivery, its numbers slot into slides 10 and 11.
+    </aside>
+  </section>
+
+  <!-- 02 &middot; THE FIVE CHECKS -->
+  <section data-label="The five checks">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:420px;height:420px;bottom:-170px;right:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:17px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 1 &middot; 20 min &middot; The data reality checklist</div>
+          <h2 class="vsp-h2" style="font-size:39px">Five checks. <span class="vsp-glow">Each one catches a specific way a deal dies.</span></h2>
+        </div>
+        <table class="p-tbl xtight">
+          <tr><th style="width:11%">Check</th><th style="width:44%">The question</th><th>The failure it catches</th></tr>
+          <tr><td><b>Exists</b></td><td>Is the thing you want predicted actually recorded anywhere today?</td><td>&ldquo;We&rsquo;ll start collecting once the project starts&rdquo; &mdash; <b>no data, no model.</b></td></tr>
+          <tr class="hi"><td><b>Labeled</b></td><td>Does each example carry the answer, or must a human add it? Who, and at what cost per label?</td><td>Labeling quietly becomes the project&rsquo;s <b>biggest line item</b> &mdash; or gets skipped and poisons the model.</td></tr>
+          <tr><td><b>Enough</b></td><td>How many examples &mdash; especially of the rare outcome you care about?</td><td><b>40 examples</b> of the event of interest won&rsquo;t train anything; base rates bite (LSN-0.3/1.3).</td></tr>
+          <tr class="hi"><td><b>Fresh</b></td><td>How recent is the data, and has the business changed since it was collected?</td><td>A model trained on the pre-reorg world <b>confidently</b> predicts a world that no longer exists.</td></tr>
+          <tr><td><b>Legal</b></td><td>Do you own this data and may you use it this way &mdash; privacy, contract, people in frame?</td><td>The model works; <b>the deal dies in legal review.</b></td></tr>
+        </table>
+        <div class="p-grid3" style="gap:14px">
+          <div class="vsp-card" style="padding:12px 15px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:14px">A &ldquo;no&rdquo; on <i>Labeled</i></h3>
+            <p style="font-size:12px">is a <b style="color:#fff">labelling work package</b> with an owner, a rate and a volume &mdash; the most predictable line in the SOW.</p>
+          </div>
+          <div class="vsp-card" style="padding:12px 15px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:14px">A &ldquo;no&rdquo; on <i>Enough</i></h3>
+            <p style="font-size:12px">is a <b style="color:#fff">pilot on the sub-problem that does have enough</b>, plus a price for the rest.</p>
+          </div>
+          <div class="vsp-card" style="padding:12px 15px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:14px">A &ldquo;no&rdquo; on <i>Fresh</i></h3>
+            <p style="font-size:12px">is a <b style="color:#fff">refresh cadence and a monitoring commitment</b> &mdash; recurring revenue, not a risk.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px">You <b>cannot lose a deal by asking.</b> You can only lose it by not asking and then discovering.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; the checklist</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      3 min. Read the five rows straight down, and read the THIRD column - the failure is what makes a client answer the question. &quot;Do you have data?&quot; gets a yes. &quot;Is the thing you want predicted recorded anywhere today?&quot; cannot be answered with a yes.
+      Then flip it with the three cards. This is the inversion the room needs and most people do not make on their own: the instinct is to hear &quot;the data isn't labelled&quot; as the deal dying. It is a work package. Name each one out loud - work package, pilot on the sub-problem, refresh cadence.
+      The asymmetry in the callout is the sentence to repeat at the end of the hour. A client asked all five and answering has been handed a project plan. A client asked none of them who hears &quot;yes&quot; has been handed a disappointment with a delivery date on it.
+      Next four slides give each row a number. Do NOT let the room start on the construction case yet - that is segment 2 and it needs the numbers first.
+    </aside>
+  </section>
+
+  <!-- 03 &middot; ROW 1 EXISTS -->
+  <section data-label="Exists">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:380px;height:380px;top:-150px;right:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 1 &middot; Row 1 of 5 &middot; Exists</div>
+          <h2 class="vsp-h2" style="font-size:38px">&ldquo;We&rsquo;ll start collecting <span class="vsp-glow">once the project starts.&rdquo;</span></h2>
+        </div>
+        <div class="p-quote" style="padding:13px 19px">
+          <div class="meta">Vlad &middot; on what he carried out of 6MAP</div>
+          <p style="font-size:15.5px">&ldquo;I need data in order for the model &mdash; it was a truism, but it&rsquo;s the truth. It can only infer to a certain point.&rdquo;</p>
+        </div>
+        <p class="vsp-lead" style="font-size:15px;max-width:1130px"><b style="color:#fff">recorded &ne; exists.</b> Four things a client can mean by &ldquo;we have the data&rdquo; &mdash; and only one of them is a dataset. Nobody is lying in any of them.</p>
+        <div class="p-pipe">
+          <div class="node"><div class="n">1</div><div><div class="nt">In a system, with the outcome attached</div><div class="ns">A dataset. &ldquo;Send me 100 rows, including the column that says what happened.&rdquo;</div></div></div>
+          <div class="node"><div class="n">2</div><div><div class="nt">In a system, the outcome is <b style="color:var(--vsp-accent)">not</b></div><div class="ns">Workable &mdash; you just moved the cost to labelling. That is row 2, and it has a price.</div></div></div>
+          <div class="node moat"><div class="n">3</div><div><div class="nt">In a person&rsquo;s head. A phone call. A WhatsApp thread.</div><div class="ns"><b style="color:#fff">The Exists failure &mdash; and the commonest one.</b> Construction, healthcare, field services.</div></div></div>
+          <div class="node"><div class="n">4</div><div><div class="nt">&ldquo;Once the project starts&rdquo;</div><div class="ns"><b style="color:#fff">Zero examples on signature day.</b> A collection project with a model attached.</div></div></div>
+        </div>
+        <div class="p-callout" style="font-size:14.5px">Never ask &ldquo;do you have data?&rdquo; &mdash; the answer is always yes. Ask: <b>&ldquo;Show me how you&rsquo;d answer this today, without a model. Who looks at what?&rdquo;</b> Forty seconds, and you know which of the four you are in.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; row 1 &middot; exists</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      3 min. Lead with Vlad's line and give it a beat, because the whole module hangs off it and because it is the sponsor's own sentence, not ours.
+      Then the point that pays: the failure is INVISIBLE at proposal time and nobody lies. The client says &quot;we have loads of site photos&quot; and they do. What they do not have is a record of which milestone each photo shows and whether it was complete - and that, not the photos, is what the model needs.
+      Case 3 deserves warmth, not a smirk. A superintendent who can tell framed from not-framed at a glance has the model in their head and nobody ever asked them to type it out. That is a labelling project with an excellent teacher available, which is a much better commercial position than it sounds.
+      Case 4 is the one to price out loud: at the moment of signature there are ZERO training examples, and the first fit is on the smallest data the project will ever have. A project that starts collecting at kickoff is a project whose model arrives after the SOW ends.
+      Land the callout as a script. It is the single highest-value question on this slide and it works in any industry.
+    </aside>
+  </section>
+
+  <!-- 04 &middot; ROW 2 LABELED (a) THE DISAGREEMENT -->
+  <section data-label="Labeled &middot; the disagreement">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 &middot; Row 2 of 5 &middot; Labeled &middot; <span class="p-tag prop">live demo, synthetic prop</span></div>
+          <h2 class="vsp-h2" style="font-size:37px">Two honest people. <span class="vsp-glow">Fifty-eight percent apart.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:15px;max-width:1130px">200 site photos, both site managers, no carelessness and no lying &mdash; and only <b style="color:#fff">24%</b> of the photos are genuine judgement calls. &ldquo;Framing complete&rdquo; sounds like a fact. It is a judgement.</p>
+        <div class="p-run">
+          <div class="r"><span class="topbar"></span><div class="n">Raw agreement</div><div class="v">82%</div><div class="s">the number a client will quote at you. Sounds unimpeachable.</div></div>
+          <div class="r warn"><span class="topbar"></span><div class="n">Cohen&rsquo;s kappa</div><div class="v">0.60</div><div class="s">agreement after removing luck. &ldquo;Moderate&rdquo; &mdash; LSN-1.3&rsquo;s rubber stamp, applied to your labellers.</div></div>
+          <div class="r warn"><span class="topbar"></span><div class="n">Sign-offs</div><div class="v">82 <span style="font-size:19px;color:var(--vsp-on-dark-muted)">vs</span> 52</div><div class="s">same 200 photos. A reports <b style="color:#fff">58% more finished work</b> than B.</div></div>
+          <div class="r warn"><span class="topbar"></span><div class="n">Model trained on A</div><div class="v">+8.0 pts</div><div class="s">reports the site further along than it is &mdash; politely, consistently, at scale.</div></div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;gap:18px;align-items:center">
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">The model inherits the labeller</h3>
+            <p style="font-size:13px">Same 900 photos, same six columns, same algorithm &mdash; only the labels differ.</p>
+            <table class="p-tbl xtight" style="margin-top:9px;font-size:13px">
+              <tr><th>trained on</th><th class="num">accuracy</th><th class="num">calls complete</th></tr>
+              <tr><td>the hidden truth</td><td class="num"><b>92.00%</b></td><td class="num"><b>27.67%</b></td></tr>
+              <tr class="hi"><td>manager A&rsquo;s labels</td><td class="num"><b>86.00%</b></td><td class="num gold"><b>35.67%</b></td></tr>
+              <tr><td><i>what is actually true</i></td><td class="num">&mdash;</td><td class="num">27.67%</td></tr>
+            </table>
+          </div>
+          <div class="p-callout" style="font-size:14.5px">The 6-point accuracy tax is <b>smaller than people expect</b> &mdash; which is exactly why the problem never announces itself. The model still looks fine. The <b>8-point bias</b> is what costs money: it did not learn &ldquo;complete&rdquo;, it learned <b>manager A</b>.</div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; row 2 &middot; labeled: the disagreement</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      2 min. Frame the demo as a prop first, every time: synthetic data, six made-up numeric columns, no photographs, no client's data. What it is faithful to is the SHAPE of the failure.
+      Walk the four numbers left to right and let the third one land. 82 versus 52 sign-offs on identical evidence - manager A reports 58% more finished work than manager B. If the client bills progress off that judgement, they already disagree with themselves about how far along the project is, before any model exists. Every client in the room knows this is true about their own site.
+      Then kappa, in one sentence: raw agreement lies when one answer is much commoner than the other. Two people who both just said &quot;not complete&quot; every time would agree 70% of the time knowing nothing. Kappa is agreement after subtracting luck, and 0.60 is &quot;moderate&quot;. Same arithmetic as LSN-1.3's rubber stamp.
+      The card is the money beat. The 6-point accuracy tax is real and SMALLER than people expect - which is why the problem does not announce itself. The bias is the expensive part: the model did not learn &quot;complete&quot;, it learned manager A, and it now reports the site 8 points further along than it is.
+    </aside>
+  </section>
+
+  <!-- 04b &middot; ROW 2 LABELED (b) THE COST -->
+  <section data-label="Labeled &middot; what it costs">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 &middot; Row 2 of 5 &middot; Labeled &middot; the line item nobody names</div>
+          <h2 class="vsp-h2" style="font-size:37px">Labelling is a work package. <span class="vsp-glow">Price it or lose it.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:14.5px;max-width:1140px">Two placeholder assumptions &mdash; <b style="color:#fff">45 s per label</b>, <b style="color:#fff">$80/hour</b> for somebody qualified to make the call. <span class="p-tag gap">GAP-5: placeholder rates; the brief supplies the real volumes</span></p>
+        <table class="p-tbl xtight">
+          <tr><th style="width:20%">labelled examples</th><th class="num">labelling hours</th><th class="num">cost at the placeholder rate</th><th class="num">one-off double-labelled audit (200)</th><th class="num">what YOUR curve says (MNIST)</th></tr>
+          <tr><td><b>200</b></td><td class="num">2.5</td><td class="num"><b>$200</b></td><td class="num">$200</td><td class="num">64.41%</td></tr>
+          <tr><td><b>1,000</b></td><td class="num">12.5</td><td class="num"><b>$1,000</b></td><td class="num">$200</td><td class="num">84.23%</td></tr>
+          <tr class="hi"><td><b>10,000</b></td><td class="num">125</td><td class="num"><b>$10,000</b></td><td class="num">$200</td><td class="num">92.77%</td></tr>
+        </table>
+        <div class="p-grid3" style="gap:16px">
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">The audit is nearly free</h3>
+            <p style="font-size:12.5px">2.5 hours of somebody&rsquo;s time buys you <b style="color:#fff">the ceiling on what any model can learn here</b> &mdash; before you commit to a number.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">10&times; the data, 10&times; the cost</h3>
+            <p style="font-size:12.5px">12.5 hours becomes 125. The curve paid <b style="color:#fff">8.5 points</b> for that 10&times; (84.23% &rarr; 92.77%). <b style="color:#fff">Linear cost, sub-linear benefit.</b></p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">The unnamed line gets cut</h3>
+            <p style="font-size:12.5px">A budget with a volume, a rate and an owner survives procurement. <i>&ldquo;We&rsquo;ll figure out labelling later&rdquo;</i> becomes an engineer labelling at 2am.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:14.5px">The ask that makes VSP look like the only vendor who has done this before: <b>&ldquo;Could two of your people label the same fifty examples independently?&rdquo;</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; row 2 &middot; labeled: the cost</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      2 min. Say the two assumptions are PLACEHOLDERS before anything else - the seconds-per-label and the hourly rate are ours, not the client's, and the case brief will supply the real volumes. What is not a placeholder is the shape of the ladder.
+      Then three sentences off the three cards. The audit first, because it is the cheapest high-value thing you can ask for in a first meeting. Then the 10x/10x trade, which is the other half of LSN-1.4's curve - linear cost, sub-linear benefit, and that is why &quot;how much data do you need&quot; is a commercial question wearing a technical hat.
+      The third card is the one that has actually happened on VSP projects: the line item nobody named is the line item that gets cut, and then somebody labels photos at 2am three weeks before the demo, badly. A labelling budget with a volume, a rate and an owner survives procurement.
+      Close on the audit ask as a script and move on - Enough is next and it needs its four minutes.
+    </aside>
+  </section>
+
+  <!-- 05 &middot; ROW 3 ENOUGH -->
+  <section data-label="Enough">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:28%;left:46%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 &middot; Row 3 of 5 &middot; Enough &middot; <span class="p-tag metric">your own numbers, from LSN-1.4</span></div>
+          <h2 class="vsp-h2" style="font-size:37px">You already built <span class="vsp-glow">the answer to &ldquo;how much data?&rdquo;</span></h2>
+        </div>
+        <table class="p-tbl xtight">
+          <tr><th style="width:26%">labelled training examples (MNIST, same architecture, same seed, same test set)</th><th class="num">10</th><th class="num">100</th><th class="num">200</th><th class="num">1,000</th><th class="num">10,000</th><th class="num">60,000</th></tr>
+          <tr class="hi"><td>accuracy at 3 epochs &mdash; <i>the lab&rsquo;s budget</i></td><td class="num"><b>23.88%</b></td><td class="num"><b>53.38%</b></td><td class="num gold"><b>64.41%</b></td><td class="num"><b>84.23%</b></td><td class="num"><b>92.77%</b></td><td class="num"><b>97.04%</b></td></tr>
+          <tr><td>accuracy at equal compute &mdash; <i>~471 gradient steps each</i></td><td class="num">34.86%</td><td class="num">75.63%</td><td class="num">82.90%</td><td class="num">88.46%</td><td class="num">92.77%</td><td class="num">97.04%</td></tr>
+        </table>
+        <div class="p-grid3" style="gap:16px">
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">Read the shape</h3>
+            <p style="font-size:12.5px">Nearly a straight line against a <b style="color:#fff">log</b> x-axis: every <b style="color:#fff">10&times; more labelled data buys a roughly constant number of points</b> &mdash; and costs ten times as much to label. That is the economics of every supervised proposal VSP will write.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">Count the outcome, not the rows</h3>
+            <p style="font-size:12.5px">12,000 photos &divide; 14 milestone types = <b style="color:#fff">857 each if evenly spread</b>, and they never are. A client with a milestone that occurs on <b style="color:var(--vsp-accent)">40</b> photos has <b style="color:#fff">40 examples</b>, not 12,000. <span class="p-tag gap">GAP-5: placeholder volumes</span></p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">And the metric stops working</h3>
+            <p style="font-size:12.5px">LSN-0.3: 100 real cases inside 10,098 alerts &rarr; <b style="color:#fff">0.98% precision</b>, one real alert per 102. LSN-1.3: a model that flags <i>nothing</i> scored <b style="color:#fff">99.20%</b> accuracy. Rare outcome + accuracy = a number that cannot fail and cannot help.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:14.5px">The honest upside, in the same breath: every point on that line was trained <b>from scratch</b>. Nobody starts from scratch on images any more &mdash; starting from a network already trained on millions of photographs <b>shifts the whole curve left.</b> What does not change is the shape.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; row 3 &middot; enough</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      4 min. This is the slide the lesson opens on and the reason it carries weight is that this room produced it. Say that first: you trained every one of those twelve numbers in LSN-1.4, same architecture, same seed, same 10,000 held-out digits, only the amount of labelled data changed.
+      Read the shape, not the points. Straight line against a log axis means every 10x buys a roughly constant number of percentage points, and the same 10x costs ten times as much to label. Linear cost, sub-linear benefit. That one sentence is why &quot;how much data do you need&quot; is a commercial question wearing a technical hat.
+      Point at 64.41% and connect it to the prospect: that is a TRAINED point, not an interpolation - LSN-1.4 trained 200 examples on purpose because the construction prospect arrives with a few hundred photos. And it is MNIST: ten classes, centred, no lighting, no occlusion, every label correct. Their photos are harder in every direction that matters, so 64% is a CEILING, not a forecast.
+      Middle card is the habit worth installing: the count that matters is the count of the OUTCOME, not the count of rows. Every volume question in the bank should be asked about the rare class, because that is the class the client is paying to detect. The 12,000 and the 14 are placeholders - say so.
+      Right card closes the loop with LSN-0.3 and LSN-1.3. When the class is rare enough, accuracy cannot fail and cannot help, which is why question 9 of the bank asks what each kind of wrong answer costs.
+      End on the transfer-learning upside. &quot;No&quot; is not the goal - and this is a real, sellable answer to &quot;we only have 200 photos&quot;. Do not oversell it: the shape does not change.
+    </aside>
+  </section>
+
+  <!-- 06 &middot; ROW 4 FRESH -->
+  <section data-label="Fresh">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-160px;right:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:19px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 &middot; Row 4 of 5 &middot; Fresh &middot; <span class="p-tag prop">live demo, synthetic prop</span></div>
+          <h2 class="vsp-h2" style="font-size:38px">Accuracy collapsed. <span class="vsp-glow">Confidence did not.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:15.5px;max-width:1130px">Same model, no retraining, no retuning. 600 photos from sites built a different way &mdash; the client moved to prefabricated panels, so three of the six visual cues now mean something else.</p>
+        <div class="p-run">
+          <div class="r warn"><span class="topbar"></span><div class="n">Accuracy</div><div class="v">92.00 &rarr; 66.50%</div><div class="s">&minus;25.5 points, on the same model.</div></div>
+          <div class="r"><span class="topbar"></span><div class="n">Its own confidence</div><div class="v">90.12 &rarr; 90.72%</div><div class="s">it got <b style="color:#fff">more</b> sure of itself, not less.</div></div>
+          <div class="r warn"><span class="topbar"></span><div class="n">It says complete</div><div class="v">7.83%</div><div class="s">31.67% actually are. The dashboard reads &ldquo;catastrophically late.&rdquo;</div></div>
+          <div class="r warn"><span class="topbar"></span><div class="n">Answers at &ge;90% sure</div><div class="v">70.5%</div><div class="s">and those confident answers were right only <b style="color:#fff">72.1%</b> of the time.</div></div>
+        </div>
+        <div class="p-callout" style="font-size:15px">A model has <b>no way to tell you the world changed.</b> Nothing about the output is different &mdash; same crisp answers, same certainty it had when it was right. The only thing that catches this is <b>fresh labelled data</b>, so the answer to &ldquo;how do we know it still works?&rdquo; is always a person, a cadence and a line item.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; row 4 &middot; fresh</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      2 min, tight. Prop framing again: synthetic, six made-up columns. Then the two numbers side by side, and let the second one do the work - accuracy fell 25 points and confidence went UP.
+      The killer stat is the fourth card: seven in ten of its answers on the new sites came with at least 90% confidence, and those answers were right 72% of the time. Confidence is a number the model computes. It is not a measure of truth.
+      Two callbacks the room has already seen, name them fast: LSN-0.4's overconfident twin (identical decisions, a 9.6-point confidence lie) and LSN-1.4's stale-weights trap (91.16% reported when the honest answer was 53.38%). Same failure family - a number that looks fine because nothing checked it.
+      Then the commercial move, which is the callout: this is the argument for a monitoring line item, and it is not a risk disclosure, it is recurring revenue. &quot;Somebody keeps labelling&quot; is the only real answer to &quot;is it still working&quot;.
+      If someone asks whether input monitoring would catch it: partly. A shift in the inputs is at least detectable. A shift in what the inputs MEAN is not - the photos still look like photos. Say that and move on; it is slide 12's failure mode too.
+    </aside>
+  </section>
+
+  <!-- 07 &middot; ROW 5 LEGAL -->
+  <section data-label="Legal">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 1 &middot; Row 5 of 5 &middot; Legal &middot; the only row with no demo</div>
+          <h2 class="vsp-h2" style="font-size:38px">The model works. <span class="vsp-glow">The deal dies in legal review.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:15px;max-width:1140px">Nothing to simulate: a model cannot tell you whether you are allowed to train it. <b style="color:#fff">The question costs a sentence in week one; the answer costs a re-scope in week twelve.</b></p>
+        <table class="p-tbl xtight">
+          <tr><th style="width:23%">Sub-question</th><th style="width:44%">The one it catches</th><th>Who actually answers it</th></tr>
+          <tr><td><b>Do you own it?</b></td><td>Data the client holds but does not own &mdash; a subcontractor&rsquo;s drone footage, a platform export, a partner feed</td><td>their <b>contracts</b>, not their engineer</td></tr>
+          <tr class="hi"><td><b>May you use it <i>this way</i>?</b></td><td>Lawfully collected for one purpose, now proposed for another. Consent for &ldquo;site records&rdquo; &ne; consent for &ldquo;training a model&rdquo;</td><td>whoever wrote the <b>privacy notice</b></td></tr>
+          <tr><td><b>Who is in frame?</b></td><td>People. Workers are <b>identifiable</b> in site photos &mdash; and identifiable is the legal threshold, not &ldquo;named&rdquo;</td><td>counsel, and possibly a <b>works council</b> or union agreement</td></tr>
+          <tr class="hi"><td><b>Where may it live?</b></td><td>Residency, sub-processors, whether a row may leave the client&rsquo;s tenancy &mdash; which decides your whole architecture</td><td><b>security / IT</b>, before you design anything</td></tr>
+          <tr><td><b>What happens to the model?</b></td><td>Is the trained model a deliverable, a shared asset, or theirs outright? Models memorise &mdash; a model can be a data-protection object itself</td><td>the <b>commercial owner</b> of the deal</td></tr>
+        </table>
+        <div class="p-callout" style="font-size:14.5px">Only <b>one</b> of those five is about privacy. The sentence that makes the row an asset: <b>&ldquo;I&rsquo;d rather find the legal constraint in week one than week twelve &mdash; so who owns this, and has anyone asked whether we can use it this way?&rdquo;</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 1 of 3 &middot; row 5 &middot; legal</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      2 min. Open by saying why there is no demo: a model cannot tell you whether you are allowed to train it. That is not a gap in the lesson, it is the point of the row.
+      Notice out loud that only ONE of the five sub-questions is about privacy. The other four are contract, purpose, residency and IP - and the third column is the real content: none of these are answered by the client's engineer, which is why asking in week one matters.
+      The &quot;who is in frame&quot; row is the one that surprises engineers, and it is worth thirty seconds because the delivery centres are in Romania: a construction-site photo is a workplace photo of identifiable workers, and using workplace imagery to assess progress can touch employee-monitoring rules that have nothing to do with who owns the JPEG. Identifiable is the threshold, not named.
+      That is NOT a reason to say no. It is a reason to ask early, so the answer is &quot;we'll blur faces and get the works-council sign-off&quot; instead of &quot;we already trained on it&quot;.
+      Close on the script in the callout. No client has ever been annoyed by that question; several have been annoyed by its absence. Then transition: segment 1 is done, all five rows have a number - now we run them on a real prospect.
+    </aside>
+  </section>
+
+  <!-- 08 &middot; WALKTHROUGH OPENER + STEP 1 -->
+  <section data-label="Walkthrough &amp; step 1">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:420px;height:420px;top:-170px;right:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 &middot; 25 min &middot; Case walkthrough: construction-site completion detection</div>
+          <h2 class="vsp-h2" style="font-size:37px">Step 1 &middot; Restate the ask. <span class="vsp-glow">In the client&rsquo;s words.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:14.5px;max-width:1140px">The ask, as the lesson plan states it: <i>client wants to know, from periodic site photos/video, whether work milestones are actually complete.</i></p>
+        <div class="p-time">
+          <div class="p-step key"><span class="dot"></span><div class="d">2 min</div><div class="t">Restate the ask</div><div class="s">from periodic site photos/video, whether work milestones are actually complete</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">3 min</div><div class="t">Triage the job</div><div class="s">LSN-1.1 callback: classification, regression, or a genuine tie</div></div>
+          <div class="p-step key"><span class="dot"></span><div class="d">12 min</div><div class="t">Run the checklist</div><div class="s">all five rows, on their data. Pre-work risks read out here</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">5 min</div><div class="t">Where it breaks</div><div class="s">four failures, each with a number you already have</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">3 min</div><div class="t">What VSP promises</div><div class="s">a scoped pilot &mdash; not &ldquo;AI that watches your sites&rdquo;</div></div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.04fr 0.96fr;gap:18px;align-items:start">
+          <div class="vsp-card" style="padding:15px 18px 14px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">Three things a restate has to pin down</h3>
+            <ul class="p-chk" style="margin-top:8px;gap:9px">
+              <li><b style="color:#fff">The output.</b> Yes/no per milestone? A percentage? A date? Clients mix all three in one sentence &mdash; and each is a different ML job.</li>
+              <li><b style="color:#fff">The cadence.</b> &ldquo;Periodic&rdquo; = a weekly walk-round, an hourly mast camera, or ad-hoc phone pictures? That decides feed vs folder &mdash; <b style="color:var(--vsp-accent)">question 7</b>.</li>
+              <li><b style="color:#fff">The decision.</b> Who acts differently once they know? Progress billing, escalation, a client report, retention release &mdash; <b style="color:var(--vsp-accent)">question 1</b>.</li>
+            </ul>
+          </div>
+          <div class="p-gap">
+            <div class="h">[GAP-5 &mdash; pending Vlad/Dorel case brief]</div>
+            <p><b>The client&rsquo;s own words go here.</b> The anonymized brief is Vlad and Dorel&rsquo;s build item and it is not here yet &mdash; the walkthrough was designed to run without it. What is missing is the prospect&rsquo;s facts: how many sites, how big the archive is, who took the pictures, who signs off on &ldquo;complete&rdquo; today.</p>
+            <p style="margin-top:8px">&ldquo;Are the milestones complete&rdquo; and &ldquo;I want to stop sending a guy out to check&rdquo; are the same ask with completely different economics &mdash; and only one of them tells you what the model has to beat (<b>question 10</b>). Until the brief lands, run step 1 on the paraphrase above and <b>say out loud that it is a paraphrase.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 2 of 3 &middot; step 1 &middot; restate the ask</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      2 min for step 1, and the timeline across the top is the segment budget: 2 + 3 + 12 + 5 + 3 = 25. Point at it once so the room knows step 3 is half the segment on purpose - that is the part that is actually hard and the part ASM-1 grades.
+      This is a DISCUSSION, not a presentation. Participants supply the answers; the facilitator keeps the room off the architecture question. Say that before anything else.
+      The facilitator's move for step 1 and it is worth the two minutes: ask one person to restate the ask, then ask a SECOND person whether they heard the same thing. If the two restatements differ, that difference is the project's first risk - and it has nothing to do with data yet.
+      GAP-5, plainly: the brief is not here. Read the panel, do not apologise for it, and do not invent client facts to fill the hole - the honest version is more useful anyway, because &quot;here is what I would need to know and here is who I would ask&quot; is verbatim the skill ASM-1 grades.
+      If the brief HAS landed: its facts replace the italics on slides 10 and 11 and the client's own words replace the paraphrase here. Nothing else about the structure changes.
+    </aside>
+  </section>
+
+  <!-- 09 &middot; STEP 2 TRIAGE -->
+  <section data-label="Step 2 &middot; triage">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 &middot; Step 2 &middot; 3 min &middot; LSN-1.1 callback</div>
+          <h2 class="vsp-h2" style="font-size:37px">Which of the five jobs &mdash; <span class="vsp-glow">and the genuine tie.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:14.5px;max-width:1150px">Verbatim: <i style="color:var(--vsp-on-dark-strong)">per-milestone &ldquo;complete: yes/no&rdquo; &rarr; classification; &ldquo;% complete&rdquo; &rarr; regression; on images &rarr; CNN territory (LSN-1.5).</i> Which one depends on step 1&rsquo;s answer.</p>
+        <table class="p-tbl xtight">
+          <tr><th style="width:26%">If the client wants&hellip;</th><th style="width:20%">The job (LSN-1.1)</th><th style="width:24%">The output (LSN-1.2)</th><th>How you&rsquo;d grade it (LSN-1.3)</th></tr>
+          <tr class="hi"><td>&ldquo;is milestone X complete?&rdquo;</td><td><b>sort it</b> &mdash; classification</td><td>a label per milestone per photo, + a confidence</td><td>confusion matrix; false alarm vs miss (<b>question 9</b>)</td></tr>
+          <tr class="hi"><td>&ldquo;what % complete is this floor?&rdquo;</td><td><b>predict a number</b> &mdash; regression</td><td>a number, 0&ndash;100</td><td>error <i>per segment</i> &mdash; 1.3&rsquo;s 38-hour headline hid 330-hour misses</td></tr>
+          <tr><td>&ldquo;which photos are unusual?&rdquo;</td><td><b>spot the weird one</b> &mdash; anomaly detection</td><td>a score per photo</td><td>precision at the <i>top</i> of the list &mdash; nobody reviews the tail</td></tr>
+          <tr><td>&ldquo;group the sites that behave alike&rdquo;</td><td><b>group it</b> &mdash; clustering</td><td>cluster assignments</td><td>no ground truth; judged by usefulness, not accuracy</td></tr>
+          <tr><td>&ldquo;write the weekly progress narrative&rdquo;</td><td><b>make something new</b> &mdash; generative</td><td>text</td><td>not this lesson. <span class="code-chip" style="font-size:12px">MOD-2</span></td></tr>
+        </table>
+        <div class="p-callout" style="font-size:14.5px">The tie is real, and the deciding question is <b>not technical</b>: <b>&ldquo;what does the person receiving this number do differently at 60% versus 70%?&rdquo;</b> If the answer is &ldquo;nothing&rdquo;, you have three buckets, not a percentage &mdash; and buckets need far less data. An <i>Enough</i> win, bought with a business question.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 2 of 3 &middot; step 2 &middot; triage the job</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      3 min, and it should be the fastest three minutes of the hour because the room already did this in LSN-1.1. Do not re-teach the five jobs - use the table as a lookup and spend the time on the tie.
+      The two highlighted rows are the actual candidates for this case, and LSN-1.1 deliberately taught this as a genuine tie: &quot;% complete&quot; on a construction milestone can be classified into buckets OR regressed to a number. Both are defensible; nobody is wrong.
+      Then the callout, which is the transferable move: the deciding question is a BUSINESS question. What does the person receiving the number do differently at 60 versus 70? If the answer is nothing, you have three buckets, not a percentage - and three buckets need far less data. Ask a business question, win a data argument.
+      One sentence on architecture and then stop: it is images, so it is CNN territory - a small pattern detector slid across the frame, stacked into edges, shapes, objects. That is a HOW, not a WHETHER, and the whether is decided by the next twelve minutes, not by the architecture. If the room wants to design the network, pull them back.
+    </aside>
+  </section>
+
+  <!-- 10 &middot; STEP 3a -->
+  <section data-label="Step 3a &middot; exists &amp; labeled">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:17px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 &middot; Step 3 &middot; 12 min total &middot; the heart of the session &middot; rows 1&ndash;2</div>
+          <h2 class="vsp-h2" style="font-size:37px">Twelve minutes. Five rows. <span class="vsp-glow">Their data, not our model.</span></h2>
+        </div>
+        <div class="vsp-card" style="padding:16px 19px 15px"><span class="topbar yellow"></span>
+          <h3 style="font-size:19px">Exists <span style="font-size:13px;font-weight:400;color:var(--vsp-on-dark-muted)">&mdash; ~2 min</span></h3>
+          <p style="font-size:14.5px;margin-top:4px"><i>Are there historical photos, and from how many sites?</i> Is the milestone name attached to the photo &mdash; or does it live in a daily report, a WhatsApp thread, or the superintendent&rsquo;s head?</p>
+          <p style="font-size:13px;margin-top:9px;color:var(--vsp-green-lightest)"><b>A good answer sounds like:</b> &ldquo;there are closeout photo sets per unit in <i>[their system]</i>, and the milestone is a free-text note somebody types.&rdquo;</p>
+        </div>
+        <div class="vsp-card" style="padding:16px 19px 15px"><span class="topbar green"></span>
+          <h3 style="font-size:19px">Labeled <span style="font-size:13px;font-weight:400;color:var(--vsp-on-dark-muted)">&mdash; ~2 min, and the one to push on</span></h3>
+          <p style="font-size:14.5px;margin-top:4px"><i>Who says which photos show &ldquo;complete,&rdquo; and do two site managers even agree?</i> What would one label cost, and who is qualified to make the call?</p>
+          <p style="font-size:13px;margin-top:9px;color:var(--vsp-green-lightest)"><b>A good answer sounds like:</b> &ldquo;nobody labels it today; the superintendent signs it off, and two supers on the same unit have disagreed before.&rdquo;</p>
+        </div>
+        <div class="p-gap">
+          <div class="h">[GAP-5 &mdash; pending Vlad/Dorel case brief]</div>
+          <p>Every italicised prompt on this slide and the next needs a <b>fact from the brief</b>: how many sites, how far back the archive goes, which system the photos live in, who signs off. <b>This deck supplies none of them and will not guess.</b> Run step 3 today by having the room answer with &ldquo;here is what I would need to know, and here is who I would ask&rdquo; &mdash; which is, verbatim, the skill <span class="code-chip" style="font-size:12px">ASM-1</span> grades.</p>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 2 of 3 &middot; step 3 &middot; exists &amp; labeled</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      6 min for the first two rows of step 3 - about two minutes each plus the argument. Keep the room on THEIR DATA. Every time somebody starts designing the model, point at the footer.
+      Exists: the trap is that everyone says yes. Push until you know which of the four cases from slide 3 you are in. The tell is always the same - the photos exist and the MILESTONE NAME does not.
+      Labeled is where to spend the extra minute, because it is the row with the money in it. Two questions hide in it: who adds the label and what does one cost, which is arithmetic; and would two qualified people agree, which decides whether the project has a ceiling. Push the second one. &quot;Framing complete&quot; sounds like a fact and is a judgement.
+      Use slide 4's numbers as the lever here, not as a lecture: 82% agreement, kappa 0.60, one manager signing off 58% more work than the other. Then ask the room what THIS client's version of that number would be - nobody knows, and that is exactly the finding.
+      Do not skip the &quot;good answer sounds like&quot; lines. They are the calibration: a good answer names a system and says what is NOT recorded. If the room's answers are shorter than those examples, push once more.
+    </aside>
+  </section>
+
+  <!-- 11 &middot; STEP 3b -->
+  <section data-label="Step 3b &amp; the pre-work moment">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:330px;height:330px;top:26%;left:45%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 &middot; Step 3 continued &middot; rows 3&ndash;5, then the pre-work risks</div>
+          <h2 class="vsp-h2" style="font-size:36px">Enough, Fresh, Legal &mdash; <span class="vsp-glow">then the room&rsquo;s own risks.</span></h2>
+        </div>
+        <table class="p-tbl xtight">
+          <tr><th style="width:11%">Row</th><th style="width:47%">The case-specific prompts <span style="text-transform:none;letter-spacing:0;font-weight:400">(verbatim from the lesson plan)</span></th><th>What a good answer sounds like</th></tr>
+          <tr><td><b>Enough</b></td><td><i>how many examples per milestone type; rare milestones = rare classes.</i> And which milestone will they ask about first?</td><td>&ldquo;about <i>N</i> per common milestone, and the one they care about most happens once per building&rdquo;</td></tr>
+          <tr class="hi"><td><b>Fresh</b></td><td><i>Seasons, camera positions, new construction methods.</i> How far back does the archive go, and what has changed since the oldest photo?</td><td>&ldquo;the archive starts <i>[date]</i>, and they changed method / camera / contractor in between&rdquo;</td></tr>
+          <tr><td><b>Legal</b></td><td><i>Workers identifiable in frame; who owns drone footage; client vs subcontractor data rights.</i></td><td>&ldquo;the client owns the mast footage; the drone footage belongs to a subcontractor; workers are identifiable&rdquo;</td></tr>
+        </table>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;gap:18px;align-items:start">
+          <div class="vsp-card" style="padding:15px 18px 14px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">The pre-work moment &mdash; now</h3>
+            <p style="font-size:13.5px"><b style="color:var(--vsp-accent)">Pre-work risks surface here.</b> Everyone reads out the <b style="color:#fff">one data-reality risk</b> they wrote before the session; the facilitator puts each against a row on the board.</p>
+            <p style="font-size:13.5px;margin-top:9px">Two things happen every time this runs: most risks cluster on <b style="color:var(--vsp-accent)">Labeled</b> and <b style="color:var(--vsp-accent)">Enough</b> &mdash; which is the correct instinct &mdash; and the <b style="color:var(--vsp-accent)">Legal</b> column comes up thin, which is the dangerous one, because it is the row that kills deals late.</p>
+          </div>
+          <div class="p-callout" style="font-size:14.5px;align-self:stretch;display:flex;align-items:center">If nobody brought a <b>Legal</b> risk, <b>that absence is worth thirty seconds on its own.</b> It is the cheapest row to ask about and the most expensive answer to get late &mdash; and a room full of engineers will under-weight it every single time.</div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 2 of 3 &middot; step 3 &middot; enough, fresh, legal</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      6 min: about two minutes per row, then the pre-work read-out. Watch the clock here - step 3 is 12 minutes total across this slide and the last one, and it will happily eat step 4 if you let it.
+      Enough on this case is arithmetic on their archive, and the whole trick is the denominator: photos divided by milestone types, and then the rare milestone divided out of that. Use slide 5's placeholder sum if the room needs a worked example, and say it is a placeholder.
+      Fresh on this case has three flavours and they are all in the plan's own words: seasons, camera positions, new construction methods. Ask which of the three the client has changed in the last two years. The answer is almost always &quot;all of them&quot;.
+      Legal on this case is the sharpest version in the whole programme: workers identifiable in frame, who owns the drone footage, and client versus subcontractor data rights. Three different answers from three different documents.
+      THE PRE-WORK READ-OUT is the point of the session, not a formality. Put a five-column grid on the board and stick each person's risk in a column. The clustering is the teaching: the room's instincts are right about Labeled and Enough and blind on Legal, and showing them their own distribution lands better than any slide.
+      If the room is running hot on time, cut the Legal discussion to the callout and pick it back up in step 4 - do NOT cut the read-out.
+    </aside>
+  </section>
+
+  <!-- 12 &middot; STEP 4 -->
+  <section data-label="Step 4 &middot; where it breaks">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 &middot; Step 4 &middot; 5 min</div>
+          <h2 class="vsp-h2" style="font-size:37px">Four ways it breaks. <span class="vsp-glow">Four numbers you already have.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:13.5px;max-width:1160px">Verbatim: <i>occlusion and camera angle, label ambiguity (&ldquo;complete&rdquo; is a judgment call), few examples per site type, distribution shift between sites.</i></p>
+        <table class="p-tbl xtight">
+          <tr><th style="width:22%">The failure</th><th style="width:11%">Row that owns it</th><th style="width:35%">The number you already have</th><th>What you scope because of it</th></tr>
+          <tr><td><b>Occlusion &amp; camera angle</b></td><td><span class="p-tag row">Fresh</span></td><td>LSN-1.5: a nine-number detector fired <b>identically</b> on the same digit shifted 4 px &mdash; reuse works, but only inside the frame it was trained on</td><td>fixed camera positions, or a labelled sample from <b>every</b> camera type before you promise anything</td></tr>
+          <tr class="hi"><td><b>Label ambiguity</b> &mdash; &ldquo;complete&rdquo; is a judgment call</td><td><span class="p-tag row">Labeled</span></td><td>this hour: <b>82% agreement, &kappa; = 0.60</b>, one manager signing off <b>1.58&times;</b> the other, model inheriting <b>+8.0 pts</b> of optimism</td><td>a <b>written definition</b> of &ldquo;complete&rdquo; per milestone, agreed by two supers, before a single label is bought</td></tr>
+          <tr class="hi"><td><b>Few examples per site type</b></td><td><span class="p-tag row">Enough</span></td><td>your curve: <b>64.41%</b> at 200 examples on a problem far easier than theirs; <b>23.88%</b> at 10</td><td><b>one milestone type</b> for the pilot &mdash; the one with the most examples, not the one they mention first</td></tr>
+          <tr><td><b>Distribution shift between sites</b></td><td><span class="p-tag row">Fresh</span></td><td>this hour: <b>92.00% &rarr; 66.50%</b> accuracy while confidence went <b>90.12% &rarr; 90.72%</b></td><td>a <b>monitoring cadence with fresh labels</b>, plus a human review path</td></tr>
+        </table>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;gap:18px">
+          <div class="p-callout" style="font-size:14px">The two <b>everyone under-prices are the middle two.</b> Occlusion is the <i>visible</i> problem. Label ambiguity and rare classes decide whether the project is <b>possible</b> &mdash; and neither is visible in a photo.</div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">None of these is &ldquo;it doesn&rsquo;t work&rdquo;</h3>
+            <p style="font-size:12.5px">Each one is <b style="color:#fff">&ldquo;here is the condition under which it stops working, and here is what we do about it.&rdquo;</b> That is a specification &mdash; and clients buy specifications.</p>
+          </div>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 2 of 3 &middot; step 4 &middot; where it breaks</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      5 min. The discipline of this slide is one number per failure, and every number came from this room - one from LSN-1.5 and three from the last twenty minutes. A failure mode without a number is a worry. A failure mode with a number is a scoping decision.
+      Say the four in THIS order, which is not the order the plan lists them in, and say why: label ambiguity FIRST because it is the ceiling on everything else and the cheapest to measure - one afternoon, two people, fifty photos. Rare classes SECOND because it decides the pilot's scope and it is arithmetic on their archive. Distribution shift THIRD because it decides the monitoring line item, i.e. the recurring revenue. Occlusion LAST.
+      Then the inversion in the callout, which is the insight the client will not reach on their own: the visible failure is the least decisive one. Leading with occlusion makes VSP sound like a vendor with a computer-vision brochure. Leading with label ambiguity makes VSP sound like the only people in the room who have shipped one of these.
+      Notice there is no Exists or Legal failure on this slide, and if someone asks, that is the right answer: those two kill the project before it starts rather than degrading it, which is why they are rows 1 and 5 rather than failure modes.
+      End on the right-hand card and hold it - it is the bridge into step 5.
+    </aside>
+  </section>
+
+  <!-- 13 &middot; STEP 5 -->
+  <section data-label="Step 5 &middot; what VSP promises">
+    <div class="vsp-slide">
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-160px;left:-120px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 2 &middot; Step 5 &middot; 3 min &middot; the payoff of the module</div>
+          <h2 class="vsp-h2" style="font-size:36px">Honest scoping <span class="vsp-glow">is the sales move.</span></h2>
+        </div>
+        <p class="vsp-lead" style="font-size:13.5px;max-width:1160px">Verbatim: <i style="color:var(--vsp-on-dark-strong)">a scoped pilot on one milestone type with human-in-the-loop review &mdash; not &ldquo;AI that watches your sites.&rdquo; Honest scoping is the sales move.</i></p>
+        <div class="p-grid2" style="gap:18px">
+          <div class="vsp-card bad" style="padding:15px 18px 14px">
+            <h3 style="font-size:17px;color:#e8863f">&ldquo;AI that watches your sites.&rdquo;</h3>
+            <p style="font-size:13.5px">Wins the meeting. <b style="color:#fff">Loses the delivery.</b> There is no version of this sentence that survives step 3 &mdash; and everybody who heard it will remember it in month four.</p>
+          </div>
+          <div class="vsp-card good" style="padding:15px 18px 14px">
+            <h3 style="font-size:17px;color:var(--vsp-green-lightest)">&ldquo;A scoped pilot on one milestone type with human-in-the-loop review.&rdquo;</h3>
+            <p style="font-size:13.5px">Wins the meeting <b style="color:#fff">and</b> the delivery &mdash; because it is a sentence you can still say in month four.</p>
+          </div>
+        </div>
+        <table class="p-tbl xtight">
+          <tr><th style="width:23%">The clause</th><th style="width:20%">Which row put it there</th><th>What it buys VSP</th></tr>
+          <tr><td><b>&ldquo;scoped&rdquo;</b></td><td>all five</td><td>a defined edge, so success is <b>decidable</b> rather than arguable</td></tr>
+          <tr><td><b>&ldquo;pilot&rdquo;</b></td><td><span class="p-tag row">Enough</span></td><td>permission to be wrong in a small, cheap, agreed way &mdash; <b>and a phase two to sell</b></td></tr>
+          <tr><td><b>&ldquo;one milestone type&rdquo;</b></td><td><span class="p-tag row">Enough</span></td><td>the one class with enough examples, instead of fourteen rare ones at once</td></tr>
+          <tr class="hi"><td><b>&ldquo;human-in-the-loop review&rdquo;</b></td><td><span class="p-tag row">Labeled</span> <span class="p-tag row">Fresh</span></td><td>the fallback path (<b>question 11</b>), the adjudicator for judgement calls, <b>and a labelling pipeline the client is already paying for.</b> Every reviewed case is a fresh label</td></tr>
+        </table>
+        <div class="p-gap">
+          <div class="h">[GAP-5 &mdash; pending Vlad/Dorel case brief]</div>
+          <p><b>Which milestone the pilot should pick is a fact from the brief</b>, not a judgement this deck can make: it is whichever one has the most labelled examples <i>and</i> drives a decision worth automating. Those are <b>often not the same milestone</b> &mdash; the one with the money attached is usually the rare one the client names first &mdash; and that tension is the most interesting three minutes of the whole walkthrough.</p>
+        </div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 2 of 3 &middot; step 5 &middot; what VSP should promise</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      3 min. Put the two sentences side by side and read both out loud in a client voice. The left one is not a straw man - it is what gets said in real meetings, by people who mean well, because it is the sentence that gets the nod.
+      Then unpack the right-hand sentence clause by clause using the table, and make the point that every clause was put there by a checklist row. The checklist is not a risk register. It is a PROPOSAL GENERATOR. That is the sentence to leave segment 2 on.
+      Spend the extra beat on human-in-the-loop, because it is the cleverest clause and nobody notices why: it looks like a concession - a person checking the model's work - and it is actually three things at once. The fallback path, the adjudicator for the ambiguous cases, and a labelling pipeline the client is already funding. Every reviewed case is a fresh label, which IS the monitoring cadence from row 4, paid for, with no separate line item.
+      The GAP-5 tension is worth naming even without the brief: the milestone with the most examples and the milestone with the most money attached are usually different, and saying so in the first meeting is the sales move. The notebook runs that arithmetic on placeholders if the room wants to see it.
+      Transition to segment 3: everything you just said came out of eleven questions. Now we make them ours.
+    </aside>
+  </section>
+
+  <!-- 14 &middot; BANK Q1-Q6 -->
+  <section data-label="The bank &middot; Q1&ndash;Q6">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:400px;height:400px;top:-160px;right:-110px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:15px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 3 &middot; 15 min &middot; Build the question bank &middot; the module&rsquo;s take-home artifact</div>
+          <h2 class="vsp-h2" style="font-size:36px">Eleven questions. <span class="vsp-glow">Refine, add, cut, order.</span></h2>
+        </div>
+        <div class="p-grid3" style="gap:15px">
+          <div class="vsp-card" style="padding:12px 15px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:14.5px">~5 min &middot; refine the wording</h3>
+            <p style="font-size:12px">Every question read out loud, as you would say it to a client. Anything that makes them defensive, or invites &ldquo;yes&rdquo;, gets rewritten.</p>
+          </div>
+          <div class="vsp-card" style="padding:12px 15px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:14.5px">~6 min &middot; add and cut</h3>
+            <p style="font-size:12px">Against the case you just worked. <b style="color:#fff">Your pre-work edits get read out here.</b> A question earns its slot only if the walkthrough proved you needed it.</p>
+          </div>
+          <div class="vsp-card" style="padding:12px 15px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:14.5px">~4 min &middot; order it</h3>
+            <p style="font-size:12px">Not the order it is written in &mdash; the order a real discovery call flows, and the answer to &ldquo;which one do you open with?&rdquo;</p>
+          </div>
+        </div>
+        <ul class="p-q">
+          <li><span class="n">1</span><span class="t">What decision will the model&rsquo;s output drive, and who acts on it?</span><span class="p">the job &middot; cost</span></li>
+          <li><span class="n">2</span><span class="t">Is this a prediction problem at all &mdash; or do you need something generative/conversational? <i>(LSN-1.1 triage)</i></span><span class="p">the job</span></li>
+          <li><span class="n">3</span><span class="t">What data do you have <i>today</i> that records the thing you want predicted?</span><span class="p">exists</span></li>
+          <li><span class="n">4</span><span class="t">Is the outcome written in the data, or would someone have to label it? Who, and at what cost?</span><span class="p">labeled</span></li>
+          <li><span class="n">5</span><span class="t">How many examples do you have of the outcome you actually care about &mdash; especially if it&rsquo;s rare?</span><span class="p thin">enough</span></li>
+          <li><span class="n">6</span><span class="t">How old is the data, and has the business changed since it was collected?</span><span class="p">fresh</span></li>
+        </ul>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 3 of 3 &middot; the bank &middot; questions 1&ndash;6</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      5 min for the mechanics plus the first six questions. Put the three tasks up, then read Q1 through Q6 out loud - not silently, out loud, in the voice you would use with a client. Half the refinements suggest themselves the moment somebody hears the question spoken.
+      Point out the design of Q3 while you are on it, because it is the model for good question-writing: &quot;what data do you have TODAY that RECORDS THE THING YOU WANT PREDICTED&quot;. It cannot be answered with a yes, and answering it forces the client through the Exists distinction from slide 3. Compare it with &quot;do you have data?&quot;, which has exactly one answer and is useless.
+      Four failure modes in question design, and they are the criteria for task 1 - say them here so the room can apply them to Q7-Q11 on the next slide: questions that invite yes; questions that make a client defensive (&quot;is your data any good&quot; is an accusation, &quot;would two of your people label the same fifty examples the same way&quot; is a collaboration); questions the client cannot answer (anything needing ML vocabulary is for our notes, not the call); and questions with no consequence - if you would do the same thing regardless of the answer, cut it. That last test is stricter than it sounds.
+      The gold tag on Q5 is deliberate and it comes back on the next slide.
+    </aside>
+  </section>
+
+  <!-- 15 &middot; BANK Q7-Q11 -->
+  <section data-label="The bank &middot; Q7&ndash;Q11">
+    <div class="vsp-slide">
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 3 &middot; the rest of the bank &middot; and where it is thin</div>
+          <h2 class="vsp-h2" style="font-size:36px">Every row is covered. <span class="vsp-glow">Two of them by one question.</span></h2>
+        </div>
+        <ul class="p-q">
+          <li><span class="n">7</span><span class="t">How does new data arrive &mdash; a live feed, or a one-time dump someone exported once?</span><span class="p">exists &middot; fresh</span></li>
+          <li><span class="n">8</span><span class="t">Who owns the data, and are there privacy, contractual, or regulatory limits on using it this way?</span><span class="p thin">legal</span></li>
+          <li><span class="n">9</span><span class="t">What does each kind of wrong answer cost you &mdash; a false alarm vs a miss? <i>(LSN-1.3)</i></span><span class="p">cost</span></li>
+          <li><span class="n">10</span><span class="t">What&rsquo;s the current human baseline, and how good would the model have to be to beat it usefully?</span><span class="p">baseline</span></li>
+          <li><span class="n">11</span><span class="t">What happens to the cases the model can&rsquo;t handle &mdash; is there a human fallback path?</span><span class="p">fallback</span></li>
+        </ul>
+        <table class="p-tbl xtight">
+          <tr><th style="width:20%">what it probes</th><th class="num">the job</th><th class="num">exists</th><th class="num">labeled</th><th class="num">enough</th><th class="num">fresh</th><th class="num">legal</th><th class="num">cost &amp; baseline</th><th class="num">fallback</th></tr>
+          <tr class="hi"><td>questions defending it</td><td class="num"><b>2</b></td><td class="num"><b>2</b></td><td class="num"><b>2</b></td><td class="num gold"><b>1</b></td><td class="num"><b>2</b></td><td class="num gold"><b>1</b></td><td class="num"><b>3</b></td><td class="num"><b>1</b></td></tr>
+          <tr><td>which ones</td><td class="num">Q1 Q2</td><td class="num">Q3 Q7</td><td class="num">Q4 Q11</td><td class="num gold">Q5</td><td class="num">Q6 Q7</td><td class="num gold">Q8</td><td class="num">Q1 Q9 Q10</td><td class="num">Q11</td></tr>
+        </table>
+        <div class="p-callout" style="font-size:14.5px">The bank spends <b>three</b> questions on economics and <b>one</b> each on the two rows whose failure column reads <i>&ldquo;won&rsquo;t train anything&rdquo;</i> and <i>&ldquo;the deal dies in legal review.&rdquo;</i> Defensible, or a gap? <b>That is task 2 &mdash; decide it on purpose.</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 3 of 3 &middot; the bank &middot; questions 7&ndash;11 &amp; coverage</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      4 min. Read Q7 through Q11 out loud, then go straight to the coverage row - it is the most useful thirty seconds in the workshop because it turns an argument into a five-second decision.
+      The finding is honest and it is not a criticism of the plan: every checklist row IS covered, so the bank is not missing a dimension. But &quot;enough&quot; and &quot;legal&quot; get one question each, and those are the two rows whose failures are the most expensive - one won't train anything, the other kills the deal in legal review. Meanwhile economics gets three.
+      Do not tell the room what to conclude. Genuinely open: they may decide one question is sufficient for legal because it is a compound question, or they may add &quot;where may the data live?&quot; from slide 7's table. Either is a good outcome. Deciding by accident is not.
+      Then run the additions and cuts. Everybody's pre-work edit gets read with the BECAUSE - the reason is the part that changes the bank. &quot;Because a client who hears that question gets defensive&quot; is an argument; &quot;because it is better&quot; is not.
+      Keep a strict clock here. This is the slide that overruns, and slide 16 needs its three minutes.
+    </aside>
+  </section>
+
+  <!-- 16 &middot; ORDER IT -->
+  <section data-label="Order it like a call">
+    <div class="vsp-slide">
+      <div class="vsp-orb green-l" style="width:340px;height:340px;top:30%;left:47%"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="vsp-kicker">Segment 3 &middot; task 3 &middot; ~4 min &middot; the order matters more than the wording</div>
+          <h2 class="vsp-h2" style="font-size:36px">The order you&rsquo;d actually ask &mdash; <span class="vsp-glow">and the argument about legal.</span></h2>
+        </div>
+        <div class="p-pipe">
+          <div class="node"><div class="n">1</div><div><div class="nt">The decision &mdash; Q1, Q2</div><div class="ns"><b style="color:#fff">Load-bearing, and first on purpose.</b> A client who cannot name the decision does not have a project, and two minutes finds that out.</div></div></div>
+          <div class="node"><div class="n">2</div><div><div class="nt">The data reality &mdash; Q3, Q4, Q5, Q6, Q7</div><div class="ns">The checklist, in order. Five questions, and the answers are the first page of a scoping document.</div></div></div>
+          <div class="node"><div class="n">3</div><div><div class="nt">The economics &mdash; Q9, Q10</div><div class="ns">What a wrong answer costs, and what the model has to beat. Without Q10 you have no definition of &ldquo;good enough&rdquo;.</div></div></div>
+          <div class="node moat"><div class="n">4</div><div><div class="nt">The guardrails &mdash; Q8, Q11</div><div class="ns">Ownership and the fallback path. Where this deck puts legal &mdash; and where the argument is.</div></div></div>
+        </div>
+        <div class="p-grid2" style="gap:18px;align-items:stretch">
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">The case for legal in phase&nbsp;1</h3>
+            <p style="font-size:13px">It is the <b style="color:#fff">cheapest question to ask and the most expensive answer to get late.</b> A deal that dies in legal review in month three burned three months of everybody&rsquo;s time to learn something a sentence would have surfaced.</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">The case for phase&nbsp;4</h3>
+            <p style="font-size:13px">Opening a first call with <i>&ldquo;who owns your data?&rdquo;</i> sounds like <b style="color:#fff">a lawyer, not a partner.</b> You have not earned the question yet, and the client has not told you what they want.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px">Both are true. <b>Pick one and write down why</b> &mdash; the room&rsquo;s answer, with its reason, <i>is</i> the artifact.</div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; Segment 3 of 3 &middot; order it like a discovery call</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      3 min, and it is the most interesting three minutes of the workshop because there is no right answer.
+      Walk the four phases fast. The one to make explicit is phase 1: the decision comes before any data question, and that is not stylistic. A client who cannot name the decision does not have a project. Two minutes of Q1 and Q2 saves everybody an hour, and it is the cheapest disqualification in pre-sales.
+      Then run the legal argument properly - take both sides and make the room commit. Have somebody argue phase 1 and somebody argue phase 4, ninety seconds each. Both cards on the slide are genuinely true, which is what makes it a good argument rather than a quiz.
+      A useful third position if the room finds it: ask it in phase 1 but ask it differently. &quot;Is there anything about this data that would make your legal team nervous?&quot; is the same question and sounds like a partner rather than a lawyer. If somebody gets there, that is the best refinement the room will produce today - write it down as an addition.
+      Then close the workshop: the refined bank goes in the capture cell of the notebook, it gets printed, and it walks into ASM-1 with them.
+    </aside>
+  </section>
+
+  <!-- 17 &middot; CLOSE -->
+  <section data-label="Close">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
+      <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage center" style="gap:16px;align-items:center;text-align:center">
+        <div class="vsp-kicker">Homework &middot; then ASM-1 &middot; MOD-1 ends here</div>
+        <h2 class="vsp-h2" style="font-size:41px">Rehearse saying a &ldquo;no&rdquo; <span class="vsp-glow">that sounds like a plan.</span></h2>
+        <p class="vsp-lead" style="font-size:17px;max-width:1040px">Apply the refined bank to <b style="color:#fff">one prospect or project you know first-hand.</b> Submit the filled bank referencing <span class="code-chip">LSN-1.6</span> before <span class="code-chip">ASM-1</span>. The blank template is in the notebook, with an advisor that pre-checks it against the pass bar.</p>
+        <div class="p-grid3" style="gap:16px;text-align:left">
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">Pass, verbatim</h3>
+            <p style="font-size:12.5px"><i style="color:var(--vsp-on-dark-strong)">&ldquo;every checklist dimension (exists/labeled/enough/fresh/legal) addressed with specifics, plus at least one honestly-stated limitation.&rdquo;</i></p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar green"></span>
+            <h3 style="font-size:15.5px">&ldquo;With specifics&rdquo; means</h3>
+            <p style="font-size:12.5px">A client could <b style="color:#fff">confirm or correct</b> every line. &ldquo;About 6,400 rows since the 2022 migration, in their CRM&rdquo; &mdash; not &ldquo;they have a lot of data.&rdquo;</p>
+          </div>
+          <div class="vsp-card" style="padding:14px 17px 13px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">And both halves of the limitation</h3>
+            <p style="font-size:12.5px"><i>&ldquo;Here&rsquo;s where the model would break <b style="color:#fff">and what I&rsquo;d scope instead</b>.&rdquo;</i> A limitation without an alternative is a reason to walk away.</p>
+          </div>
+        </div>
+        <div class="p-callout" style="font-size:15px;text-align:left">&ldquo;Before we talk about what the model could do &mdash; <b>can I ask five questions about your data?</b> Because if the answer to any of them is &lsquo;no&rsquo;, that&rsquo;s not a problem, it&rsquo;s the first phase of the project, and I&rsquo;d rather price it now than discover it in month four.&rdquo;</div>
+        <div class="vsp-wordmark" style="margin-top:4px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training &middot; LSN-1.6 &middot; close &middot; homework &rarr; ASM-1 &rarr; MOD-2</span><span>20 checklist &middot; 25 walkthrough &middot; 15 question bank</span></div>
+    </div>
+    <aside class="notes">
+      3 min. Read the pass bar verbatim off the middle-left card, then spend the time on the second card, because &quot;with specifics&quot; is the whole bar and it is where the homework comes back thin. The test is one sentence: if nobody could disagree with your answer, it is not an answer.
+      Then the limitation, and be blunt about why it matters commercially: a limitation without an alternative is a reason to walk away; a limitation WITH an alternative is a scoped project. LSN-1.5's rubric called this row &quot;honest boundary&quot; and ASM-1 grades it as &quot;honesty about limitations&quot;. Same skill, on paper this time.
+      Point them at the notebook: the blank template is there, one block per checklist row plus the limitation, and the advisor pre-checks it - it catches the three ways this comes back (not specific, answering a different row, limitation with no alternative). Tell them it can be gamed by keyword-stuffing and that gaming it costs them the rehearsal, which is the only thing it is for.
+      ASM-1, so nobody is surprised: async quiz around fifteen scenario questions plus a live fifteen-minute mock pre-sales conversation with Vlad or Dorel playing the client. Pass bar is quiz 80% plus rubric &quot;client-ready&quot; on triage and on honesty about limitations. Triage was LSN-1.1. Honesty about limitations was this hour.
+      Close on the callout, read slowly. Nobody has ever lost a deal to that sentence; several have been lost to its absence. Then one line forward: MOD-2 starts next week with LSN-2.1, and the first thing it will ask is that a language model has a data-reality checklist too - a different one.
+    </aside>
+  </section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: false,
+  showSlideNumber: 'speaker',
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  plugins: [ RevealNotes ],
+  keyboard: {}
+});
+</script>
+</body>
+</html>

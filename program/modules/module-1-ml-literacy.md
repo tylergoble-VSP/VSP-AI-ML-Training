@@ -44,7 +44,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 | `LSN-1.3` | Grading models — MAE, precision/recall, AUC | 1.5 h | Tyler | Live | Built (deck + notebook) |
 | `LSN-1.4` | **Hands-on: train MNIST with PyTorch/Keras** | 2.5 h | Tyler / Stefana | Live lab | Built (lab notebook + deck) |
 | `LSN-1.5` | Conversational deep learning — NN, CNN, RL | 1 h | Tyler | Recorded (45 min) + live Q&A/drill (15 min) | Built (deck + notebook) |
-| `LSN-1.6` | Data requirements, limitations & the pre-sales question bank | 1 h | Tyler + Vlad | Live | **BUILD — GAP-5** |
+| `LSN-1.6` | Data requirements, limitations & the pre-sales question bank | 1 h | Tyler + Vlad | Live | Built (deck + notebook); case brief still **GAP-5** |
 | — | `ASM-1` — quiz + mock pre-sales conversation | 1 h | Tyler + Vlad | Live roleplay | **BUILD — GAP-6** |
 
 ---
@@ -175,7 +175,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Homework:** Apply the question bank to one prospect or project you know; submit filled bank.
 
-**Support material:** **BUILD (`GAP-5`)** — case brief needs Vlad/Dorel input; question bank template new.
+**Support material:** Built — `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb` (checklist companion + walkthrough workspace with marked GAP-5 slots + homework template & advisor) and `program/lessons/decks/LSN-1.6-data-requirements.html` (18 slides, notes timed to 60). The anonymized case brief itself remains **GAP-5** (Vlad/Dorel input); every place it lands is explicitly marked in both artifacts, and the walkthrough runs today on labeled placeholders.
 
 ---
 
@@ -207,5 +207,5 @@ The mock conversation is the point of the module — it rehearses the exact skil
 | ID | Item | Owner | Needed by |
 |---|---|---|---|
 | `GAP-8` | ~~Guided MNIST lab notebook~~ **CLOSED** — built Round 7 (`notebooks/lessons/LSN-1.4_Hands_On_Train_MNIST.ipynb`, BUILD_LOG) | Tyler (+ Stefana review) | done |
-| `GAP-5` (share) | Construction-site case brief + question bank template | Vlad/Dorel + Tyler | Week 2 |
+| `GAP-5` (share) | Construction-site case brief (question bank template now built — see LSN-1.6 notebook) | Vlad/Dorel + Tyler | Week 2 |
 | `GAP-6` (share) | ASM-1 quiz + mock-conversation rubric | Tyler | End of Week 2 |

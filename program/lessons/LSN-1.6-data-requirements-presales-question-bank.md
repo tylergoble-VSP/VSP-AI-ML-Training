@@ -59,7 +59,7 @@ Closes the module by turning limitations into an asset. Vlad's 6MAP takeaway —
 4. **Where it breaks** (5 min): occlusion and camera angle, label ambiguity ("complete" is a judgment call), few examples per site type, distribution shift between sites.
 5. **What VSP should promise** (3 min): a scoped pilot on one milestone type with human-in-the-loop review — not "AI that watches your sites." Honest scoping is the sales move.
 
-### Starter pre-sales question bank (draft — session refines; ~10 questions)
+### Starter pre-sales question bank (draft — session refines; 11 questions)
 
 1. What decision will the model's output drive, and who acts on it?
 2. Is this a prediction problem at all — or do you need something generative/conversational? (LSN-1.1 triage)
@@ -85,10 +85,12 @@ Apply the refined question bank to one prospect or project you know first-hand. 
 
 | Material | Status | Path / source |
 |---|---|---|
-| Anonymized construction-site case brief | **build (GAP-5) — depends on Vlad/Dorel input; walkthrough above is not blocked on the brief's prose** | Vlad/Dorel to supply; Tyler formats |
+| **Session companion notebook** — checklist with one number per row, case-walkthrough workspace (GAP-5 slots marked), coverage matrix, homework template + advisor | exists | `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb` |
+| **Session deck** — 18 slides, speaker notes timed 20/25/15 = 60, GAP-5 placeholder chips | exists | `program/lessons/decks/LSN-1.6-data-requirements.html` |
+| Anonymized construction-site case brief | **build (GAP-5) — depends on Vlad/Dorel input; walkthrough runs today with marked placeholders; brief's facts slot into the marked cells/slides** | Vlad/Dorel to supply; Tyler formats |
 | Data reality checklist (draft) | exists | This plan (above) |
 | Starter pre-sales question bank (draft) | exists | This plan (above) |
-| Question bank template (blank, for homework submissions) | build (GAP-5 share) | Derive from the refined session output |
+| Question bank template (blank, for homework submissions) | exists — starter template; refined live at delivery, updated after first delivery | Fill-in homework cell in `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb` (saves to `outputs/lsn-1.6/`; advisor pre-checks against the pass bar without gating the save) |
 | ML literacy deck (limitations section) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
 
 ## Delivery Notes
