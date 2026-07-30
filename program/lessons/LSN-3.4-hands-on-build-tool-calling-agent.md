@@ -60,7 +60,7 @@ The `search_docs` tool *is* VSP's in-production meeting-RAG system, promoted fro
 | Agent-loop helpers — `define_tool_schema()`, `execute_tool_call()`, `agent_loop(max_iterations=5)`, `parse_tool_call()` | exists | `src/llm/tool_calling.py` |
 | Each participant's RAG artifact (becomes the `search_docs` tool) | exists after LSN-2.4 | participant-owned, from `LSN-2.4` homework |
 | Fallback mini-corpus + pre-built index (for broken LSN-2.4 artifacts) | build (part of GAP-2) | repo — location set at delivery prep |
-| Pre-work reading: Anthropic, "Building effective agents" | exists | (verify at delivery prep) |
+| Pre-work reading: Anthropic, "Building effective agents" | exists | [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) |
 | Rigged system-prompt variant for the break-it drill + reference `gated_execute()` cell | build (part of GAP-2) | lab notebook appendix |
 
 ## Delivery Notes

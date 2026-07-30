@@ -66,7 +66,7 @@ Every metric is priced in a delivery-company scenario: MAE on effort estimates t
 | Go-deeper: real ROC/AUC usage | exists | `notebooks/foundations/06_Classifier_Algorithms.ipynb` (replaces the erroneous `foundations/12` citation — LL-32) |
 | Three model report cards + answer key | exists | This plan (Homework, above) + notebook homework cells (pinned arithmetic) |
 | Confusion-matrix drill slides (two matrices incl. always-say-no case) | exists | Deck + notebook drill section |
-| Optional pre-work video: StatQuest with Josh Starmer — "ROC and AUC, Clearly Explained!" | exists | (verify at delivery prep) |
+| Optional pre-work video: StatQuest with Josh Starmer — "ROC and AUC, Clearly Explained!" | exists | [youtube.com/watch?v=4jRBRDbJemM](https://www.youtube.com/watch?v=4jRBRDbJemM) |
 
 ## Delivery Notes
 

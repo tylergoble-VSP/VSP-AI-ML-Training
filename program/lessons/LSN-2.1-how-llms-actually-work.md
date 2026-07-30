@@ -28,9 +28,9 @@ Kill the magic. Participants arrive as fluent ChatGPT consumers who cannot say w
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Watch Andrej Karpathy, "Intro to Large Language Models" (YouTube) — the opening segment on what an LLM is / next-word prediction, and the hallucination segment (timestamps on the segment list, verify at delivery prep) | ~20 min | One sentence: the thing that most changed your mental model |
-| 2 | Watch Andrej Karpathy, "Deep Dive into LLMs like ChatGPT" (YouTube, 3 h 31 m) — the tokenization segment only (timestamp on the segment list, verify at delivery prep) | ~10 min | Nothing — feeds task 3 |
-| 3 | Tokenize two sentences in the OpenAI tokenizer playground (platform.openai.com/tokenizer): one plain-English sentence, one containing code or a rare/technical word. Count the tokens vs the words | ~15 min | Screenshot of both tokenizations |
+| 1 | Watch Andrej Karpathy, ["Intro to Large Language Models"](https://www.youtube.com/watch?v=zjkBMFhNj_g) (YouTube) — the opening segment on what an LLM is / next-word prediction, and the hallucination segment (timestamps on the segment list) | ~20 min | One sentence: the thing that most changed your mental model |
+| 2 | Watch Andrej Karpathy, ["Deep Dive into LLMs like ChatGPT"](https://www.youtube.com/watch?v=7xTGNNLPyMI) (YouTube, 3 h 31 m) — the tokenization segment only (timestamp on the segment list) | ~10 min | Nothing — feeds task 3 |
+| 3 | Tokenize two sentences in the [OpenAI tokenizer playground](https://platform.openai.com/tokenizer): one plain-English sentence, one containing code or a rare/technical word. Count the tokens vs the words | ~15 min | Screenshot of both tokenizations |
 
 ## Session Plan
 
@@ -60,11 +60,11 @@ None — LSN-2.2 carries heavy pre-work instead. Bring your tokenizer screenshot
 
 | Material | Status | Path / source |
 |---|---|---|
-| Karpathy — "Intro to Large Language Models" (video) | exists | YouTube, Andrej Karpathy channel (link + segment timestamps: verify at delivery prep) |
-| Karpathy — "Deep Dive into LLMs like ChatGPT" (video, 3 h 31 m) | exists | YouTube, Andrej Karpathy channel (link + segment timestamps: verify at delivery prep) |
+| Karpathy — "Intro to Large Language Models" (video) | exists | [youtube.com/watch?v=zjkBMFhNj_g](https://www.youtube.com/watch?v=zjkBMFhNj_g) (segment timestamps chosen at delivery prep) |
+| Karpathy — "Deep Dive into LLMs like ChatGPT" (video, 3 h 31 m) | exists | [youtube.com/watch?v=7xTGNNLPyMI](https://www.youtube.com/watch?v=7xTGNNLPyMI) (segment timestamps chosen at delivery prep) |
 | Karpathy segment list (one page, with timestamps) | build (lesson-plan work, module build list) | program/materials/ — to create |
 | "LLM in five pictures" deck | build (lesson-plan work, module build list) | program/materials/ — to create |
-| OpenAI tokenizer playground | exists | platform.openai.com/tokenizer |
+| OpenAI tokenizer playground | exists | [platform.openai.com/tokenizer](https://platform.openai.com/tokenizer) |
 | Stanford GenAI companion decks | pending | Tyler pulling via academic contacts |
 
 ## Delivery Notes

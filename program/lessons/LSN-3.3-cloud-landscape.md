@@ -76,10 +76,10 @@ None (per module spec — final rubric becomes the take-home reference). The com
 | Comparison rubric (above) as fillable handout | build (`GAP-3`) | TBD — GAP-3 deliverable |
 | Per-cloud one-pagers ×3 | build (`GAP-3`) | TBD — owed by per-cloud owners one week before session |
 | **Per-cloud owner recruitment — open dependency** | build (`GAP-3`) | Unfilled as of 2026-07-28; raise at July 30 curriculum review ("maybe somebody knows Azure, maybe somebody knows Bedrock" — Vlad) |
-| Vertex AI Agent Builder overview (Google Cloud docs) | exists | https://cloud.google.com/agent-builder/overview |
-| "What is Amazon Bedrock AgentCore?" (AWS docs) | exists | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html |
-| Foundry Agent Service (Microsoft product page) | exists | https://azure.microsoft.com/en-us/products/ai-foundry/agent-service |
-| Observability in Generative AI — Microsoft Foundry (Microsoft Learn) | exists | https://learn.microsoft.com/en-us/azure/foundry/concepts/observability |
+| Vertex AI Agent Builder overview (Google Cloud docs — page now branded "Gemini Enterprise Agent Platform") | exists | [docs.cloud.google.com/gemini-enterprise-agent-platform/overview](https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview) |
+| "What is Amazon Bedrock AgentCore?" (AWS docs) | exists | [docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html) |
+| Foundry Agent Service (Microsoft product page) | exists | [azure.microsoft.com/en-us/products/ai-foundry/agent-service](https://azure.microsoft.com/en-us/products/ai-foundry/agent-service) |
+| Observability in Generative AI — Microsoft Foundry (Microsoft Learn) | exists | [learn.microsoft.com/en-us/azure/foundry/concepts/observability](https://learn.microsoft.com/en-us/azure/foundry/concepts/observability) |
 
 ## Delivery Notes
 

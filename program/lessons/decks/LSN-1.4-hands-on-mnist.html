@@ -541,7 +541,7 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
       Say why the assert uses a tolerance and not ==: floating-point matmuls are bit-identical on THIS machine and are not guaranteed across machines or torch versions. That is a real engineering fact about ML systems and it is worth thirty seconds (SI-24d, for the record).
       Then the two side beats, both short. The .T: nn.Linear stores (out, in), which is exactly where shape bugs happen - so print shapes, do not guess. And ReLU: 48 of 128 units zeroed for this image, a different 48 for the next one. That switching IS the non-linearity; without it the two Linears collapse into one matrix and the network can only draw straight lines. That is also the honest one-sentence answer to "what does deep mean?"
       Last: the logits are not probabilities. They run -9.5 to 7.7; softmax makes the percentages. That is LSN-1.2's distinction landing on their own model, and it is the smoothest possible bridge into segment 3.
-      If somebody asks about backprop: today you trust the chain rule the way you trust a compiler. Offer the 3Blue1Brown chapter as the optional pre-work for LSN-1.5 and move on. Do not start deriving anything.
+      If somebody asks about backprop: today you trust the chain rule the way you trust a compiler. Offer the <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">3Blue1Brown chapter</a> - "But what is a neural network?", 18 min, youtube.com/watch?v=aircAruvnKk (verified 2026-07-29) - as the optional pre-work for LSN-1.5 and move on. Do not start deriving anything.
     </aside>
   </section>
   <section data-label="Evaluate">

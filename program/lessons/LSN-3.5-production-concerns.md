@@ -80,10 +80,10 @@ Apply the question bank to your own LSN-3.4 agent and identify its **top three p
 | Six-dimension deck (skeleton above) | build (`GAP-4`) | TBD — GAP-4 deliverable, P0 |
 | TL question bank as printable handout | build (`GAP-4`) | Drafted in this file; format alongside the LSN-1.6 bank |
 | Participants' instrumented agents + traces | exists (prerequisite) | LSN-3.4 lab output — hard dependency |
-| Observability in Generative AI — Microsoft Foundry (Microsoft Learn) | exists | https://learn.microsoft.com/en-us/azure/foundry/concepts/observability |
-| Add observability to AgentCore resources (AWS docs) | exists | https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html |
-| Anthropic — "Building Effective Agents" | verify | Anthropic engineering blog (verify at delivery prep) |
-| LangSmith evaluation docs | verify | LangChain — LangSmith documentation (verify at delivery prep) |
+| Observability in Generative AI — Microsoft Foundry (Microsoft Learn) | exists | [learn.microsoft.com/en-us/azure/foundry/concepts/observability](https://learn.microsoft.com/en-us/azure/foundry/concepts/observability) |
+| Add observability to AgentCore resources (AWS docs) | exists | [docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html) |
+| Anthropic — "Building Effective Agents" | exists | [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) |
+| LangSmith evaluation docs | exists | [docs.langchain.com/langsmith/evaluation](https://docs.langchain.com/langsmith/evaluation) |
 
 ## Delivery Notes
 

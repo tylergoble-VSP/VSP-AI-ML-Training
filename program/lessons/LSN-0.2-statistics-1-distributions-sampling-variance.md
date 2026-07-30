@@ -28,7 +28,7 @@ The misconception this session kills: a single number — a mean, an accuracy sc
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Watch StatQuest with Josh Starmer: "Histograms, Clearly Explained" and "The Main Ideas behind Probability Distributions" (links in GAP-1 deck; verify at delivery prep) | 20 min | One written sentence: what does a histogram tell you that the mean alone cannot? |
+| 1 | Watch StatQuest with Josh Starmer: ["Histograms, Clearly Explained"](https://www.youtube.com/watch?v=qBigTkBLU6g) and ["The Main Ideas behind Probability Distributions"](https://www.youtube.com/watch?v=oI3hZJqXJuc) | 20 min | One written sentence: what does a histogram tell you that the mean alone cannot? |
 | 2 | In your `LSN-0.1` environment, write a ~10-line notebook: draw 10,000 samples from `normal(mean=50, sd=2)` and 10,000 from `normal(mean=50, sd=20)`, plot both histograms overlaid | 10 min | The executed notebook with the plot — same mean, wildly different spread |
 
 ## Session Plan
@@ -69,7 +69,7 @@ Notebook (from the GAP-1 exercise notebook): a provided 32-row dataset of schedu
 | **Stats I deck** — 10 slides w/ timing notes, VSP design system | exists | `program/lessons/decks/LSN-0.2-statistics-1.html` |
 | **Session notebook** — pre-work + all four segments + homework (32-row slip dataset, self-checking), executed end to end | exists | `notebooks/lessons/LSN-0.2_Statistics_1_Distributions_Sampling_Variance.ipynb` |
 | "92% accurate" drill scenario card | exists | this file (section above) + notebook drill section + deck slide 8 |
-| StatQuest with Josh Starmer — "Histograms, Clearly Explained"; "The Main Ideas behind Probability Distributions" | exists | youtube.com/@statquest (verify exact links at delivery prep) |
+| StatQuest with Josh Starmer — "Histograms, Clearly Explained"; "The Main Ideas behind Probability Distributions" | exists | [youtube.com/watch?v=qBigTkBLU6g](https://www.youtube.com/watch?v=qBigTkBLU6g); [youtube.com/watch?v=oI3hZJqXJuc](https://www.youtube.com/watch?v=oI3hZJqXJuc) |
 | Stanford intro-stats excerpts | adapt | Tyler's academic contacts (candidate companion per module spec) |
 
 ## Delivery Notes

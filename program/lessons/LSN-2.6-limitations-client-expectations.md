@@ -60,8 +60,8 @@ None — checkpoint week. Review the MOD-2 material against the outcomes list; A
 |---|---|---|
 | Failure post-mortem pack (the two cases above, one page each) | build (**GAP-7**) | program/materials/ — to create |
 | Expectation-setting patterns one-pager (taxonomy + the three rewrites + sentence stems) | build (**GAP-7**) | program/materials/ — to create |
-| Moffatt v. Air Canada coverage | exists | https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416 |
-| Mata v. Avianca overview | exists | https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc. |
+| Moffatt v. Air Canada coverage | exists | [cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416](https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416) |
+| Mata v. Avianca overview | exists | [en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.](https://en.wikipedia.org/wiki/Mata_v._Avianca%2C_Inc.) |
 | Evals deep-dive (forward reference) | exists (spec) | program/modules/module-3-agentic-systems.md — LSN-3.5 |
 
 ## Delivery Notes

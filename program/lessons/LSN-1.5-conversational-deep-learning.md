@@ -28,7 +28,7 @@ Kills the fear of the vocabulary. You are not learning what a neural network is 
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Watch the curated ~15-min excerpt from Andrej Karpathy, "The spelled-out intro to neural networks and backpropagation: building micrograd" (Neural Networks: Zero to Hero) — excerpt selection (verify at delivery prep) | 15 min | One question the excerpt left you with |
+| 1 | Watch the curated ~15-min excerpt from Andrej Karpathy, ["The spelled-out intro to neural networks and backpropagation: building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0) (Neural Networks: Zero to Hero) — excerpt selection at delivery prep | 15 min | One question the excerpt left you with |
 | 2 | Read the one-page NN/CNN/DL/RL cheat sheet | 10 min | Nothing to submit |
 | 3 | Draft one client-safe sentence for each of the four terms | 5 min | Your four sentences — raw material for the pair drill |
 
@@ -73,12 +73,12 @@ None — the pair drill is the rehearsal; the graded performance is the ASM-1 mo
 |---|---|---|
 | **Session companion notebook** — pre-work + cheat sheet + three segments (live demos as props) + drill workspace with tested advisor | exists | `notebooks/lessons/LSN-1.5_Conversational_Deep_Learning.ipynb` |
 | **Session deck** — 16 slides, speaker notes timed 15/15/15/15 = 60 | exists | `program/lessons/decks/LSN-1.5-conversational-deep-learning.html` |
-| Karpathy excerpt (pre-work #1) | exists | Andrej Karpathy, "The spelled-out intro to neural networks and backpropagation: building micrograd" — Neural Networks: Zero to Hero series (excerpt + timestamps chosen at delivery prep; verify at delivery prep) |
+| Karpathy excerpt (pre-work #1) | exists | Andrej Karpathy, ["The spelled-out intro to neural networks and backpropagation: building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0) — Neural Networks: Zero to Hero series (excerpt + timestamps chosen at delivery prep) |
 | One-page NN/CNN/DL/RL cheat sheet | exists | Canonical home: the cheat-sheet markdown cells in `notebooks/lessons/LSN-1.5_Conversational_Deep_Learning.ipynb` (distilled from the reference notebooks' intros + Tyler's original ML literacy deck per SI-25) |
 | NN reference notebook | exists | `notebooks/neural_networks/01_NeuralNetworks_Perceptron_MLP.ipynb` |
 | CNN reference notebook | exists | `notebooks/neural_networks/02_NeuralNetworks_Convolutional_Neural_Networks.ipynb` |
 | RL reference notebook | exists | `notebooks/reinforcement/01_Reinforcement_QLearning.ipynb` |
-| Optional: 3Blue1Brown — "But what is a neural network?" (Deep Learning, Chapter 1) | exists | (verify at delivery prep) |
+| Optional: 3Blue1Brown — "But what is a neural network?" (Deep Learning, Chapter 1) | exists | [youtube.com/watch?v=aircAruvnKk](https://www.youtube.com/watch?v=aircAruvnKk) |
 | Pair-drill prompts + rubric | exists | This plan (above) |
 
 ## Delivery Notes

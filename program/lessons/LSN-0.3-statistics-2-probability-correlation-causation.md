@@ -28,7 +28,7 @@ Two misconceptions die here: that "99% accurate" means an alert is 99% likely to
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Watch 3Blue1Brown, "The medical test paradox, and redesigning Bayes' rule" — https://www.youtube.com/watch?v=lG4VkPoG3ko | 21 min | One written answer: a test catches 99% of cases — why isn't a positive result 99% proof you're sick? |
+| 1 | Watch 3Blue1Brown, ["The medical test paradox, and redesigning Bayes' rule"](https://www.youtube.com/watch?v=lG4VkPoG3ko) | 21 min | One written answer: a test catches 99% of cases — why isn't a positive result 99% proof you're sick? |
 | 2 | Work the base-rate fraud one-pager (GAP-1 handout): a detector catching 99% of fraud, 1% false-positive rate, fraud in 1 of 10,000 transactions — fill in the counts table for 1,000,000 transactions | 9 min | The completed counts table (checked live in segment 2) |
 
 ## Session Plan
@@ -37,7 +37,7 @@ Two misconceptions die here: that "99% accurate" means an alert is 99% likely to
 |---|---|---|---|
 | Probability as degrees of belief; conditioning via fraud | 25 min | talk + worked example | Probability as a bet, not a mystery: "0.87 spam" is a strength of belief given evidence. Conditioning in natural frequencies, no algebra: of transactions *that are fraud*, 99% trigger an alert — P(alert \| fraud) = 0.99. Flip it: of transactions *that triggered an alert*, how many are fraud? Not 99% — that's the inverse, and it depends on the base rate. Landing line: every model output is P(answer \| inputs, training data) — conditional on data you must ask about (callback to `LSN-0.2`) |
 | Base rates: the arithmetic on screen | 25 min | worked example + discussion | Check pre-work tables, then build it together for 1,000,000 transactions: base rate 1/10,000 → **100 fraud**, detector catches 99% → **99 caught**; 999,900 legit × 1% false-positive → **9,999 false alarms**. Alert queue: 10,098 alerts, 99 real — **under 1% of alerts are fraud**, from a "99% accurate" detector. Discussion: what would you do — raise the threshold (miss more fraud), improve features, or staff the queue? Name the quantity — this fraction is *precision*; formal treatment with recall and the confusion matrix in `LSN-1.3` |
-| Correlation vs causation | 20 min | talk + examples | The four explanations for "A moves with B": A→B, B→A, C→both (confounder), coincidence. Famous traps: ice-cream sales and drownings (confounder: summer); Tyler Vigen's spurious-correlations pairs (coincidence at scale — tylervigen.com); the business trap: "customers who use feature X churn 40% less" — power users self-select into X; X may drive nothing |
+| Correlation vs causation | 20 min | talk + examples | The four explanations for "A moves with B": A→B, B→A, C→both (confounder), coincidence. Famous traps: ice-cream sales and drownings (confounder: summer); [Tyler Vigen's spurious-correlations pairs](https://tylervigen.com/spurious-correlations) (coincidence at scale — tylervigen.com); the business trap: "customers who use feature X churn 40% less" — power users self-select into X; X may drive nothing |
 | Drill: the revenue chart | 20 min | drill | Scenario written below. Groups of 3, 8 min to list their questions; 12 min debrief against the instructor list |
 
 **Timing check:** 25 + 25 + 20 + 20 = 90 min = 1.5 h contract duration.
@@ -76,9 +76,9 @@ Three scenario questions, async, graded pass/fail; submission references LSN-0.3
 | **Session notebook** — pre-work counts table + all four segments + drill reveal + self-checking homework, executed end to end | exists | `notebooks/lessons/LSN-0.3_Statistics_2_Probability_Correlation_Causation.ipynb` |
 | Base-rate fraud one-pager (pre-work handout) | exists | notebook pre-work cell (fill-in counts table) |
 | Drill scenario card + homework questions | exists | this file + notebook drill/homework sections + deck slide 8 |
-| 3Blue1Brown — "The medical test paradox, and redesigning Bayes' rule" | exists | https://www.youtube.com/watch?v=lG4VkPoG3ko |
-| StatQuest with Josh Starmer — "Conditional Probability, Clearly Explained" (optional reinforcement) | exists | youtube.com/@statquest (verify exact link at delivery prep) |
-| Tyler Vigen — Spurious Correlations | exists | tylervigen.com |
+| 3Blue1Brown — "The medical test paradox, and redesigning Bayes' rule" | exists | [youtube.com/watch?v=lG4VkPoG3ko](https://www.youtube.com/watch?v=lG4VkPoG3ko) |
+| StatQuest with Josh Starmer — "Conditional Probabilities, Clearly Explained!!!" (optional reinforcement) | exists | [youtube.com/watch?v=_IgyaD7vOOA](https://www.youtube.com/watch?v=_IgyaD7vOOA) |
+| Tyler Vigen — Spurious Correlations | exists | [tylervigen.com/spurious-correlations](https://tylervigen.com/spurious-correlations) |
 
 ## Delivery Notes
 

@@ -81,10 +81,10 @@ Match each of these five client scenarios to a stack (or "no framework") with on
 |---|---|---|
 | Framework cards ×4 (LangChain, LangGraph, LangSmith+observability, Haystack) | build (`GAP-2`) | TBD — GAP-2 deliverable |
 | Side-by-side demo: one toy problem, four implementations | build (`GAP-2`) | TBD — GAP-2 deliverable; shares tools with the LSN-3.4 lab notebook |
-| "LangChain & LangGraph 1.0" announcement (LangChain blog) | exists | https://blog.langchain.com/langchain-langgraph-1dot0/ |
-| LangGraph product/docs page | exists | https://www.langchain.com/langgraph |
-| "What is Haystack?" (deepset) | exists | https://haystack.deepset.ai/overview/intro |
-| LangSmith observability & evals docs | verify | LangChain — LangSmith documentation (verify at delivery prep) |
+| "LangChain & LangGraph 1.0" announcement (LangChain blog) | exists | [langchain.com/blog/langchain-langgraph-1dot0](https://www.langchain.com/blog/langchain-langgraph-1dot0) |
+| LangGraph product/docs page | exists | [langchain.com/langgraph](https://www.langchain.com/langgraph) |
+| "What is Haystack?" (deepset) | exists | [haystack.deepset.ai/overview/intro](https://haystack.deepset.ai/overview/intro) |
+| LangSmith observability & evals docs | exists | [LangSmith observability docs](https://docs.langchain.com/langsmith/observability) · [LangSmith evaluation docs](https://docs.langchain.com/langsmith/evaluation) |
 
 ## Delivery Notes
 

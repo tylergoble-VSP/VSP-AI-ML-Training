@@ -73,7 +73,7 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 
 **Purpose:** The "how reliable is this answer" muscle. Mean/median/variance, what a distribution's shape tells you, why sample size and sampling bias decide whether a number can be trusted.
 
-**Pre-work (~30 min):** Curated video (StatQuest-style, exact pick at lesson-plan time) + a 10-line notebook that plots two distributions with the same mean and wildly different variance.
+**Pre-work (~30 min):** StatQuest with Josh Starmer — ["Histograms, Clearly Explained"](https://www.youtube.com/watch?v=qBigTkBLU6g) and ["The Main Ideas behind Probability Distributions"](https://www.youtube.com/watch?v=oI3hZJqXJuc) + a 10-line notebook that plots two distributions with the same mean and wildly different variance.
 
 **Session outline:**
 1. Distributions as pictures of uncertainty — histograms of real data (20 min)
@@ -97,7 +97,7 @@ Vlad's requirement, verbatim: basics must include "a statistics foundation" beca
 
 **Purpose:** Enough probability to read model outputs (they're all conditional probabilities) and to not get fooled — by a client's data story or by a model's coincidences.
 
-**Pre-work (~30 min):** Curated video + one worked example: base-rate fallacy in a fraud-detection framing.
+**Pre-work (~30 min):** 3Blue1Brown — ["The medical test paradox, and redesigning Bayes' rule"](https://www.youtube.com/watch?v=lG4VkPoG3ko) + one worked example: base-rate fallacy in a fraud-detection framing.
 
 **Session outline:**
 1. Probability as degrees of belief; conditional probability via the fraud example (25 min)

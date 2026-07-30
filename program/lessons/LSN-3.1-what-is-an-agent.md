@@ -78,8 +78,8 @@ None — this session **is** pre-work for the LSN-3.4 lab. Keep your drill answe
 | Material | Status | Path / source |
 |---|---|---|
 | Concept sections: agent definition, architecture, safety | exists | `notebooks/generative_ai/06_GenerativeAI_Tool_Calling_Agents.ipynb` (markdown sections; note: module spec cites `06_Tool_Calling_Agents.ipynb` — same notebook, filename drift) |
-| Pre-work reading | exists | Anthropic — "Building Effective Agents" (verify link at delivery prep) |
-| Optional deeper read | exists | Lilian Weng — "LLM Powered Autonomous Agents" blog post (verify link at delivery prep) |
+| Pre-work reading | exists | [Anthropic — "Building Effective Agents"](https://www.anthropic.com/engineering/building-effective-agents) |
+| Optional deeper read | exists | [Lilian Weng — "LLM Powered Autonomous Agents"](https://lilianweng.github.io/posts/2023-06-23-agent/) |
 | Decision-drill scenario sheet | exists | This file, Session Plan section |
 | Trace walkthrough script | exists | This file; optional live run from notebook 06 "Implementation" section |
 

@@ -61,7 +61,7 @@ The break-it segment is the pre-sales "no data, no model" reality that Vlad carr
 | Source notebook — perceptron & MLP concepts | exists | `notebooks/neural_networks/01_NeuralNetworks_Perceptron_MLP.ipynb` |
 | Source notebook — MNIST load, PyTorch training loop, evaluation | exists | `notebooks/neural_networks/02_NeuralNetworks_Convolutional_Neural_Networks.ipynb` |
 | Pre-downloaded MNIST fallback (shared-drive copy of `~/.cache/vsp-training-data/`) | build | shared drive — location set at delivery prep; notebook also carries a synthetic-digit fallback that keeps every cell runnable offline |
-| Optional pre-work video: 3Blue1Brown, "But what is a neural network?" — Deep Learning chapter 1 | exists | (verify at delivery prep) |
+| Optional pre-work video: 3Blue1Brown, "But what is a neural network?" — Deep Learning chapter 1 | exists | [youtube.com/watch?v=aircAruvnKk](https://www.youtube.com/watch?v=aircAruvnKk) |
 | Environment setup guide | exists | `ACTIVATE_VENV.md` |
 
 ## Delivery Notes

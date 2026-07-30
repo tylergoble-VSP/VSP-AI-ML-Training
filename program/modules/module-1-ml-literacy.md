@@ -144,7 +144,7 @@ This module is the existing ML literacy deck, restructured from a standalone tra
 
 **Purpose:** The vocabulary Vlad listed: neural network, CNN, deep learning, reinforcement learning — "to have a mini conversation about this and not look completely stupid." Anchored to the MNIST lab they just did: they've *trained* a neural net, so NN/CNN are now concrete.
 
-**Pre-work (~30 min):** Curated Karpathy excerpt (~15 min clip) + one-page cheat sheet.
+**Pre-work (~30 min):** Curated Karpathy excerpt (~15 min clip from ["The spelled-out intro to neural networks and backpropagation: building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0)) + one-page cheat sheet.
 
 **Session outline:**
 1. What you trained in LSN-1.4 *was* a neural net — layers, weights, learning (15 min)

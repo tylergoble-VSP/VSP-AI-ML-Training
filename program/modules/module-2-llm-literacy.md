@@ -57,7 +57,7 @@ The Karpathy "build an LLM from scratch" series is this module's spirit referenc
 
 **Purpose:** Kill the magic. Tokens, next-token prediction, pretraining vs fine-tuning vs RLHF (RL callback to LSN-1.5), inference and why it costs money, context windows as working memory. Hallucination as a *structural* property, not a bug — the single most important thing to explain to a client.
 
-**Pre-work (~45 min, mandatory):** Curated Karpathy excerpts (specific segments listed in the lesson plan, ~30 min total) + tokenize two sentences in an online tokenizer playground; bring a screenshot.
+**Pre-work (~45 min, mandatory):** Curated Karpathy excerpts (specific segments listed in the lesson plan, ~30 min total — ["Intro to Large Language Models"](https://www.youtube.com/watch?v=zjkBMFhNj_g) and ["Deep Dive into LLMs like ChatGPT"](https://www.youtube.com/watch?v=7xTGNNLPyMI)) + tokenize two sentences in an online tokenizer playground; bring a screenshot.
 
 **Session outline:**
 1. Tokens: what the model actually sees — participants' tokenizer screenshots reviewed (20 min)
