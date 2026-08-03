@@ -46,8 +46,13 @@ The **notebooks are NOT yet anonymized** — they still carry the internal names
 - **Links:** only verified URLs (see the 2026-08-03 link-verification pass); YouTube titles are
   clickable anchors styled with the deck's accent variable. Any document a participant needs
   (repo, setup guides, notebooks, SCHEDULE.md) gets a clickable GitHub link — repo URL
-  `https://github.com/tylergoble-VSP/VSP-AI-ML-Training`, `blob/main/...` paths. LSN-0.1
-  carries the program-wide reference slide (appendix, 0 min) with every link; keep it current.
+  `https://github.com/tylergoble-VSP/VSP-AI-ML-Training`, `blob/main/...` paths. Notebooks
+  additionally get a Google Colab link (`https://colab.research.google.com/github/<org>/<repo>/blob/main/<path>` —
+  the spreadsheet's "VS Code or Google Colab" contract). Caveat: notebooks were built for the
+  local venv; environment-dependent checkpoints (venv, repo layout, `outputs/` saves) fail in
+  Colab by design — frame Colab as the no-local-setup fallback until the Colab-compat build
+  item closes. LSN-0.1 carries the program-wide reference slide (appendix, 0 min) with every
+  link; keep it current.
 - **Bullets over paragraphs (Tyler's feedback, LSN-0.1 round):** card and callout body copy
   should be scannable `p-chk` bullets, not prose paragraphs. Single-line `p-callout` punch
   lines are fine as-is.
