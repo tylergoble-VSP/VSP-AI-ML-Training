@@ -2,10 +2,12 @@
 name: LSN-3.2-framework-landscape
 description: Given a client ask, name the two candidate agent stacks (LangChain, LangGraph, Haystack, or no framework) and state the deciding tradeoff.
 module: MOD-3
+delivery_date: 2026-12-01
 serves: OUT-3.2
-duration: 1.5 h
-prework_time: 40
-owner: Guest co-teacher / TBD (Tyler fallback)
+duration: 1
+prework_time: 20
+homework_time: 100
+owner: Tyler
 status: draft
 ---
 
@@ -16,9 +18,22 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | `OUT-3.2` |
-| **Duration** | 1.5 h session + 40 min pre-work |
+| **Duration** | 1 h live + 2 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | `ASM-3` — exam + mock client conversation (framework-choice scenarios) |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Tuesday, 1 December 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 2 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
+
+**Preserved recruiting note:** a guest co-teacher (framework practitioner) was the original owner of this lesson. The spreadsheet assigns Tyler, who is now the responsible presenter — the guest ask stays open as an upgrade to the side-by-side tour, not a dependency.
 
 ## Narrative
 
@@ -28,20 +43,21 @@ Kills two misconceptions: that "LangChain" is one thing (in 2026 it's a stack �
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Read the four one-page framework cards (GAP-2 deliverable) | 20 | One sentence per framework — "what it is" in your own words |
-| 2 | Skim each framework's own "what is this" page (links in Materials) | 15 | One "what is this actually?" question |
-| 3 | Re-open your LSN-2.4 RAG homework; mark which code was plumbing vs logic | 5 | List of 2–3 plumbing pain points |
+| 1 | Skim the "what is this" page of the **two frameworks your LSN-3.1 homework left least clear** (links in Materials) | 12 | Your one "what is this actually?" question, sharpened |
+| 2 | Re-open your LSN-2.4 RAG homework; mark which code was plumbing vs logic | 8 | List of 2–3 plumbing pain points |
+
+**Pre-work total: 20 min.** Deliberately thin — Monday evening also carries LSN-3.1's homework. **Carried in, not re-charged:** the four GAP-2 framework cards and your one-sentence-per-framework summaries were **LSN-3.1 homework task 1** (30 min, budgeted there). Bring them; you are not reading them twice.
 
 ## Session Plan
 
 | Segment | Time | Method | Detail |
 |---|---|---|---|
-| Why frameworks exist | 15 | talk | What you otherwise hand-roll: the loop, tool schemas, retries, state, tracing. Collect participants' LSN-2.4 plumbing pain points on the board — frameworks exist to absorb exactly that list. |
-| The tour: one problem, four stacks | 45 | demo | **Toy problem (fixed, same as the LSN-3.4 lab):** "According to the project docs, what was Q2 infra spend, and what does that annualize to?" — agent must search a 10-document store, then call a calculator tool, then answer with a citation. Shown in: (1) raw API tool-use loop (~80 lines — where's the loop, where's state); (2) LangChain 1.0 `create_agent` (~15 lines — middleware for human-in-the-loop shown); (3) LangGraph (explicit graph + checkpointer — kill it mid-run, restart, it resumes); (4) Haystack 2.x pipeline with an Agent component (typed components, explicit connections). Checkpoint per stack: code size, where the loop lives, where state lives, what the trace looks like. |
-| Choosing: the tradeoff table | 20 | discussion | Walk the table below axis by axis; for each axis, name the client situation where it dominates. |
+| Why frameworks exist | 8 | talk | What you otherwise hand-roll: the loop, tool schemas, retries, state, tracing. Collect participants' LSN-2.4 plumbing pain points on the board — frameworks exist to absorb exactly that list. |
+| The tour: one problem, **the two poles** | 27 | demo | **Toy problem (fixed, same as the LSN-3.4 lab):** "According to the project docs, what was Q2 infra spend, and what does that annualize to?" — agent must search a 10-document store, then call a calculator tool, then answer with a citation. Live: **(1) raw API tool-use loop** (~80 lines — where's the loop, where's state) and **(4) LangGraph** (explicit graph + checkpointer — kill it mid-run, restart, it resumes). The two poles make the axis visible; **LangChain 1.0 `create_agent` and Haystack 2.x move to homework task 4** as annotated self-study, with their headline numbers quoted live (~15 lines for `create_agent`; typed components + explicit connections for Haystack). Checkpoint per stack: code size, where the loop lives, where state lives, what the trace looks like. |
+| Choosing: the tradeoff table | 15 | discussion | Walk the table below axis by axis; for each axis, name the client situation where it dominates. All four columns are walked — the table is the artifact that covers the two stacks not demoed live. |
 | When *no* framework is right | 10 | drill | Criteria below; two rapid scenarios, room votes framework-or-not and defends. |
 
-**Timing check:** 15 + 45 + 20 + 10 = 90 min = 1.5 h contract. ✓
+**Timing check:** 8 + 27 + 15 + 10 = 60 min = 1 h — matches the spreadsheet contract.
 
 ### The tradeoff table (delivered as a handout; filled live)
 
@@ -63,11 +79,22 @@ Kills two misconceptions: that "LangChain" is one thing (in 2026 it's a stack �
 
 ## Client Tie-In (Dorel's rule)
 
-The in-production meeting-RAG system is the grounding case: segment 3 closes with a five-minute retro-fit — "if we rebuilt it today, which stack and why?" (defensible answers: Haystack, LangChain, or raw API — the argument matters more than the pick). The 6MAP translation gap frames the stakes: the pre-sales moment when a client architect asks "why LangGraph and not just Bedrock?" is exactly the conversation this lesson makes survivable.
+The in-production meeting-RAG system is the grounding case: segment 3 closes by *posing* the retro-fit — "if we rebuilt it today, which stack and why?" — in one minute, and the answer is written up as **homework task 3** (defensible answers: Haystack, LangChain, or raw API — the argument matters more than the pick). At 15 min the segment can no longer host the five-minute discussion, so the thinking moves out of the room and comes back graded. The 6MAP translation gap frames the stakes: the pre-sales moment when a client architect asks "why LangGraph and not just Bedrock?" is exactly the conversation this lesson makes survivable.
 
 ## Homework
 
-Match each of these five client scenarios to a stack (or "no framework") with one sentence naming the deciding axis from the tradeoff table. Submissions reference `LSN-3.2`. Grading: pick defensible + axis correctly identified; several scenarios have two defensible answers — the justification is what's graded.
+| # | Task | Time | Due | Artifact |
+|---|---|---|---|---|
+| 1 | **Doubles as LSN-3.3 pre-work.** Skim your assigned cloud's AI landing page (assignment by Marius) and write one "what is this actually?" question about a product name on it | 25 | Wed 2 Dec, session start | The written question |
+| 2 | The five-scenario stack match below — one sentence per scenario naming the deciding axis | 35 | Sun 6 Dec | Five matches + justifications |
+| 3 | Meeting-RAG retro-fit memo (~200 words): if we rebuilt it today, which stack, and which axis of the tradeoff table decided it? | 20 | Sun 6 Dec | Memo |
+| 4 | Self-study the **two implementations cut from the live tour** — LangChain 1.0 `create_agent` and Haystack 2.x — in the GAP-2 demo notebook. For each, write where the loop lives, where state lives, and what the trace looks like | 20 | Sun 6 Dec | Six one-liners (3 per stack) |
+
+**Time accounting:** pre-work 20 min + homework 100 min = 2 h out-of-session budget.
+
+**Cadence note:** task 1 (25 min) is the only Tuesday-evening obligation — and it is LSN-3.3's pre-work, budgeted here and not charged again there. Tasks 2–4 float to the weekend of 5–6 Dec.
+
+**Task 2 — the five scenarios.** Match each to a stack (or "no framework") with one sentence naming the deciding axis from the tradeoff table. Submissions reference `LSN-3.2`. Grading: pick defensible + axis correctly identified; several scenarios have two defensible answers — the justification is what's graded.
 
 1. A logistics client wants a support agent over ~40k shipping documents; their team ships Python daily and demands eval regression before every prompt change.
 2. An insurance client needs multi-step claims triage with human approval before any payout action, state that survives process restarts, and audit-grade replay of every decision.
@@ -79,8 +106,8 @@ Match each of these five client scenarios to a stack (or "no framework") with on
 
 | Material | Status | Path / source |
 |---|---|---|
-| Framework cards ×4 (LangChain, LangGraph, LangSmith+observability, Haystack) | build (`GAP-2`) | TBD — GAP-2 deliverable |
-| Side-by-side demo: one toy problem, four implementations | build (`GAP-2`) | TBD — GAP-2 deliverable; shares tools with the LSN-3.4 lab notebook |
+| Framework cards ×4 (LangChain, LangGraph, LangSmith+observability, Haystack) | build (`GAP-2`) | TBD — GAP-2 deliverable. **Deadline pulled forward to Mon 30 Nov:** the cards are now read as LSN-3.1 homework, not as this lesson's pre-work |
+| Side-by-side demo: one toy problem, four implementations | build (`GAP-2`) | TBD — GAP-2 deliverable; shares tools with the LSN-3.4 lab notebook. **New requirement from the restructure:** the LangChain and Haystack implementations are now *homework self-study*, so they need annotated commentary cells (where the loop lives / where state lives / what the trace looks like) that a participant can follow with no instructor present. The raw-API and LangGraph implementations remain the live demo |
 | "LangChain & LangGraph 1.0" announcement (LangChain blog) | exists | [langchain.com/blog/langchain-langgraph-1dot0](https://www.langchain.com/blog/langchain-langgraph-1dot0) |
 | LangGraph product/docs page | exists | [langchain.com/langgraph](https://www.langchain.com/langgraph) |
 | "What is Haystack?" (deepset) | exists | [haystack.deepset.ai/overview/intro](https://haystack.deepset.ai/overview/intro) |
@@ -88,4 +115,4 @@ Match each of these five client scenarios to a stack (or "no framework") with on
 
 ## Delivery Notes
 
-*To be filled after delivery.* Pre-delivery dependency: guest co-teacher unconfirmed (Tyler fallback per module spec). Landscape facts current as of 2026-07-28 — re-verify version claims at delivery prep; this space renames itself quarterly.
+*To be filled after delivery.* Pre-delivery notes: (1) presenter is Tyler per the spreadsheet — a guest co-teacher remains a nice-to-have, no longer a dependency; (2) landscape facts current as of 2026-07-28 — re-verify version claims at delivery prep; this space renames itself quarterly; (3) the 27-min two-pole tour is the timing risk — if the LangGraph kill-and-resume demo overruns, cut it to a recorded clip rather than dropping the raw-API comparison.

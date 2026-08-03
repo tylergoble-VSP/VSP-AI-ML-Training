@@ -2,10 +2,12 @@
 name: LSN-3.5-production-concerns
 description: Ask the six production questions — observability, reliability, evals, KPIs, hardware, cost — credibly in a pre-sales or architecture review.
 module: MOD-3
+delivery_date: 2026-12-04
 serves: OUT-3.4
-duration: 1.5 h
-prework_time: 30
-owner: Tyler + guest (production practitioner, TBD)
+duration: 1
+prework_time: 20
+homework_time: 100
+owner: Tyler
 status: draft
 ---
 
@@ -16,9 +18,23 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | `OUT-3.4` |
-| **Duration** | 1.5 h session + 30 min pre-work |
+| **Duration** | 1 h live + 2 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | `ASM-3` — mock client conversation + question-bank homework |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Friday, 4 December 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 2 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
+| **Note** | Double-header: LSN-3.5 and LSN-3.6 both run Friday, 4 December |
+
+**Preserved recruiting note:** a guest production practitioner — ideally someone who has been paged for an agent in production — was the original co-owner here. The spreadsheet assigns Tyler as presenter. The ask stays open, but at 1 h the guest's realistic contribution is one segment (observability or reliability), not a co-teach.
 
 ## Narrative
 
@@ -28,22 +44,25 @@ This is the lesson Vlad described when he described the whole program: "I know t
 
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
-| 1 | Re-run your LSN-3.4 agent on its three eval tasks; skim the traces | 15 | Traces open on your machine at session start |
-| 2 | Write down two questions about your own agent's behavior that you cannot answer from its logs | 10 | The two questions, written |
-| 3 | Skim your LSN-1.6 pre-sales question bank to refresh the format | 5 | — |
+| 1 | Re-run your **Stage-B guardrailed agent** once — the combined task plus the break-it task — and leave the traces open | 12 | Traces open on your machine at session start |
+| 2 | Skim your LSN-1.6 pre-sales question bank to refresh the format | 8 | — |
+
+**Pre-work total: 20 min.** Deliberately thin — Thursday evening carries LSN-3.4's homework *and* the pre-work for both Friday sessions. **Carried in, not re-charged:** the guardrailed agent itself is **LSN-3.4 homework task 1 / Stage B** (35 min) and the **two questions you cannot answer from your logs** are **LSN-3.4 homework task 3** (5 min) — both budgeted there. Bring the questions; they get sorted live in segment 1.
 
 ## Session Plan
 
 | Segment | Time | Method | Detail |
 |---|---|---|---|
-| Observability | 20 | demo + discussion | Live on two volunteers' LSN-3.4 agents: reconstruct one failed task from traces — every model call, tool call, token count. Then the room's pre-work "questions I can't answer" get sorted: which are observability gaps vs design gaps. Dimension row below. |
-| Reliability | 15 | talk + drill | Failure-mode inventory on the lab agents: model timeout mid-task, tool error, loop that never stops, vendor's bad day. For each: retry, fallback, cap, or honest failure? Worst outcome named: the confident wrong answer. |
-| Evals | 20 | talk + demo | The LSN-3.4 homework's three-task eval check, scaled up in concept: golden sets, regression on every prompt change, LLM-as-judge and its caveats (validate the judge against human grades or don't trust it). Demo: change one word in a lab agent's system prompt, watch an eval catch the regression. |
-| KPIs | 15 | discussion | Bridge agent metrics (task success rate, latency, cost per task) to business metrics (deflection, cycle time). Drill: who defines "success" for a support agent — builder or business owner? Wrong answer cost 6MAP dearly. |
-| Hardware & cost | 15 | talk + worked example | API vs self-host: what forces the choice (data residency, air-gap, latency, volume) — usually nothing does. Worked estimate on a lab agent: tokens per task × tasks per month × price, plus the retry/wandering overhead the traces reveal. |
-| Assemble the question bank | 5 | drill | Each participant marks the three bank questions they'd be least comfortable asking a client today — that's their homework focus. |
+| Observability | 14 | demo + discussion | Live on **one** pre-arranged volunteer's Stage-B agent (not two — the clock): reconstruct one failed task from traces, every model call, tool call, token count. Then the room's "questions I can't answer" (LSN-3.4 homework task 3) get sorted fast: observability gap or design gap? Dimension row below. |
+| Reliability | 10 | talk + drill | Failure-mode inventory on the lab agents: model timeout mid-task, tool error, loop that never stops, vendor's bad day. For each: retry, fallback, cap, or honest failure? Worst outcome named: the confident wrong answer. |
+| Evals | 13 | talk + demo | The LSN-3.4 Stage-C eval check, scaled up in concept: golden sets, regression on every prompt change, LLM-as-judge and its caveats (validate the judge against human grades or don't trust it). Demo: change one word in a lab agent's system prompt, watch an eval catch the regression — **shown once, fast; participants reproduce it themselves as homework task 3.** |
+| KPIs | 10 | discussion | Bridge agent metrics (task success rate, latency, cost per task) to business metrics (deflection, cycle time). Drill: who defines "success" for a support agent — builder or business owner? Wrong answer cost 6MAP dearly. |
+| Hardware & cost | 10 | talk + worked example | API vs self-host: what forces the choice (data residency, air-gap, latency, volume) — usually nothing does. The estimate method demonstrated on one lab agent — tokens per task × tasks per month × price, plus the retry/wandering overhead the traces reveal — then **each participant runs the full estimate on their own agent as homework task 2.** |
+| Hand over the question bank | 3 | drill | Each participant marks the three bank questions they'd be least comfortable asking a client today — that's homework task 4's focus. |
 
-**Timing check:** 20 + 15 + 20 + 15 + 15 + 5 = 90 min = 1.5 h contract. ✓
+**Timing check:** 14 + 10 + 13 + 10 + 10 + 3 = 60 min = 1 h — matches the spreadsheet contract.
+
+**What moved, not cut:** the second volunteer's observability walkthrough → the room now watches one and each participant does their own in homework task 1 · the full worked cost estimate → homework task 2 (live is method-only) · reproducing the eval regression → homework task 3 · the bank-question self-assessment write-up → homework task 4.
 
 ### The six dimensions (deck skeleton — GAP-4)
 
@@ -71,15 +90,25 @@ This is the lesson Vlad described when he described the whole program: "I know t
 
 ## Homework
 
-Apply the question bank to your own LSN-3.4 agent and identify its **top three production gaps**. Submission references `LSN-3.5`. Grading standard: each gap must (a) cite evidence from your traces, (b) name the bank question that exposed it, (c) propose a one-line remediation. "It has no tests" without trace evidence fails. Feeds `ASM-3` (question-bank homework is part of how OUT-3.4 is verified).
+| # | Task | Time | Due | Artifact |
+|---|---|---|---|---|
+| 1 | **Graded.** Apply the question bank to your own LSN-3.4 agent and identify its **top three production gaps**. Each gap must (a) cite evidence from your traces, (b) name the bank question that exposed it, (c) propose a one-line remediation. "It has no tests" without trace evidence fails | 40 | Sun 6 Dec | Write-up, references `LSN-3.5` |
+| 2 | Cost model on your own agent, using the worked method from segment 5: compute **cost per completed task** and the **fraction of token spend that is retries and wandering**, both derived from your traces, then project to 10k tasks/month | 25 | Sun 6 Dec | Worked estimate + the trace numbers it came from |
+| 3 | Reproduce the eval regression yourself: change one word in your agent's system prompt, run your Stage-C eval, and report whether it caught the change. One paragraph on what the answer says about your suite | 20 | Sun 6 Dec | Before/after eval output + paragraph |
+| 4 | The three bank questions you'd be **least** comfortable asking a client — for each, write the answer you would want to hear, so you know what you're listening for | 15 | Sun 6 Dec | Three questions + three model answers |
+
+**Time accounting:** pre-work 20 min + homework 100 min = 2 h out-of-session budget.
+
+**Cadence note:** nothing here is due the next morning — MOD-3's last live session is the same day, so all four tasks land on the weekend of 5–6 Dec. Feeds `ASM-3` (question-bank homework is part of how `OUT-3.4` is verified) and, via task 2, the Phase-4 capstone's cost story.
 
 ## Materials
 
 | Material | Status | Path / source |
 |---|---|---|
 | Six-dimension deck (skeleton above) | build (`GAP-4`) | TBD — GAP-4 deliverable, P0 |
-| TL question bank as printable handout | build (`GAP-4`) | Drafted in this file; format alongside the LSN-1.6 bank |
-| Participants' instrumented agents + traces | exists (prerequisite) | LSN-3.4 lab output — hard dependency |
+| TL question bank as printable handout | build (`GAP-4`) | Drafted in this file; format alongside the LSN-1.6 bank. **Now needed by Fri 4 Dec morning** — LSN-3.6 runs the same day and depends on it |
+| **Cost-model worksheet** (homework task 2) and **eval-regression worksheet** (homework task 3) | build (`GAP-4`) | New requirement from the restructure: the worked cost example and the regression demo moved from live walkthrough to solo homework, so each needs inputs, formula and a worked sample a participant can follow alone — slides are not enough |
+| Participants' instrumented agents + traces | exists (prerequisite) | LSN-3.4 **Stage B** output — hard dependency, and Stage B is now homework done the night before. If Stage-B completion is low, segment 1 has no material: check submissions Friday morning |
 | Observability in Generative AI — Microsoft Foundry (Microsoft Learn) | exists | [learn.microsoft.com/en-us/azure/foundry/concepts/observability](https://learn.microsoft.com/en-us/azure/foundry/concepts/observability) |
 | Add observability to AgentCore resources (AWS docs) | exists | [docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html) |
 | Anthropic — "Building Effective Agents" | exists | [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) |
@@ -87,4 +116,4 @@ Apply the question bank to your own LSN-3.4 agent and identify its **top three p
 
 ## Delivery Notes
 
-*To be filled after delivery.* Pre-delivery dependencies: (1) guest production practitioner unconfirmed — target someone who has been paged for an agent in production; (2) two volunteer agents from LSN-3.4 pre-arranged so the observability demo isn't cold-called.
+*To be filled after delivery.* Pre-delivery notes: (1) guest production practitioner unconfirmed — **no longer blocking** (Tyler presents per the spreadsheet); target someone who has been paged for an agent in production and give them one segment; (2) **one** volunteer agent pre-arranged Thursday night — confirm their Stage B actually completed, because a cold-called broken agent burns the 14-min segment; (3) this is the first half of a double-header — check room/calendar for the LSN-3.6 hand-off and take a real break between the two hours.

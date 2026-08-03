@@ -2,9 +2,11 @@
 name: LSN-1.6-data-requirements-presales-question-bank
 description: Articulate ML's data requirements and limits ("no data, no model; it can only infer so far") and run a pre-sales question bank against a real prospect without over-promising.
 module: MOD-1
+delivery_date: 2026-10-12
 serves: OUT-1.6
-duration: 1 h
-prework_time: 30
+duration: 1
+prework_time: 40
+homework_time: 80
 owner: Tyler Goble + Vlad Damian (case material)
 status: draft
 ---
@@ -16,9 +18,22 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | `OUT-1.6` |
-| **Duration** | 1 h session + 30 min pre-work |
+| **Duration** | 1 h live + 2 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | ASM-1 (mock pre-sales conversation + question bank artifact) |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Monday, 12 October 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 2 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
+
+Spreadsheet row title: **"Data Requirements for ML."** This is the last MOD-1 row on the spreadsheet; `ASM-1` follows but has no slot yet.
 
 ## Narrative
 
@@ -30,6 +45,9 @@ Closes the module by turning limitations into an asset. Vlad's 6MAP takeaway —
 |---|---|---|---|
 | 1 | Read the anonymized construction-site case brief (Vlad/Dorel, GAP-5) | 25 min | One data-reality risk you spotted in the brief, one sentence |
 | 2 | Skim the starter question bank below | 5 min | One question you'd add, sharpen, or cut |
+| 3 | Re-open your own LSN-1.4 degradation curve and write down the number it implies for **enough**: at what training-set size did your model become useless? The session opens on this chart | 10 min | One number and one sentence — your own evidence for the "enough" row |
+
+**Pre-work total: 40 min.** Task 3 is where LSN-1.4's relocated break-it homework pays off: the "no data, no model" claim arrives as a chart each participant produced themselves, which is also where the collective moment lost from that lab's live hour gets recovered.
 
 ## Session Plan
 
@@ -39,7 +57,7 @@ Closes the module by turning limitations into an asset. Vlad's 6MAP takeaway —
 | Case walkthrough: construction-site completion detection | 25 min | discussion (structured walkthrough below) | Group works the real prospect end to end using the walkthrough structure; instructor facilitates, participants supply the answers. Pre-work risks read out at step 3. |
 | Build the question bank | 15 min | workshop | Starter bank below on screen; group refines wording, adds/cuts against the case they just worked, and orders the questions the way a real discovery call flows. The refined bank is the module's take-home artifact. |
 
-**Timing check:** 20 + 25 + 15 = 60 min = 1 h contract duration. ✓
+**Timing check:** 20 + 25 + 15 = 60 min = 1 h — matches the spreadsheet contract. Unchanged by the 2026-08-03 rescope; the deck's notes are already timed 20/25/15.
 
 ### The data reality checklist (draft — session refines)
 
@@ -79,7 +97,17 @@ The centerpiece *is* the real construction-site completion prospect, walked end 
 
 ## Homework
 
-Apply the refined question bank to one prospect or project you know first-hand. Submit the filled bank referencing `LSN-1.6` before ASM-1. **Pass:** every checklist dimension (exists/labeled/enough/fresh/legal) addressed with specifics, plus at least one honestly-stated limitation ("here's where the model would break and what I'd scope instead"). This artifact is part of the ASM-1 evidence for `OUT-1.6`.
+**80 min**, in `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb`. The existing graded artifact keeps its full weight and gains two supports; nothing here is filler, because this is the last work before ASM-1 and the bank is the thing being graded there.
+
+| # | Task | Time | Checkpoint / artifact |
+|---|---|---|---|
+| 1 | **The graded artifact.** Apply the refined question bank to one prospect or project you know first-hand, in the notebook's homework template. Every checklist dimension answered with specifics, plus at least one honestly-stated limitation — where the model would break and what you would scope instead | 50 min | Filled bank saved to `outputs/lsn-1.6/`, submitted referencing `LSN-1.6`; run the built-in advisor before submitting |
+| 2 | **The coverage matrix.** Fill the notebook's five-check matrix for that same prospect: for each of exists / labeled / enough / fresh / legal, state the evidence you actually have versus the evidence you would need, and mark which gaps you could close with one phone call | 20 min | Completed matrix; at least one gap marked "one phone call" and at least one marked genuinely unknown |
+| 3 | **The opening three.** From your bank, pick the three questions you would actually open that discovery call with, in order, and write one line on why that order | 10 min | Three ordered questions — this is what you walk into ASM-1 with |
+
+**Pass (task 1, unchanged):** every checklist dimension addressed with specifics, plus at least one honestly-stated limitation. This artifact is part of the ASM-1 evidence for `OUT-1.6`. **Pass (tasks 2–3):** the matrix distinguishes what you know from what you assume, and the opening three do not lead with a data question — a discovery call opens on the decision the client wants to make (bank question 1), because that is what makes every later data question answerable.
+
+**Time accounting:** pre-work 40 min + homework 80 min = 2 h out-of-session budget.
 
 ## Materials
 
@@ -87,7 +115,7 @@ Apply the refined question bank to one prospect or project you know first-hand. 
 |---|---|---|
 | **Session companion notebook** — checklist with one number per row, case-walkthrough workspace (GAP-5 slots marked), coverage matrix, homework template + advisor | exists | `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb` |
 | **Session deck** — 18 slides, speaker notes timed 20/25/15 = 60, GAP-5 placeholder chips | exists | `program/lessons/decks/LSN-1.6-data-requirements.html` |
-| Anonymized construction-site case brief | **build (GAP-5) — depends on Vlad/Dorel input; walkthrough runs today with marked placeholders; brief's facts slot into the marked cells/slides** | Vlad/Dorel to supply; Tyler formats |
+| Anonymized construction-site case brief | **build (GAP-5) — depends on Vlad/Dorel input; walkthrough runs today with marked placeholders; brief's facts slot into the marked cells/slides. Hard date now set: needed by Mon 5 Oct 2026, one week before delivery, because 25 min of pre-work is reading it** | Vlad/Dorel to supply; Tyler formats |
 | Data reality checklist (draft) | exists | This plan (above) |
 | Starter pre-sales question bank (draft) | exists | This plan (above) |
 | Question bank template (blank, for homework submissions) | exists — starter template; refined live at delivery, updated after first delivery | Fill-in homework cell in `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb` (saves to `outputs/lsn-1.6/`; advisor pre-checks against the pass bar without gating the save) |
@@ -96,3 +124,5 @@ Apply the refined question bank to one prospect or project you know first-hand. 
 ## Delivery Notes
 
 To be filled after first delivery: what landed, what dragged, timing reality (the 15-min bank workshop is tight). Feeds the MOD-1 retro.
+
+**Rescope note (2026-08-03):** the live hour is unchanged — deck and notebook are already timed 20/25/15 = 60, so no retiming is needed. Two artifact edits follow from the rescope: the notebook's homework section now launches three tasks rather than one, and its opening should lead with the participant's own LSN-1.4 degradation curve (pre-work task 3), which the previous design assumed would be fresh from a live lab segment rather than from that lesson's homework. GAP-5's deadline is now a hard date (Mon 5 Oct 2026) rather than "Week 2."

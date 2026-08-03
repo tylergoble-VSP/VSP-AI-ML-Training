@@ -4,6 +4,8 @@ One file per lesson, named `LSN-<n>.<m>-<kebab-title>.md`, authored from [`TEMPL
 
 **Rule:** if writing a lesson plan reveals the contract is wrong (duration unrealistic, outcome misplaced), update the module spec first, then the plan. The spec is the source.
 
+**Schedule:** delivery dates, the 1 h-live contract, and per-module homework budgets (2 h; 4 h for MOD-2) were locked from the program spreadsheet on 2026-08-03 — see [`../SCHEDULE.md`](../SCHEDULE.md). Every plan carries them in its frontmatter (`delivery_date`, `duration`, `prework_time`, `homework_time`) and its Schedule section. The spreadsheet lists **Tyler as presenter and Vlad as reviewer for every lesson**; the Owner column below preserves the build-ownership and co-teacher recruiting intent, which is a separate question from who presents.
+
 ## Status Board
 
 | Lesson | Title | Owner | Plan status |
@@ -33,9 +35,9 @@ One file per lesson, named `LSN-<n>.<m>-<kebab-title>.md`, authored from [`TEMPL
 
 Status vocabulary (matches `TEMPLATE.md` frontmatter): `not started → draft → reviewed → approved → delivered`. Update this board whenever a plan changes status.
 
-## Suggested build order
+## Suggested build order (recalibrated 2026-08-03 to the locked calendar)
 
-1. **Week-1 lessons first** (`LSN-0.*`) — they run soonest and carry `GAP-1`.
-2. **The two P0 hands-on labs** (`LSN-1.4`, `LSN-3.4`) — longest lead time, existing notebooks to adapt.
-3. **The center of gravity** (`LSN-3.2`, `LSN-3.3`, `LSN-3.5`) — new content plus owner recruitment.
-4. Everything else in calendar order.
+1. **Retiming debt** (`GAP-11`) — LSN-0.2/0.3/1.3/1.4 decks + notebooks are built for the old 90/150-min contracts; first delivery is Sep 2.
+2. **MOD-2 builds in pre-work-ship order** — `GAP-9` (RAG lab, solo-runnable) by Nov 2; `GAP-7` by Nov 16; MOD-2 decks/notebooks from Oct 12 (LSN-2.1 pre-work ships a week ahead of Oct 19).
+3. **MOD-3 + capstone** — `GAP-2`/`GAP-2b` by Nov 30/Dec 2, `GAP-3`/`GAP-4` for the wrap week, `GAP-10` (capstone) before Dec 1.
+4. **Assessments** (`GAP-6`) — ASM-0 needed Fri 4 Sep, the rest per the proposed slots in [`../SCHEDULE.md`](../SCHEDULE.md).

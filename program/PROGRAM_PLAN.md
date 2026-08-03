@@ -4,6 +4,8 @@
 **Immediate deliverable:** Basics skeleton in the (M)LLM Literacy spreadsheet by EOD **Wednesday, July 30** — review call same day.
 
 > **Note (July 28):** This document is the narrative analysis of the meeting and remains the reference for the advanced/expert outlines (§4–5), logistics (§6), and asset map (§8). The **program has since been formalized as a spec** — see [`program-spec.md`](program-spec.md) (governing spec) and [`modules/`](modules/) (per-module specs). Where this plan's §3 tables and the module specs disagree, **the module specs win**.
+>
+> **Note (Aug 3):** The schedule was locked from the program spreadsheet — Basics runs **Sep 1 – Dec 4, 2026** (1 h live per lesson; 2 h homework budget, 4 h in MOD-2), followed by a **Phase-4 capstone Dec 14–17** ("Build an Agentic Harness that Scores Leads", 5 h/day). This supersedes §2's "Sept 2026 basics / 4 weeks" timeline and §3's per-lesson durations. See [`SCHEDULE.md`](SCHEDULE.md) and [`modules/module-4-capstone.md`](modules/module-4-capstone.md).
 
 ---
 

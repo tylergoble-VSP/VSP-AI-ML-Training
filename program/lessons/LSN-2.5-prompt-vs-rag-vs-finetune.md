@@ -2,9 +2,11 @@
 name: LSN-2.5-prompt-vs-rag-vs-finetune
 description: Choose prompt vs RAG vs fine-tune for a given client ask, with cost and latency reasoning you can defend in the room.
 module: MOD-2
+delivery_date: 2026-11-16
 serves: OUT-2.5
-duration: 1 h
-prework_time: 20
+duration: 1
+prework_time: 80
+homework_time: 160
 owner: Tyler
 status: draft
 ---
@@ -16,9 +18,20 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | OUT-2.5 |
-| **Duration** | 1 h session + 20 min pre-work |
+| **Duration** | 1 h live + 4 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | ASM-2 (quiz) |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Monday, 16 November 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 4 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
 
 ## Narrative
 
@@ -30,16 +43,22 @@ The commercial judgment call. The misconception to kill: "train it on our data" 
 |---|---|---|---|
 | 1 | Read the decision-framework one-pager (the framework below, as a standalone page) | 15 min | Nothing — used cold in the drill |
 | 2 | Pick one real ask from a past or current project and place it on the 2×2 | 5 min | The ask + your quadrant, one line |
+| 3 | **Price it yourself.** Look up current published per-token prices (input, output, embedding) for two models you'd realistically propose, and recompute options A and B of the worked example below with real numbers. The plan's figures are illustrative; yours are what the room runs on | 30 min | Your two price sheets + your recomputed $/day for A and B |
+| 4 | Read `notebooks/generative_ai/04_GenerativeAI_LoRA_PEFT_FineTuning.ipynb` — the intro sections only: what LoRA actually changes, what a training run costs, what it does **not** buy you. You are reading this to know what you're declining, not to build it (mechanics stay advanced-tier) | 30 min | Two sentences: what fine-tuning changes, and one thing it can't do |
+
+**Time accounting (pre-work):** 15 + 5 + 30 + 30 = 80 min.
 
 ## Session Plan
 
 | Segment | Time | Method | Detail |
 |---|---|---|---|
-| The framework | 20 min | talk + discussion | The two axes and the 2×2 (below). Myth-kill: fine-tuning teaches *behavior*, it does not reliably inject *knowledge*. Escalation order: prompt → RAG → fine-tune — each step must be earned by a measured failure of the previous one. Three pre-work placements reviewed aloud. |
-| Cost reality: token math | 20 min | worked example | The support-assistant workload (below), computed live on the whiteboard. Participants recompute option B with their own k and chunk size from the 2.4 lab. Latency and ops burden noted alongside dollars. |
+| The framework | 20 min | talk + discussion | The two axes and the 2×2 (below). Myth-kill: fine-tuning teaches *behavior*, it does not reliably inject *knowledge* — pre-work task 4 means participants have read what LoRA does before hearing what it doesn't. Escalation order: prompt → RAG → fine-tune — each step must be earned by a measured failure of the previous one. Three pre-work placements reviewed aloud. |
+| Cost reality: token math | 20 min | worked example | The support-assistant workload (below), computed live on the whiteboard **against the current prices participants brought in pre-work task 3** — the arithmetic is fresher and the disagreements between their price sheets are themselves instructive. Participants recompute option B with their own k and chunk size from the 2.4 lab. Latency and ops burden noted alongside dollars. |
 | Drill: four client asks | 20 min | drill | Teams of 3; each team gets one ask (below), 3 min to decide, 2 min to defend as if the client is in the room. Debrief traps after each. |
 
-**Timing check:** 20 + 20 + 20 = 60 min = 1 h ✓
+**Timing check:** 20 + 20 + 20 = 60 min = 1 h — matches the spreadsheet contract.
+
+The live hour was already on contract and is unchanged. All of this lesson's re-scoping went into the out-of-session budget, which grew from 20 min to 4 h.
 
 **The framework — two axes:**
 - **Axis 1 — knowledge vs behavior.** Is the gap in what the model *knows* (your documents, fresh facts) or in how it *behaves* (tone, format, procedure, style)?
@@ -69,15 +88,29 @@ This hour is the pre-sales differentiator: on 6MAP the ask arrived garbled ("we 
 
 ## Homework
 
-None. The framework one-pager goes into each participant's pre-sales kit; ASM-2 quiz scenarios draw directly from this drill format.
+The drill in the room is 5 minutes per team. The homework is where the judgment becomes a deliverable you can hand a client.
+
+| # | Task | Time | Deliverable |
+|---|---|---|---|
+| 1 | **Decision memo (graded).** Take a real prospect or project ask — yours, ideally the one from pre-work task 2 — and write one page: where it sits on the 2×2, the approach you recommend, the token math with your own current prices, latency and ops burden, and **the measured failure that would earn an escalation to the next tier**. That last line is the one that separates a recommendation from an opinion | 60 min | The one-pager, submitted referencing `LSN-2.5` |
+| 2 | **Build the cost calculator.** A small reusable spreadsheet or notebook cell: inputs questions/day, corpus size in tokens, k, chunk size, input/output prices; outputs $/day and $/month for prompt-stuffing vs RAG. Validate it by reproducing the worked example below to within rounding | 40 min | The calculator + a screenshot showing it reproduces the example |
+| 3 | **Grade the machine.** Put the four client asks below to an LLM and ask it to recommend an approach for each. Score its four answers against the framework. Where does it reach for fine-tuning when it shouldn't? This is the myth you'll be arguing against in the room with clients who asked the same chatbot first | 25 min | Its four answers + your score and one line per error |
+| 4 | **Rehearse the defense.** Deliver a 3-minute spoken defense of your memo's recommendation to a colleague (or record it). Note the two hardest pushbacks you got and how you'd answer them next time | 20 min | The two pushbacks + your answers |
+| 5 | File the one-pager and the calculator into your personal pre-sales kit, then self-check yourself against OUT-2.1–OUT-2.5 and flag anything you couldn't explain out loud | 15 min | Your flagged list — bring it to LSN-2.6 |
+
+ASM-2 quiz scenarios draw directly from the drill format; task 1's memo is the closest thing in the module to the real pre-sales artifact.
+
+**Time accounting:** pre-work 80 min + homework 160 min = 4 h out-of-session budget.
 
 ## Materials
 
 | Material | Status | Path / source |
 |---|---|---|
 | Decision-framework one-pager | build (light — extract the framework + cost example from this plan; module build list item) | program/materials/ — to create |
-| LoRA/PEFT notebook — advanced-tier pointer only, not taught here | exists | notebooks/generative_ai/04_GenerativeAI_LoRA_PEFT_FineTuning.ipynb |
-| Current vendor price sheets (input/output/embedding per-token) | build (refresh at delivery prep — prices move) | vendor pricing pages — verify at delivery prep |
+| LoRA/PEFT notebook — advanced-tier pointer only, not taught here; **now assigned as pre-work reading** (intro sections only) | exists | notebooks/generative_ai/04_GenerativeAI_LoRA_PEFT_FineTuning.ipynb |
+| Current vendor price sheets (input/output/embedding per-token) | build (refresh at delivery prep — prices move) — **participants now source these themselves in pre-work task 3;** Tyler brings a reference set to arbitrate disagreements | vendor pricing pages — verify at delivery prep |
+| Decision-memo template + grading note (one page) | build (light — **new**, supports graded homework task 1) | program/materials/ — to create |
+| Cost-calculator starter (blank sheet with the input/output rows labelled) | build (light — **new**, supports homework task 2) | program/materials/ — to create |
 
 ## Delivery Notes
 

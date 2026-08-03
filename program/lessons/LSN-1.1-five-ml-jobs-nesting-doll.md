@@ -2,9 +2,11 @@
 name: LSN-1.1-five-ml-jobs-nesting-doll
 description: Triage any client "AI" ask into one of the five ML jobs — classify, cluster, regress, propensity, recommend — or correctly call it a generative-AI ask, and place it on the ML ⊃ deep learning ⊃ generative AI nesting doll.
 module: MOD-1
+delivery_date: 2026-09-07
 serves: OUT-1.1
-duration: 1 h
-prework_time: 30
+duration: 1
+prework_time: 45
+homework_time: 75
 owner: Tyler Goble
 status: draft
 ---
@@ -16,9 +18,22 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | `OUT-1.1` |
-| **Duration** | 1 h session + 30 min pre-work |
+| **Duration** | 1 h live + 2 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | ASM-1 (quiz + mock pre-sales conversation) |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Monday, 7 September 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 2 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
+
+Spreadsheet row title: **"ML Use Cases."**
 
 ## Narrative
 
@@ -30,6 +45,9 @@ Kills the misconception that "AI" means one thing — clients use the word for b
 |---|---|---|---|
 | 1 | Read the five-jobs material — canonical target: `program/lessons/decks/LSN-1.1-five-ml-jobs.html` slides 3–6 (mirrors the original ML literacy deck's five-jobs section, not yet in repo) | 20 min | Nothing to submit — quizzed cold in the drill |
 | 2 | Write down one real "AI" ask from a project or client you've been on, plus your guess at which job it is | 10 min | The ask + your guess, one or two sentences |
+| 3 | Open `notebooks/lessons/LSN-1.1_Five_ML_Jobs_Nesting_Doll.ipynb`, run the pre-work cell and the five per-job visual cells; note which job's picture surprised you | 15 min | The saved pre-work cell output (`outputs/lsn-1.1/`) |
+
+**Pre-work total: 45 min.** The weekly cadence gives this a full week of runway, so the notebook pass is pre-work rather than session time — the five per-job visuals then get referenced, not re-derived, in segment 2.
 
 ## Session Plan
 
@@ -39,7 +57,7 @@ Kills the misconception that "AI" means one thing — clients use the word for b
 | The five jobs | 25 min | talk | Each job gets its one-line definition, the sales-world example from the deck (buyer conversion → sort; deal size → regress; close odds → propensity; next best action → recommend; account segments → cluster), and its tell-phrase to listen for in a client's mouth. Deck sections shown as-is; no math. |
 | Triage drill | 20 min | drill | Six scenarios (below) sorted live by the group — instructor plays the client and pushes back. Then participants' own pre-work asks, triaged rapid-fire by a different participant than the one who brought it. |
 
-**Timing check:** 15 + 25 + 20 = 60 min = 1 h contract duration. ✓
+**Timing check:** 15 + 25 + 20 = 60 min = 1 h — matches the spreadsheet contract.
 
 ### Triage drill scenarios
 
@@ -60,7 +78,17 @@ The worked example is the real construction-site completion prospect (photo/vide
 
 ## Homework
 
-None — feeds into LSN-1.2 pre-work. Keep your triaged ask; LSN-1.2 asks what that model would take in and kick out.
+The out-of-session budget is 2 h and pre-work spends 45 min of it, so this lesson now carries **75 min of homework** where it previously carried none. All three tasks run in the built session notebook and feed the ASM-1 mock conversation.
+
+| # | Task | Time | Checkpoint / artifact |
+|---|---|---|---|
+| 1 | In the notebook's drill workspace, author three *new* scenarios in client voice: one for a job that never came up in your live drill, one deliberately ambiguous between two jobs, one that isn't ML at all. Each needs an answer key and the tell-phrase that decides it | 25 min | 3 scenarios + keys; graded against the notebook's key format, and the good ones join the drill bank |
+| 2 | Write the one-paragraph triage memo on the ask you brought: name the job, quote the tell-phrase that decided it, then state the LLM-shaped variant of the same ask and what would change about the project | 25 min | The memo — this is the seed of your ASM-1 opening |
+| 3 | Harvest two real asks from VSP proposals, discovery notes, or client email you have access to; triage each and flag any that are actually generative-AI asks wearing ML clothes | 25 min | Two asks + calls, submitted referencing `LSN-1.1`; the best ones become future drill scenarios |
+
+**Pass:** task 2's memo names the job for the right reason (the tell, not the vibe), and task 3 produces at least one ask correctly routed *out* of the five jobs. Keep your triaged ask — LSN-1.2 asks what that model would take in and kick out.
+
+**Time accounting:** pre-work 45 min + homework 75 min = 2 h out-of-session budget.
 
 ## Materials
 

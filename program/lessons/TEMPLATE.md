@@ -2,9 +2,11 @@
 name: LSN-{{N}}.{{M}}-{{kebab-title}}
 description: {{One line — what the participant can do after this lesson that they couldn't before.}}
 module: MOD-{{N}}
+delivery_date: {{YYYY-MM-DD — from program/SCHEDULE.md}}
 serves: {{OUT-N.M[, OUT-N.M]}}
-duration: {{session hours}}
+duration: {{session hours — 1 for every basics lesson per the locked spreadsheet}}
 prework_time: {{minutes}}
+homework_time: {{minutes — prework_time + homework_time must equal the module's out-of-session budget}}
 owner: {{lesson owner}}
 status: draft | reviewed | approved | delivered
 ---
@@ -27,9 +29,20 @@ from its LSN contract updates the SPEC FIRST, then itself.
 | Field | Value |
 |---|---|
 | **Serves** | {{OUT refs — copy from module spec}} |
-| **Duration** | {{h}} session + {{min}} pre-work |
+| **Duration** | 1 h live + {{2 or 4}} h out-of-session (pre-work + homework) |
 | **Format** | {{live / live lab / recorded + Q&A / panel}} |
 | **Verified by** | {{ASM-n — how this lesson's outcomes get checked}} |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | {{Weekday, D Month 2026 — from program/SCHEDULE.md}} |
+| **Live session** | 1 h |
+| **Out-of-session budget** | {{2 or 4}} h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
 
 ## Narrative
 
@@ -48,7 +61,7 @@ does it install, and how does it connect backward (callbacks) and forward (setup
 |---|---|---|---|
 | {{name}} | {{min}} | {{talk / demo / lab / drill / discussion}} | {{what happens, concretely — for a lab: the checkpoints; for a drill: the scenarios}} |
 
-**Timing check:** segments must sum to the contract duration.
+**Timing check:** segments must sum to 60 min — the spreadsheet contract.
 
 ## Client Tie-In (Dorel's rule)
 
@@ -58,6 +71,8 @@ does it install, and how does it connect backward (callbacks) and forward (setup
 
 {{Artifact + grading standard, or "None — feeds into <next lesson> pre-work". Graded artifacts
 reference this LSN id in their submission.}}
+
+**Time accounting:** pre-work {{X}} min + homework {{Y}} min = {{2 or 4}} h out-of-session budget.
 
 ## Materials
 

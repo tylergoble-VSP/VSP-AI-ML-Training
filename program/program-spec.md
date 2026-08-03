@@ -7,6 +7,8 @@ The governing spec for the VSP AI/ML training program. The **Program Spec is the
 This mirrors the `ai-way` model (`sdlc.md` / App Spec): the spec is the center; everything else is a view.
 
 > **The (M)LLM Literacy spreadsheet is a view, not the source.** It is the leadership-facing artifact generated *from* this spec for Vlad to present to Marius Banici. When the spec changes, the spreadsheet is regenerated — never the other way around.
+>
+> **One exception, recorded (2026-08-03):** the spreadsheet carried the *scheduling decision* — dates, 1 h live per lesson, homework budgets (2 h; 4 h for MOD-2), roles, and a Phase-4 capstone — and the spec was updated to match. That was a leadership scheduling call flowing back in through the normal review loop, not the spreadsheet redefining curriculum content. The calendar now lives in [`SCHEDULE.md`](SCHEDULE.md).
 
 ---
 
@@ -24,7 +26,7 @@ graph TD
     PREWORK --> SESSION["Session"]
     SESSION --> HOMEWORK["Homework / artifact"]
     HOMEWORK --> ASSESS
-    ASSESS --> HACKATHON["Hackathon<br/><i>Dec 14–18 graduation</i>"]
+    ASSESS --> CAPSTONE["Capstone MOD-4<br/><i>Dec 14–17 build week — graduation</i>"]
 
     SPEC --> SHEET["(M)LLM Literacy spreadsheet<br/><i>leadership view</i>"]
 
@@ -59,7 +61,7 @@ graph LR
 | Prefix | Meaning | Defined in | Referenced by |
 |---|---|---|---|
 | `GOAL-n` | Program goal | this file | module outcomes |
-| `MOD-n` | Module (basics tier: 0–3) | `modules/module-n-*.md` | lessons, assessments, spreadsheet |
+| `MOD-n` | Module (basics tier: 0–3; capstone: 4) | `modules/module-n-*.md` | lessons, assessments, spreadsheet |
 | `OUT-n.m` | Module outcome ("can-do" statement) | module spec | lessons (serves), assessments (verifies) |
 | `LSN-n.m` | Lesson | module spec (inventory) → `lessons/LSN-n.m-*.md` (full plan) | notebooks, homework, spreadsheet rows |
 | `ASM-n` | Assessment (checkpoint / final) | module spec | gate decisions |
@@ -93,7 +95,8 @@ Three pillars × three tiers. Basics is specced module-by-module now; advanced a
 
 | Tier | Duration | Mode | Status |
 |---|---|---|---|
-| **Basics** — `MOD-0`–`MOD-3` | 4 weeks, ~34 h (~8 h/week) | Guided: pre-work → session → homework | **Specced** — see `modules/` |
+| **Basics** — `MOD-0`–`MOD-3` | Sep 1 – Dec 4, 2026 · 22 h live + 56 h out-of-session ≈ 78 h (pace varies by phase — see [`SCHEDULE.md`](SCHEDULE.md)) | Guided: pre-work → session → homework | **Specced** — see `modules/` |
+| **Capstone** — `MOD-4` | Dec 14–17, 2026 · 20 h in-person, no homework | Build week: agentic lead-scoring harness → graduation demo | **Skeleton specced** — planning round pending |
 | **Advanced** | ~3 months | ~90% curated self-study + weekly check-in; per-person cloud ownership; ships a real agentic capstone | Outline in `PROGRAM_PLAN.md` §4 |
 | **Expert** | ~6 months | Deep dives: eval frameworks (AISI Inspect), harness design, chaos/production hardening | Outline in `PROGRAM_PLAN.md` §5 |
 
@@ -104,12 +107,12 @@ Three pillars × three tiers. Basics is specced module-by-module now; advanced a
 | Ceremony | Cadence | Purpose |
 |---|---|---|
 | **Pre-work** | Before every session | Mandatory. The Ciobanu lesson: no intentional prior work → 90% of the audience lost in the first 20%. **No pre-work, no session seat.** |
-| **Session** | Per lesson (~1–2.5 h) | Direction, not hand-holding. Live or recorded; hands-on lessons are live. |
+| **Session** | Per lesson — **1 h, locked** (spreadsheet, 2026-08-03) | Direction, not hand-holding. Live or recorded; hands-on lessons are live. Lab lessons put solo build stages in the out-of-session budget; the live hour unblocks and verifies. |
 | **Homework / artifact** | After every hands-on lesson | Produces a verifiable artifact (trained model, working RAG, working agent). |
 | **Module checkpoint** | End of each module | `ASM-n` — verifies the module's outcomes. Gates progression. |
 | **Module retro** | End of each module | What's landing, what isn't. Findings update this spec. |
 | **Curriculum review** | As scheduled (first: July 30, 2026) | Vlad/Marius/Dorel/Tyler review spec changes and regenerate the spreadsheet view. |
-| **Hackathon** | Week of Dec 14–18, 2026 | Graduation: Mon–Thu build on a real VSP-shaped problem, Friday show-and-tell. |
+| **Capstone** (`MOD-4`) | Dec 14–17, 2026 | Graduation build: an agentic harness that scores leads, 5 h/day in-person. Friday Dec 18 show-and-tell is in the original plan but not on the spreadsheet — open question. See `modules/module-4-capstone.md`. |
 
 ### What's Gone
 
@@ -131,7 +134,7 @@ Three pillars × three tiers. Basics is specced module-by-module now; advanced a
 | **Marius (Program Manager)** | Schedules reviews and sessions; tracks cohort progress; owns the enrollment roster | Continuous |
 | **Tyler (Curriculum Lead)** | Approves lesson plans against module specs; owns spec integrity and IDs | Per lesson plan |
 | **Lesson owner** | Delivers session; grades homework artifact | Per lesson |
-| **Vlad + Dorel** | Supply and validate real-case material (`LSN-1.6`, `LSN-3.6`) | Before Weeks 2 & 4 |
+| **Vlad + Dorel** | Supply and validate real-case material (`LSN-1.6`, `LSN-3.6`) and the capstone lead dataset (`GAP-10`) | Before Oct 12 (1.6), Dec 4 (3.6), Dec 1 (capstone) |
 | **Cohort gate** | Checkpoint pass/fail; repeated no-shows or missing work → out | Per `ASM-n` |
 
 AI drafts lesson plans, quizzes, and materials from this spec. Humans approve. Same rule as the SDLC: AI proposes, humans decide.
@@ -152,8 +155,8 @@ AI drafts lesson plans, quizzes, and materials from this spec. Humans approve. S
 
 ## Enrollment Gate
 
-10–12 spots, seniors and TLs (directors welcome — Vlad and Dorel intend to attend). Before Week 1:
+10–12 spots, seniors and TLs (directors welcome — Vlad and Dorel intend to attend). Before Sep 1, 2026:
 
-1. Sign the commitment: ~8 h/week for 4 weeks, pre-work enforced, checkpoints gate progression.
+1. Sign the commitment — the load is uneven by design (see [`SCHEDULE.md`](SCHEDULE.md)): ~12 h the Sep 1–4 boot week, ~3 h/week through MOD-1, ~5 h/week through MOD-2, ~18 h the Nov 30 – Dec 4 wrap week, 20 h in-person capstone Dec 14–17. Pre-work enforced, checkpoints gate progression.
 2. Environment baseline: Python + Jupyter running via `ACTIVATE_VENV.md` (`LSN-0.1` verifies).
 3. Self-rating against `MOD-0`–`MOD-3` outcomes — not a filter, a baseline to measure the program's lift at graduation.

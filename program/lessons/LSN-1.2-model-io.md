@@ -2,9 +2,11 @@
 name: LSN-1.2-model-io
 description: Say what each major model type takes in (features, labels) and kicks out (a probability, a class, a number, a ranking), and interpret a real model output for a client without over- or under-claiming.
 module: MOD-1
+delivery_date: 2026-09-14
 serves: OUT-1.2
-duration: 1 h
-prework_time: 20
+duration: 1
+prework_time: 40
+homework_time: 80
 owner: Tyler Goble
 status: draft
 ---
@@ -16,9 +18,22 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | `OUT-1.2` |
-| **Duration** | 1 h session + 20 min pre-work |
+| **Duration** | 1 h live + 2 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | ASM-1 (quiz) |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Monday, 14 September 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 2 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
+
+Spreadsheet row title: **"ML Model Inputs and Outputs."**
 
 ## Narrative
 
@@ -30,6 +45,9 @@ Kills the misconception that a model output is a verdict. Installs Tyler's bar: 
 |---|---|---|---|
 | 1 | Read the model-I/O material — canonical target: `program/lessons/decks/LSN-1.2-model-io.html` (mirrors the original ML literacy deck's model-types + reading-outputs sections, not yet in repo) | 15 min | Nothing to submit |
 | 2 | Write one sentence: what do you think a "lead score of 0.73" means, exactly? | 5 min | Your sentence — it gets stress-tested in the drill |
+| 3 | Run the four output-safari fits in `notebooks/lessons/LSN-1.2_Model_IO.ipynb` yourself (seeded, instant) and write down, per fit, the raw thing that came out — the literal number, array, or list, before anyone interprets it | 20 min | Four raw outputs copied down; you arrive having *seen* them, so the session can spend its 30 min on reading rather than running |
+
+**Pre-work total: 40 min.**
 
 ## Session Plan
 
@@ -39,7 +57,7 @@ Kills the misconception that a model output is a verdict. Installs Tyler's bar: 
 | Output safari | 30 min | demo | Four real output types generated live in the session notebook from tiny seeded fits (instant; supersedes the earlier "rendered, not run live" design — see BUILD_LOG Round 5), with per-type "go deeper" pointers to the repo notebooks: (1) logistic regression → per-class probabilities (`notebooks/supervised/02_Supervised_Logistic_Regression.ipynb`); (2) linear regression → a number with units (`notebooks/supervised/01_Supervised_Linear_Regression.ipynb`); (3) K-Means → a bare cluster id, meaningless until named (`notebooks/unsupervised/01_Unsupervised_KMeans_Clustering.ipynb`); (4) Apriori association rules → a ranked "people who X also Y" list, the recommender's shape (`notebooks/unsupervised/07_Unsupervised_Apriori.ipynb`). For each: what went in, what came out, the one-sentence client-safe reading. |
 | Interpretation drill: "the model says 0.73" | 15 min | drill | Scenario below run as a role-play — instructor plays the client, participants answer, group critiques against the model answer. Pre-work sentences read back first: most will say "73% chance," and the drill sharpens what that does and does not license. |
 
-**Timing check:** 15 + 30 + 15 = 60 min = 1 h contract duration. ✓
+**Timing check:** 15 + 30 + 15 = 60 min = 1 h — matches the spreadsheet contract.
 
 ### Interpretation drill — scenario and model answer
 
@@ -58,7 +76,17 @@ The whole drill is a realistic pre-sales scene: a client who bought (or was sold
 
 ## Homework
 
-None. The output-reading skill is verified in the ASM-1 quiz; keep your corrected "0.73" sentence — it is the seed of your mock pre-sales answers.
+Previously none; the 2 h out-of-session budget funds **80 min** here. Every task runs in the built session notebook and is graded material for the ASM-1 quiz.
+
+| # | Task | Time | Checkpoint / artifact |
+|---|---|---|---|
+| 1 | For each of the four safari output types, write the client-safe one-sentence reading *and* the one question you would ask next before trusting it. Then add the failure line: how could this output be misread by someone who skipped this lesson? | 30 min | 4 × (reading + next question + misread), submitted referencing `LSN-1.2` |
+| 2 | Answer the two curveballs in writing — the 0.51 near-coin-flip and the units-free "8.2" — then add a third curveball from a project or client of your own and answer it | 20 min | 3 written answers; the third is the one Tyler reads back at the next session |
+| 3 | Take the ask you triaged in LSN-1.1 and specify its model I/O: sketch the feature table (name five plausible columns and where each would come from), name the label column and who or what would fill it, then state the output type and its units | 30 min | A one-page I/O spec — this is the artifact LSN-1.6's data-reality checklist gets applied to |
+
+**Pass:** task 1's four readings do not over-claim (a probability stays a probability, a cluster id stays meaningless until named, a number carries units), and task 3's label column has a named source — "we'd label it somehow" fails.
+
+**Time accounting:** pre-work 40 min + homework 80 min = 2 h out-of-session budget.
 
 ## Materials
 

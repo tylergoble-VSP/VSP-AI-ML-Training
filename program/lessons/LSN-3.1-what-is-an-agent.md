@@ -2,9 +2,11 @@
 name: LSN-3.1-what-is-an-agent
 description: Define an agent precisely (LLM + goal + loop + tools + memory + stop condition), explain why production agents are mostly harness, and judge workflow-vs-agent on a real client ask.
 module: MOD-3
+delivery_date: 2026-11-30
 serves: OUT-3.1
-duration: 1.5
-prework_time: 30
+duration: 1
+prework_time: 25
+homework_time: 95
 owner: Tyler
 status: draft
 ---
@@ -16,9 +18,20 @@ status: draft
 | Field | Value |
 |---|---|
 | **Serves** | `OUT-3.1` |
-| **Duration** | 1.5 h session + 30 min pre-work |
+| **Duration** | 1 h live + 2 h out-of-session (pre-work + homework) |
 | **Format** | Live |
 | **Verified by** | ASM-3 (exam + conversation) |
+
+## Schedule (program spreadsheet, locked 2026-08-03)
+
+| Field | Value |
+|---|---|
+| **Delivery date** | Monday, 30 November 2026 |
+| **Live session** | 1 h |
+| **Out-of-session budget** | 2 h total (pre-work + homework) |
+| **Presenter** | Tyler |
+| **Reviewer** | Vlad |
+| **Guinea pig** | Mazilu (TBC) |
 
 ## Narrative
 
@@ -29,19 +42,21 @@ status: draft
 | # | Task | Time | Artifact to bring |
 |---|---|---|---|
 | 1 | Read Anthropic's "Building Effective Agents" (see Materials) | 15 | One sentence: where does the piece draw the workflow/agent line? |
-| 2 | Revisit your LSN-2.2 structured-output homework | 10 | The homework artifact, open and runnable |
-| 3 | Think: what would it take to let the model *act* on its output? | 5 | One bullet listing what's missing (execution? feedback? permission?) |
+| 2 | Re-open your LSN-2.2 structured-output homework; confirm it still runs | 7 | The homework artifact, open and runnable |
+| 3 | Note: what would it take to let the model *act* on its output? | 3 | One bullet listing what's missing (execution? feedback? permission?) |
+
+**Pre-work total: 25 min.** Falls on the weekend of 28–29 Nov — the only slack in the module, so this is the one pre-work that can safely carry a real reading.
 
 ## Session Plan
 
 | Segment | Time | Method | Detail |
 |---|---|---|---|
-| From chatbot to agent | 25 | talk + whiteboard | Build the six-part definition live: **LLM + goal + loop + tools + memory + stop condition**. Start from a participant's LSN-2.2 artifact: the model already emits a structured action — what turns that into an agent? Execute it, append the result, ask again. Loop = repeated inference over a growing transcript; memory = that transcript; stop = "no tool call emitted" or a budget. Leans on notebook 06 sections "What are LLM Agents?" and "Key Concepts". |
-| The harness | 25 | talk + discussion | Why production agents are **mostly harness**: the model is one component; the engineering is around it. Cover: tool allowlists and schema validation; permission gates on side-effecting tools (read freely, write with approval); max-turns and token budgets; audit logs of every tool call; human-in-the-loop escalation paths. Leans on notebook 06 "Safety Considerations". Discussion prompt: which of these does your current project already have for *ordinary* services? (Most — that's the point: harness thinking is delivery thinking.) |
-| Workflow vs agent decision drill | 25 | drill | Five scenarios below — for each, the room picks **deterministic pipeline** or **agent** and defends it (~4 min each), then 5 min synthesis: *if you can draw the flowchart before you run it, build the flowchart; reach for an agent only when the next step depends on what the last step revealed.* Agents buy adaptability and cost predictability — the harness is how you buy the predictability back. |
-| Anatomy of a real agent trace | 15 | demo walkthrough | Turn-by-turn read of the meeting-assistant trace below: user ask → tool call → tool result → next decision → permission gate → stop. Every turn is the same shape (context in, decision out). Closes with: "in LSN-3.4 you build this loop yourself." |
+| From chatbot to agent | 18 | talk + whiteboard | Build the six-part definition live: **LLM + goal + loop + tools + memory + stop condition**. Start from a participant's LSN-2.2 artifact: the model already emits a structured action — what turns that into an agent? Execute it, append the result, ask again. Loop = repeated inference over a growing transcript; memory = that transcript; stop = "no tool call emitted" or a budget. Leans on notebook 06 sections "What are LLM Agents?" and "Key Concepts". |
+| The harness | 15 | talk + discussion | Why production agents are **mostly harness**: the model is one component; the engineering is around it. Cover: tool allowlists and schema validation; permission gates on side-effecting tools (read freely, write with approval); max-turns and token budgets; audit logs of every tool call; human-in-the-loop escalation paths. Leans on notebook 06 "Safety Considerations". Discussion prompt: which of these does your current project already have for *ordinary* services? (Most — that's the point: harness thinking is delivery thinking.) |
+| Workflow vs agent decision drill | 18 | drill | **Three scenarios live — D1, D3, D5** below: the room picks **deterministic pipeline** or **agent** and defends it (~4.5 min each), then 4.5 min synthesis: *if you can draw the flowchart before you run it, build the flowchart; reach for an agent only when the next step depends on what the last step revealed.* Agents buy adaptability and cost predictability — the harness is how you buy the predictability back. **D2 and D4 (both pipeline-shaped, same tell) move to homework** as a written memo — the full five-scenario sheet stays below and is handed out. |
+| Anatomy of a real agent trace | 9 | demo walkthrough | Turn-by-turn read of the meeting-assistant trace below, at pace: user ask → tool call → tool result → next decision → **permission gate (dwell here — this is where production risk lives)** → stop. Every turn is the same shape (context in, decision out). Closes with: "in LSN-3.4 you build this loop yourself." **The full turn-by-turn annotation moves to homework task 3** — participants do the slow read against a real trace of their own. |
 
-**Timing check:** 25 + 25 + 25 + 15 = **90 min** = 1.5 h contract duration. ✓
+**Timing check:** 18 + 15 + 18 + 9 = 60 min = 1 h — matches the spreadsheet contract.
 
 ### The five-scenario decision drill
 
@@ -71,18 +86,29 @@ Drill scenario D1 is the real construction-site completion prospect Dorel raised
 
 ## Homework
 
-None — this session **is** pre-work for the LSN-3.4 lab. Keep your drill answers; D3 is roughly the agent you will build. Confirm your API key is provisioned (LSN-3.4 pre-work requirement).
+| # | Task | Time | Due | Artifact |
+|---|---|---|---|---|
+| 1 | **Doubles as LSN-3.2 pre-work task 1.** Read the four GAP-2 framework cards (LangChain, LangGraph, LangSmith, Haystack); write one sentence per framework in your own words + one "what is this actually?" question | 30 | Tue 1 Dec, session start | Four sentences + one question |
+| 2 | **Front-loaded off the LSN-3.4 lab evening.** Provision your API key and run cell 0 of notebook 06 (`ensure_repo_root_on_sys_path()` + key smoke test) until it returns a completion | 10 | Tue 1 Dec | Screenshot of the successful smoke test |
+| 3 | Trace annotation: run notebook 06's `agent_loop()` on the supplied question, then annotate your own trace turn by turn — mark where each of the six parts (LLM, goal, loop, tools, memory, stop) actually appears, and which turn a permission gate belongs on | 30 | Sun 6 Dec | Annotated trace |
+| 4 | Workflow-vs-agent memo: write up **D2 and D4** — the two drill scenarios cut from the live session — as ~150-word client-facing justifications each | 25 | Sun 6 Dec | Memo, references `LSN-3.1` |
+
+**Time accounting:** pre-work 25 min + homework 95 min = 2 h out-of-session budget.
+
+**Cadence note:** tasks 1–2 (40 min) are the only Monday-evening obligation; tasks 3–4 float to the weekend of 5–6 Dec. Task 1 *is* LSN-3.2's framework-card pre-work — it is budgeted here and not charged again there. Keep your drill answers; D3 is roughly the agent you build in LSN-3.4.
 
 ## Materials
 
 | Material | Status | Path / source |
 |---|---|---|
-| Concept sections: agent definition, architecture, safety | exists | `notebooks/generative_ai/06_GenerativeAI_Tool_Calling_Agents.ipynb` (markdown sections; note: module spec cites `06_Tool_Calling_Agents.ipynb` — same notebook, filename drift) |
+| Concept sections: agent definition, architecture, safety | exists | `notebooks/generative_ai/06_GenerativeAI_Tool_Calling_Agents.ipynb` (markdown sections; filename verified 2026-08-03 — the module spec now cites it in full, earlier drift resolved) |
 | Pre-work reading | exists | [Anthropic — "Building Effective Agents"](https://www.anthropic.com/engineering/building-effective-agents) |
 | Optional deeper read | exists | [Lilian Weng — "LLM Powered Autonomous Agents"](https://lilianweng.github.io/posts/2023-06-23-agent/) |
-| Decision-drill scenario sheet | exists | This file, Session Plan section |
+| Decision-drill scenario sheet (all five — D2/D4 now handed out for the homework memo) | exists | This file, Session Plan section |
 | Trace walkthrough script | exists | This file; optional live run from notebook 06 "Implementation" section |
+| **Homework task 1 dependency: the four framework cards** | build (`GAP-2`) | Needed **Mon 30 Nov**, not Tue — the cards are now read as *this* lesson's homework. Pulls the GAP-2 deadline forward by one day |
+| **Homework task 3: trace-annotation exercise — supplied question + annotation template** | build (part of `GAP-2b`) | New requirement created by this restructure: the slow trace read moved out of the live hour, so it needs a self-serve worksheet and a runnable notebook-06 path |
 
 ## Delivery Notes
 
-None yet — first delivery scheduled Week 3. Fill after delivery: what landed, what dragged, timing reality. Feeds the module retro.
+None yet — first delivery Mon 30 Nov 2026, opening the MOD-3 daily week. Fill after delivery: what landed, what dragged, timing reality — especially whether the 18-min drill survives three scenarios or needs to drop to two. Feeds the module retro.
