@@ -242,18 +242,18 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
       </div>
       <div class="vsp-stage center" style="gap:22px">
-        <div class="vsp-kicker">AI/ML Training Program · LSN-1.3 · Weeks 1–2</div>
+        <div class="vsp-kicker">AI/ML Training Program · LSN-1.3 · Monday 21 September 2026</div>
         <h1 class="vsp-h1" style="max-width:1090px">"It's 99% accurate."<br><span class="vsp-glow">So — is it any good?</span></h1>
         <div class="vsp-rule"></div>
         <p class="vsp-lead" style="max-width:1000px">Last hour you learned to read what a model <i>emits</i>. This hour is the question we deliberately parked. Four instruments — <b style="color:#fff">MAE</b>, <b style="color:#fff">precision</b>, <b style="color:#fff">recall</b>, <b style="color:#fff">AUC</b> — one <b style="color:#fff">confusion matrix</b> underneath all of them, and the one client question that decides everything: <b style="color:var(--vsp-accent)">which kind of wrong can they afford?</b></p>
       </div>
-      <div class="vsp-footer"><span>MOD-1 ML Literacy · Grading Models: MAE, precision/recall, confusion matrix, AUC · serves OUT-1.3</span><span>Tyler Goble · 90 min · 20 / 30 / 20 / 20</span></div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy · Grading Models: MAE, precision/recall, confusion matrix, AUC · serves OUT-1.3</span><span>Instructor-led · 60 min · 12 / 22 / 15 / 11</span></div>
     </div>
     <aside class="notes">
-      2 min, and it comes out of segment 1's 20. The map: MAE 20 min (slides 1–4) · precision/recall via the LSN-0.3 fraud detector 30 min (slides 5–7) · the confusion-matrix drill 20 min (slide 8) · AUC and the four questions 20 min (slides 9–11) = 90.
-      Open cold, before any teaching, and this is the highest-value 90 seconds of the hour: go round the room and collect the ONE-LINE pre-work answer — "why is a 99%-accurate detector on a rare event mostly false alarms?". Do not correct anybody. Write two or three of the lines on the board verbatim; slide 5 pays them off.
-      Then set the frame in one sentence: nothing in this hour is new mathematics. Every number today comes out of four whole integers, and the skill is knowing which of them somebody left off the slide.
-      Say what this hour is NOT: it is not model selection, it is not statistics, and nobody trains anything (that is LSN-1.4, next session, and its pre-work is on the last slide — flag that now so nobody is surprised).
+      2 min, and it comes out of segment 1's 12. The map: MAE 12 min (slides 1–4) · precision/recall via the LSN-0.3 fraud detector 22 min (slides 5–7) · the confusion-matrix drill 15 min (slide 8) · AUC and the four questions 11 min (slides 9–11) = 60.
+      This hour was 90 minutes until the 2026-08-03 rescope, so run it on the clock and know what moved: the third quick-fire case, the vendor-B hand computation and the threshold sweep are now homework, and AUC leans on the mandatory pre-work video. Nothing was cut; three things were relocated. If a segment overruns, the thing to shorten is talk, never the drill.
+      Open cold, before any teaching, and this is the highest-value 60 seconds of the hour: collect the ONE-LINE pre-work answer — "why is a 99%-accurate detector on a rare event mostly false alarms?". Do not correct anybody. Write two of the lines on the board verbatim; slide 5 pays them off.
+      Then set the frame in one sentence: nothing in this hour is new mathematics. Every number today comes out of four whole integers, and the skill is knowing which of them somebody left off the slide. It is not model selection, it is not statistics, and nobody trains anything (that is LSN-1.4, next session, and its pre-work is on the last slide — flag that now so nobody is surprised).
       Everyone should have the LSN-1.3 notebook open and already executed. Every count on every slide is computed in it, with asserts, so if somebody challenges a number you can show them the cell.
     </aside>
   </section>
@@ -261,46 +261,46 @@
     <div class="vsp-slide">
       <div class="vsp-orb green-l" style="width:340px;height:340px;top:22%;left:47%"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:14px">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Bridge from LSN-1.2 · Pre-work target · 30 min</div>
-          <h2 class="vsp-h2" style="font-size:35px">You can read <span class="vsp-glow">0.73</span>.<br>You still can't tell whether the model is <span class="vsp-glow">any good.</span></h2>
+      <div class="vsp-stage" style="justify-content:center;gap:11px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Bridge from LSN-1.2 · Pre-work 45 min · Homework 75 min</div>
+          <h2 class="vsp-h2" style="font-size:30px">You can read <span class="vsp-glow">0.73</span>.<br>You still can't tell whether the model is <span class="vsp-glow">any good.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
           <div class="vsp-card" style="padding:17px 19px 15px"><span class="topbar green"></span>
             <h3 style="font-size:17px">What you already own</h3>
-            <ul class="p-chk" style="margin-top:9px;gap:9px">
-              <li style="font-size:14px"><b style="color:#fff">LSN-1.2:</b> an output is not a verdict — 0.73 is a probability, and its threshold is the client's choice</li>
-              <li style="font-size:14px"><b style="color:#fff">LSN-0.3:</b> a 99%-catch fraud detector on a 1-in-10,000 event hands over a queue that is <b style="color:var(--vsp-accent)">0.98% real</b></li>
-              <li style="font-size:14px"><b style="color:#fff">LSN-0.2:</b> a model that never predicts churn is "92% accurate"</li>
+            <ul class="p-chk" style="margin-top:8px;gap:8px">
+              <li style="font-size:13px"><b style="color:#fff">LSN-1.2:</b> an output is not a verdict — 0.73 is a probability, and its threshold is the client's choice</li>
+              <li style="font-size:13px"><b style="color:#fff">LSN-0.3:</b> a 99%-catch fraud detector on a 1-in-10,000 event hands over a queue that is <b style="color:var(--vsp-accent)">0.98% real</b></li>
+              <li style="font-size:13px"><b style="color:#fff">LSN-0.2:</b> a model that never predicts churn is "92% accurate"</li>
             </ul>
             <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:11px">Today adds no new arithmetic. It gives all of that its <b style="color:#fff">vocabulary</b>, so you can use it in a meeting.</p>
           </div>
           <div class="vsp-card" style="padding:17px 19px 15px"><span class="topbar yellow"></span>
-            <h3 style="font-size:17px">The 90 minutes, in four moves</h3>
-            <table class="p-tbl tight" style="font-size:13.5px;margin-top:3px">
-              <tr class="hi"><td style="width:20%"><b>20 min</b></td><td><b>MAE</b> — the average miss, and what an average hides</td></tr>
-              <tr><td><b>30 min</b></td><td><b>Precision &amp; recall</b> — the LSN-0.3 detector, formally graded</td></tr>
-              <tr><td><b>20 min</b></td><td><b>The drill</b> — two matrices, six numbers, by hand</td></tr>
-              <tr><td><b>20 min</b></td><td><b>AUC</b> + "they quoted us 99% accuracy"</td></tr>
+            <h3 style="font-size:17px">The 60 minutes, in four moves</h3>
+            <table class="p-tbl tight" style="font-size:13px;margin-top:3px">
+              <tr class="hi"><td style="width:20%"><b>12 min</b></td><td><b>MAE</b> — the average miss, and the trap <i>named</i></td></tr>
+              <tr><td><b>22 min</b></td><td><b>Precision &amp; recall</b> — the LSN-0.3 detector, formally graded</td></tr>
+              <tr><td><b>15 min</b></td><td><b>The drill</b> — vendor A by hand, vendor B at speed</td></tr>
+              <tr><td><b>11 min</b></td><td><b>AUC</b> (you watched the video) + "they quoted us 99%"</td></tr>
             </table>
-            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:10px">Then the homework that is really the outcome: <b style="color:#fff">three report cards, ship-or-don't-ship.</b></p>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:8px">Then the <b style="color:#fff">75 min of homework</b> that is really the outcome: three report cards, ship-or-don't-ship — plus the drill repetition and the threshold sweep this hour hands over.</p>
           </div>
         </div>
-        <div class="p-quote">
-          <div class="meta">Tyler Goble · the bar for this module, verbatim</div>
-          <p>"I can see the outputs of a model and I can interpret them."</p>
+        <div class="p-quote" style="padding:10px 20px">
+          <div class="meta" style="margin-bottom:5px">The instructor · the bar for this module, verbatim</div>
+          <p style="font-size:15.5px">"I can see the outputs of a model and I can interpret them."</p>
         </div>
-        <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Pre-work, 30 min: <b>revisit your LSN-0.3 base-rate notes</b> — one line on why a 99%-accurate detector on a rare event is mostly false alarms — plus the <b>grading/metrics</b> material. <b>This is the one MOD-1 lesson with a hard MOD-0 prerequisite.</b></div>
+        <div class="p-callout" style="font-size:13px;padding:10px 18px;line-height:1.38">Pre-work, <b>45 min</b>: <b>revisit your LSN-0.3 base-rate notes</b> — one line on why a 99%-accurate detector on a rare event is mostly false alarms (15) · the <b>grading/metrics</b> material (15) · <b style="color:var(--vsp-accent)">mandatory, no longer optional:</b> StatQuest's <b>"ROC and AUC, Clearly Explained!"</b> + one line on what a point on the curve represents (15) — <b>segment 4 is 11 min and reads the curve instead of building it.</b> <span style="color:var(--vsp-on-dark-muted);font-weight:500">45 + 75 homework = the 2 h out-of-session budget. This is the one MOD-1 lesson with a hard MOD-0 prerequisite.</span></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Pre-work + bridge</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Pre-work + bridge</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      3 min, inside segment 1's 20. Orientation only — do not start teaching MAE here.
-      Say the source-material line plainly, once: the lesson plan points the pre-work at Tyler's original ML literacy deck, which is not in this repo. THIS deck plus the notebook's four-instrument table are the canonical grading/metrics material — same call LSN-0.4, LSN-1.1 and LSN-1.2 made. Nobody should go hunting for a file. The one optional pre-work video the lesson plan lists is StatQuest, <a href="https://www.youtube.com/watch?v=4jRBRDbJemM" target="_blank" rel="noopener">"ROC and AUC, Clearly Explained!"</a> — youtube.com/watch?v=4jRBRDbJemM (verified 2026-07-29); offer it to anyone who wants the picture before slide 9.
-      Roll-call the pre-work by hands: who revisited their LSN-0.3 notes? The honest answer in the room matters, because segment 2 does NOT re-teach base rates — it puts a report card on the detector they already built.
-      Cash the three callbacks on the left card out loud, in order. They are three different lessons that all turn out to be the same lesson, and saying so is what makes today feel like a payoff rather than a new topic.
-      If somebody asks why grading comes after reading outputs: because you cannot judge a number you cannot read. That is why the order is 1.2 then 1.3 — it makes the sequence feel earned.
+      2 min, inside segment 1's 12. Orientation only — do not start teaching MAE here, and do not let the roll-call become a discussion.
+      Say the source-material line plainly, once: the lesson plan points the pre-work at the instructor's original ML literacy deck, which is not in this repo. THIS deck plus the notebook's four-instrument table are the canonical grading/metrics material — same call LSN-0.4, LSN-1.1 and LSN-1.2 made. Nobody should go hunting for a file.
+      The StatQuest video is now MANDATORY pre-work, not the optional extra it was before the rescope: <a href="https://www.youtube.com/watch?v=4jRBRDbJemM" target="_blank" rel="noopener">"ROC and AUC, Clearly Explained!"</a> — youtube.com/watch?v=4jRBRDbJemM (verified 2026-07-29). Say why, because it is not arbitrary: the AUC segment went from 20 min to 11 and now READS the curve instead of deriving it. Anyone who skipped it should watch it at the break, not during slide 9.
+      Roll-call the pre-work by hands, three items: LSN-0.3 notes revisited · grading material read · video watched, with the one-line answer on what a point on the ROC curve represents. The honest answer in the room matters, because segment 2 does NOT re-teach base rates — it puts a report card on the detector they already built.
+      Cash the three callbacks on the left card out loud, in order, one sentence each. They are three different lessons that all turn out to be the same lesson. If somebody asks why grading comes after reading outputs: because you cannot judge a number you cannot read.
     </aside>
   </section>
   <section data-label="MAE">
@@ -309,7 +309,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:15px">
         <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Segment 1 · 20 min · MAE, the average miss</div>
+          <div class="vsp-kicker">Segment 1 · 12 min · MAE, the average miss</div>
           <h2 class="vsp-h2" style="font-size:35px">"On average we're off by <span class="vsp-glow">$23,000</span>."<br>Is that livable — for <span class="vsp-glow">which decision?</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:0.92fr 1.08fr;align-items:start;gap:18px">
@@ -341,58 +341,58 @@
         </div>
         <div class="p-callout" style="font-size:15px;padding:13px 18px">The question that turns you from a reciter into an advisor: <b>"Which of your decisions has less than $23,000 of room in it?"</b></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 1 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 1 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      7 min. This is the segment's teaching half; the trap on the next slide is its selling half.
+      4 min, and it is tight — this is the segment's teaching half, the trap on the next slide is its selling half, and together they are 8 of segment 1's 12.
       Define MAE by doing it, not by saying it: put two rows on the whiteboard — model said $315,387, sold for $291,080 — and walk the subtraction, the minus sign going away, the average. Ninety seconds, and from then on nobody in the room is bluffing about MAE.
-      Then the minus-sign demo, and make them feel it: the mean ERROR on these 400 homes is minus $286. A vendor could truthfully put "average error: under $300" on a slide. The average MISS is $23,000. Same model, same data, two true sentences, one of them useless.
-      Now the four-client table, and run it as a question, not a reading: cover the right column, read each client's decision, ask the room "livable?". They will get the lender and the widget instantly and argue about the assessor — let them, because the argument IS the lesson. The iBuyer is the one to land hard: a $23k average miss on a business whose entire margin is $17k means the model loses money on average.
+      Then the minus-sign demo in thirty seconds: the mean ERROR on these 400 homes is minus $286, so a vendor could truthfully put "average error: under $300" on a slide. The average MISS is $23,000. Same model, same data, two true sentences, one of them useless.
+      Now the four-client table, and run it as a question, not a reading: cover the right column, read each client's decision, ask the room "livable?". Take the lender and the widget as fast hands-up calls; land the iBuyer hard — a $23k average miss on a business whose entire margin is $17k means the model loses money on average. At 60 minutes you can no longer let the assessor row become a debate: name it, take one sentence, move.
       Do NOT let anybody answer "is $23k good?" without asking what decision it feeds. If somebody tries, ask them for the decision. That reflex is the outcome of the segment.
-      Two side notes if asked, thirty seconds each: RMSE is also in client units but punishes big misses harder, so it is always at least MAE — if a vendor quotes only RMSE, ask for MAE too. R-squared is not in anybody's units and ends conversations.
+      Hold RMSE and R-squared for questions only, ten seconds each if asked: RMSE is also in client units but punishes big misses harder, so it is always at least MAE — if a vendor quotes only RMSE, ask for MAE too. R-squared is not in anybody's units.
     </aside>
   </section>
   <section data-label="MAE trap">
     <div class="vsp-slide">
       <div class="vsp-orb green" style="width:380px;height:380px;bottom:-150px;left:-110px"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:16px">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Segment 1 · The trap · homework card A lives here</div>
-          <h2 class="vsp-h2" style="font-size:36px">Two vendors. <span class="vsp-glow">Identical MAE.</span><br>One of them is unusable.</h2>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 1 · The trap, <i style="font-style:normal;color:var(--vsp-on-dark-strong)">named here · worked in homework card A</i></div>
+          <h2 class="vsp-h2" style="font-size:32px">Two vendors. <span class="vsp-glow">Identical MAE.</span><br>One of them is unusable.</h2>
         </div>
-        <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
-          <table class="p-tbl tight" style="font-size:14.5px">
+        <div class="vsp-card" style="padding:13px 20px 11px"><span class="topbar yellow"></span>
+          <table class="p-tbl tight" style="font-size:13.5px">
             <tr><th style="width:34%">The same 400 homes, by segment</th><th style="width:12%">homes</th><th style="width:27%">Vendor A — "even"</th><th>Vendor B — "lopsided"</th></tr>
             <tr><td><b>starter</b> &lt; $420k</td><td>340</td><td>MAE <b>$22,979</b></td><td>MAE <b style="color:var(--vsp-green-lightest)">$8,000</b> — better!</td></tr>
             <tr><td><b>luxury</b> &gt; $900k</td><td>60</td><td>MAE <b>$23,122</b></td><td>MAE <b style="color:var(--vsp-accent)">$108,000</b> — 4.7× its own headline</td></tr>
             <tr class="hi"><td><b>ALL HOMES</b> — the only row on the vendor's slide</td><td><b>400</b></td><td>MAE <b>$23,000</b></td><td>MAE <b>$23,000</b></td></tr>
           </table>
         </div>
-        <div class="p-grid2" style="grid-template-columns:1.05fr 0.95fr;align-items:start;gap:18px">
-          <div class="vsp-card" style="padding:14px 18px 12px"><span class="topbar green"></span>
-            <h3 style="font-size:15.5px">Vendor B's $23,000, in one line of arithmetic</h3>
-            <div style="margin-top:8px"><span class="p-eq">340 × $8,000&nbsp;&nbsp;&nbsp;= $2,720,000<br>&nbsp;60 × $108,000 = $6,480,000<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>$9,200,000</b> ÷ 400 = <b>$23,000</b></span></div>
-            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:10px"><b style="color:#fff">15%</b> of the homes own <b style="color:#fff">70%</b> of the error. If the client's business <i>is</i> luxury listings, vendor B's report card is a lie of omission — and vendor A, identical on the slide, is the model they want.</p>
+        <div class="p-grid2" style="grid-template-columns:1.05fr 0.95fr;align-items:start;gap:16px">
+          <div class="vsp-card" style="padding:12px 18px 10px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Vendor B's $23,000, in one line of arithmetic</h3>
+            <div style="margin-top:7px"><span class="p-eq" style="font-size:13.5px">340 × $8,000&nbsp;&nbsp;&nbsp;= $2,720,000<br>&nbsp;60 × $108,000 = $6,480,000<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>$9,200,000</b> ÷ 400 = <b>$23,000</b></span></div>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:8px"><b style="color:#fff">15%</b> of the homes own <b style="color:#fff">70%</b> of the error. If the client's business <i>is</i> luxury listings, vendor B's report card is a lie of omission — and vendor A, identical on the slide, is the model they want.</p>
           </div>
-          <div class="vsp-card" style="padding:14px 18px 12px"><span class="topbar yellow"></span>
-            <h3 style="font-size:15.5px">Homework card A is this, with your margin on it</h3>
-            <p style="font-size:13.5px">An effort estimator: <b style="color:#fff">MAE 38 hours</b> across 2,400 work items — sold to back <b style="color:#fff">fixed-bid quotes on large projects</b>.</p>
-            <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:8px">Small tasks: <b style="color:#fff">6 h</b>. Large epics: <b style="color:var(--vsp-accent)">330 h</b>, every one an under-estimate. At $95/h that is <b style="color:#fff">$31,350</b> of unbilled work per epic.</p>
+          <div class="vsp-card" style="padding:12px 18px 10px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">Homework card A is this, with your margin on it</h3>
+            <p style="font-size:13px">An effort estimator: <b style="color:#fff">MAE 38 hours</b> across 2,400 work items — sold to back <b style="color:#fff">fixed-bid quotes on large projects</b>. <b style="color:var(--vsp-accent)">You work it, not us:</b> the breakdown is named here and solved tonight.</p>
+            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:7px">Small tasks: <b style="color:#fff">6 h</b>. Large epics: <b style="color:var(--vsp-accent)">330 h</b>, every one an under-estimate. At $95/h that is <b style="color:#fff">$31,350</b> of unbilled work per epic.</p>
           </div>
         </div>
-        <div class="p-callout" style="font-size:15.5px;padding:13px 18px">The one question that finds every version of this: <b>"Show me that error broken out by segment."</b> A vendor who volunteers the breakdown has done the work. One who has to be asked twice has usually already looked.</div>
+        <div class="p-callout" style="font-size:14.5px;padding:11px 18px;line-height:1.4">The one question that finds every version of this: <b>"Show me that error broken out by segment."</b> A vendor who volunteers the breakdown has done the work. One who has to be asked twice has usually already looked.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 1 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 1 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      8 min, and it closes segment 1. Do not let this slide get cut — it is where the pre-sales value of MAE lives.
-      Build the table left to right and stop after the starter row: "vendor B is three times better on 85% of the market. Buy vendor B?" Let the room commit. Then reveal the luxury row. The gasp is the lesson.
-      Then walk the arithmetic card slowly, because a client will make you do it live one day: 340 times eight thousand, sixty times a hundred and eight thousand, add, divide by four hundred, twenty-three thousand. An average over a mixed population is not a grade for any of its parts.
-      Say the general form out loud, because it transfers past house prices: any average can be dominated by whichever segment is most numerous, and the segment the CLIENT cares about is usually the rare one. Small items vs large. New customers vs tenured. Last quarter vs last year. Region by region.
-      Then hand them card A explicitly and tell them it is not a trick question: same move, delivery-company costume, and the money is theirs. Do not solve it for them — the temptation on this slide is to talk them all the way through the epics, and that is the homework.
-      One honest note if a sharp participant asks: the 38 hours on card A is 38.4 rounded, and the notebook prints both. Rounding is what vendors do; it is not the defect on that card.
-      Time check: you should be 20 minutes in and about to say the words "the LSN-0.3 fraud detector". If you are over, cut the four-client table's assessor row on the previous slide, not this slide.
+      4 min, and it closes segment 1. Do not let this slide get cut — it is where the pre-sales value of MAE lives. The rescope changed this slide's job: you NAME the trap here and the room WORKS it in homework card A. Resist finishing the argument for them.
+      Build the table left to right and stop after the starter row: "vendor B is three times better on 85% of the market. Buy vendor B?" Let the room commit. Then reveal the luxury row. The gasp is the lesson, and it costs ninety seconds.
+      Then the arithmetic card at speed, because a client will make you do it live one day: 340 times eight thousand, sixty times a hundred and eight thousand, add, divide by four hundred, twenty-three thousand. An average over a mixed population is not a grade for any of its parts.
+      Say the general form once, because it transfers past house prices: any average can be dominated by whichever segment is most numerous, and the segment the CLIENT cares about is usually the rare one. Small items vs large. New customers vs tenured. Last quarter vs last year.
+      Then hand them card A explicitly, in one sentence: same move, delivery-company costume, the money is theirs, and the full worked version is tonight's homework — 40 min across three cards. Do NOT talk them through the epics. That is the relocated content, and solving it here is how this segment goes back over 12 minutes.
+      One honest note only if a sharp participant asks: the 38 hours on card A is 38.4 rounded, and the notebook prints both. Rounding is what vendors do; it is not the defect on that card.
+      Time check: you should be 12 minutes in and about to say the words "the LSN-0.3 fraud detector". If you are over, cut the four-client table's assessor row on the previous slide, not this slide.
     </aside>
   </section>
   <section data-label="Fraud report card">
@@ -401,7 +401,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:14px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 2 · 30 min · The heart of the hour</div>
+          <div class="vsp-kicker">Segment 2 · 22 min · The heart of the hour</div>
           <h2 class="vsp-h2" style="font-size:35px">The <span class="vsp-glow">LSN-0.3</span> fraud detector,<br>finally given a report card.</h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;align-items:start;gap:20px">
@@ -432,27 +432,27 @@
         </div>
         <div class="p-callout" style="font-size:15px;padding:12px 18px">Nothing changed about the detector between <b>99%</b> and <b>0.98%</b>. Only the <b>denominator</b> did — and choosing which denominator to print is a marketing decision, not a mathematical one.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      10 min, and this is the slide the whole lesson turns on. Slow down.
+      8 min, and this is the slide the whole lesson turns on. It is the one place in a 60-minute hour where you are allowed to slow down.
       Start by paying off the pre-work lines you wrote on the board at the start. Read two of them out and then say: everything you already worked out arithmetically in LSN-0.3 has names, and here they are.
       Build the matrix out loud, one cell at a time, as WHOLE TRANSACTIONS, not rates: 100 frauds, 99 flagged, 1 slipped through; 999,900 legitimate, 1% of them flagged is 9,999, the other 989,901 cleared. Total a million. Nobody needs a formula and nobody needs Bayes.
       Then the two metrics, and name the denominators explicitly with your hand on the slide: recall divides by the ROW — every fraud there was. Precision divides by the COLUMN — the whole alert queue, 10,098 of them. Same numerator, 99, in both.
       Then the sentence that lands it commercially: "1 real alert in every 102. Somebody at the client opens all 10,098." Do the headcount arithmetic in front of them if there is time — that is the conversation the client's ops lead actually needs.
       Now the rubber-stamp card, and let it be as uncomfortable as it is: 99.00% versus 99.99%. The detector is LESS accurate than a machine that approves everything. Then rescue it immediately, because the point is not that the model is bad — the model catches 99 frauds and the rubber stamp catches none. The point is that accuracy cannot see the difference. If you leave the room thinking the detector is worthless, you learned the wrong thing.
       Say the flag-nothing baseline is a ten-second check they can run on ANY classifier report card, forever. It is the single most portable thing in this hour, and homework card B is built on it.
-      If somebody asks about F1: it is 1.94% here, it is the honest one-number summary, and it is the number nobody puts on a slide. Thirty seconds, then move.
+      If somebody asks about F1: it is 1.94% here, it is the honest one-number summary, and it is the number nobody puts on a slide. Ten seconds, then move — at this length the headcount arithmetic and F1 cannot both fit, and the headcount line is the one that earns the room.
     </aside>
   </section>
   <section data-label="Two kinds of wrong">
     <div class="vsp-slide">
       <div class="vsp-orb navy" style="width:440px;height:440px;bottom:-170px;right:-120px"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:16px">
-        <div style="display:flex;flex-direction:column;gap:7px">
+      <div class="vsp-stage" style="justify-content:center;gap:14px">
+        <div style="display:flex;flex-direction:column;gap:6px">
           <div class="vsp-kicker">Segment 2 · Two kinds of wrong, two price tags</div>
-          <h2 class="vsp-h2" style="font-size:36px">Same numerator. Two denominators.<br><span class="vsp-glow">Two different people at the client.</span></h2>
+          <h2 class="vsp-h2" style="font-size:33px">Same numerator. Two denominators.<br><span class="vsp-glow">Two different people at the client.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:18px">
           <div class="vsp-card" style="padding:16px 19px 14px"><span class="topbar yellow"></span>
@@ -468,20 +468,20 @@
             <p style="font-size:13px;color:var(--vsp-on-dark-muted);margin-top:9px">A false negative is fraud paid out that <b style="color:#fff">nobody ever finds out about</b>. It never appears in a queue, so it never gets escalated.</p>
           </div>
         </div>
-        <div class="p-quote" style="border-left-color:var(--vsp-accent)">
-          <div class="meta" style="color:var(--vsp-accent)">The rule that does all the work</div>
-          <p style="font-style:normal">Look at <b style="color:#fff">what happens after the model speaks.</b> Cheap and reversible when it's wrong — a review, an inspection, a phone call → push <b style="color:var(--vsp-green-lightest)">recall</b>. Expensive or irreversible — a declined payment, a cancelled order, an accusation, an automated action nobody sees → push <b style="color:var(--vsp-accent)">precision</b>.</p>
+        <div class="p-quote" style="border-left-color:var(--vsp-accent);padding:13px 20px">
+          <div class="meta" style="color:var(--vsp-accent);margin-bottom:6px">The rule that does all the work</div>
+          <p style="font-style:normal;font-size:15.5px">Look at <b style="color:#fff">what happens after the model speaks.</b> Cheap and reversible when it's wrong — a review, an inspection, a phone call → push <b style="color:var(--vsp-green-lightest)">recall</b>. Expensive or irreversible — a declined payment, a cancelled order, an accusation, an automated action nobody sees → push <b style="color:var(--vsp-accent)">precision</b>.</p>
         </div>
-        <div class="p-callout" style="font-size:15px;padding:13px 18px">Which is why "is the model good?" has no answer yet: <b>the priority metric is a property of the ACTION, not of the model.</b> Change what happens when it says yes and the right metric flips — with nothing changed about the model at all.</div>
+        <div class="p-callout" style="font-size:14px;padding:11px 18px;line-height:1.4">Which is why "is the model good?" has no answer yet: <b>the priority metric is a property of the ACTION, not of the model.</b> Change what happens when it says yes and the right metric flips — with nothing changed about the model at all.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      10 min. Slides 5 and 6 are one continuous 20-minute argument; this is the half that turns metrics into a client conversation.
+      8 min. Slides 5 and 6 are one continuous 16-minute argument; this is the half that turns metrics into a client conversation.
       Do the "two people" framing as a role-play, because it is what makes this stick: point at one side of the room — you are the fraud analyst, you have 10,098 files. Point at the other — you are the CFO, you lost one fraud. Ask each half which number they want on the dashboard. They will pick different ones, correctly, and neither is wrong. That IS the finding.
       Then hammer the asymmetry in visibility, which almost nobody has noticed before: false positives arrive in a queue with somebody's name on them, so they get complained about. False negatives are invisible by construction — nobody files a ticket for the fraud that got paid. So organisations systematically over-weight precision, and part of your job in a discovery call is to make the invisible error visible.
       Then the rule in the quote box, and give it to them as a script they can use tomorrow. Make them say it back with one example each.
-      Land the closing callout hard, because it is the transferable idea of the whole segment: same model, same metrics, change the ACTION and the answer flips. The next slide is three cases that prove it.
+      Land the closing callout hard, because it is the transferable idea of the whole segment: same model, same metrics, change the ACTION and the answer flips. The next slide proves it on two live cases — the third goes home.
       If someone asks "can't we just have both?": yes — better features, more data, months and money. It is a project, not a threshold. Everything else on this slide is a knob, and every knob trades one error for the other.
     </aside>
   </section>
@@ -489,45 +489,45 @@
     <div class="vsp-slide">
       <div class="vsp-orb green-l" style="width:340px;height:340px;top:24%;left:46%"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:15px">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Segment 2 · Quick-fire drill · in pairs, 2 min each</div>
+      <div class="vsp-stage" style="justify-content:center;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 2 · Quick-fire drill · in pairs, 2 min each · <i style="font-style:normal;color:var(--vsp-on-dark-strong)">two live, the third goes home</i></div>
           <h2 class="vsp-h2" style="font-size:36px">Which error is expensive for <span class="vsp-glow">THIS</span> client?</h2>
         </div>
-        <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
-          <table class="p-tbl tight" style="font-size:13.5px">
+        <div class="vsp-card" style="padding:13px 20px 11px"><span class="topbar yellow"></span>
+          <table class="p-tbl tight" style="font-size:13px">
             <tr><th style="width:5%">#</th><th style="width:30%">The system</th><th style="width:32%">When it says YES and it's wrong</th><th>When it stays quiet and it's wrong</th></tr>
             <tr><td><b>1</b></td><td><b>Card-fraud model</b> on a payments platform.<br><span style="color:var(--vsp-accent)">The action: an automatic hard decline at the till.</span></td><td>A real customer's card is refused in a shop. They call support. Some of them leave</td><td>A fraudulent charge goes through. The bank eats the chargeback</td></tr>
             <tr><td><b>2</b></td><td><b>Defect detector on construction-site photos</b>, for a builder</td><td>An <b style="color:#fff">unnecessary site inspection</b> — a supervisor drives out, ~90 min gone</td><td>The defect gets built over. It surfaces at handover, as a rip-out with the client's name on it</td></tr>
-            <tr><td><b>3</b></td><td><b>"At-risk project" flag</b> for a delivery org's Monday review</td><td>A 30-minute review by a delivery lead</td><td>A fixed-bid project runs over quietly. Nobody looks until the margin is gone</td></tr>
+            <tr style="color:var(--vsp-on-dark-muted)"><td><b>3</b></td><td><b style="color:var(--vsp-on-dark-strong)">"At-risk project" flag</b> for a delivery org's Monday review<br><span class="p-tag bug" style="margin-top:5px">not today · homework task 2</span></td><td>A 30-minute review by a delivery lead</td><td>A fixed-bid project runs over quietly. Nobody looks until the margin is gone</td></tr>
           </table>
         </div>
         <div class="p-grid3">
-          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+          <div class="vsp-card" style="padding:11px 16px 9px"><span class="topbar yellow"></span>
             <h3 style="font-size:15px">Pick a metric, in one line</h3>
             <p style="font-size:12.5px">"<b style="color:#fff">Precision</b>, because…" or "<b style="color:#fff">Recall</b>, because…" — and the <i>because</i> has to price the two errors against each other.</p>
           </div>
-          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+          <div class="vsp-card" style="padding:11px 16px 9px"><span class="topbar green"></span>
             <h3 style="font-size:15px">Then change one thing</h3>
             <p style="font-size:12.5px">Case 1's action becomes <b style="color:#fff">"hold for a 90-second review"</b> instead of a decline. Now what?</p>
           </div>
-          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
-            <h3 style="font-size:15px">The notebook grades it</h3>
-            <p style="font-size:12.5px">Three verdicts — <b style="color:#fff">match / defensible / miss</b> — on the metric <i>and</i> the reason, and it saves your picks.</p>
+          <div class="vsp-card" style="padding:11px 16px 9px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Case 3 goes home</h3>
+            <p style="font-size:12.5px">The hour runs two; case 3 is <b style="color:#fff">homework task 2</b> — fill <span class="p-io">QF3_METRIC</span> and <span class="p-io">QF3_WHY</span>. The notebook grades all three alike: <b style="color:#fff">match / defensible / miss</b>, on the metric <i>and</i> the reason.</p>
           </div>
         </div>
-        <div class="p-callout" style="font-size:15px;padding:13px 18px">The sentence to leave the room with: <b>"Before I can tell you whether this model is good — what happens the moment it says yes, and what happens the day it stays quiet and shouldn't have?"</b></div>
+        <div class="p-callout" style="font-size:14px;padding:11px 18px;line-height:1.4">The sentence to leave the room with: <b>"Before I can tell you whether this model is good — what happens the moment it says yes, and what happens the day it stays quiet and shouldn't have?"</b></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 2 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      10 min and it closes segment 2. Answers are NOT on the screen; they are here, and in the notebook's key cell.
-      Run it fast: 2 minutes in pairs per case, 60 seconds of debrief each. Do not let case 1 eat the clock even though it is the most interesting.
+      6 min and it closes segment 2 — TWO cases live, not three, since the 90→60 rescope. 2 minutes in pairs per case, 60 seconds of debrief each. Do not let case 1 eat the clock even though it is the most interesting.
+      Say the relocation out loud rather than skipping the row: case 3 is on the slide, greyed, because it is homework task 2 and they answer it cold tonight. Nothing was cut — the drill got longer at home, not shorter overall.
       CASE 1 — the answer is PRECISION. The action is irreversible and public: a false positive is a person whose card is refused at a till, a support call, possibly a lost customer. The model must only speak when it is right. Expect the room to split, and that is correct — the loss side is real. Grade "recall" as defensible if the reason prices the chargebacks, and MISS only if there is no reason at all.
       CASE 1's TWIST, and this is the beat of the drill: change the action to "hold it for a 90-second review". A false positive is now 90 seconds of somebody's time, and RECALL leads. Same model, same metrics, opposite answer. Say the line: you cannot pick the priority metric until somebody tells you what happens after the model speaks.
       CASE 2 — RECALL. Ninety minutes of a supervisor's day versus a defect built over and ripped out at handover: asymmetric by orders of magnitude, so catch everything and let the inspection filter. Honest caveat to add out loud: recall bought with a flood of false alarms fails a different way — the supervisor stops driving out. So ask how many inspections a week they can absorb and quote a precision FLOOR next to the recall target. A metric with no capacity number attached is not a specification. Mention that this is LSN-1.6's case brief arriving early — the construction-site photo prospect — so they hear the thread.
-      CASE 3 — RECALL, and it is card A's client. A 30-minute review versus a fixed-bid margin. Then the good-consultant move: if the review is that cheap, why not review every project? The answer is usually "we have 400 of them" — which turns this into a RANKING problem, LSN-1.2's recommender shape, not a yes/no one. Sometimes the honest pre-sales answer is that they need a sorted list, not a classifier.
-      Hard stop at 50 minutes elapsed. The drill on the next slide needs its full 20.
+      CASE 3 — HOMEWORK KEY, not for the room today. RECALL, and it is card A's client: a 30-minute review versus a fixed-bid margin. The good-consultant move that earns full marks in the notebook — if the review is that cheap, why not review every project? The answer is usually "we have 400 of them", which turns this into a RANKING problem, LSN-1.2's recommender shape, not a yes/no one. Sometimes the honest pre-sales answer is that they need a sorted list, not a classifier. Keep this key for grading; do not spend it live.
+      Hard stop at 34 minutes elapsed (12 + 22). The drill on the next slide needs its full 15.
     </aside>
   </section>
   <section data-label="Confusion-matrix drill">
@@ -536,13 +536,13 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:15px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 3 · 20 min · Reading drill · on paper, no laptops</div>
-          <h2 class="vsp-h2" style="font-size:34px">Two matrices. Six numbers.<br><span class="vsp-glow">One client-safe sentence each.</span></h2>
+          <div class="vsp-kicker">Segment 3 · 15 min · Reading drill · on paper, no laptops</div>
+          <h2 class="vsp-h2" style="font-size:34px">One matrix by hand, one at speed.<br><span class="vsp-glow">One client-safe sentence each.</span></h2>
         </div>
         <div class="p-callout" style="font-size:14.5px;padding:12px 18px">A logistics client wants to know, the morning a shipment leaves, whether it will be <b>late</b>. Two vendors, graded on the same <b>1,000 historical shipments</b> — of which <b>80 arrived late</b>.</div>
         <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:20px">
           <div>
-            <div style="font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--vsp-accent);margin-bottom:9px">Vendor A</div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--vsp-accent);margin-bottom:9px">Vendor A · by hand, now</div>
             <table class="p-cm small">
               <tr><th></th><th>said<br>LATE</th><th>said<br>ON TIME</th></tr>
               <tr><th class="side">really<br>LATE</th><td class="tp"><span class="lbl">TP</span><span class="val">60</span></td><td class="fn"><span class="lbl">FN</span><span class="val">20</span></td></tr>
@@ -550,7 +550,7 @@
             </table>
           </div>
           <div>
-            <div style="font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--vsp-accent);margin-bottom:9px">Vendor B</div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--vsp-accent);margin-bottom:9px">Vendor B · read together, at speed</div>
             <table class="p-cm small">
               <tr><th></th><th>said<br>LATE</th><th>said<br>ON TIME</th></tr>
               <tr><th class="side">really<br>LATE</th><td class="tp"><span class="lbl">TP</span><span class="val">0</span></td><td class="fn"><span class="lbl">FN</span><span class="val">80</span></td></tr>
@@ -560,7 +560,7 @@
         </div>
         <div class="p-grid3">
           <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
-            <h3 style="font-size:14.5px">1 · Six figures, by hand</h3>
+            <h3 style="font-size:14.5px">1 · Vendor A's three figures, by hand</h3>
             <p style="font-size:12.5px"><span class="p-io">accuracy = (TP+TN)/all</span><br><span class="p-io">precision = TP/(TP+FP)</span><br><span class="p-io">recall = TP/(TP+FN)</span></p>
           </div>
           <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
@@ -569,51 +569,53 @@
           </div>
           <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
             <h3 style="font-size:14.5px">3 · Which would you ship?</h3>
-            <p style="font-size:12.5px">And say <b style="color:#fff">what would change your mind.</b> One of these two is a trick, and it is not hidden.</p>
+            <p style="font-size:12.5px">And say <b style="color:#fff">what would change your mind.</b> One of these two is a trick, and it is not hidden. <b style="color:var(--vsp-accent)">Tonight:</b> both vendors cold, plus a third matrix — homework task 2.</p>
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 3 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 3 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      20 min, the whole segment, and answers are NOT on the screen. 8 min on paper in silence, 12 min of debrief.
+      15 min, the whole segment, and answers are NOT on the screen. The rescope split the two matrices deliberately: 5 min on paper in silence on VENDOR A ONLY, 7 min of debrief, then 3 min reading vendor B together at speed. Both vendors — cold, from scratch, plus a third matrix — are homework task 2, so the live job is installing the method, not drilling it to fluency.
       Insist on paper. The point of the drill is that they can do this in front of a client with no laptop open, and the arithmetic is four integers and a calculator.
-      VENDOR A, the arithmetic: accuracy (60+830)/1,000 = 89%. Precision 60/150 = 40%. Recall 60/80 = 75%. F1 0.52.
-      VENDOR B: accuracy (0+920)/1,000 = 92%. Recall 0/80 = 0%. Precision 0/0 = UNDEFINED — and this is the field worth two minutes on its own. It is not zero. The model never spoke, so "of what it flagged, how much was real" has no subject. sklearn hands you 0.0 with a warning nobody reads. The honest answer in a client meeting is "undefined — it never speaks", and the notebook marks that as the senior answer.
+      VENDOR A, the arithmetic they do themselves: accuracy (60+830)/1,000 = 89%. Precision 60/150 = 40%. Recall 60/80 = 75%. F1 0.52.
+      VENDOR B, read together rather than computed — the numbers are degenerate enough to do out loud: accuracy (0+920)/1,000 = 92%. Recall 0/80 = 0%. Precision 0/0 = UNDEFINED — and this is the field worth two minutes on its own. It is not zero. The model never spoke, so "of what it flagged, how much was real" has no subject. sklearn hands you 0.0 with a warning nobody reads. The honest answer in a client meeting is "undefined — it never speaks", and the notebook marks that as the senior answer.
       THE REVEAL, and time it: vendor B is a rubber stamp that predicts ON TIME for everything, and it scores 92% accuracy — THREE POINTS HIGHER than vendor A's 89%. Rank these two by accuracy and you buy the one that does nothing. This is LSN-0.3's base-rate lesson in a metrics costume, and it is card B's structure with different numbers.
       MODEL SENTENCE for A: "It spots about three out of every four shipments that end up late, early enough to do something about them — but three in five of the alerts you'd chase turn out to be shipments that would have arrived on time anyway. So: 150 shipments to look at per 1,000 you ship, to rescue 60."
       MODEL SENTENCE for B: "It is right 92% of the time and it has never once told you a shipment would be late, because it says 'on time' about everything."
       SHIP WHICH? Vendor A with a condition, or "neither yet" — both pass. A is the only model carrying information, but 150 alerts per 1,000 shipments is a staffing question, so the answer is "A, if you can work 150 alerts a week, and here is what a late shipment has to cost you for that to pay". Answering B because it is more accurate is the exact failure this drill exists to catch — and if anybody in the room does, thank them out loud, because they just made the lesson land for everybody.
       Grade in three verdicts, not right/wrong: MATCH (both halves of the sentence, with numbers), DEFENSIBLE (one half — the commonest real outcome), MISS (metric names instead of consequences). The notebook grades the same way, accepts 0.89 or 89%, and saves it.
+      Then hand the repetition over explicitly, because it is 20 of tonight's 75 minutes: the notebook's drill workspace wants both vendors filled completely — six figures, two client-safe sentences, the ship call with its reason, and the field whose honest answer is a WORD, not a number (vendor B's precision). Warn them that the checker will not accept 0.0 there.
     </aside>
   </section>
   <section data-label="AUC">
     <div class="vsp-slide">
       <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-170px;left:-120px"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:15px">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Segment 4 · 20 min · AUC in one picture</div>
+      <div class="vsp-stage" style="justify-content:center;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Segment 4 · 11 min · AUC in one picture · <i style="font-style:normal;color:var(--vsp-on-dark-strong)">you watched the video; we read the curve</i></div>
           <h2 class="vsp-h2" style="font-size:36px">AUC <span class="vsp-glow">0.9995</span> — and the alert queue is still <span class="vsp-glow">99% false alarms.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:0.95fr 1.05fr;align-items:start;gap:18px">
-          <div style="display:flex;flex-direction:column;gap:11px">
-            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
-              <h3 style="font-size:16px">What AUC is, with no maths</h3>
-              <p style="font-size:13.5px">A <b style="color:#fff">ROC curve</b> is LSN-0.3's threshold sweep, drawn: how much real stuff you catch, against how much noise you take on to get it. <b style="color:#fff">AUC is the area under it.</b></p>
-              <p style="font-size:13.5px;margin-top:9px">Pick one real fraud and one legitimate transaction at random. <b style="color:var(--vsp-accent)">How often does the model score the fraud higher?</b> That is AUC. 0.5 is a coin flip; 1.0 is perfect separation.</p>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div class="vsp-card" style="padding:12px 18px 10px"><span class="topbar green"></span>
+              <h3 style="font-size:15.5px">What AUC is, with no maths</h3>
+              <p style="font-size:13px">A <b style="color:#fff">ROC curve</b> is LSN-0.3's threshold sweep, drawn: how much real stuff you catch, against how much noise you take on to get it. <b style="color:#fff">AUC is the area under it.</b></p>
+              <p style="font-size:13px;margin-top:8px">Pick one real fraud and one legitimate transaction at random. <b style="color:var(--vsp-accent)">How often does the model score the fraud higher?</b> That is AUC. 0.5 is a coin flip; 1.0 is perfect separation.</p>
+              <p style="font-size:11.5px;color:var(--vsp-on-dark-muted);margin-top:7px"><b style="color:#fff">We read the curve here; we do not build it</b> — that is what the <b style="color:var(--vsp-accent)">mandatory pre-work video</b> bought. You sweep the thresholds yourself in homework task 3.</p>
             </div>
-            <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
-              <h3 style="font-size:16px">Two true things at once</h3>
-              <table class="p-tbl tight" style="font-size:13px;margin-top:5px">
+            <div class="vsp-card" style="padding:12px 18px 10px"><span class="topbar yellow"></span>
+              <h3 style="font-size:15.5px">Two true things at once</h3>
+              <table class="p-tbl tight" style="font-size:12.5px;margin-top:4px">
                 <tr class="hi"><td style="width:50%">the fraud detector</td><td>AUC <b>0.9995</b>, precision <b>0.98%</b> — would need a 10,098-item review queue funded before it ships</td></tr>
                 <tr><td>homework card C's churn model</td><td>AUC <b>0.88</b> — a much worse number, and it is <b>the one you ship</b></td></tr>
               </table>
             </div>
           </div>
-          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
-            <h3 style="font-size:16px">What AUC is blind to</h3>
-            <table class="p-tbl tight" style="font-size:13px;margin-top:6px">
+          <div class="vsp-card" style="padding:12px 18px 10px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15.5px">What AUC is blind to</h3>
+            <table class="p-tbl tight" style="font-size:12.5px;margin-top:5px">
               <tr><th style="width:34%">Blind to…</th><th>Which is why…</th></tr>
               <tr class="hi"><td><b>the base rate</b></td><td>our detector scores <b>0.9995</b> and hands over a queue that is <b>99.02%</b> false alarms. AUC never divides by the alert queue</td></tr>
               <tr><td><b>the threshold</b></td><td>it averages over <i>every</i> threshold, including ones nobody would ship. The client lives at exactly <b>one</b> point on that curve</td></tr>
@@ -623,17 +625,18 @@
             <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:9px">Good for <b style="color:#fff">choosing between models</b>. Useless for <b style="color:#fff">deciding whether to ship one</b>.</p>
           </div>
         </div>
-        <div class="p-callout" style="font-size:15px;padding:13px 18px">So ask for <b>the operating point</b>: "show me precision and recall at the threshold you're actually going to run." AUC picks the model; the operating point decides whether the client can afford it.</div>
+        <div class="p-callout" style="font-size:13.5px;padding:10px 18px;line-height:1.38">So ask for <b>the operating point</b>: "show me precision and recall at the threshold you're actually going to run." AUC picks the model; the operating point decides whether the client can afford it. <span style="color:var(--vsp-on-dark-muted);font-weight:500">Tonight you build three of them — permissive, shipped, strict — and watch precision and recall move in opposite directions.</span></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 4 of 4</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Segment 4 of 4</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      8 min. Put the notebook's ROC figure on the screen next to this slide — the left panel (two score distributions and the shipped threshold) is what makes the right panel make sense.
+      5 min, and this segment only works because the StatQuest video is now mandatory pre-work: you SHOW and READ the curve, you never derive it. Put the notebook's ROC figure on the screen next to this slide — the left panel (two score distributions and the shipped threshold) is what makes the right panel make sense. If somebody clearly did not watch the video, do not rebuild it for them; point them at the link and keep the room moving.
       Define AUC with the pairwise sentence and nothing else: one real fraud, one legitimate transaction, how often does the model rank the fraud higher. Nobody needs an integral, and that sentence is enough to hold a conversation with a data scientist.
       Then the punchline, and let it sit: this is the SAME detector you spent thirty minutes on. AUC 0.9995. Essentially perfect separation. And its queue is 0.98% real, its accuracy is worse than a rubber stamp, and 10,098 people-hours a million transactions get spent finding 99 frauds. Every one of those statements is true simultaneously.
       Point at the ROC figure's shipped marker while you say it: the curve looks perfect because the curve IS nearly perfect at RANKING. Ranking was never the client's question.
       Then the reversal, which is the reason this slide exists at all: card C's churn model scores 0.88 — much worse — and it is the one you would ship. If AUC decided anything, that sentence would be nonsense.
-      Give them the one honest use of AUC in a client meeting beyond model selection: it is a smell test on the other numbers. Card C's report card in the notebook checks that a reported AUC of 0.88 is even reachable from its own precision and recall — it has to sit between 0.838 and 0.977, and it does. A vendor quoting 0.80 alongside those numbers has metrics from two different runs. That is one polite question, and it is worth having.
+      Give them the one honest use of AUC in a client meeting beyond model selection, in one sentence: it is a smell test on the other numbers. Card C's report card in the notebook checks that a reported AUC of 0.88 is even reachable from its own precision and recall — it has to sit between 0.838 and 0.977, and it does. A vendor quoting 0.80 alongside those numbers has metrics from two different runs.
+      Then hand over the threshold sweep instead of running it: homework task 3, 15 min, on the scores and labels arrays this AUC cell already builds — three cut-offs (permissive, shipped, strict), precision and recall at each, and one sentence on what AUC summarises that a single pair cannot. Tell them the tell for having done it wrong: if precision and recall both went up, the sweep is broken.
       PREP NOTE, not for the room: the lesson plan says the ROC picture is rendered by notebooks/foundations/12_Analytics_Performance.ipynb. It is not — that notebook reads timing logs and plots execution durations, and has three cells. The LSN-1.3 notebook draws the ROC itself from the LSN-0.3 scorer, and the verified repo reference for a ROC on a real fitted classifier is notebooks/foundations/06_Classifier_Algorithms.ipynb (it calls roc_curve and roc_auc_score, and all of its imports are in the venv). Use that one if somebody wants to poke at code.
       If somebody asks about PR-AUC / average precision: yes, that is the rare-event-friendly cousin because its denominator IS the flagged set. Name it, say it is the right chart for imbalanced problems, and move — the takeaway today is "ask for the operating point", not a metric zoo.
     </aside>
@@ -642,10 +645,10 @@
     <div class="vsp-slide">
       <div class="vsp-orb yellow" style="width:520px;height:520px;top:-200px;right:-140px"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:16px">
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Homework · three report cards · one paragraph each</div>
-          <h2 class="vsp-h2" style="font-size:37px">Ship it or not — <span class="vsp-glow">and why.</span></h2>
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="vsp-kicker">Homework · 75 min · three report cards + the two drills this hour handed over</div>
+          <h2 class="vsp-h2" style="font-size:34px">Ship it or not — <span class="vsp-glow">and why.</span></h2>
         </div>
         <div class="p-grid3" style="gap:16px;align-items:start">
           <div class="vsp-card" style="padding:15px 17px 13px"><span class="topbar yellow"></span>
@@ -664,31 +667,40 @@
             <p style="font-size:13px">Precision <b style="color:#fff">62%</b>, recall <b style="color:#fff">78%</b>, AUC <b style="color:#fff">0.88</b>. Costs stated: a call is <b style="color:#fff">$50</b>, a lost account is <b style="color:#fff">$2,000</b>.</p>
           </div>
         </div>
-        <div class="p-grid2" style="grid-template-columns:1.1fr 0.9fr;align-items:start;gap:18px">
-          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
-            <h3 style="font-size:15.5px">The pass bar: the right call on all three <i>for the right reason</i></h3>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:16px">
+          <div class="vsp-card" style="padding:13px 17px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Task 2 · the drill again, cold <span style="color:var(--vsp-accent)">· 20 min</span></h3>
+            <p style="font-size:12.5px;margin-top:6px">The notebook's drill workspace, filled for <b style="color:#fff">both</b> vendors — six figures, two client-safe sentences, the ship call with its reason, and the field whose honest answer is <b style="color:#fff">a word, not a number</b>. Then <b style="color:#fff">quick-fire case 3</b>: <span class="p-io">QF3_METRIC</span> · <span class="p-io">QF3_WHY</span>.</p>
+          </div>
+          <div class="vsp-card" style="padding:13px 17px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">Task 3 · the threshold sweep <span style="color:var(--vsp-accent)">· 15 min</span></h3>
+            <p style="font-size:12.5px;margin-top:6px">On the <span class="p-io">scores</span> and <span class="p-io">labels</span> the AUC cell already builds: three cut-offs — <b style="color:#fff">permissive, shipped, strict</b> — precision and recall at each, plus one sentence on what AUC summarises that a single pair cannot. <b style="color:var(--vsp-accent)">If both rose, you did it wrong.</b></p>
+          </div>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1.1fr 0.9fr;align-items:start;gap:16px">
+          <div class="vsp-card" style="padding:13px 17px 11px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">Task 1 pass bar · 40 min · the right call on all three <i>for the right reason</i></h3>
             <table class="p-tbl tight" style="font-size:13px;margin-top:5px">
               <tr><td style="width:12%"><b>A</b></td><td>the <b>segment-level</b> error hiding behind the headline MAE</td></tr>
               <tr><td><b>B</b></td><td><b>recall and the base rate</b> — not "accuracy is low", not "precision is only 75%"</td></tr>
               <tr class="hi"><td><b>C</b></td><td>metrics matched to the client's <b>error costs</b> + the <b>temporal holdout</b></td></tr>
             </table>
           </div>
-          <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
-            <h3 style="font-size:15.5px">C is the one people fail</h3>
-            <p style="font-size:13px">Two traps and a good model is <b style="color:#fff">not three traps</b>. After an hour of headline numbers lying, the reflex is to find something wrong with everything.</p>
-            <p style="font-size:12.5px;color:var(--vsp-on-dark-muted);margin-top:8px"><b style="color:var(--vsp-accent)">"Ship it, and here's what I'd monitor"</b> is the harder half of this skill — and the half that wins work.</p>
+          <div class="vsp-card" style="padding:13px 17px 11px"><span class="topbar green"></span>
+            <h3 style="font-size:15px">C is the one people fail</h3>
+            <p style="font-size:12.5px">Two traps and a good model is <b style="color:#fff">not three traps</b>. After an hour of headline numbers lying, the reflex is to find something wrong with everything. <b style="color:var(--vsp-accent)">"Ship it, and here's what I'd monitor"</b> is the harder half of this skill.</p>
+            <p style="font-size:11.5px;color:var(--vsp-on-dark-muted);margin-top:7px">40 + 20 + 15 = <b style="color:#fff">75 min</b>, and with 45 min of pre-work that is the <b style="color:#fff">2 h out-of-session budget</b>. Submit referencing <b style="color:#fff">LSN-1.3</b>.</p>
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Homework · serves OUT-1.3, verified by ASM-1</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Homework · serves OUT-1.3, verified by ASM-1</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      5 min. Read the three cards out; do not solve any of them. Submit by referencing LSN-1.3.
-      Set up the mechanics: each card is in the notebook with its own data, its own printed report card, and a fill-in verdict cell. One paragraph per card, 150+ characters, plus a one-word call — ship / don't ship / ship with conditions. Then one answer key at the bottom that grades the CALL and the REASON separately, three verdicts each.
-      Say explicitly that the reason is the graded half, and give the example of why: you can reach "don't ship" on card B by disliking its 75% precision. Wrong reason — 75% is the vendor's BEST number and it would be respectable. The disqualifying fact is recall, 9 of 80, next to a flag-nothing baseline of 99.2%. A right answer from a wrong argument fails on the next report card they see.
-      Flag card C hard, because the failure mode is predictable and it is the most useful thing you will say all hour. Two traps and a good model is not three traps. Somebody will reject C because 62% precision means "four in ten calls wasted" — and 38% of a fifty-dollar call is the cheapest thing on that report card, while the model was graded the honest way on a quarter it had never seen.
-      Tell them the notebook does the money arithmetic for card C so they can argue with it: 906 calls at $50 is $45,300, so 23 of the 562 real churners they reach — 4.1% of those calls — have to work for the programme to pay for itself. Nobody has to guess a save rate; invert the question instead. That is a move worth stealing for any business case.
-      Last thing: these three paragraphs are the raw material for ASM-1's mock pre-sales conversation, where Vlad or Dorel plays the client and asks "so is it any good?" about a real model. Keep them.
+      3 min. Read the three cards out; do not solve any of them. Then name tasks 2 and 3 in one breath each — they are the drill repetition and the threshold sweep this hour handed over, 35 of the 75 minutes, and saying "relocated, not extra" is what keeps the room with you. Submit by referencing LSN-1.3.
+      Mechanics, fast: each card is in the notebook with its own data, its own printed report card, and a fill-in verdict cell. One paragraph per card, 150+ characters, plus a one-word call — ship / don't ship / ship with conditions. One answer key at the bottom grades the CALL and the REASON separately, three verdicts each.
+      Say explicitly that the reason is the graded half, and give the one example: you can reach "don't ship" on card B by disliking its 75% precision. Wrong reason — 75% is the vendor's BEST number and it would be respectable. The disqualifying fact is recall, 9 of 80, next to a flag-nothing baseline of 99.2%.
+      Flag card C hard, because the failure mode is predictable: two traps and a good model is not three traps. Somebody will reject C because 62% precision means "four in ten calls wasted" — and 38% of a fifty-dollar call is the cheapest thing on that report card, while the model was graded the honest way on a quarter it had never seen. The notebook does the money arithmetic so they can argue with it: 906 calls at $50 is $45,300, so 23 of the 562 real churners they reach — 4.1% of those calls — have to work for the programme to pay for itself. Invert the question instead of guessing a save rate.
+      Last thing: these three paragraphs are the raw material for ASM-1's mock pre-sales conversation, where the program sponsor or one of our directors plays the client and asks "so is it any good?" about a real model. Keep them.
     </aside>
   </section>
   <section data-label="Close">
@@ -696,53 +708,51 @@
       <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
       <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage" style="justify-content:center;gap:16px">
-        <div style="display:flex;flex-direction:column;gap:7px">
+      <div class="vsp-stage" style="justify-content:center;gap:13px">
+        <div style="display:flex;flex-direction:column;gap:6px">
           <div class="vsp-kicker">The close · the artifact to keep · and next session</div>
-          <h2 class="vsp-h2" style="font-size:35px">"99% accurate" is not a claim you can evaluate.<br>It is a <span class="vsp-glow">prompt for four questions.</span></h2>
+          <h2 class="vsp-h2" style="font-size:32px">"99% accurate" is not a claim you can evaluate.<br>It is a <span class="vsp-glow">prompt for four questions.</span></h2>
         </div>
-        <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:13px">
-          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+        <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:12px">
+          <div class="vsp-card" style="padding:12px 17px 10px"><span class="topbar yellow"></span>
             <h3 style="font-size:15.5px">1 · What's the base rate?</h3>
             <p style="font-size:12.5px">On our detector: 1 in 10,000, so predicting "not fraud" about everything scores <b style="color:#fff">99.99%</b> — the 99% headline is <b style="color:var(--vsp-accent)">below the do-nothing baseline</b>.</p>
           </div>
-          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
+          <div class="vsp-card" style="padding:12px 17px 10px"><span class="topbar yellow"></span>
             <h3 style="font-size:15.5px">2 · Accuracy on <i>what data</i>?</h3>
             <p style="font-size:12.5px">Did the model see it in training? Ask for the split <b style="color:#fff">and the dates</b>. What you want to hear is a <b style="color:#fff">holdout from a later period</b>.</p>
           </div>
-          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
+          <div class="vsp-card" style="padding:12px 17px 10px"><span class="topbar green"></span>
             <h3 style="font-size:15.5px">3 · Precision and recall, per class?</h3>
             <p style="font-size:12.5px">A model can be excellent on the majority class and <b style="color:#fff">useless on the one they're paying for</b>. Two numbers, both true, and the gap is the conversation.</p>
           </div>
-          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
+          <div class="vsp-card" style="padding:12px 17px 10px"><span class="topbar green"></span>
             <h3 style="font-size:15.5px">4 · What does each error <i>cost</i> you?</h3>
             <p style="font-size:12.5px">Until somebody at the client prices the two errors, nobody can say which threshold is right — and <b style="color:#fff">"is it good?" has no answer</b>.</p>
           </div>
         </div>
-        <div class="p-grid2" style="grid-template-columns:0.98fr 1.02fr;align-items:start;gap:18px">
-          <div class="p-callout" style="font-size:14.5px;padding:14px 18px">Every number a vendor quotes has a <b>denominator</b>, and the denominator is where the argument lives. <b>LSN-0.3</b> taught you that arithmetically; today gave the pieces their names.</div>
-          <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar yellow"></span>
-            <h3 style="font-size:15.5px">Next: <span class="code-chip">LSN-1.4</span> — train MNIST · 2.5 h lab</h3>
-            <p style="font-size:12.5px;margin-bottom:7px">Pre-work <b style="color:#fff">~45 min, mandatory — the lab will not wait:</b></p>
-            <ul class="p-chk" style="gap:6px">
-              <li style="font-size:12.5px"><b style="color:var(--vsp-accent)">Re-verify your environment.</b> Re-run LSN-0.1's checkpoints; import <span class="p-io">torch</span> and <span class="p-io">torchvision</span> and print both versions</li>
-              <li style="font-size:12.5px">Confirm the <b style="color:#fff">MNIST cache</b> at <span class="p-io">~/.cache/vsp-training-data</span></li>
-              <li style="font-size:12.5px">Finish the LSN-0.1 <b style="color:#fff">Python refresher</b>; read the lab's intro cells</li>
+        <div class="p-grid2" style="grid-template-columns:0.98fr 1.02fr;align-items:start;gap:16px">
+          <div class="p-callout" style="font-size:14px;padding:12px 18px;line-height:1.4">Every number a vendor quotes has a <b>denominator</b>, and the denominator is where the argument lives. <b>LSN-0.3</b> taught you that arithmetically; today gave the pieces their names.</div>
+          <div class="vsp-card" style="padding:12px 17px 10px"><span class="topbar yellow"></span>
+            <h3 style="font-size:15px">Next: <span class="code-chip">LSN-1.4</span> — train MNIST · 60-min lab</h3>
+            <p style="font-size:12px;margin-bottom:6px">Pre-work <b style="color:#fff">45 min, mandatory — a 60-minute lab cannot wait:</b></p>
+            <ul class="p-chk" style="gap:5px">
+              <li style="font-size:12px"><b style="color:var(--vsp-accent)">Re-verify your environment</b> and run the lab's <b style="color:#fff">cell 0 smoke test</b> — it imports torch and triggers the MNIST download into <span class="p-io">~/.cache/vsp-training-data</span> (15)</li>
+              <li style="font-size:12px">Confirm your LSN-0.1 <b style="color:#fff">Python refresher</b> still runs clean (10)</li>
+              <li style="font-size:12px">Read the lab's intro cells and <b style="color:#fff">bring one written question</b> — collected at the door (20)</li>
             </ul>
           </div>
         </div>
         <div class="vsp-wordmark" style="margin-top:1px;opacity:0.9;align-self:center">VICTORY SQUARE <span>PARTNERS</span></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Close · next: LSN-1.4 MNIST lab</span><span>20 MAE · 30 precision/recall · 20 matrix drill · 20 AUC</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.3 · Close · next: LSN-1.4 MNIST lab</span><span>12 MAE · 22 precision/recall · 15 matrix drill · 11 AUC</span></div>
     </div>
     <aside class="notes">
-      7 min, the tail of segment 4's 20. Hard-stop at 90.
-      Work the four questions as a script they can use tomorrow, in order, and say why the order matters: question 1 can invalidate the headline on its own, so it goes first. Have them write all four on the inside cover of whatever they carry to client meetings.
-      Insist on the tone: none of the four is an attack, and that is the point. Every one is answerable by the client in the room, so asking them makes you sound like an advisor rather than a sceptic. A vendor with the answers ready has done the work; a vendor who has to come back to you has just told you something too.
+      3 min, the tail of segment 4's 11. Hard-stop at 60.
+      Work the four questions as a script they can use tomorrow, in order, and say why the order matters: question 1 can invalidate the headline on its own, so it goes first. Have them write all four on the inside cover of whatever they carry to client meetings. Insist on the tone in one line: none of the four is an attack, every one is answerable by the client in the room, and asking them makes you sound like an advisor rather than a sceptic.
       Then the reflex, which is the single sentence to leave with: every number has a denominator, and the denominator is where the argument lives.
-      NOW THE PRE-WORK, and do not soften this one. LSN-1.4 is a 2.5-hour live lab where eight people train a model, and a lab cannot debug one laptop. Everybody re-verifies their environment BEFORE they arrive — re-run LSN-0.1's checkpoints, import torch and torchvision, print the versions. An environment that worked in week 1 is not evidence it works today: that was the very first lesson this programme learned about itself, and it is why the line is on the slide.
-      Also confirm the MNIST cache is on their machine and outside the repo. A cold download eats the first twenty minutes of the lab, and 60,000 images do not belong in a git clone.
-      Sell the next session in one sentence: you have now graded five models without training any. Next time you train one, watch the loss fall, and read the confusion matrix on YOUR OWN results — which digits your network confuses. Everything today was practice for that last half hour.
+      NOW THE PRE-WORK, and do not soften this one — LSN-1.4 is now a 60-minute lab, so there is even less room to rescue anybody in the room. Everybody re-verifies their environment BEFORE they arrive and runs the lab's cell 0 smoke test, which also pulls MNIST into the cache outside the repo. An environment that worked in week 1 is not evidence it works today: that was the very first lesson this programme learned about itself. A cold download or a failed import costs a third of the hour.
+      Sell the next session in one sentence: you have now graded five models without training any. Next time you train one and watch YOUR OWN loss fall — and the confusion matrix you learned to read today comes back as your own results, in homework. Everything today was practice for that.
       Final beat, no answers out loud: "think of a number a client or a vendor has quoted at you that you nodded along to." Everybody has one. That flinch is the outcome of the hour.
     </aside>
   </section>

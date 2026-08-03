@@ -141,17 +141,18 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
       </div>
       <div class="vsp-stage center" style="gap:22px">
-        <div class="vsp-kicker">AI/ML Training Program · LSN-0.2 · Week 1</div>
+        <div class="vsp-kicker">AI/ML Training Program · LSN-0.2 · Wednesday, 2 September 2026</div>
         <h1 class="vsp-h1" style="max-width:1040px">One number is never<br>an <span class="vsp-glow">answer.</span></h1>
         <div class="vsp-rule"></div>
-        <p class="vsp-lead" style="max-width:800px">Statistics I: distributions, sampling, variance. Ninety minutes to install one reflex — <b style="color:#fff">how reliable is this answer, and on what data?</b> — and then spend it on a prospect who says their model is 92% accurate.</p>
+        <p class="vsp-lead" style="max-width:800px">Statistics I: distributions, sampling, variance. Sixty minutes to install one reflex — <b style="color:#fff">how reliable is this answer, and on what data?</b> — and then spend it on a prospect who says their model is 92% accurate.</p>
       </div>
-      <div class="vsp-footer"><span>MOD-0 Foundations · Statistics I — Distributions, Sampling, Variance · serves OUT-0.3</span><span>Tyler Goble · 90 min · 20 / 25 / 20 / 25</span></div>
+      <div class="vsp-footer"><span>MOD-0 Foundations · Statistics I — Distributions, Sampling, Variance · serves OUT-0.3</span><span>60 min · 12 / 15 / 13 / 20</span></div>
     </div>
     <aside class="notes">
-      Session budget, and it must hold: distributions 20 min (slides 1–4) · sampling 25 min (slide 5) · variance &amp; outliers 20 min (slides 6–7) · the "92% accurate" drill 25 min (slides 8–9) = 90 min. The close (slide 10) comes out of the tail of the drill debrief — don't add time for it.
+      1 min on this slide. Session budget, and it must hold: distributions 12 min (slides 1–4) · sampling debrief + bias 15 min (slide 5) · variance &amp; outliers 13 min (slides 6–7) · the "92% accurate" drill 20 min (slides 8–10) = 60 min.
+      What the 2026-08-03 rescope did, so you run this deck the new way: nothing was cut, but the two mechanical notebook runs are now pre-work (§1 distributions, §2 sampling) and the whale/Anscombe arithmetic is now homework task 2. Nothing on these slides is a from-scratch build any more — you react to their work and you show results.
       Open cold, no preamble: "Who has ever repeated a number a client gave them, in a meeting, without knowing where it came from?" Hands go up, including yours. That's the session.
-      Everyone should have the LSN-0.2 notebook open before you start slide 4 — the demos are live, in the room, and the notebook is already executed so nothing depends on their machine keeping up.
+      Everyone should have the LSN-0.2 notebook open and already executed from pre-work before you start slide 4 — so nothing depends on their machine keeping up, and the plots on screen are theirs, not yours.
     </aside>
   </section>
 
@@ -182,10 +183,10 @@
         </div>
         <div class="p-callout">The sponsor's requirement, verbatim: <b>"you're not gonna really understand what's going on unless you understand some fundamental math."</b> This is that math — the useful 5% of it.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2</span><span>Distributions 20 · Sampling 25 · Variance 20 · Drill 25</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2</span><span>Distributions 12 · Sampling 15 · Variance 13 · Drill 20</span></div>
     </div>
     <aside class="notes">
-      ~3 min, inside segment 1's 20. Don't teach anything yet — set the frame. The three cards are the three hiding places, and they map exactly to the three segments that follow, so participants can see the shape of the session.
+      ~2 min, inside segment 1's 12. Don't teach anything yet — set the frame. The three cards are the three hiding places, and they map exactly to the three segments that follow, so participants can see the shape of the session.
       Say the quiet part: nobody here is becoming a statistician. The deliverable is a reflex that fires in a client meeting — "how reliable is that, and on what data?" — not a formula.
       If someone asks about formulas: promise that the whole session is natural frequencies ("79 requests in 100"), no algebra. Deliver on that promise.
     </aside>
@@ -199,11 +200,11 @@
       <div class="vsp-stage" style="justify-content:center;gap:22px">
         <div style="display:flex;flex-direction:column;gap:10px">
           <div class="vsp-kicker">Pre-work · 30 min · Checked Right Now</div>
-          <h2 class="vsp-h2" style="font-size:42px">Two videos and <span class="vsp-glow">one plot.</span></h2>
+          <h2 class="vsp-h2" style="font-size:42px">Two videos and <span class="vsp-glow">two notebook runs.</span></h2>
         </div>
         <div class="p-grid2">
           <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar yellow"></span>
-            <h3 style="font-size:19px">StatQuest — 20 min</h3>
+            <h3 style="font-size:19px">StatQuest — 15 min</h3>
             <ul class="p-chk" style="margin-top:8px">
               <li>"<a href="https://www.youtube.com/watch?v=qBigTkBLU6g" target="_blank" rel="noopener" style="color:var(--vsp-accent);text-decoration:underline;text-underline-offset:3px">Histograms, Clearly Explained</a>"</li>
               <li>"<a href="https://www.youtube.com/watch?v=oI3hZJqXJuc" target="_blank" rel="noopener" style="color:var(--vsp-accent);text-decoration:underline;text-underline-offset:3px">The Main Ideas behind Probability Distributions</a>"</li>
@@ -211,24 +212,24 @@
             </ul>
           </div>
           <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar green"></span>
-            <h3 style="font-size:19px">Your notebook — 10 min</h3>
-            <p style="margin-bottom:10px">10,000 draws from <span class="code-chip" style="font-size:12.5px;white-space:nowrap">normal(50, 2)</span> and 10,000 from <span class="code-chip" style="font-size:12.5px;white-space:nowrap">normal(50, 20)</span>, histograms overlaid.</p>
-            <p><b style="color:#fff">Same mean. One is a promise, the other is a coin flip</b> — and the mean cannot tell you which. Three or four of yours go on screen right now.</p>
+            <h3 style="font-size:19px">Your notebook — 15 min</h3>
+            <p style="margin-bottom:10px"><b style="color:#fff">§1 Distributions · 8 min</b> — 10,000 draws from <span class="code-chip" style="font-size:12.5px;white-space:nowrap">normal(50, 2)</span> vs 10,000 from <span class="code-chip" style="font-size:12.5px;white-space:nowrap">normal(50, 20)</span>, overlaid. Same mean, different worlds. Three or four of yours go on screen right now.</p>
+            <p><b style="color:#fff">§2 Sampling · 7 min</b> — n = 30 / 3,000 / 30,000 from the latency population. <b style="color:#fff">Bring two observations:</b> which n stopped bouncing, and how far n = 30 swung. Segment 2 is the debrief.</p>
           </div>
         </div>
         <div class="p-time">
-          <div class="p-step key"><span class="dot"></span><div class="d">20 min</div><div class="t">Distributions</div><div class="s">Latency vs heights — pictures of uncertainty.</div></div>
-          <div class="p-step"><span class="dot"></span><div class="d">25 min</div><div class="t">Sampling</div><div class="s">n = 30 vs 3,000 vs 30,000, then bias.</div></div>
-          <div class="p-step"><span class="dot"></span><div class="d">20 min</div><div class="t">Variance</div><div class="s">Two teams, one whale deal, Anscombe.</div></div>
-          <div class="p-step key"><span class="dot"></span><div class="d">25 min</div><div class="t">The drill</div><div class="s">"Our model is 92% accurate." Pairs, live.</div></div>
-          <div class="p-step"><span class="dot"></span><div class="d">Homework</div><div class="t">32 projects</div><div class="s">Compute, plot, and two sentences of judgment.</div></div>
+          <div class="p-step key"><span class="dot"></span><div class="d">12 min</div><div class="t">Distributions</div><div class="s">Your plots, then latency vs heights.</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">15 min</div><div class="t">Sampling</div><div class="s">Debrief your §2 run, then bias.</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">13 min</div><div class="t">Variance</div><div class="s">Two teams, one whale deal, Anscombe.</div></div>
+          <div class="p-step key"><span class="dot"></span><div class="d">20 min</div><div class="t">The drill</div><div class="s">"Our model is 92% accurate." Pairs, live.</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">90 min</div><div class="t">Homework</div><div class="s">Five tasks. The 32-project slip set is task 1.</div></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2</span><span>No pre-work, no seat · 20 + 25 + 20 + 25 = 90 min</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2</span><span>No pre-work, no seat · 12 + 15 + 13 + 20 = 60 min</span></div>
     </div>
     <aside class="notes">
-      ~4 min, still inside segment 1's 20. Put three or four participants' plots on the screen (AirPlay or screen-share) and let them narrate their own — same mean, different worlds. This is the fastest possible on-ramp and it uses their work, not yours.
-      Pre-work check is a roll-call, not an interrogation: who has the written sentence? Read two aloud. Anyone without it stays and does it — the rule from LSN-0.1 applies from here on.
+      ~3 min, still inside segment 1's 12. Put three or four participants' plots on the screen (AirPlay or screen-share) and let them narrate their own — same mean, different worlds. This is the fastest possible on-ramp and it uses their work, not yours. Since the rescope it is also the only histogram exploration in the session, so do not skip it to save time — it *is* segment 1's opening.
+      Pre-work check is a roll-call, not an interrogation: who has the written sentence, and who has the two observations from §2? Read two of each aloud. Anyone without them stays and does it — the rule from LSN-0.1 applies from here on. Say why it matters now: since the rescope, segment 2 is a debrief of their §2 run, so an empty pre-work sheet costs them that segment rather than just a tick.
       The StatQuest links are pinned and clickable — both titles on this slide are live links, and the same two are in the lesson plan (verified 2026-07-29): <a href="https://www.youtube.com/watch?v=qBigTkBLU6g" target="_blank" rel="noopener">Histograms, Clearly Explained</a> (youtube.com/watch?v=qBigTkBLU6g) and <a href="https://www.youtube.com/watch?v=oI3hZJqXJuc" target="_blank" rel="noopener">The Main Ideas behind Probability Distributions</a> (youtube.com/watch?v=oI3hZJqXJuc) — click the title, don't read a URL off this slide aloud.
     </aside>
   </section>
@@ -239,7 +240,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:24px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 1 · 20 min · Distributions</div>
+          <div class="vsp-kicker">Segment 1 · 12 min · Distributions</div>
           <h2 class="vsp-h2">A distribution answers <span class="vsp-glow">"which values are plausible?"</span></h2>
           <p class="vsp-lead" style="max-width:920px">A mean answers almost nothing without the shape. Two datasets you already have intuition for, same summary tool, wildly different amounts of truth carried.</p>
         </div>
@@ -260,10 +261,10 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 1 of 4</span><span>Notebook: "Distributions as pictures of uncertainty"</span></div>
     </div>
     <aside class="notes">
-      ~13 min — the rest of segment 1. Run the notebook live: the three-panel figure (latency bulk, latency on a log axis, heights). Point at the log-scale panel and name the second bump out loud — the 3% slow path — because "the tail is a mechanism, not noise" is the idea that survives this session.
-      Ask the room, before revealing: "our p50 is 180 ms, what do you think the mean is?" Most people say 180–200. It's 240. That gap is the lesson.
-      Engineer's hook: everybody already reports p50/p95/p99 for latency and then reports a bare mean for cycle time, deal size and model error. Same discipline, different column.
-      Land the transition: "so ask for the shape. But the shape came from a sample — and that's the next 25 minutes."
+      ~6 min — the rest of segment 1, and go straight to the punchline. Show the notebook's pre-executed three-panel figure (latency bulk, latency on a log axis, heights) rather than building anything: since the rescope this segment reacts to their pre-work plots, it does not generate new ones. Point at the log-scale panel and name the second bump out loud — the 3% slow path — because "the tail is a mechanism, not noise" is the idea that survives this session.
+      One question, before revealing: "our p50 is 180 ms, what do you think the mean is?" Most people say 180–200. It's 240. That gap is the lesson, and it is worth 30 seconds, not five minutes.
+      Engineer's hook, one line: everybody already reports p50/p95/p99 for latency and then reports a bare mean for cycle time, deal size and model error. Same discipline, different column.
+      Land the transition: "so ask for the shape. But the shape came from a sample — you sampled one last night, and that's the next 15 minutes."
     </aside>
   </section>
 
@@ -274,13 +275,13 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:22px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 2 · 25 min · Sampling</div>
+          <div class="vsp-kicker">Segment 2 · 15 min · Sampling Debrief + Bias</div>
           <h2 class="vsp-h2" style="font-size:42px">Two questions for any number:<br><span class="vsp-glow">how many, and collected how?</span></h2>
         </div>
         <div class="p-grid2">
           <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar yellow"></span>
-            <h3 style="font-size:19px">1 · How many? — precision</h3>
-            <p style="margin-bottom:10px">1,000 honest measurements of the same service, three sample sizes. Spread of the estimate:</p>
+            <h3 style="font-size:19px">1 · How many? — you ran this last night</h3>
+            <p style="margin-bottom:10px">Your §2 pre-work: honest measurements of the same service, three sample sizes. Spread of the estimate:</p>
             <ul class="p-chk" style="margin-top:2px">
               <li><b style="color:#fff">n = 30</b> → ±64 ms, and runs landed anywhere from 154 to 544 ms</li>
               <li><b style="color:#fff">n = 3,000</b> → ±6 ms</li>
@@ -299,14 +300,14 @@
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 2 of 4</span><span>Notebook: sampling demo + the EU-hours dashboard</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 2 of 4</span><span>Pre-work §2 debrief + the EU-hours dashboard</span></div>
     </div>
     <aside class="notes">
-      25 min, and it is the segment most likely to overrun — watch the clock. Roughly 12 min on the left card (live notebook: the three stacked histograms of sample means), 8 min on bias, 5 min discussion.
-      Run the demo, don't describe it. The moment that lands is the n = 30 panel: the estimates sprawl across 150–450 ms and every one of them is a number somebody would have put in a status update.
-      Then the bias cell, and say the punchline slowly: the 30,000-sample dashboard reports 176 ± 1.6 ms, ~78 standard errors away from the truth. No confidence interval will ever reach the right answer. Bias is not noise; averaging does not remove it.
-      Wald's bombers is the one they'll retell at dinner — tell it in 30 seconds and stop. Survivorship in client data: the projects that finished, the customers who stayed, the deals that closed. That's the bridge to tonight's homework.
-      Delivery-notes watch item from the lesson plan: if the room is not notebook-fluent, do not have them type — everyone runs the pre-executed cells and watches. Note in the retro which way it went.
+      15 min, and since the rescope it is a debrief, not a demo — you are not running the simulation, they already did. Budget: ~6 min collecting what they saw, ~7 min on bias, ~2 min landing the two questions.
+      Open by collecting: which n stopped bouncing, and how far did n = 30 swing? Put two participants' plots of sample means on screen and let them narrate. Their numbers should land near the left card's — ±64 ms at n = 30, ±6 at 3,000, ±2 at 30,000 — and the wobble shrinking like 1/√n is the line to say out loud. If somebody's n = 30 run sprawled from 154 to 544 ms, that is the panel to show: every one of those is a number somebody would have put in a status update.
+      Then bias — this is the half that needed a room, because it is judgement and not arithmetic. Say the punchline slowly: the 30,000-sample EU-hours dashboard reports 176 ± 1.6 ms, ~78 standard errors from the truth. No confidence interval will ever reach the right answer. Bias is not noise; averaging does not remove it.
+      Wald's bombers is the one they'll retell at dinner — tell it in 30 seconds and stop. Survivorship in client data: the projects that finished, the customers who stayed, the deals that closed. That's the bridge to tonight's homework task 1, where only completed projects are in the table.
+      If nobody brought observations, do not rebuild the simulation — read the left card's numbers, take the 2 min hit, and log it for the retro. Rebuilding it costs the drill.
     </aside>
   </section>
 
@@ -317,7 +318,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:24px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 3 · 20 min · Variance &amp; Outliers</div>
+          <div class="vsp-kicker">Segment 3 · 13 min · Variance &amp; Outliers</div>
           <h2 class="vsp-h2">Same average. <span class="vsp-glow">Very different promise.</span></h2>
         </div>
         <div class="p-grid2">
@@ -337,9 +338,9 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 3 of 4</span><span>Notebook: cycle times + deal sizes</span></div>
     </div>
     <aside class="notes">
-      ~14 min of segment 3's 20. Run both notebook cells; the boxplot panel is what sells it — Team B's whiskers and outlier dots are a picture of every quarter that went sideways.
-      Make it a real discussion, ~4 min: whose estimate goes in a client commitment? The useful answer is never "5 days" — it's "half of B's tickets land in 2–7 days, one in ten takes more than 10, here's the p90 I'll sign." Variance is a promise-keeping metric, not a statistics term.
-      Deal-size note if anyone checks the arithmetic: 14 × $80k + $2M over 15 deals = $208k. The lesson plan's headline rounds it to $210k; the exact figure is $208k and the notebook prints it.
+      ~10 min of segment 3's 13. This segment survived the rescope because it is a decision, not a computation — so show results, don't work arithmetic. The boxplot panel is what sells it: Team B's whiskers and outlier dots are a picture of every quarter that went sideways.
+      Make it a real discussion, ~5 of the 10 min: whose estimate goes in a client commitment, and what do you write in the SOW? The useful answer is never "5 days" — it's "half of B's tickets land in 2–7 days, one in ten takes more than 10, here's the p90 I'll sign." Variance is a promise-keeping metric, not a statistics term.
+      The whale table is a reveal here, not an exercise: 14 × $80k + $2M over 15 deals = $208k, the median barely moves. They rebuild it themselves in homework task 2, so if someone starts checking the arithmetic live, tell them that is tonight's task and move on. (The exact figure is $208k; the lesson plan's headline rounds it to $210k and the notebook prints both.)
       Keep the sales example short — the room will want to tell their own whale stories. Bank one for the retro and move to Anscombe.
     </aside>
   </section>
@@ -350,7 +351,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:18px">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="vsp-kicker">Segment 3 · Anscombe's Quartet · 1973</div>
+          <div class="vsp-kicker">Segment 3 · Anscombe's Quartet · 1973 · You Plot These Tonight</div>
           <h2 class="vsp-h2" style="font-size:38px">Identical statistics. <span class="vsp-glow">Four different worlds.</span></h2>
           <p class="vsp-lead" style="max-width:1000px;font-size:17px">All four: mean x = 9.00 · mean y = 7.50 · same variance · correlation 0.816 · same best-fit line, <b style="color:#fff">y = 3.00 + 0.50x</b> (dashed).</p>
         </div>
@@ -396,8 +397,9 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 3 of 4</span><span>Plot it before you summarise it</span></div>
     </div>
     <aside class="notes">
-      ~6 min, closing segment 3. Show the numbers first, one line, then reveal the four pictures: if summary statistics could tell you what your data looks like, these four would look alike.
+      ~3 min, closing segment 3 — a reveal and a homework hand-off, not a teaching block. Since the rescope, plotting the quartet is homework task 2; here you show the numbers in one line, then reveal the four pictures: if summary statistics could tell you what your data looks like, these four would look alike.
       Dataset IV is the one to dwell on for ten seconds — a single leverage point manufacturing an entire "relationship". That is what a client's chart looks like when someone found a correlation in 40 rows.
+      Then hand it over explicitly: "you plot these four yourself tonight, alongside the whale table, and write one line on what the identical statistics hide." Say it as an assignment so nobody reads this slide as the end of the topic.
       Line to leave them with: "plot it before you summarise it" costs one cell and has saved more engagements than any model. Then transition: "and now the number that gets sold hardest of all — accuracy."
     </aside>
   </section>
@@ -409,7 +411,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:24px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 4 · 25 min · Client Drill</div>
+          <div class="vsp-kicker">Segment 4 · 20 min · Client Drill</div>
           <h2 class="vsp-h2" style="font-size:40px">"Our model detects completed milestones from site photos with <span class="vsp-glow">92% accuracy.</span>"</h2>
           <p class="vsp-lead" style="max-width:960px">A construction-firm prospect is evaluating vendors for milestone tracking. That's the incumbent's pitch. The prospect's PM turns to you: <b style="color:#fff">"Sounds great — should we just go with them?"</b></p>
         </div>
@@ -432,10 +434,10 @@
         </div>
         <div class="p-callout">92% wasn't a lie. It was <b>the class balance of the test set wearing a lab coat</b> — the floor, not a level of skill. And you cannot know that from the pitch. You have to ask.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 4 of 4</span><span>Dorel's rule · the construction case returns in LSN-1.6 &amp; LSN-3.6</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 4 of 4</span><span>The director's rule · the construction case returns in LSN-1.6 &amp; LSN-3.6</span></div>
     </div>
     <aside class="notes">
-      Drill timing, 25 min total: hand out the card and give pairs 5 min to prep (they type their three questions into the notebook's prep cell) · 12 min for two or three pairs to run the conversation live against Tyler playing the prospect · 8 min debrief on slide 9.
+      12 min on this slide. Drill timing, 20 min total and untouched by the rescope — a live drill is exactly what an hour in a room is for: hand out the card and give pairs <b>4 min</b> to prep (they type their three questions into the notebook's prep cell) · <b>8 min</b> for two pairs to run the conversation live against the instructor playing the prospect · then 8 min of debrief across slides 9 and 10. Two pairs, not three: the fourth pair is what you cut if prep runs over.
       Do NOT reveal the 920/80 split before the pairs have prepped. Play the prospect warmly and a little impatient: "the other vendor is cheaper, why are you asking me about photos?"
       Before revealing, have the room compute it in the notebook themselves — 920/1000. The gasp is the whole point, and it only happens if they do the arithmetic, not if you tell them.
       Then the extension cell: a second vendor at 89.2% accuracy that finds 72 of the 80 real completions (at the cost of 100 false alarms). Accuracy ranked the two vendors backwards for the job the client actually cares about. That is the cleanest possible setup for LSN-1.3.
@@ -472,7 +474,7 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 4 of 4</span><span>Foreshadows LSN-1.3 precision / recall · verified by ASM-0</span></div>
     </div>
     <aside class="notes">
-      8 min debrief. Score the pairs against these three, not against style — the questions are the deliverable, and ASM-0 will ask scenario versions of exactly this.
+      6 min here — this slide plus the 2 min close on slide 10 is the plan's 8 min debrief block. Score the pairs against these three, not against style — the questions are the deliverable, and ASM-0 will ask scenario versions of exactly this.
       Give them the sentence to take to a real meeting, and have someone say it out loud: "Maybe — can you show accuracy per class on a held-out set from our sites, and the split between missed and false completions? If they can't produce it, that 92% is their test set's class balance."
       Name the LSN-1.3 hand-off explicitly and stop there. Do not teach precision/recall today; the formal treatment is a whole lesson, and pre-empting it costs you the drill's momentum.
       Bank one participant question for the retro before you move to the close.
@@ -486,20 +488,23 @@
       <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage center" style="gap:22px;align-items:center;text-align:center">
-        <div class="vsp-kicker">Homework &amp; Before Next Session</div>
+        <div class="vsp-kicker">Homework · 90 min &amp; Before Next Session</div>
         <h2 class="vsp-h2" style="font-size:52px">32 projects, one ugly row.<br><span class="vsp-glow">Would you trust it?</span></h2>
-        <p class="vsp-lead" style="max-width:820px">Schedule slip in days from past fixed-bid projects — one of them is +45 days. Compute mean, median and variance; plot the histogram; find the outlier and recompute without it. Then <b style="color:#fff">two sentences</b>: would you trust a model trained on these 32 points, and what would you check first about <i>how this sample was collected?</i></p>
+        <p class="vsp-lead" style="max-width:820px">Five tasks tonight, and the schedule-slip dataset is the anchor: <b style="color:#fff">two sentences</b> on whether you would trust a model trained on 32 points — and what you would check first about <i>how that sample was collected.</i></p>
         <div style="display:flex;gap:44px;flex-wrap:wrap;justify-content:center;margin-top:6px;text-align:left">
-          <div style="max-width:330px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Graded</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Pass/fail on the interpretation, not the code. Saves to <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--vsp-green-lightest)">outputs/lsn-0.2/</span> · feeds ASM-0.</div></div>
-          <div style="max-width:390px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-0.3 Statistics II</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Probability, conditioning, correlation ≠ causation. Pre-work ~30 min: the <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank" rel="noopener" style="color:var(--vsp-accent);text-decoration:underline;text-underline-offset:3px">3Blue1Brown medical-test-paradox video</a>, plus the base-rate fraud one-pager. <b style="color:var(--vsp-accent)">No pre-work, no seat.</b></div></div>
+          <div style="max-width:400px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Tonight · 90 min</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px"><b style="color:var(--vsp-accent)">1</b> Slip dataset: mean / median / variance, histogram, drop the outlier, two sentences — 30 min · <b style="color:var(--vsp-accent)">2</b> Rebuild the whale table and plot Anscombe's quartet — 25 min · <b style="color:var(--vsp-accent)">3</b> The three questions as an email to the PM — 15 min · <b style="color:var(--vsp-accent)">4</b> One real number off your own project — 10 min · <b style="color:var(--vsp-accent)">5</b> Re-run the sampling sim on skewed data — 10 min</div></div>
+          <div style="max-width:250px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Graded</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Pass/fail on the interpretation, not the code. Saves to <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--vsp-green-lightest)">outputs/lsn-0.2/</span> · feeds ASM-0.</div></div>
+          <div style="max-width:310px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-0.3 · Thu 3 Sep</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Pre-work 30 min: the <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank" rel="noopener" style="color:var(--vsp-accent);text-decoration:underline;text-underline-offset:3px">3Blue1Brown medical-test-paradox video</a> (21 min) + the base-rate fraud counts table (9 min) — <b style="color:var(--vsp-accent)">the table is checked live.</b></div></div>
         </div>
         <div class="vsp-wordmark" style="margin-top:14px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
       </div>
     </div>
     <aside class="notes">
-      ~2 min, taken from the tail of the drill debrief — do not let the session run past 90.
-      Set the homework honestly: the two sentences are the graded part, and "no, and here's the one thing I'd check" is a passing answer. The collection note in the notebook is deliberate bait — only completed projects are in that table, so the cancelled and renegotiated ones (the worst overruns) are missing. Survivorship, one lesson after they learned the word.
-      LSN-0.3 pre-work: 3Blue1Brown <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank" rel="noopener">"The medical test paradox, and redesigning Bayes' rule"</a> (the link is clickable on this slide and in the LSN-0.3 lesson plan — youtube.com/watch?v=lG4VkPoG3ko) and the base-rate fraud one-pager with the counts table for 1,000,000 transactions. Say the through-line: today's "which mistakes are the 8%?" becomes next session's arithmetic and LSN-1.3's vocabulary.
+      ~2 min — the last 2 min of segment 4's debrief block. Do not let the session run past 60.
+      Set the homework honestly: 90 min, five tasks, and the two sentences in task 1 are the graded part — "no, and here's the one thing I'd check" is a passing answer. The collection note in the notebook is deliberate bait — only completed projects are in that table, so the cancelled and renegotiated ones (the worst overruns) are missing. Survivorship, one lesson after they learned the word.
+      Say out loud which tasks are the relocated live material, so it does not read as extra work: task 2 is the whale table and Anscombe's quartet you only showed them as results, and task 5 is the sampling simulation from pre-work re-run against the skewed population. Tasks 4 and 5 are the designated trim if the evening is genuinely too long — flag it in the retro rather than letting people silently drop task 1.
+      Warn them about tonight's stack: this 90 min plus LSN-0.3's 30 min pre-work is the week's heaviest evening at ~120 min.
+      LSN-0.3 pre-work: 3Blue1Brown <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank" rel="noopener">"The medical test paradox, and redesigning Bayes' rule"</a> (the link is clickable on this slide and in the LSN-0.3 lesson plan — youtube.com/watch?v=lG4VkPoG3ko) and the base-rate fraud one-pager with the counts table for 1,000,000 transactions. Say the new stakes: LSN-0.3's segment 2 <b>checks</b> that table instead of building it, so arriving without one costs them the segment. Then the through-line: today's "which mistakes are the 8%?" becomes next session's arithmetic and LSN-1.3's vocabulary.
       Last thing before they leave: ask for one number they've repeated to a client without checking. Nobody has to answer out loud — but everyone will think of one, and that's the reflex installed.
     </aside>
   </section>

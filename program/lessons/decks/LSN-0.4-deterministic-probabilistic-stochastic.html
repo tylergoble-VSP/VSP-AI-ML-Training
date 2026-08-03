@@ -164,15 +164,16 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
       </div>
       <div class="vsp-stage center" style="gap:22px">
-        <div class="vsp-kicker">AI/ML Training Program · LSN-0.4 · Week 1</div>
+        <div class="vsp-kicker">AI/ML Training Program · LSN-0.4 · Friday, 4 September 2026</div>
         <h1 class="vsp-h1" style="max-width:1080px">Same question. Different answer.<br><span class="vsp-glow">Bug or property?</span></h1>
         <div class="vsp-rule"></div>
         <p class="vsp-lead" style="max-width:900px">Deterministic, probabilistic, stochastic. Sixty minutes to stop promising sameness from a system that samples — and to say what you <i>can</i> promise instead. Two true things at once: the wording changes on <b style="color:#fff">71.8%</b> of repeat questions, and <b style="color:#fff">nothing is broken.</b></p>
       </div>
-      <div class="vsp-footer"><span>MOD-0 Foundations · Deterministic, Probabilistic, Stochastic · serves OUT-0.2</span><span>Tyler Goble · 60 min · 25 / 20 / 15</span></div>
+      <div class="vsp-footer"><span>MOD-0 Foundations · Deterministic, Probabilistic, Stochastic · serves OUT-0.2</span><span>60 min · 25 / 20 / 15</span></div>
     </div>
     <aside class="notes">
-      2 min, and the session budget must hold: the three-bucket sort 25 min (this slide + slides 2–4) · commercial expectations 20 min (slides 5–8) · bridge to MOD-1 15 min (slides 9–10) = 60 min. There is no slack anywhere; the sort is the segment that overruns.
+      2 min, and the session budget must hold: the three-bucket sort 25 min (this slide + slides 2–4) · commercial expectations 20 min (slides 5–8) · bridge to MOD-1 15 min (slides 9–11) = 60 min. There is no slack anywhere; the sort is the segment that overruns.
+      The 2026-08-03 rescope left this live hour completely alone — no segment was cut, moved or retimed. What changed is the evening: homework went from "none, checkpoint week" to 100 min across the weekend of Sep 5–6, and ASM-0 now sits inside that budget as task 4. Slide 10 is that homework; do not let the session end without it.
       Open with the headline and a real story if you have one: a client (or a colleague) filing "it gave a different answer" as a defect. Do not resolve it yet. The whole session is the answer, and the answer is "which part are you pointing at?"
       Say the frame out loud once: senior engineers spend careers making systems deterministic, so this instinct is not stupidity — it is professional reflex pointed at the wrong kind of system. Nobody gets mocked today.
       Everyone should have the LSN-0.4 notebook open and their three pre-work examples in front of them. The notebook is already executed, so nothing depends on their machine keeping up.
@@ -186,7 +187,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:22px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Pre-work · 20 min · The Keywords</div>
+          <div class="vsp-kicker">Pre-work · 20 min · 10 Reading + 10 Writing</div>
           <h2 class="vsp-h2" style="font-size:44px">Three words, <span class="vsp-glow">one test each.</span></h2>
         </div>
         <div class="p-grid3">
@@ -212,7 +213,7 @@
     </div>
     <aside class="notes">
       5 min, inside segment 1's 25. This slide IS the pre-work target: the lesson plan says "re-read the keywords section of the ML literacy deck", and that deck is not in the repo yet — so these three definitions (and the same three in the notebook's pre-work section) are the canonical version until it lands. Say that plainly; do not send people hunting for a file.
-      Roll-call, not interrogation: who has their three examples? Do not read them out yet — they go on the board on the next slide. Anyone without them stays after and writes them.
+      Roll-call, not interrogation: who has their three examples? Do not read them out yet — they go on the board on the next slide. Anyone without them stays after and writes them. This is the thinnest pre-work in MOD-0 on purpose — 10 min reading these definitions, 10 min writing the three examples — because last night was carrying LSN-0.3's 90 min of homework.
       Add the two supporting words if the room is new to them: confidence (the auditable number) and inference (running a trained model, as opposed to training it). Those two are what make slide 4's punchline possible.
       One sentence you will reuse all session: "probabilistic answers can come out of perfectly deterministic machinery — a trained model with pinned weights is deterministic and still hands you a guess."
     </aside>
@@ -325,7 +326,7 @@
         </div>
         <div class="p-quote">
           <div class="meta">SUP-2291 · Priority P2 · client-side product owner · meeting-RAG, in production</div>
-          <p>"Asked the assistant what we committed to on the Meridian integration. Got one answer this morning and a differently-worded answer this afternoon — same question, same account. If it can't answer consistently we can't put it in front of our own customers. Please advise."</p>
+          <p>"Asked the assistant what we committed to on the platform integration. Got one answer this morning and a differently-worded answer this afternoon — same question, same account. If it can't answer consistently we can't put it in front of our own customers. Please advise."</p>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.12fr 0.88fr;align-items:start">
           <div class="vsp-card" style="padding:18px 20px 16px"><span class="topbar yellow"></span>
@@ -345,7 +346,7 @@
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 2 of 3</span><span>Dorel's rule · the in-production meeting-RAG system (LSN-3.6)</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 2 of 3</span><span>The director's rule · the in-production meeting-RAG system (LSN-3.6)</span></div>
     </div>
     <aside class="notes">
       9 min, worked as a group discussion, not a talk. Read the ticket out loud in the product owner's voice — slightly worried, entirely reasonable. Then ask the room: is it a defect? Take a show of hands before anyone argues.
@@ -478,7 +479,7 @@
       3 min, and it is the emotional close of segment 2 — slow down rather than speeding up. Read Box's line, then immediately reject the shrug reading: the deliverable is never "a system that is right", it is a system whose errors are understood, bounded and priced in.
       Point out that this applies to deterministic systems too. Your beautifully deterministic revenue report is also a model of the business, and it is also wrong — it just fails quietly.
       Have someone read sentence 3 out loud. Then say why it is the sale: a client's own questions inside the eval set is the moment a probabilistic system stops being a leap of faith. Write it down before the demo, not after the ticket.
-      Then the notebook's rehearsal cell if the clock allows: five minutes in pairs, one plays the product owner, one answers in writing. The cell flags "guarantee", "identical", "just" and "bug" — the four words that create the next SUP-2291. If time is tight, assign it as optional and move on; there is no homework to trade against.
+      Then the notebook's rehearsal cell if the clock allows: five minutes in pairs, one plays the product owner, one answers in writing. The cell flags "guarantee", "identical", "just" and "bug" — the four words that create the next support escalation of this kind. If time is tight, push it into the weekend alongside homework task 2 — the SOW acceptance criteria there are the same muscle — and move on.
     </aside>
   </section>
 
@@ -516,27 +517,63 @@
     </aside>
   </section>
 
-  <!-- 10 · CLOSE -->
+  <!-- 10 · SEGMENT 3 · THE WEEKEND -->
+  <section data-label="Homework">
+    <div class="vsp-slide">
+      <div class="vsp-orb yellow" style="width:500px;height:500px;top:-190px;right:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="vsp-kicker">Segment 3 · Homework · 100 min · Weekend of Sep 5–6</div>
+          <h2 class="vsp-h2" style="font-size:44px">Not a week off. <span class="vsp-glow">Thirty of these minutes are graded.</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar green"></span>
+            <h3 style="font-size:17px">Consolidate the week — 50 min</h3>
+            <p style="margin-bottom:9px"><b style="color:#fff">1 · Consolidation pass — 25 min.</b> Re-run the summary sections of the three week notebooks and write the one-line version of each misconception the week killed. Four one-liners, your words.</p>
+            <p><b style="color:#fff">2 · Three-bucket sort, for real — 25 min.</b> Five behaviours of a system you actually work on, sorted — and for every non-deterministic one, the acceptance criterion you would put in a SOW.</p>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17px">Price it, then sit the gate — 50 min</h3>
+            <p style="margin-bottom:9px"><b style="color:#fff">3 · Eval-set sizing — 20 min.</b> Compute the test-set size that lets a genuinely-92% system pass the "≥ 90%" bar 19 runs in 20, then write what you tell the client who wants the bar set on 50 questions.</p>
+            <p><b style="color:#fff">4 · ASM-0 — 30 min.</b> Async, ~20 questions, pass bar 80%, one retake. Scenario questions, not definitions.</p>
+          </div>
+        </div>
+        <div class="p-callout">Pre-work 20 min + homework 100 min = the same <b>2 h out-of-session budget</b> every lesson gets. Friday is the only slot in the week with a clear weekend behind it — which is exactly why <b>the checkpoint lives here.</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 3 of 3</span><span>Tasks 1–3 feed ASM-0 · task 4 <i>is</i> ASM-0</span></div>
+    </div>
+    <aside class="notes">
+      2 min, out of segment 3's 15 — a hand-off, not a lecture. Read the four tasks and stop; the detail is in the lesson plan and the notebook.
+      Say the change out loud, because everyone was told this was a checkpoint week with nothing due: the out-of-session budget is 2 h for every lesson in the program, so this one owns 100 min. It is not padding — tasks 1–3 are the module's consolidation and task 4 is the gate itself.
+      Be honest about what 30 of those minutes are: a graded gate, not practice. That is the only part of the weekend that can cost somebody their seat.
+      Task 3 is the arithmetic they watched on slide 7 — they now do it themselves and produce the client sentence. Task 2 is the sort from segment 1 applied to a system they own, and the SOW line is the deliverable, not the sorting.
+      Deadline hygiene: nothing is due Saturday morning. Nothing follows this lesson until MOD-1 opens on Monday 7 September, so the whole weekend is theirs — say that, or people will assume the usual next-morning rule.
+    </aside>
+  </section>
+
+  <!-- 11 · CLOSE -->
   <section data-label="Close">
     <div class="vsp-slide">
       <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
       <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage center" style="gap:20px;align-items:center;text-align:center">
-        <div class="vsp-kicker">Checkpoint Week</div>
-        <h2 class="vsp-h2" style="font-size:46px">No homework.<br><span class="vsp-glow">ASM-0 opens.</span></h2>
-        <p class="vsp-lead" style="max-width:940px">Async quiz, <b style="color:#fff">~20 questions, 30 min, pass bar 80%</b>, one retake this week. Verifies OUT-0.1 through OUT-0.4 — <b style="color:#fff">scenario questions, not definitions</b> — across LSN-0.2, LSN-0.3 and today. <b style="color:#fff">It gates the start of MOD-1.</b></p>
+        <div class="vsp-kicker">The Gate · Weekend of Sep 5–6</div>
+        <h2 class="vsp-h2" style="font-size:46px">Four sessions down.<br><span class="vsp-glow">ASM-0 is the door.</span></h2>
+        <p class="vsp-lead" style="max-width:940px">Verifies OUT-0.1 through OUT-0.4 — <b style="color:#fff">scenario questions, not definitions</b> — across LSN-0.2, LSN-0.3 and today. Async this weekend, inside homework task 4, one retake. <b style="color:#fff">It gates the start of MOD-1.</b></p>
         <div style="display:flex;gap:44px;flex-wrap:wrap;justify-content:center;margin-top:4px;text-align:left">
           <div style="max-width:360px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Bring your setup evidence</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">The screenshot of your executed <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--vsp-green-lightest)">LSN-0.1</span> notebook — checkpoint 5. That is the OUT-0.1 artifact.</div></div>
-          <div style="max-width:400px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-1.1</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">The five ML jobs &amp; the nesting doll. Pre-work ~30 min: the deck through the five-jobs section, plus <b style="color:var(--vsp-accent)">one real "AI" ask from your own projects and your guess at which job it is.</b></div></div>
+          <div style="max-width:400px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-1.1 · Mon 7 Sep</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">The five ML jobs &amp; the nesting doll. Pre-work 45 min, with a full week of runway: the deck's five-jobs slides, the notebook's per-job visuals, plus <b style="color:var(--vsp-accent)">one real "AI" ask from your own projects and your guess at which job it is.</b></div></div>
         </div>
         <div class="p-callout" style="text-align:left;max-width:1000px">The one sentence to leave with: <b>"Which part are you asking about — the output, the inference, or the training?"</b> Nobody who asks that gets talked into promising determinism.</div>
         <div class="vsp-wordmark" style="margin-top:6px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
       </div>
     </div>
     <aside class="notes">
-      5 min, the tail of segment 3's 15. Do not run past 60 — this is a one-hour session and the room has a checkpoint quiz to sit.
-      Be explicit that ASM-0 is a gate, per GOAL-7: no pass and no engagement means out of the program. Say it once, without drama, and remind them there is one retake inside the week.
+      3 min, the tail of segment 3's 15. Do not run past 60 — this is a one-hour session and the room has a weekend of consolidation and a checkpoint quiz in front of it.
+      Name the window explicitly, because ASM-0 has no calendar slot of its own: it is async, this weekend, Saturday the 5th or Sunday the 6th, inside the 100 min of homework on slide 10. Nothing about it is extra time; 30 of those minutes are the quiz.
+      Be explicit that ASM-0 is a gate, per GOAL-7: no pass and no engagement means out of the program. Say it once, without drama, and remind them there is one retake before MOD-1 opens on Monday the 7th.
       Set expectations about the quiz's shape: no "define stochastic". It hands them a paragraph — a client complaining that two runs disagree, a vendor quoting a confidence, a chart that moved — and asks what they would say. Everything needed is in the three MOD-0 notebooks, already executed.
       Collect the pre-work artifacts if you have not: the three examples per person, and the segment-2 sentence from anyone who wrote one. Those are the raw material for the MOD-0 retro and they tell you which bucket the cohort finds hardest.
       Last thing before they leave, no answers out loud: "think of one thing you have told a client would be consistent, that samples." Everybody has one. That reflex is the outcome.

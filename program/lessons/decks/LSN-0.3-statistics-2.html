@@ -156,17 +156,18 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
       </div>
       <div class="vsp-stage center" style="gap:22px">
-        <div class="vsp-kicker">AI/ML Training Program · LSN-0.3 · Week 1</div>
+        <div class="vsp-kicker">AI/ML Training Program · LSN-0.3 · Thursday, 3 September 2026</div>
         <h1 class="vsp-h1" style="max-width:1060px">It catches 99% of the fraud.<br><span class="vsp-glow">0.98% of its alerts are real.</span></h1>
         <div class="vsp-rule"></div>
-        <p class="vsp-lead" style="max-width:840px">Statistics II: probability, conditioning, correlation ≠ causation. Ninety minutes to install two questions — <b style="color:#fff">"conditional on what?"</b> and <b style="color:#fff">"was there a holdout?"</b> — and both numbers above are true at the same time.</p>
+        <p class="vsp-lead" style="max-width:840px">Statistics II: probability, conditioning, correlation ≠ causation. Sixty minutes to install two questions — <b style="color:#fff">"conditional on what?"</b> and <b style="color:#fff">"was there a holdout?"</b> — and both numbers above are true at the same time.</p>
       </div>
-      <div class="vsp-footer"><span>MOD-0 Foundations · Statistics II — Probability, Conditioning, Causation · serves OUT-0.3 + OUT-0.4</span><span>Tyler Goble · 90 min · 25 / 25 / 20 / 20</span></div>
+      <div class="vsp-footer"><span>MOD-0 Foundations · Statistics II — Probability, Conditioning, Causation · serves OUT-0.3 + OUT-0.4</span><span>60 min · 12 / 15 / 13 / 20</span></div>
     </div>
     <aside class="notes">
-      Session budget, and it must hold: conditioning 25 min (slides 2–4) · base rates 25 min (slides 5–6) · correlation vs causation 20 min (slide 7) · the revenue-chart drill 20 min (slides 8–9) = 90 min. The close (slide 10) comes out of the tail of the drill debrief — do not add time for it.
+      1 min on this slide. Session budget, and it must hold: conditioning 12 min (slides 1–4) · base rates 15 min (slides 5–6) · correlation vs causation 13 min (slide 7) · the revenue-chart drill 20 min (slides 8–10) = 60 min.
+      What the 2026-08-03 rescope did, so you run this deck the new way: segment 2 now <b>checks</b> the counts table they filled in pre-work instead of building it from zero — that is where 10 of the recovered minutes come from — and the threshold exploration and the Tyler Vigen gallery are homework tasks 2 and 3. Both flips stay live: P(alert | fraud) → P(fraud | alert), and the four explanations for "A moves with B."
       Open on the headline and let it sit for five seconds without explaining it: both numbers describe the same detector on the same day. Somebody will say "that can't be right." Good — that is the session, and the arithmetic is four lines long.
-      Everyone should have the LSN-0.3 notebook open before slide 4, and their pre-work counts table in front of them. The notebook is already executed, so nothing depends on their machine keeping up.
+      Everyone should have the LSN-0.3 notebook open before slide 4, and their filled pre-work counts table in front of them. The notebook is already executed, so nothing depends on their machine keeping up.
     </aside>
   </section>
 
@@ -197,10 +198,10 @@
         </div>
         <div class="p-callout">Every model output you will ever read is <b>P( answer | inputs, training data )</b> — conditional on data somebody else collected. That is last session's question, arriving inside a probability.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3</span><span>Conditioning 25 · Base rates 25 · Causation 20 · Drill 20</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3</span><span>Conditioning 12 · Base rates 15 · Causation 13 · Drill 20</span></div>
     </div>
     <aside class="notes">
-      ~4 min, the opening of segment 1's 25. Do not teach yet — set the frame. Cards two and three are the two halves of the session, so the room can see its shape.
+      ~2 min, the opening of segment 1's 12. Do not teach yet — set the frame. Cards two and three are the two halves of the session, so the room can see its shape.
       Ask for a show of hands: who has heard a client (or a colleague) treat "99% accurate" as "the alert is almost certainly real"? Every hand. Nobody is stupid; the inversion is genuinely counter-intuitive, which is why we do it in counts instead of algebra.
       Promise explicitly, and keep the promise: no Bayes' theorem today, no algebra, no notation to memorise. Counting only. The lesson plan's delivery note says participants will ask for the formula — resist, natural frequencies are the point at this tier.
     </aside>
@@ -227,22 +228,22 @@
           <div class="vsp-card" style="padding:22px 24px 20px"><span class="topbar green"></span>
             <h3 style="font-size:19px">The fraud one-pager — 9 min</h3>
             <p style="margin-bottom:10px">Catches <b style="color:#fff">99%</b> of fraud · <b style="color:#fff">1%</b> false-positive rate · fraud in <b style="color:#fff">1 of 10,000</b> transactions. Fill in the counts for <b style="color:#fff">1,000,000</b> transactions.</p>
-            <p>Two lines matter: <b style="color:#fff">what share of alerts is real</b>, and <b style="color:#fff">how many alerts per real fraud.</b> Right or wrong, bring it — we collect answers out loud.</p>
+            <p>Two lines matter: <b style="color:#fff">what share of alerts is real</b>, and <b style="color:#fff">how many alerts per real fraud.</b> Right or wrong, bring it — <b style="color:#fff">segment 2 checks your table</b>, it does not rebuild it.</p>
           </div>
         </div>
         <div class="p-time">
-          <div class="p-step key"><span class="dot"></span><div class="d">25 min</div><div class="t">Conditioning</div><div class="s">"0.87 spam" as a bet you can audit.</div></div>
-          <div class="p-step key"><span class="dot"></span><div class="d">25 min</div><div class="t">Base rates</div><div class="s">1,000,000 transactions, in counts.</div></div>
-          <div class="p-step"><span class="dot"></span><div class="d">20 min</div><div class="t">Causation</div><div class="s">Four explanations, three traps, live.</div></div>
+          <div class="p-step key"><span class="dot"></span><div class="d">12 min</div><div class="t">Conditioning</div><div class="s">"0.87 spam" as a bet you can audit.</div></div>
+          <div class="p-step key"><span class="dot"></span><div class="d">15 min</div><div class="t">Base rates</div><div class="s">Your table, checked — then decide.</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">13 min</div><div class="t">Causation</div><div class="s">Four explanations, two traps, live.</div></div>
           <div class="p-step key"><span class="dot"></span><div class="d">20 min</div><div class="t">The drill</div><div class="s">"The widget drove the 18%." Groups of 3.</div></div>
-          <div class="p-step"><span class="dot"></span><div class="d">Homework</div><div class="t">3 scenarios</div><div class="s">Pass/fail. Churn, a vendor chart, a scanner.</div></div>
+          <div class="p-step"><span class="dot"></span><div class="d">90 min</div><div class="t">Homework</div><div class="s">Five tasks. Three scenarios is task 1.</div></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3</span><span>No pre-work, no seat · 25 + 25 + 20 + 20 = 90 min</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3</span><span>No pre-work, no seat · 12 + 15 + 13 + 20 = 60 min</span></div>
     </div>
     <aside class="notes">
-      ~4 min, still inside segment 1's 25. Roll-call, not interrogation: who has the written answer from the video? Read two aloud. Anyone without it stays after and does it.
-      Do NOT collect the counts table here — collect it at the top of segment 2, on slide 5, where the reveal lands. Right now just confirm out loud that everybody has one.
+      ~3 min, still inside segment 1's 12. Roll-call, not interrogation: who has the written answer from the video, and who has a filled counts table? Read two answers aloud. Anyone without them stays after and does it.
+      Do NOT collect the counts numbers here — collect them at the top of segment 2, on slide 5, where the reveal lands. Right now just confirm out loud that everybody has a table, and count the blanks: since the rescope, segment 2 checks their arithmetic rather than building it, so more than two or three empty sheets means you are about to lose the drill. If that happens, run slide 5 as a build and cut the discussion, not the drill.
       The notebook's pre-work cell checks their table without telling them the answer, and it accepts the share as a percentage or as a fraction. If someone says "it marked me wrong", the likely cause is the 99% assumption, not a units slip — which is exactly the conversation you want.
       The 3Blue1Brown link is pinned and clickable — the title on this slide is a live link, and the same one is in the lesson plan (verified 2026-07-29): <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank" rel="noopener">The medical test paradox, and redesigning Bayes' rule</a> (youtube.com/watch?v=lG4VkPoG3ko). Click the title; do not read a URL off a slide aloud.
     </aside>
@@ -254,7 +255,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:24px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 1 · 25 min · Probability as Degrees of Belief</div>
+          <div class="vsp-kicker">Segment 1 · 12 min · Probability as Degrees of Belief</div>
           <h2 class="vsp-h2">A score is a <span class="vsp-glow">bet you can audit.</span></h2>
           <p class="vsp-lead" style="max-width:940px">Probability is not a mystery and not a decoration. It is a price — and prices can be checked against what actually happened.</p>
         </div>
@@ -270,12 +271,12 @@
             <p>Now flip it: of the transactions <b style="color:#fff">that raised an alert</b>, how many are fraud? <b style="color:#fff">Write a number down. Don't say it.</b></p>
           </div>
         </div>
-        <div class="p-callout">The flip needs one thing the vendor's sentence never mentioned: <b>how much fraud there is in the first place.</b> That is the base rate — and it is the next 25 minutes.</div>
+        <div class="p-callout">The flip needs one thing the vendor's sentence never mentioned: <b>how much fraud there is in the first place.</b> That is the base rate — and it is the next 15 minutes.</div>
       </div>
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 1 of 4</span><span>Notebook: "A score is a promise you can audit"</span></div>
     </div>
     <aside class="notes">
-      ~17 min — the rest of segment 1. Run the notebook's calibration cell live: the ten score bands against the share that really were spam, then the scatter against the diagonal. The point that survives: a probability makes a testable promise, and you are allowed to ask a vendor to show you the table.
+      ~6 min — the rest of segment 1, and the rescope tightened it to the flip itself: the leisurely build-up goes, the flip does not. Show the notebook's pre-executed calibration output — the ten score bands against the share that really were spam — in about two minutes rather than walking every band. The point that survives: a probability makes a testable promise, and you are allowed to ask a vendor to show you the table.
       Then the fraud cell — forward direction only, 99 of 100. Say the notation once, on screen, and then say you will not use it again.
       Make them physically write the flipped number down before you go anywhere near slide 5. Do not take answers out loud yet; if one person says "under one percent" the whole reveal is gone. The gasp is the pedagogy.
       Engineer's hook if the room is restless: this is the same discipline as reading a p99 instead of a mean. You already know that a single summary can point the wrong way — this is that failure mode for probabilities.
@@ -289,9 +290,9 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:24px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 2 · 25 min · Base Rates</div>
-          <h2 class="vsp-h2">One million transactions, <span class="vsp-glow">on screen, in counts.</span></h2>
-          <p class="vsp-lead" style="max-width:960px">Fraud in 1 of 10,000 · catches 99% of fraud · 1% false-positive rate. No formulas. Four lines of arithmetic.</p>
+          <div class="vsp-kicker">Segment 2 · 15 min · Base Rates</div>
+          <h2 class="vsp-h2">One million transactions — <span class="vsp-glow">check your table against this.</span></h2>
+          <p class="vsp-lead" style="max-width:960px">Fraud in 1 of 10,000 · catches 99% of fraud · 1% false-positive rate. The reference counts, so anyone who arrived cold catches up in thirty seconds.</p>
         </div>
         <div class="p-grid4">
           <div class="p-count"><span class="topbar"></span>
@@ -317,11 +318,11 @@
         </div>
         <div class="p-callout"><b>P(alert | fraud) = 0.99. P(fraud | alert) = 0.0098.</b> A factor of 101, nothing mis-stated anywhere, and the only thing standing between them is the base rate. That same detector is <b>99.0% accurate.</b></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 2 of 4</span><span>Notebook: the 2×2 counts table + the alert-queue figure</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 2 of 4</span><span>Pre-work table reconciled + the alert-queue figure</span></div>
     </div>
     <aside class="notes">
-      ~14 min. Start by collecting the pre-work answer around the room — the last line only, no discussion. Write the numbers you hear on the whiteboard. In most rooms you get a cluster near 99% and one or two people who watched the video properly.
-      Then build the table in the notebook, one row at a time, and let them do each multiplication out loud before you reveal it. The 9,999 is where the room goes quiet: nobody disputes 1% until they see 1% of 999,900.
+      ~9 min, and since the rescope this is a <b>check</b>, not a build. Start by collecting the pre-work answer around the room — the last line only, no discussion. Write the numbers you hear on the whiteboard. In most rooms you get a cluster near 99% and one or two people who did the counting properly.
+      Then reconcile against the four cards on this slide rather than deriving them: put two participants' tables on screen and walk the disagreements — 100 fraud, 99 caught, 9,999 false alarms, 10,098 alerts. The 9,999 is where the room goes quiet: nobody disputes 1% until they see 1% of 999,900. Anyone who arrived without a table reads it straight off this slide in thirty seconds; that is what it is here for.
       Show the alert-queue figure and dwell on it. The yellow sliver is 0.98% of the bar and it is genuinely hard to see — that is the whole lesson rendered to scale.
       The 99.0% accuracy footnote is the bridge back to LSN-0.2's "92% accurate" drill: accuracy is dominated by the 999,900 easy negatives and cannot see this problem at all. Same failure, opposite direction.
       Never say "so the detector is bad." It is a good detector. The queue is the arithmetic of rarity, not a defect.
@@ -335,7 +336,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:22px">
         <div style="display:flex;flex-direction:column;gap:10px">
-          <div class="vsp-kicker">Segment 2 · Discussion + Naming the Quantity</div>
+          <div class="vsp-kicker">Segment 2 · Then Decide · You Sweep This Tonight</div>
           <h2 class="vsp-h2" style="font-size:42px">"Just raise the threshold." <span class="vsp-glow">Here is the bill.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.35fr 1fr;align-items:start">
@@ -364,8 +365,8 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 2 of 4</span><span>Foreshadows LSN-1.3 precision / recall · verified by ASM-0</span></div>
     </div>
     <aside class="notes">
-      ~11 min: about 6 on the notebook's threshold sweep, 5 on the discussion. Ask "what would you actually do?" before you show the table — the room always says "raise the threshold" first, and the table is the invoice for that instinct.
-      Run the sweep cell live. The two lines crossing is the picture to leave them with: every threshold is a trade, and somebody has to choose which error the business would rather have.
+      ~6 min, closing segment 2 — the discussion, which is the part worth a room. Ask "what would you actually do?" before you show the table: the room always says "raise the threshold" first, and the table is the invoice for that instinct. Take three answers — raise the threshold, improve the features, staff the queue — and make somebody defend one to a client.
+      Do NOT run the sweep cell here. Since the rescope, exploring the thresholds is homework task 2: they find the setting that gets the queue to 20% real, price the recall they give up, and write whether they would sell that trade. Show these three rows as results, say "tonight you find the 20% row yourself", and move on. The line to leave them with is that every threshold is a trade and somebody has to choose which error the business would rather have.
       Name precision and recall, then stop. Do not teach the confusion matrix — it is a whole lesson and pre-empting it costs you the drill. Say out loud that LSN-1.3 reopens this exact detector, so the counts table is worth keeping.
       The pre-sales landing: a base rate of 1 in 10,000 guarantees somebody reviews a lot of legitimate transactions. Walking in with the counts already done is the difference between a vendor and an advisor. If time is short, cut the discussion, not this sentence.
       Transition: "that was one number lying about itself. Now a whole chart doing it."
@@ -379,7 +380,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:18px">
         <div style="display:flex;flex-direction:column;gap:9px">
-          <div class="vsp-kicker">Segment 3 · 20 min · Correlation ≠ Causation</div>
+          <div class="vsp-kicker">Segment 3 · 13 min · Correlation ≠ Causation</div>
           <h2 class="vsp-h2" style="font-size:38px">Four explanations. <span class="vsp-glow">The chart shows one.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:0.85fr 1.15fr;align-items:start">
@@ -391,7 +392,7 @@
               <li><b style="color:#fff">C → both</b> — a confounder drives the pair</li>
               <li><b style="color:#fff">Coincidence</b> — you searched until something fit</li>
             </ul>
-            <p style="margin-top:14px;font-size:14.5px">All four produce the same chart. Three demos below; in each one <b style="color:#fff">we wrote the generator</b>, so we know the true answer — the luxury you never get in a client's data.</p>
+            <p style="margin-top:14px;font-size:14.5px">All four produce the same chart. <b style="color:#fff">Two traps live, one for tonight</b> — and we wrote every generator, so we know the true answer.</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:13px">
             <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar green"></span>
@@ -399,8 +400,8 @@
               <p style="font-size:14px">312 weeks: correlation <b style="color:#fff">0.94.</b> Hold temperature still and it collapses to <b style="color:#fff">−0.02.</b> The relationship was summer, and summer was never a column.</p>
             </div>
             <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar green"></span>
-              <h3 style="font-size:16.5px">Coincidence at scale · Tyler Vigen's trick</h3>
-              <p style="font-size:14px">500 pure-noise metrics × 12 months: best |r| = <b style="color:#fff">0.86</b>, and <b style="color:#fff">11%</b> clear 0.5. At 120 months the best falls to <b style="color:#fff">0.28.</b> Small n is what makes the search work.</p>
+              <h3 style="font-size:16.5px">Coincidence at scale · tonight's homework</h3>
+              <p style="font-size:14px">500 pure-noise metrics × 12 months: best |r| = <b style="color:#fff">0.86</b>, and <b style="color:#fff">11%</b> clear 0.5. Small n makes the search work. <b style="color:#fff">Task 3:</b> classify two from <a href="https://tylervigen.com/spurious-correlations" target="_blank" rel="noopener" style="color:var(--vsp-accent);text-decoration:underline;text-underline-offset:3px">the gallery</a>, plus one of your own.</p>
             </div>
             <div class="vsp-card" style="padding:16px 20px 14px"><span class="topbar yellow"></span>
               <h3 style="font-size:16.5px">Self-selection · the business trap</h3>
@@ -410,13 +411,13 @@
         </div>
         <div class="p-callout">One question per trap: <b>"What else moves with both of these?"</b> · <b>"How many other things did you check?"</b> · <b>"Who chose to be in that group, and why?"</b></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 3 of 4</span><span>Notebook: three seeded demos · tylervigen.com</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 3 of 4</span><span>Notebook: two seeded demos live · the third is homework task 3</span></div>
     </div>
     <aside class="notes">
-      20 min, and it is the segment most likely to overrun — roughly 3 min on the four explanations, then 5 / 4 / 5 on the three demos, 3 min of their own examples.
-      Run all three notebook cells; the pictures are the argument. The ice-cream pair is the one to spend time on: show the left scatter, get agreement that it is a real relationship, then show the right panel where temperature is held still and the cloud is round. 0.94 to −0.02 with no data thrown away.
-      For trap 2 say the mechanism, not just the joke: 12 monthly points is the length of chart a client brings to a first meeting, and 11% of pure noise clears 0.5 at that length. That is also what a model does when it finds a pattern in twelve rows.
-      Trap 3 is the one that shows up in every SaaS pitch deck this quarter. Note the honest detail out loud: the per-row gaps wobble a point or two because the sub-groups are small — the size-weighted average is the answer, and it is 0.2 points.
+      13 min, and it is still the segment most likely to overrun — roughly 3 min on the four explanations, 4 min on the ice-cream confounder, 4 min on the self-selection trap, then 2 min collecting one example of their own. The four explanations are the transferable part; if you have to cut, cut examples, never the frame.
+      Run the two notebook cells for those traps; the pictures are the argument. The ice-cream pair is the one to spend time on: show the left scatter, get agreement that it is a real relationship, then show the right panel where temperature is held still and the cloud is round. 0.94 to −0.02 with no data thrown away.
+      The middle card is a <b>30-second pointer, not a demo</b>: since the rescope, browsing the spurious-correlations gallery is homework task 3, where each pair gets classified against the four explanations. Say the mechanism in one line — 12 monthly points is the length of chart a client brings to a first meeting, and 11% of pure noise clears 0.5 at that length — then hand it to tonight. Do not open the website in the room; browsing is not teaching.
+      The self-selection trap is the one that shows up in every SaaS pitch deck this quarter, so give it the time. Note the honest detail out loud: the per-row gaps wobble a point or two because the sub-groups are small — the size-weighted average is the answer, and it is 0.2 points.
       Ask for one example from their own engagements and bank it for the retro. Then hand out the drill card.
     </aside>
   </section>
@@ -444,17 +445,17 @@
             <div class="sub"><b style="color:#fff">$7.40M → $8.73M.</b> The adoption curve rises right alongside the revenue line.</div>
           </div>
           <div class="bar"><span class="topbar g"></span>
-            <div class="lbl">Groups of 3 · 8 minutes</div>
+            <div class="lbl">Groups of 3 · 6 minutes</div>
             <div class="num">?</div>
-            <div class="sub">List the questions you would ask. Then 12 minutes against the instructor list.</div>
+            <div class="sub">List the questions you would ask. Then 14 minutes against the instructor list.</div>
           </div>
         </div>
         <div class="p-callout">"Isn't that correlation, not causation?" is <b>not a question</b> — it is a way to end the meeting without learning anything. Aim at the <b>mechanism</b>. If the CTO could answer it with "yes", it isn't a question yet.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 4 of 4</span><span>Dorel's rule · a realistic pre-sales scenario</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 4 of 4</span><span>The director's rule · a realistic pre-sales scenario</span></div>
     </div>
     <aside class="notes">
-      8 min of group work. Show the notebook's chart first — the monthly bars with the Nov 3 line, and the weekly adoption overlay — so they are arguing with a real picture rather than a paragraph. Then start the clock.
+      6 min of group work — the drill is 20 min all in and it is untouched by the rescope, because a drill is the reason to be in a room. Show the notebook's chart first — the monthly bars with the Nov 3 line, and the weekly adoption overlay — so they are arguing with a real picture rather than a paragraph. Then start the clock.
       Do NOT reveal anything: not the prior year, not the seasonality, not the widget's true effect. Groups type their questions into the notebook's prep cell, which nudges them toward mechanism questions and refuses to accept three vague ones.
       Play the CTO warmly and a little impatient if they test questions on you: "we already know it worked, we're asking you to scale it." The skill is staying curious without being the person who tells a client his chart is worthless.
       Watch for the group that finds seasonality immediately and stops — push them: "good, that's one. What else shipped in November?"
@@ -494,10 +495,10 @@
         </div>
         <div class="p-callout">The only clean answer to "did it cause the lift?" is a <b>counterfactual</b> — in practice, a <b>holdout.</b> If none exists, <b>phase two includes one.</b> That is the pass bar: asking for the counterfactual, not reciting the slogan.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 4 of 4</span><span>GOAL-1 intelligent next question · 6MAP translation gap (GOAL-4)</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.3 · Segment 4 of 4</span><span>GOAL-1 intelligent next question · Project Atlas translation gap (GOAL-4)</span></div>
     </div>
     <aside class="notes">
-      12 min. Take the groups' questions first and map each onto the five — do not read the list at them. Score on the questions, not on style; ASM-0 asks scenario versions of exactly this.
+      12 min here — this slide plus the 2 min close on slide 10 is the plan's 14 min debrief block. Take the groups' questions first and map each onto the five — do not read the list at them. Score on the questions, not on style; ASM-0 asks scenario versions of exactly this.
       Then run the reveal cells. Order matters: prior year first (+16.0% with no widget in existence) — that one lands hardest and answers question 1 completely. Then the generator's decomposition. Then the holdout.
       The week-counter line is worth saying slowly: a column that does nothing but count weeks explains the revenue better than the widget does, 0.97 against 0.92. Two things that both rise over sixteen weeks always co-move. The overlay was measuring the calendar, twice.
       Land the professional point, because it is the whole reason this drill exists: the widget really was worth +3% on $40M, which is a good result. What was wrong was the attribution, and fixing the attribution makes the client money. You did not tell the CTO he was wrong — you told him how to find out, and it costs 10% of the traffic for two months.
@@ -512,18 +513,20 @@
       <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage center" style="gap:20px;align-items:center;text-align:center">
-        <div class="vsp-kicker">Homework &amp; Before Next Session</div>
+        <div class="vsp-kicker">Homework · 90 min &amp; Before Next Session</div>
         <h2 class="vsp-h2" style="font-size:46px">Three scenarios.<br><span class="vsp-glow">Pass or fail.</span></h2>
-        <p class="vsp-lead" style="max-width:900px"><b style="color:#fff">1.</b> "Our churn model is right 95% of the time." Their churn rate is 5% — what do you ask first? &nbsp;·&nbsp; <b style="color:#fff">2.</b> A vendor's tool "ships 30% faster" across 40 teams that volunteered for the beta — give two explanations that aren't the tool. &nbsp;·&nbsp; <b style="color:#fff">3.</b> A scanner: 98% detection, 3% false positives, intrusions 1 in 500. Out of 50,000 sessions, what fraction of alerts are real?</p>
-        <div style="display:flex;gap:44px;flex-wrap:wrap;justify-content:center;margin-top:4px;text-align:left">
-          <div style="max-width:340px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Graded</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Pass/fail on the reasoning, not the code. Pass bars are printed in the notebook — they were never secret. Saves to <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--vsp-green-lightest)">outputs/lsn-0.3/</span> · feeds ASM-0.</div></div>
-          <div style="max-width:390px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-0.4</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Deterministic, probabilistic, stochastic — reading uncertainty. Pre-work ~20 min: the ML literacy deck keywords, plus <b style="color:var(--vsp-accent)">one example of each term from your own projects.</b></div></div>
+        <p class="vsp-lead" style="max-width:900px">Task 1, and the reason the other four exist: <b style="color:#fff">1.</b> "our churn model is right 95% of the time" on a 5% churn rate — what do you ask first? &nbsp;·&nbsp; <b style="color:#fff">2.</b> a tool that "ships 30% faster" across 40 teams that volunteered for the beta — two explanations that aren't the tool. &nbsp;·&nbsp; <b style="color:#fff">3.</b> a scanner at 98% detection, 3% false positives, intrusions 1 in 500 — of 50,000 sessions, what fraction of alerts are real?</p>
+        <div style="display:flex;gap:40px;flex-wrap:wrap;justify-content:center;margin-top:4px;text-align:left">
+          <div style="max-width:400px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Tonight · 90 min</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px"><b style="color:var(--vsp-accent)">1</b> The three scenarios above — 25 min · <b style="color:var(--vsp-accent)">2</b> Sweep the threshold: what gets the queue to 20% real, and what recall it costs — 20 min · <b style="color:var(--vsp-accent)">3</b> Classify three correlations against the four explanations — 15 min · <b style="color:var(--vsp-accent)">4</b> Design the phase-two holdout you asked the CTO for — 20 min · <b style="color:var(--vsp-accent)">5</b> Say "the model scores 0.93" usefully — 10 min</div></div>
+          <div style="max-width:250px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Graded</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Pass/fail on the reasoning, not the code. Pass bars are printed in the notebook. Saves to <span style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--vsp-green-lightest)">outputs/lsn-0.3/</span> · feeds ASM-0.</div></div>
+          <div style="max-width:300px"><div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--vsp-accent)">Next · LSN-0.4 · Fri 4 Sep</div><div style="font-size:15.5px;font-weight:600;color:#fff;line-height:1.5;margin-top:5px">Deterministic, probabilistic, stochastic. Pre-work 20 min: the keywords (10) plus <b style="color:var(--vsp-accent)">one example of each term from your own projects</b> (10).</div></div>
         </div>
         <div class="vsp-wordmark" style="margin-top:12px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
       </div>
     </div>
     <aside class="notes">
-      ~2 min, taken from the tail of the drill debrief — do not let the session run past 90.
+      ~2 min — the last 2 min of segment 4's debrief block. Do not let the session run past 60.
+      Name the two relocated tasks so the 90 min does not read as extra work: task 2 is the threshold sweep you deliberately did not run on slide 6, and task 3 is the spurious-correlations gallery you deliberately did not browse on slide 7. Both are now theirs to do with numbers instead of instinct. Task 4 is the designated trim if the evening is too long — say out loud that it is the most valuable one, so trimming it is a decision and not a default.
       Set question 3 honestly: it is the fraud table again with different numbers, and the answer is about 98 real alerts out of about 1,595 — roughly 6%. If they can do that one cold, segment 2 landed. Note that "3% false positives" can be read as 3% of clean sessions or 3% of all sessions; the checker accepts both and the answer barely moves.
       Question 2's fine print is deliberate bait: 40 teams that volunteered for a beta is self-selection wearing a lab coat, one segment after they learned the phrase. A passing answer needs two explanations of different kinds — two versions of "good teams adopt it" is one explanation.
       LSN-0.4 pre-work is short but it is theirs to write: one deterministic, one probabilistic, one stochastic example from their own project history. Those examples get reviewed live, so a blank sheet is visible.

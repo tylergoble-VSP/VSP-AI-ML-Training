@@ -208,18 +208,19 @@
         <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal</div>
       </div>
       <div class="vsp-stage center" style="gap:22px">
-        <div class="vsp-kicker">AI/ML Training Program · LSN-1.2 · Weeks 1–2</div>
+        <div class="vsp-kicker">AI/ML Training Program · LSN-1.2 · Monday 14 September 2026</div>
         <h1 class="vsp-h1" style="max-width:1090px">"The model says 0.73."<br><span class="vsp-glow">What exactly did it just tell you?</span></h1>
         <div class="vsp-rule"></div>
         <p class="vsp-lead" style="max-width:990px">Last week you named the job. This hour is the next sentence: <b style="color:#fff">what the model eats</b> — features and labels — and <b style="color:#fff">what it emits</b>: a probability, a number, a group id, a ranked list. Four real outputs on screen, read line by line. Then the sentence that separates a senior from a demo: <b style="color:#fff">a model output is not a verdict.</b></p>
       </div>
-      <div class="vsp-footer"><span>MOD-1 ML Literacy · Model I/O: What Goes In, What Comes Out · serves OUT-1.2</span><span>Tyler Goble · 60 min · 15 / 30 / 15</span></div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy · Model I/O: What Goes In, What Comes Out · serves OUT-1.2</span><span>Instructor-led · 60 min · 15 / 30 / 15</span></div>
     </div>
     <aside class="notes">
       2 min, and the budget is tight: features and labels 15 min (slides 1–4) · the output safari 30 min (slides 5–8) · the 0.73 drill 15 min (slides 9–10) = 60. The safari is the heart and it wants to run long; the drill must not be cut, because the drill is the outcome.
       Open cold, before any teaching: everyone reads their pre-work sentence — "what does a lead score of 0.73 mean?" — to the person next to them. Thirty seconds. Do NOT debrief it now; slide 9 does that, and the gap between their sentence and the model answer is the lesson.
-      Frame the hour with Tyler's bar, which is on the next slide verbatim: "I can see the outputs of a model and I can interpret them." That is the whole deliverable. Nobody trains anything today (that is LSN-1.4) and nobody grades anything today (that is LSN-1.3).
-      Everyone should have the LSN-1.2 notebook open and already executed — the four outputs are real fitted output, not screenshots, and the fits take milliseconds if they want to poke at them.
+      Frame the hour with the bar for this module, which is on the next slide verbatim: "I can see the outputs of a model and I can interpret them." That is the whole deliverable. Nobody trains anything today (that is LSN-1.4) and nobody grades anything today (that is LSN-1.3).
+      Everyone should have the LSN-1.2 notebook open and already executed — the four outputs are real fitted output, not screenshots, and the fits take milliseconds if they want to poke at them. They ran those four fits themselves in pre-work and wrote the raw outputs down, so the safari's 30 min is spent READING output, never waiting for it.
+      Say the shape once: 1 h live, plus a 2 h out-of-session budget — 40 min of pre-work that bought them the seat, and 80 min of homework launched on the last slide. Every homework task is graded material for the ASM-1 quiz.
 
     </aside>
   </section>
@@ -229,7 +230,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:14px">
         <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Bridge from LSN-1.1 · Pre-work target · 20 min</div>
+          <div class="vsp-kicker">Bridge from LSN-1.1 · Pre-work 40 min · Homework 80 min</div>
           <h2 class="vsp-h2" style="font-size:35px">You triaged the ask.<br><span class="vsp-glow">Now: what does that model eat, and what does it emit?</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start">
@@ -253,18 +254,19 @@
           </div>
         </div>
         <div class="p-quote">
-          <div class="meta">Tyler Goble · the bar for this module, verbatim</div>
+          <div class="meta">The instructor · the bar for this module, verbatim</div>
           <p>"I can see the outputs of a model and I can interpret them."</p>
         </div>
-        <div class="p-callout" style="font-size:15px;padding:13px 18px">Pre-work, 20 min: the <b>sections on model types and reading outputs</b> · <b>Write one sentence: what do you think a "lead score of 0.73" means, exactly?</b> · and <b>your triaged ask from last week</b> — what would that model take in, and what would it kick out?</div>
+        <div class="p-callout" style="font-size:14.5px;padding:12px 18px;line-height:1.4">Pre-work, <b>40 min</b>: the <b>model-I/O sections</b> of this deck (15) · <b>one sentence — what do you think a "lead score of 0.73" means, exactly?</b> (5) · <b>run the notebook's four output fits yourself and write down each raw output</b> — the literal number, array or list, before anyone interprets it (20). <span style="color:var(--vsp-on-dark-muted);font-weight:500">Then 80 min of homework tonight: 40 + 80 = the 2 h out-of-session budget.</span></div>
       </div>
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.2 · Pre-work + bridge</span><span>15 features &amp; labels · 30 output safari · 15 drill</span></div>
     </div>
     <aside class="notes">
       3 min, inside segment 1's 15. Orientation and a roll-call — do not start teaching features here.
-      Say the source-material line plainly, once: the lesson plan points the pre-work at Tyler's original ML literacy deck, which is not in the repo. THIS deck plus the notebook's I/O card are the canonical model-types-and-reading-outputs material, exactly as LSN-0.4 and LSN-1.1 did. Nobody should go hunting for a file.
-      Roll-call the pre-work: hands up who wrote the 0.73 sentence, hands up who brought their LSN-1.1 ask with features and a label column. Take one ask out loud and ask the room only two questions — what are three columns you would feed it, and what is the label column? Thirty seconds. That is the whole shape of segment 1.
-      Cash Tyler's quote as permission and as the bar: nobody has to build models. They have to be able to look at output and say what it is, what it is not, and what they would ask next.
+      Say the source-material line plainly, once: the lesson plan points the pre-work at the instructor's original ML literacy deck, which is not in the repo. THIS deck plus the notebook's I/O card are the canonical model-types-and-reading-outputs material, exactly as LSN-0.4 and LSN-1.1 did. Nobody should go hunting for a file.
+      Roll-call the pre-work by hands, three items: read the model-I/O sections (15 min) · wrote the 0.73 sentence (5 min) · ran the four safari fits and wrote down the four raw outputs (20 min). That last one is the one to check hardest — the safari assumes they have already SEEN the raw output, which is what lets 30 min go on reading instead of running.
+      Then borrow somebody's LSN-1.1 ask — they were told to keep it — and ask the room only two questions: what are three columns you would feed it, and what is the label column? Thirty seconds. That is the whole shape of segment 1, and tonight's homework task 3 turns it into a written I/O spec.
+      Cash the quote as permission and as the bar: nobody has to build models. They have to be able to look at output and say what it is, what it is not, and what they would ask next.
       If somebody asks why grading is not today: because you cannot judge a number you cannot read. That is why the order is 1.2 then 1.3, and say so — it makes the next lesson feel earned rather than extra.
 
     </aside>
@@ -607,29 +609,36 @@ array([<b>1</b>, 0, 1, 1, 0, 1, 0, 2, 2, ...])</div>
       <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-120px"></div>
       <div class="vsp-orb navy" style="width:400px;height:400px;bottom:-120px;left:-90px"></div>
       <div class="vsp-grid"></div>
-      <div class="vsp-stage center" style="gap:18px;align-items:center;text-align:center">
+      <div class="vsp-stage center" style="gap:14px;align-items:center;text-align:center">
         <div class="vsp-kicker">Segment 3 · The close · and the question we left open</div>
-        <h2 class="vsp-h2" style="font-size:41px">You can read the output.<br><span class="vsp-glow">You still can't tell if it's any good.</span></h2>
-        <p class="vsp-lead" style="max-width:1010px">Nothing said today licenses "0.73 is good" — not the number, not the model's confidence in itself. That needs comparing what it <i>said</i> against what <i>happened</i>, in the client's units, with the errors that cost money separated from the ones that don't. That is <b style="color:#fff">metrics</b>, and it is the next hour.</p>
-        <div style="display:flex;gap:34px;flex-wrap:wrap;justify-content:center;margin-top:2px;text-align:left">
-          <div class="vsp-card" style="padding:16px 19px 14px;max-width:400px"><span class="topbar green"></span>
-            <h3 style="font-size:16px">No homework</h3>
-            <p style="font-size:13.5px"><b style="color:#fff">Keep your corrected "0.73" sentence</b> — it is the seed of your ASM-1 mock pre-sales answers, and it is saved in <span class="p-io">outputs/lsn-1.2/</span>.</p>
+        <h2 class="vsp-h2" style="font-size:36px">You can read the output.<br><span class="vsp-glow">You still can't tell if it's any good.</span></h2>
+        <p class="vsp-lead" style="max-width:1060px;font-size:19px">Nothing said today licenses "0.73 is good" — not the number, not the model's confidence in itself. That needs comparing what it <i>said</i> against what <i>happened</i>, in the client's units, with the errors that cost money separated from the ones that don't. That is <b style="color:#fff">metrics</b>, and it is the next hour.</p>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-top:2px;text-align:left">
+          <div class="vsp-card" style="padding:15px 18px 13px;max-width:500px"><span class="topbar yellow"></span>
+            <h3 style="font-size:16px">Homework · 80 min · in the notebook</h3>
+            <ul class="p-chk" style="margin-top:8px;gap:6px">
+              <li style="font-size:12px">All four safari outputs: the <b style="color:#fff">client-safe reading</b>, the <b style="color:#fff">one question you'd ask next</b>, and how it could be <b style="color:#fff">misread</b> by somebody who skipped today. <b style="color:var(--vsp-accent)">30</b></li>
+              <li style="font-size:12px">The <b style="color:#fff">two curveballs in writing</b> — the 0.51 coin flip, the units-free "8.2" — plus <b style="color:#fff">a third from your own client</b>, answered. <b style="color:var(--vsp-accent)">20</b></li>
+              <li style="font-size:12px">Your <b style="color:#fff">LSN-1.1 ask, specified</b>: five plausible feature columns and where each comes from, the label column <i>and who fills it</i>, the output type and its units. <b style="color:var(--vsp-accent)">30</b></li>
+            </ul>
+            <p style="font-size:11.5px;color:var(--vsp-on-dark-muted);margin-top:7px">Keep the corrected "0.73" sentence too — saved in <span class="p-io">outputs/lsn-1.2/</span>, and the seed of your ASM-1 answers.</p>
           </div>
-          <div class="vsp-card" style="padding:16px 19px 14px;max-width:400px"><span class="topbar yellow"></span>
-            <h3 style="font-size:16px">LSN-1.3 pre-work · 30 min</h3>
-            <p style="font-size:13.5px">Revisit your <b style="color:#fff">LSN-0.3 base-rate notes</b> — bring one line on why a 99%-accurate detector on a rare event is mostly false alarms. Plus the <b style="color:#fff">grading/metrics</b> material.</p>
+          <div class="vsp-card" style="padding:15px 18px 13px;max-width:420px"><span class="topbar green"></span>
+            <h3 style="font-size:16px">LSN-1.3 pre-work · 45 min</h3>
+            <p style="font-size:12.5px;margin-top:7px">Revisit your <b style="color:#fff">LSN-0.3 base-rate notes</b> — one line on why a 99%-accurate detector on a rare event is mostly false alarms (15) · the <b style="color:#fff">grading/metrics</b> material (15).</p>
+            <p style="font-size:12.5px;margin-top:8px"><b style="color:var(--vsp-accent)">Now mandatory, not optional:</b> watch StatQuest's <b style="color:#fff">"ROC and AUC, Clearly Explained!"</b> and bring one line on what a point on the ROC curve represents (15). Next week's AUC segment is 11 min and assumes you have seen the curve drawn once.</p>
           </div>
         </div>
-        <div class="p-callout" style="text-align:left;max-width:1020px">The sentence to leave with: <b>"That's a probability, not a verdict — it tells you what to work first, and here's what I'd need to know before you plan against it."</b> Say that in a pipeline review and you are the senior person in the room.</div>
+        <div class="p-callout" style="text-align:left;max-width:1020px;font-size:15px;padding:13px 18px">The sentence to leave with: <b>"That's a probability, not a verdict — it tells you what to work first, and here's what I'd need to know before you plan against it."</b> Say that in a pipeline review and you are the senior person in the room.</div>
         <div class="vsp-wordmark" style="margin-top:2px;opacity:0.9">VICTORY SQUARE <span>PARTNERS</span></div>
       </div>
     </div>
     <aside class="notes">
       3 min, the tail of segment 3's 15. Hard-stop at 60.
       Close the loop you opened on slide 5: the room asked "is 0.73 good?" and you parked it. Answer it now by refusing to answer it — you cannot know from the number. Then give the three concrete handoffs to LSN-1.3: calibration is measured, not assumed; the ±$4,000 has a name (MAE) and has to be computed on data the model never saw; and "we flagged 40 deals" splits into precision and recall, two different kinds of wrong with two different price tags.
-      Set the pre-work explicitly, because 1.3 is the one lesson that has a prerequisite from MOD-0: their LSN-0.3 base-rate notes, plus one line on the 99%-accurate fraud detector. That line is the spine of 1.3's precision/recall segment.
-      Tell them what to keep: the corrected 0.73 sentence and the I/O card from the notebook. Both come back in ASM-1, where Vlad or Dorel plays the client and asks them to read an output.
+      Then launch tonight's homework — 80 min, all of it in the notebook, all of it graded material for the ASM-1 quiz. One minute on the three tasks: four readings, each with the next question AND the misread it invites (30); the two curveballs in writing plus a third from their own client, which gets read back at the next session (20); and their LSN-1.1 ask written up as a one-page I/O spec (30). Name the pass bar: no over-claiming — a probability stays a probability, a cluster id stays meaningless until named, a number carries units — and the spec's label column has a NAMED source. "We'd label it somehow" fails, and that is deliberate, because it is the sentence that kills real projects.
+      Set the pre-work explicitly — 45 min, and 1.3 is the one lesson with a hard MOD-0 prerequisite: their LSN-0.3 base-rate notes plus one line on the 99%-accurate fraud detector (that line is the spine of 1.3's precision/recall segment), the grading material, and — this part is now MANDATORY rather than optional — the StatQuest ROC/AUC video with one line on what a point on the curve represents. Say why out loud: 1.3's AUC segment is 11 minutes and reads the curve instead of deriving it, so anybody who skips the video is lost for that segment.
+      Tell them what to keep: the corrected 0.73 sentence and the I/O card from the notebook. Both come back in ASM-1, where the program sponsor or one of our directors plays the client and asks them to read an output.
       Last thing, no answers out loud: "think of a number a client has quoted at you that you nodded along to without asking what it was measured in." Everybody has one. That flinch is the outcome.
 
     </aside>

@@ -275,16 +275,16 @@
       <div class="vsp-grid"></div>
       <div class="vsp-topbar">
         <div class="vsp-wordmark">VICTORY SQUARE <span>PARTNERS</span></div>
-        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal · Live lab</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--vsp-on-dark-faint)">AI/ML Training · Internal · Live lab · 60 min</div>
       </div>
       <div class="vsp-stage center" style="gap:20px">
-        <div class="vsp-kicker">AI/ML Training Program · LSN-1.4 · Weeks 1–2 · 150 minutes, hands on keyboards</div>
+        <div class="vsp-kicker">AI/ML Training Program · LSN-1.4 · Monday 28 September 2026 · 60 minutes, hands on keyboards</div>
         <h1 class="vsp-h1" style="max-width:1120px">Today you <span class="vsp-glow">train a real model.</span></h1>
         <div class="vsp-rule"></div>
-        <p class="vsp-lead" style="max-width:1010px">70,000 hand-labelled digits. A neural network you write in six lines. A loss that falls from <b style="color:#fff">2.31 to 0.26</b> in a quarter of a second. Then <b style="color:#fff">your own confusion matrix</b> — and finally we starve the thing until it collapses, because <b style="color:var(--vsp-accent)">that</b> is the chart you will use in front of clients.</p>
+        <p class="vsp-lead" style="max-width:1010px">70,000 hand-labelled digits. A neural network you write in six lines. A loss that falls from <b style="color:#fff">2.31 to 0.26</b> in a quarter of a second, on <b style="color:#fff">your</b> machine, inside the hour. Then tonight, on your own: your confusion matrix — and you starve the thing until it collapses, because <b style="color:var(--vsp-accent)">that</b> is the chart you will use in front of clients.</p>
         <div class="p-grid3" style="gap:14px;margin-top:4px">
           <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar green"></span>
-            <h3 style="font-size:15px">Vlad's ask, verbatim</h3>
+            <h3 style="font-size:15px">The program sponsor's ask, verbatim</h3>
             <p style="font-size:12.5px">"Start up a Jupyter notebook… do that classical exercise, use PyTorch." This is that session.</p>
           </div>
           <div class="vsp-card" style="padding:13px 16px 12px"><span class="topbar yellow"></span>
@@ -297,15 +297,16 @@
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>MOD-1 ML Literacy · Hands-on: train MNIST with PyTorch · serves OUT-1.4 · verified by ASM-1 (artifact)</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>MOD-1 ML Literacy · Hands-on: train MNIST with PyTorch · serves OUT-1.4 · verified by ASM-1 (artifact)</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      2 min. Say it in one sentence and then get out of the way: by lunch everybody in this room will have trained a neural network, and the training is not the interesting part.
-      THE MAP, on the footer of every slide: 15 dataset tour · 60 guided build · 30 evaluate · 30 break it on purpose · 15 wrap = 150. Slides 1-4 are the first 15. Slides 5-6 are the 60. Slides 7-8 are the 30. Slides 9-10 are the second 30. Slide 11 is the last 15.
-      This deck is a RUNBOOK, not a lecture. Every segment slide carries the lab checkpoint, the failure that is actually going to happen, and the recovery move. Read those out; do not improvise them.
-      Everyone should already have notebooks/lessons/LSN-1.4_Hands_On_Train_MNIST.ipynb open AND executed once (that was pre-work). If somebody has not executed it, they are already behind - deal with that on the next slide, not now.
-      Two co-facilitators is the right shape for this one: Tyler drives, Stefana walks the room. The single biggest risk today is one laptop eating twenty minutes.
-      Say the honest expectation out loud: their model will land around 93%, not 99%. The gap between those two numbers is the most valuable thing in the lab, and slide 8 is where it pays off.
+      1 min. One sentence, then get out of the way: inside this hour everybody in this room trains a neural network and watches its loss fall, and the training is not the interesting part.
+      THE MAP, on the footer of every slide: 10 dataset tour · 20 guided build · 20 the train loop and your loss falling · 10 wrap + homework launch = 60, then 75 minutes tonight. Slides 1-4 are the first 10 (cover 1 · pre-work gate 3 · the arc 2 · dataset tour 4). Slide 5 is the 20-minute build. Slide 6 is the 20 minutes the hour exists for. Slides 7-11 are the closing 10 - four homework blocks walked on screen, then the wrap.
+      RESCOPED 2026-08-03, and say it plainly if anyone remembers the old plan: this was a 150-minute lab. The spreadsheet books one hour. Only two things genuinely need a room and an instructor - nobody stuck on an environment or a shape error, and every person watching THEIR OWN loss fall. Everything downstream of a trained model is solo work the notebook already supports (11 models, ~6 s of compute, a canonical twin under every guided cell, a grader in every drill), so evaluation, the confusion matrix and the break-it runs moved into structured homework. Relocated, not deleted - and slides 7-10 are the runbook for those stages, handed to them instead of run by you.
+      This deck is still a RUNBOOK. Slides 4-6 carry the live lab checkpoint, the failure that is actually going to happen, and the recovery move. Slides 7-10 carry the same three boxes for the stages they run alone tonight. Read them out; do not improvise them.
+      Everyone should already have notebooks/lessons/LSN-1.4_Hands_On_Train_MNIST.ipynb open AND its smoke test executed (that was pre-work task 1). If somebody has not, they are already behind - deal with it on the next slide, not now.
+      Two co-facilitators is the right shape and at this cadence it is not optional: the instructor drives, the co-instructor walks the room. The single biggest risk in a 60-minute lab is one laptop eating ten minutes.
+      Say the honest expectation out loud: their model lands around 93%, not 99%. The gap between those two numbers is the most valuable thing in the lab - and it now pays off in tonight's block 1, which is why the homework walkthrough is not an afterthought.
     </aside>
   </section>
   <section data-label="Pre-work gate">
@@ -314,7 +315,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:15px">
         <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">Pre-work check · 45 min, mandatory · the first 5 minutes of the lab</div>
+          <div class="vsp-kicker">Pre-work check · 45 min, mandatory · the first 3 minutes of the hour</div>
           <h2 class="vsp-h2" style="font-size:38px">A lab of eight people <span class="vsp-glow">cannot debug one laptop.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.05fr 0.95fr;align-items:start;gap:18px">
@@ -340,16 +341,16 @@
           <div class="meta">LL-1 · the first thing this programme learned about itself</div>
           <p>"An environment document claimed a .venv existed when it did not. An environment that worked in week 1 is not evidence it works today."</p>
         </div>
-        <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Also collected at the door: <b>the one written question</b> from pre-work task 3, and a show of hands on the <b>LSN-0.1 Python refresher</b>. The lab is fill-in-the-blank — but the blanks are Python.</div>
+        <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Also collected at the door: <b>the one written question</b> from pre-work task 3 (15 smoke test · 10 refresher · 20 intro cells = <b>45 min</b>), and a show of hands on the <b>LSN-0.1 Python refresher</b>. The lab is fill-in-the-blank — but the blanks are Python.</div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Pre-work gate · the lab will not wait</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Pre-work gate · the lab will not wait</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      5 min, and it comes out of the dataset tour's 15. Do it before a single word of teaching.
-      Mechanics: everybody runs the gate cell NOW, out loud, together. Hands up when the block says green. Count the hands - you need the number before you decide anything else about the next two hours.
-      Two greens short of the room? Pair them up immediately and carry on. Four or more red? Stop, spend ten minutes, and drop the 10,000-example row from the break-it segment later to buy the time back. That is the pressure valve and it is pre-authorised.
+      3 min, and it comes out of the dataset tour's 10. Do it before a single word of teaching.
+      Mechanics: everybody runs the gate cell NOW, out loud, together. Hands up when the block says green. Count the hands - you need the number before you decide anything else about the next hour.
+      Two greens short of the room? Pair them up immediately and carry on. Four or more red? Pair everybody red with somebody green, keep moving, and take the fixes to the end of the hour - do NOT spend ten minutes here. The old pressure valve (dropping a break-it row) no longer exists, because break-it is homework now; the valve in a 60-minute lab is the paste-ready canonical cell under every guided cell, and using it is pre-authorised and correct.
       Say the LL-1 line as a fact about this programme, not as a scolding. It is true, it is ours, and it is why the gate exists.
-      Collect the written questions physically - index cards or Slack thread, either. You will answer two of them in segment 2 and the rest at the wrap. Naming who asked what is what makes a lab feel like a workshop instead of a lecture.
+      Collect the written questions physically - index cards or Slack thread, either. At this cadence you answer at most one of them live, in the build; the rest go back in the Slack thread tonight alongside the homework. Say that, so nobody thinks their question was ignored.
       The MPS beat is on the gate cell's output: torch.backends.mps.is_available() prints True on these laptops. Thirty seconds, no more: yes, your Mac has a GPU; no, we are not using it, because MPS does not promise the same floating-point answer twice and today's whole contract is "your numbers are the same numbers twice". Real projects make the opposite trade the moment the model stops being small.
     </aside>
   </section>
@@ -359,15 +360,15 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:16px">
         <div style="display:flex;flex-direction:column;gap:7px">
-          <div class="vsp-kicker">The 150 minutes · and what each one is for</div>
+          <div class="vsp-kicker">The 60 minutes · and the 75 that follow them tonight</div>
           <h2 class="vsp-h2" style="font-size:37px">Data → model → loss → gradient descent → evaluation.<br><span class="vsp-glow">That is the whole of supervised learning.</span></h2>
         </div>
         <div class="p-time" style="grid-template-columns:repeat(5,1fr)">
-          <div class="p-step"><div class="dot"></div><div class="d">15 min</div><div class="t">Dataset tour</div><div class="s">60,000 labelled digits. A digit <i>is</i> 784 numbers.</div></div>
-          <div class="p-step key"><div class="dot"></div><div class="d">60 min</div><div class="t">Guided build</div><div class="s">DataLoader → MLP → train loop → the loss falls</div></div>
-          <div class="p-step"><div class="dot"></div><div class="d">30 min</div><div class="t">Evaluate</div><div class="s">accuracy + <b>your</b> confusion matrix</div></div>
-          <div class="p-step key"><div class="dot"></div><div class="d">30 min</div><div class="t">Break it</div><div class="s">starve the model, plot the collapse</div></div>
-          <div class="p-step"><div class="dot"></div><div class="d">15 min</div><div class="t">Wrap</div><div class="s">the vocabulary, and the homework</div></div>
+          <div class="p-step"><div class="dot"></div><div class="d">10 min</div><div class="t">Dataset tour</div><div class="s">60,000 labelled digits. A digit <i>is</i> 784 numbers.</div></div>
+          <div class="p-step key"><div class="dot"></div><div class="d">20 min</div><div class="t">Guided build</div><div class="s">DataLoader → MLP → loss at init <b>2.30</b></div></div>
+          <div class="p-step key"><div class="dot"></div><div class="d">20 min</div><div class="t">The loss falls</div><div class="s">the train loop, 471 steps, on <b>your</b> screen</div></div>
+          <div class="p-step"><div class="dot"></div><div class="d">10 min</div><div class="t">Wrap + launch</div><div class="s">the vocabulary, and tonight's four blocks</div></div>
+          <div class="p-step"><div class="dot"></div><div class="d">75 min</div><div class="t">Tonight, solo</div><div class="s">evaluate · <b>your</b> matrix · break it · write it up</div></div>
         </div>
         <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:18px">
           <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar green"></span>
@@ -375,7 +376,7 @@
             <ul class="p-chk" style="gap:8px;margin-top:8px">
               <li style="font-size:13px"><b style="color:#fff">LSN-1.2:</b> features and labels — today a 28×28 image becomes <b style="color:var(--vsp-accent)">one row of 784 features</b></li>
               <li style="font-size:13px"><b style="color:#fff">LSN-0.2:</b> a sample's composition is checked, never assumed — is 60,000 digits balanced?</li>
-              <li style="font-size:13px"><b style="color:#fff">LSN-1.3:</b> you can read a confusion matrix. In 90 minutes it will be <b style="color:var(--vsp-accent)">yours</b></li>
+              <li style="font-size:13px"><b style="color:#fff">LSN-1.3:</b> you can read a confusion matrix. <b style="color:var(--vsp-accent)">Tonight it is yours</b> — block 1</li>
             </ul>
           </div>
           <div class="vsp-card" style="padding:15px 18px 13px"><span class="topbar yellow"></span>
@@ -385,14 +386,14 @@
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · The arc · everything else is scale</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · The arc · everything else is scale</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      3 min, the last of the tour's 15 before the notebook. Orientation only - do not start teaching.
-      Walk the timeline left to right once, and flag the two segments that carry the risk: the 60-minute build is the one that overruns (paste-ready known-good cells are the valve), and the 30-minute break-it segment is the one they will still be using in client meetings next year. If you have to steal time, steal it from the build, never from break-it.
-      Then say the headline sentence and mean it: data, model, loss, gradient descent, evaluation. Those five words are the whole of supervised learning, and by the wrap they will have built one of each. Everything after today - CNNs, transformers, GPT - is the same loop with more zeroes.
-      Cash the three callbacks by name. This is the fourth session in a row that pays off an earlier one, and saying so is what makes the programme feel like a sequence rather than a series.
-      Kill the leaderboard instinct early, because engineers have it. Nobody is grading on accuracy today. Announce the target number now - about 93% - so that when it appears nobody feels short-changed, and so slide 8's "why not 95%?" lands as a finding rather than a failure.
+      2 min, the last of the tour's 10 before the notebook. Orientation only - do not start teaching.
+      Walk the timeline left to right once, and be honest about the shape of the hour: two segments live, and the last column is not an afterthought. The 20-minute build is the one that overruns (the paste-ready canonical cells are the valve). The 20 minutes after it is the reason the room is booked - everybody's loss falling, per person, no exceptions. If you have to steal time, steal it from the build, never from the train loop.
+      Then say the headline sentence and mean it: data, model, loss, gradient descent, evaluation. Those five words are the whole of supervised learning. Four of them they build in this room; the fifth - evaluation - they do tonight, on the model they trained here, which is why the homework is not optional reading.
+      Cash the three callbacks by name. This is the fourth session in a row that pays off an earlier one, and saying so is what makes the programme feel like a sequence rather than a series. The LSN-1.3 one now points forward to tonight rather than to minute 90.
+      Kill the leaderboard instinct early, because engineers have it. Nobody is grading on accuracy. Announce the target number now - about 93% - so that when it appears in tonight's block 1 nobody feels short-changed, and the "why not 95%?" finding lands as a finding rather than a failure.
     </aside>
   </section>
   <section data-label="Dataset tour">
@@ -401,7 +402,7 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:14px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 1 · 15 min · notebook §"Dataset tour"</div>
+          <div class="vsp-kicker">Segment 1 · 10 min · notebook §"Segment 1 — Dataset tour" · cells 7–12</div>
           <h2 class="vsp-h2" style="font-size:36px">A digit image <span class="vsp-glow">is a feature row.</span> 784 numbers.</h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;align-items:start;gap:18px">
@@ -421,7 +422,7 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
               <tr class="hi"><td>spread</td><td><b>24.4% more 1s than 5s</b></td></tr>
             </table>
             <p style="font-size:12.5px;margin-top:9px"><b style="color:#fff">"Balanced enough, and not equal"</b> — the most common answer real data ever gives. Which is why the honest report is <b style="color:var(--vsp-accent)">per-class recall</b>, not one accuracy number.</p>
-            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">Plant this now: digit <b style="color:#fff">5</b> is the rarest — and in 90 minutes it is one of the two worst-recalled. Not a coincidence.</p>
+            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">Plant this now: digit <b style="color:#fff">5</b> is the rarest — and in tonight's block 1 it is one of the two worst-recalled. Not a coincidence.</p>
           </div>
         </div>
         <div class="p-lab">
@@ -430,15 +431,15 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
           <div class="box rec"><div class="h">Recovery</div><p>The loader reads the <b>local cache only</b>; if cold it prints the warm-up command and falls back to <b>synthetic digits</b> so every step still runs.</p></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 1 · dataset tour · LSN-1.2 + LSN-0.2 callbacks</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 1 · dataset tour · LSN-1.2 + LSN-0.2 callbacks</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      5 min, the rest of segment 1's 15. Notebook open, cells running along with you.
-      Run the load cell together and read the shapes out loud. The point of this segment is not MNIST, it is the sentence "a digit image is a feature row" - and the cell that prints one digit three ways (as ASCII art, as 784 numbers, as a row in a table) is the whole segment in one screen. Linger there. Ask somebody to say what the 784 columns are.
+      4 min, the rest of segment 1's 10. Notebook open, cells running along with you. This is the segment the rescope compressed hardest: the callbacks are CAPTIONS here, not discussions - they get read properly in tonight's homework.
+      Run the load cell together and read the shapes out loud. The point of this segment is not MNIST, it is the sentence "a digit image is a feature row" - and the cell that prints one digit three ways (as ASCII art, as 784 numbers, as a row in a table) is the whole segment in one screen. That is where the four minutes go. Ask one person to say what the 784 columns are, then move.
       SUPERSESSION, say it once so nobody is confused by the lesson plan: the plan and source notebook 02 both use fetch_openml('mnist_784'). We do not. torchvision reads the pre-warmed local cache instead - instant, offline, and identical for everyone. That is what pre-work task 1 bought.
-      Then the digit grid. Get them to point at the 4 that could be a 9 and the 5 that could be a 3 BEFORE the model has an opinion; when their own confusion matrix names those pairs in segment 3 it feels earned rather than told.
-      The balance chart is a 90-second LSN-0.2 callback, no more. Two questions, in this order: is anything starved (no), and is it equal (no). Then the sentence: balanced enough and not equal, so report per-class recall.
-      Drop the seed: digit 5 is the rarest class. Do not explain why that matters. It pays off on slide 7.
+      Then the digit grid, thirty seconds. Get them to point at the 4 that could be a 9 and the 5 that could be a 3 BEFORE the model has an opinion; when their own confusion matrix names those pairs tonight it feels earned rather than told.
+      The balance chart is ONE LINE now, not a 90-second callback: balanced enough and not equal, so the honest report is per-class recall. The two questions behind it (is anything starved, is it equal) are in the notebook's markdown and they read them tonight in block 1.
+      Drop the seed: digit 5 is the rarest class. Do not explain why that matters. It pays off on slide 7 - which is now homework guidance, so plant it with "you will meet this again tonight".
       If anybody is on synthetic fallback, say so publicly and kindly - their loss will still fall, their accuracy will not match the room, and every pinned check in their notebook is deliberately skipped.
     </aside>
   </section>
@@ -448,8 +449,8 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:13px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 2 · 60 min · notebook §"Guided build", steps 1–4</div>
-          <h2 class="vsp-h2" style="font-size:35px">Four steps. Six lines of model.<br><span class="vsp-glow">101,770 numbers that start as noise.</span></h2>
+          <div class="vsp-kicker">Segment 2 · 20 min · notebook §"Segment 2", steps 1–3 · cells 14–21</div>
+          <h2 class="vsp-h2" style="font-size:35px">Three steps. Six lines of model.<br><span class="vsp-glow">101,770 numbers that start as noise.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.06fr 0.94fr;align-items:start;gap:16px">
           <div style="display:flex;flex-direction:column;gap:11px">
@@ -458,100 +459,109 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
     nn.ReLU(),               <i># max(0,x) · ZERO parameters</i>
     nn.Linear(<b>128</b>, <b>10</b>),    <i># 1,280 weights + 10 biases</i>
 )</div>
-            <div class="p-code">for images, labels in train_loader:
-    predictions = model(images)          <i># FORWARD</i>
-    loss = loss_fn(predictions, labels)  <i># SCORE</i>
-    optimizer.zero_grad()                <i># RESET</i>
-    loss.backward()                      <i># BACKWARD</i>
-    <b>optimizer.step()</b>                     <i># the only line that moves a weight</i></div>
+            <div class="p-code">loss_fn   = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=<b>1e-3</b>)
+<i># before a single epoch runs — the wiring check</i>
+loss_fn(model(images), labels)  →  <b>2.3117</b></div>
           </div>
           <div style="display:flex;flex-direction:column;gap:11px">
             <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
               <h3 style="font-size:15px">The numbers to expect on every screen</h3>
               <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
-                <tr class="hi"><td style="width:52%">first batch, before training</td><td><b>2.3117</b> ≈ ln 10</td></tr>
-                <tr><td>epoch 1 average loss</td><td><b>0.7554</b></td></tr>
-                <tr><td>epoch 2</td><td><b>0.3195</b></td></tr>
-                <tr><td>epoch 3</td><td><b>0.2585</b> — below 0.5 ✓</td></tr>
-                <tr><td>gradient steps</td><td><b>471</b> · 157 per epoch</td></tr>
+                <tr><td style="width:52%">parameters, counted on paper</td><td><b>101,770</b></td></tr>
+                <tr><td>batches per epoch</td><td><b>157</b> · 156×64 + one of 16</td></tr>
+                <tr class="hi"><td>first batch, before training</td><td><b>2.3117</b> ≈ ln 10</td></tr>
               </table>
             </div>
             <div class="p-callout" style="font-size:13.5px;padding:12px 16px"><b>2.3026 = −log(1/10).</b> A ten-class model that knows nothing scores exactly that. Verify the loss at init, every time, forever — it is the cheapest bug-catch in machine learning.</div>
           </div>
         </div>
         <div class="p-lab">
-          <div class="box chk"><div class="h">Lab checkpoint</div><p>Loss <b>visibly falling: 2.31 → below 0.5 by epoch 3</b>, on every screen.</p></div>
+          <div class="box chk"><div class="h">Lab checkpoint</div><p>Everyone has a <b>model object</b> and a <b>loss at init near 2.30</b>.</p></div>
           <div class="box fail"><div class="h">Likely failure</div><p>Shape mismatch — 28×28 fed in without flattening, or labels not <span class="p-io">long</span> dtype.</p></div>
-          <div class="box rec"><div class="h">Recovery</div><p>The <b>shape-debug ritual</b> (print <span class="p-io">.shape</span> at every layer boundary) + a <b>paste-ready canonical cell under every guided cell</b>.</p></div>
+          <div class="box rec"><div class="h">Recovery</div><p>The <b>shape-debug ritual</b> (print <span class="p-io">.shape</span> at every boundary) + the <b>STEP-1/2/3 canonical cells</b>. More than 3 min behind: <b>paste and keep moving.</b></p></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 2 · guided build · sources: neural_networks/01 (MLP) + 02 (PyTorch pipeline)</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 2 · guided build, steps 1–3 · sources: neural_networks/01 (MLP) + 02 (PyTorch pipeline)</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      35 min of segment 2's 60. This is the segment that overruns. Watch the clock at every step boundary.
-      SHAPE: each of the four steps is a guided cell (numbers blanked out in the comments, plus a small fill-in you can get wrong for free) followed immediately by the canonical runnable cell. Say the rule once: do the guided cell, and if you are stuck, run the canonical one and keep moving. Nobody falls behind on step 2, because step 2 is where the linear-algebra beat lives and that is the part they remember next year.
-      Step 1, DataLoader, 7 min. 157 batches - 156 of 64 plus a last one of 16, which is why the loop says len(images) and not 64. The fill-in worth arguing about is shuffle on the TEST loader: the answer is False, and the reason is better than the answer - you are counting right answers, and a count does not care about order, but segment 3 needs predictions lined up with images so it can show them their own mistakes.
-      Step 2, the model, 10 min. Read the shapes as a sentence out loud: take 784 numbers, mix them into 128, throw away the negatives, mix those into 10, call the biggest one your answer. Then make them count the parameters on paper: 784x128 + 128 + 128x10 + 10 = 101,770. Most people forget the biases; the checker says so kindly.
-      Also, on step 2, plant the trap that segment 4 depends on: the model is built inside fresh_model(), and there is a reason. Do not explain it yet. Just insist they always call it.
-      Step 3, loss and optimiser, 5 min - and do NOT skip the loss-at-init check. -log(1/10) = 2.3026, their untrained model prints 2.32, and that agreement means the labels line up with the images and nothing is transposed. This is the single most transferable habit in the lab.
-      Step 4, the train loop, 13 min. Put the five lines on the board in the wrong order and have the room sort them. Then the distinction that makes the whole thing click: loss.backward() COMPUTES gradients, optimizer.step() APPLIES them, and zero_grad() is there because torch ADDS each new gradient onto the old one. Forget zero_grad and nothing crashes - the loss just quietly stops improving. That is the worst kind of bug and they should meet it as a story, not a surprise.
-      Then run it. Quarter of a second. Let the room react to that, because the reaction is the misconception dying.
-      TIMING VALVE: if you are past the 35-minute mark on this slide, skip the loss-curve figure discussion and go straight to the linear-algebra beat. Never cut the linear-algebra beat.
+      20 min - the whole of segment 2, three steps, and this is the segment that overruns. Announce a budget per step and hold it: DataLoader 6, model 8, loss + optimiser + the init check 6.
+      SHAPE: each step is a guided cell (numbers blanked out in the comments, plus a small fill-in you can get wrong for free) followed immediately by the canonical runnable cell. Say the rule once, and say it as permission, not as a fallback: do the guided cell, and if you are more than three minutes behind, run the canonical one and keep moving. At 60 minutes pasting is the CORRECT move - the thing that must not slip is the train loop on the next slide.
+      Step 1, DataLoader, 6 min. 157 batches - 156 of 64 plus a last one of 16, which is why the loop says len(images) and not 64. The fill-in worth arguing about is shuffle on the TEST loader: the answer is False, and the reason is better than the answer - you are counting right answers, and a count does not care about order, but tonight's block 1 needs predictions lined up with images so it can show them their own mistakes.
+      Step 2, the model, 8 min. Read the shapes as a sentence out loud: take 784 numbers, mix them into 128, throw away the negatives, mix those into 10, call the biggest one your answer. Then make them count the parameters on paper: 784x128 + 128 + 128x10 + 10 = 101,770. Most people forget the biases; the checker says so kindly.
+      Also on step 2, plant the trap that tonight's block 2 depends on: the model is built inside fresh_model(), and there is a reason. Do not explain it yet - slide 9 does, at the homework launch. Just insist they always call it.
+      Step 3, loss and optimiser, 6 min - and do NOT skip the loss-at-init check, whatever the clock says. -log(1/10) = 2.3026, their untrained model prints 2.3117, and that agreement means the labels line up with the images and nothing is transposed. It is the single most transferable habit in the lab and it is the checkpoint for this segment: nobody leaves step 3 without a number near 2.30.
+      What used to be here and is not any more: step 4 has its own slide and its own twenty minutes, because the rescope makes the train loop the point of the hour rather than the tail of a 60-minute build.
+      TIMING VALVE: if you hit minute 20 of this segment mid-step-3, paste the canonical STEP-3 cell for the room, read the 2.30 line off the screen, and go. Do not carry the overrun into the loop.
     </aside>
   </section>
-  <section data-label="It's all linear algebra">
+  <section data-label="The loss falls">
     <div class="vsp-slide">
       <div class="vsp-orb green" style="width:420px;height:420px;top:-140px;left:-120px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:14px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 2, second half · the Karpathy beat · notebook §"It really is all linear algebra"</div>
-          <h2 class="vsp-h2" style="font-size:36px">Compute one forward pass <span class="vsp-glow">by hand.</span> Match the model to 1e-5.</h2>
+          <div class="vsp-kicker">Segment 3 · 20 min · step 4 + the loss curve + the shape chain · cells 22–27 · <b>the reason the room is booked</b></div>
+          <h2 class="vsp-h2" style="font-size:36px">Five lines, 471 steps — <span class="vsp-glow">and your loss falls.</span></h2>
         </div>
-        <div class="p-code" style="font-size:15px;text-align:center">logits = relu(x @ <b>W1</b>.T + <b>b1</b>) @ <b>W2</b>.T + <b>b2</b></div>
-        <div class="p-chain" style="justify-content:center">
-          <span class="sh">x (784,)</span><span class="op">@ W1.T (784,128)</span><span class="sh">→ (128,)</span>
-          <span class="op">+ b1 · ReLU</span><span class="sh">(128,)</span><span class="op">@ W2.T (128,10)</span>
-          <span class="sh">→ (10,)</span><span class="op">argmax</span><span class="sh">7</span>
-        </div>
-        <div class="p-run">
-          <div class="r"><div class="topbar"></div><div class="n">W1</div><div class="v">128×784</div><div class="s">100,352 numbers<br>layer-1 weights</div></div>
-          <div class="r"><div class="topbar"></div><div class="n">b1 · b2</div><div class="v">138</div><div class="s">the biases nobody counts</div></div>
-          <div class="r"><div class="topbar"></div><div class="n">W2</div><div class="v">10×128</div><div class="s">1,280 numbers<br>layer-2 weights</div></div>
-          <div class="r warn"><div class="topbar"></div><div class="n">max |hand − model|</div><div class="v">0.0</div><div class="s">tolerance 1e-5 · torch <i>and</i> numpy</div></div>
-        </div>
-        <div class="p-grid2" style="grid-template-columns:1fr 1fr;align-items:start;gap:16px">
-          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
-            <h3 style="font-size:15px">Why <span class="p-io">.T</span> is there — and why it is the bug</h3>
-            <p style="font-size:12.5px"><span class="p-io">nn.Linear</span> stores weights as <b style="color:#fff">(out, in)</b> — 128 rows of 784 — so it can compute <span class="p-io">x @ W.T</span>. Shape confusion lives at exactly this boundary. Which is why the shape-debug ritual is a <b style="color:var(--vsp-accent)">rehearsed</b> move, not an improvisation.</p>
+        <div class="p-grid2" style="grid-template-columns:1.06fr 0.94fr;align-items:start;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="p-code">for images, labels in train_loader:
+    predictions = model(images)          <i># FORWARD</i>
+    loss = loss_fn(predictions, labels)  <i># SCORE</i>
+    optimizer.zero_grad()                <i># RESET</i>
+    loss.backward()                      <i># BACKWARD</i>
+    <b>optimizer.step()</b>                     <i># the only line that moves a weight</i></div>
+            <div class="p-chain">
+              <span class="sh">x (784,)</span><span class="op">@ W1.T</span><span class="sh">(128,)</span>
+              <span class="op">+ b1 · ReLU</span><span class="sh">(128,)</span><span class="op">@ W2.T</span>
+              <span class="sh">(10,)</span><span class="op">argmax</span><span class="sh">7</span>
+            </div>
           </div>
-          <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
-            <h3 style="font-size:15px">Where the "non-linearity" actually is</h3>
-            <p style="font-size:12.5px">For this image <b style="color:#fff">48 of the 128</b> hidden units came out negative and ReLU set them to exactly zero — so 80 units did all the work. <b style="color:var(--vsp-accent)">Different image, different 80.</b> That switching is the whole of it. Without it, two stacked Linears collapse into one.</p>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
+              <h3 style="font-size:15px">What every screen shows, in order</h3>
+              <table class="p-tbl tight" style="font-size:12.5px;margin-top:3px">
+                <tr class="hi"><td style="width:52%">first batch, untrained</td><td><b>2.3117</b> ≈ ln 10</td></tr>
+                <tr><td>epoch 1 average loss</td><td><b>0.7554</b></td></tr>
+                <tr><td>epoch 2</td><td><b>0.3195</b></td></tr>
+                <tr><td>epoch 3</td><td><b>0.2585</b> — below 0.5 ✓</td></tr>
+                <tr><td>gradient steps</td><td><b>471</b> · 157 per epoch</td></tr>
+              </table>
+            </div>
+            <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
+              <h3 style="font-size:15px">Four arrays. That is the entire model.</h3>
+              <p style="font-size:12.5px"><span class="p-io">W1 128×784</span> · <span class="p-io">b1 128</span> · <span class="p-io">W2 10×128</span> · <span class="p-io">b2 10</span> = <b style="color:#fff">101,770 numbers</b>, printed by one cell. ReLU holds none of them — and is the only reason two stacked Linears do not collapse into one.</p>
+            </div>
           </div>
+        </div>
+        <div class="p-lab">
+          <div class="box chk"><div class="h">Lab checkpoint</div><p><b>Every</b> screen: 2.31 falling below 0.5 by epoch 3. Instructor sweep, <b>person by person</b>.</p></div>
+          <div class="box fail"><div class="h">Likely failure</div><p>The five lines in the wrong order — loss computed <i>after</i> the step, so nothing improves.</p></div>
+          <div class="box rec"><div class="h">Recovery</div><p>Paste the canonical <span class="p-io">train()</span> cell, then read the correct order aloud <b>against what they had</b>.</p></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 2 · the linear-algebra beat · x @ W1.T + b1</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 3 · the train loop, the curve, and the shape chain</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      25 min, the second half of segment 2's 60. Protect this. It is the reason the lab exists.
-      Open by naming the promise from slide 1: we said enough mechanics to believe "it's all linear algebra". Here is the receipt.
-      Run the shapes cell first. Four arrays, 101,770 numbers, printed with their shapes. Then read the shape chain left to right and watch the mythology drain out of the word "neural".
-      Then the hand-computed forward pass, and do it slowly. Two matmuls and a max(0,x), in torch; then the SAME arithmetic in plain numpy with no torch anywhere; then model(x). All three columns agree to the last printed decimal, and max |difference| prints as 0.00e+00 against a tolerance of 1e-5. Ask the room what that proves. The answer you want: model(x) was never doing anything else.
-      Say why the assert uses a tolerance and not ==: floating-point matmuls are bit-identical on THIS machine and are not guaranteed across machines or torch versions. That is a real engineering fact about ML systems and it is worth thirty seconds (SI-24d, for the record).
-      Then the two side beats, both short. The .T: nn.Linear stores (out, in), which is exactly where shape bugs happen - so print shapes, do not guess. And ReLU: 48 of 128 units zeroed for this image, a different 48 for the next one. That switching IS the non-linearity; without it the two Linears collapse into one matrix and the network can only draw straight lines. That is also the honest one-sentence answer to "what does deep mean?"
-      Last: the logits are not probabilities. They run -9.5 to 7.7; softmax makes the percentages. That is LSN-1.2's distinction landing on their own model, and it is the smoothest possible bridge into segment 3.
+      20 min - segment 3, and the whole hour exists for it. Protect it absolutely: if the build overran, you paste, you do not skip this.
+      Step 4, the loop, 8 min. Put the five lines on the board in the wrong order and have the room sort them. Then the distinction that makes it click: loss.backward() COMPUTES gradients, optimizer.step() APPLIES them, and zero_grad() is there because torch ADDS each new gradient onto the old one. Forget zero_grad and nothing crashes - the loss just quietly stops improving. That is the worst kind of bug and they should meet it as a story, not a surprise.
+      Then run it, 5 min. Quarter of a second of compute, and the reaction in the room is the misconception dying. Read the four numbers off their own screens - 2.3117, 0.7554, 0.3195, 0.2585 - and put the loss-curve figure up.
+      THE CHECKPOINT IS PER-PERSON, NOT PER-ROOM, and it is the one thing that cannot be recovered from a recording. Sweep the room by name while the curves are on screen: everybody has 2.3-ish falling below 0.5 by epoch 3. Anyone who does not, pastes the canonical train() cell now and runs it before you move on. Nobody leaves without their own falling loss - that sentence is the contract of this lesson.
+      Then the shape chain and the arrays, 7 min - the "it really is all linear algebra" beat, kept live because it costs one cell. Print the four arrays with their shapes: 101,770 numbers, nothing else in there. Read the chain left to right - 784 in, 128, ReLU, 10, argmax - and watch the mythology drain out of the word "neural". One sentence on ReLU: without it the two Linears collapse into a single matrix and the network can only draw straight lines. That is also the honest one-sentence answer to "what does deep mean?"
+      Then the logits: not probabilities, they run -9.5 to 7.7 and softmax makes the percentages. That is LSN-1.2's distinction landing on their own model, and it is the bridge into tonight's block 1.
+      RELOCATED, and hand it over explicitly rather than dropping it: the hand-computed forward pass (cell 28) is homework block 4 - torch, then plain numpy, then model(x), all three agreeing with max |difference| printing 0.00e+00 against a tolerance of 1e-5. Say what it proves, because that is what makes them bother tonight: model(x) was never doing anything else. Two things to say now so they can run it alone - the assert uses a tolerance and not == because floating-point matmuls are bit-identical on THIS machine and not guaranteed across machines or torch versions (SI-24d); and nn.Linear stores weights as (out, in), 128 rows of 784, which is why the formula carries .T and why every shape bug in the notebook lives at that boundary. Print shapes, do not guess. The wrap slide's homework card lists block 4 in one line; the explanation is here, so do not re-open it there.
       If somebody asks about backprop: today you trust the chain rule the way you trust a compiler. Offer the <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">3Blue1Brown chapter</a> - "But what is a neural network?", 18 min, youtube.com/watch?v=aircAruvnKk (verified 2026-07-29) - as the optional pre-work for LSN-1.5 and move on. Do not start deriving anything.
     </aside>
   </section>
-  <section data-label="Evaluate">
+  <section data-label="Tonight · block 1 · evaluate">
     <div class="vsp-slide">
       <div class="vsp-orb navy" style="width:460px;height:460px;bottom:-170px;left:-120px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:13px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 3 · 30 min · notebook §"Evaluate" · the LSN-1.3 callback</div>
-          <h2 class="vsp-h2" style="font-size:35px">92.77% on 10,000 digits it had never seen.<br><span class="vsp-glow">Now read it like a report card.</span></h2>
+          <div class="vsp-kicker">Tonight · homework block 1 · 25 min · notebook §"Segment 3", cells 30–39 · the LSN-1.3 callback</div>
+          <h2 class="vsp-h2" style="font-size:35px">92.77% on 10,000 digits it never saw.<br><span class="vsp-glow">Tonight you read it like a report card.</span></h2>
         </div>
         <div class="p-run">
           <div class="r warn"><div class="topbar"></div><div class="n">on data it trained on</div><div class="v">94.33%</div><div class="s"><b>not a result</b></div></div>
@@ -570,37 +580,36 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
             <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">3 and 5 share a spine and an open top; 4 and 9 differ by whether one stroke closes. <b style="color:#fff">The model fails exactly where a human hesitates</b> — the most reassuring thing a matrix can say.</p>
           </div>
           <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
-            <h3 style="font-size:15px">And the seed from slide 4, cashed</h3>
+            <h3 style="font-size:15px">And the seed from the dataset tour, cashed</h3>
             <p style="font-size:12.5px">Digit <b style="color:#fff">5</b> was the <b>rarest</b> class in training (5,421). It is now <b style="color:var(--vsp-accent)">second-worst on recall</b> (90.3%), and digit <b style="color:#fff">3</b> — which 5s and 8s both collapse into — is the <b>least trustworthy answer the model gives</b> (precision 87.5%).</p>
             <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:7px">LSN-0.2 → LSN-1.3 → their own matrix, in one line.</p>
           </div>
         </div>
         <div class="p-lab">
-          <div class="box chk"><div class="h">Lab checkpoint</div><p>Test accuracy <b>+</b> a rendered 10×10 matrix, and each person can <b>name their worst digit pair</b>.</p></div>
-          <div class="box fail"><div class="h">Likely failure</div><p><i>"I got 99.8%!"</i> — evaluated on training data. Or transposed axes.</p></div>
-          <div class="box rec"><div class="h">Recovery</div><p>The helper <b>hard-labels TRUE (rows) vs PREDICTED (columns)</b>. Any suspicious score gets one question first: <b>"which loader did you use?"</b></p></div>
+          <div class="box chk"><div class="h">Your checkpoint</div><p>Test accuracy <b>+</b> a rendered 10×10 matrix, the drill workspace <b>passing its grader</b>, and you can <b>name your worst digit pair</b>.</p></div>
+          <div class="box fail"><div class="h">The trap, built into the cells</div><p><i>"I got 99.8%!"</i> — evaluated on training data. Or transposed axes.</p></div>
+          <div class="box rec"><div class="h">The fix, on your own</div><p>The helper <b>hard-labels TRUE (rows) vs PREDICTED (columns)</b>. Any suspicious score gets one question first: <b>"which loader did I use?"</b></p></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 3 · accuracy + your own confusion matrix</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Homework block 1 · accuracy + your own confusion matrix · 25 min</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      18 min of segment 3's 30. The notebook does the arithmetic; you run the conversation.
-      Open with the trap, deliberately, because the notebook prints both numbers side by side: 94.33% on the data it trained on, 92.77% on data it has never seen. Ask which one they would put in a proposal. Then the rule: when somebody reports an accuracy, the first question is not "how high" - it is "on what data?".
-      Be honest that our gap is small, only 1.6 points, and say why: three epochs on 10,000 digits has not memorised much yet. Promise them a model that memorises PERFECTLY in segment 4, because that is where the "99.8%" story actually lands.
-      Then the matrix. Point at the axes and say them out loud - rows are truth, columns are what the model said - because a transposed matrix is the single most common misreading and the plot is hard-labelled to prevent it. Note that the notebook builds the matrix by hand from two arrays of 10,000 integers and then has sklearn confirm it cell for cell. Library confirms, never replaces. That is LSN-1.3's discipline.
-      Now the reading, and this is the part worth the 30 minutes: 92.77% hides an eleven-point spread. Digit 1 at 98.2%, digit 8 at 87.4%. One number, and it averages over a class that is genuinely much harder.
-      Cash the digit-5 seed from slide 4 explicitly. Rarest class in training, second-worst recall. That is not a coincidence, and it is the whole of LSN-1.6 in one row of a table.
-      Then the error-examples figure - the actual images the model got wrong, with its confidence. Two things to say: some are genuinely ambiguous, which is where more data stops helping; and some it was over 90% sure about, which is the most expensive output any model produces because nothing downstream flags it.
-      Keep an eye on the room: everybody should be able to answer "what is your worst pair?" before you move on. That is the checkpoint, and it is per-person, not per-room.
+      2 min of the closing 10 - the first of four homework blocks walked on screen. This slide used to be an 18-minute live segment; the rescope hands it to them, so your job here is to make it runnable alone, not to teach it. Everything below is what you SAY so they can run it tonight - the runbook moves with the work.
+      Open the closing segment with the bridge, one sentence: what you did in the last forty minutes - data, model, loss, gradient descent - is four fifths of the supervised story; the fifth is evaluation and it is tonight's first block, on the model you just trained. Then walk the block.
+      Block 1, 25 min, cells 30-39, and name the trap FIRST because the cells print both numbers side by side: 94.33% on the data it trained on, 92.77% on data it never saw. Tell them which one goes in a proposal, and give them the rule to keep: when somebody reports an accuracy, the first question is not "how high" - it is "on what data?". Our gap is small, 1.6 points, because three epochs on 10,000 digits has not memorised much yet - and promise them the model that memorises PERFECTLY in block 2, because that is where the "99.8%" story lands.
+      Then tell them how to read their matrix, because nobody is standing behind them: rows are truth, columns are what the model said. A transposed matrix is the single most common misreading and the plot is hard-labelled to prevent it. The notebook builds the matrix by hand from two arrays of 10,000 integers and then has sklearn confirm it cell for cell - library confirms, never replaces, which is LSN-1.3's discipline.
+      Point at the eleven-point spread on this slide and say what they are looking for tonight: 92.77% hides digit 1 at 98.2% and digit 8 at 87.4%. One headline number averaging over a class that is genuinely much harder. And cash the digit-5 seed explicitly: rarest class in training, second-worst recall, which is the whole of LSN-1.6 in one row of a table.
+      Two things they will otherwise skim past: the error-examples figure - the actual images it got wrong, with its confidence - where some are genuinely ambiguous (that is where more data stops helping) and some it was over 90% sure about (the most expensive output any model produces, because nothing downstream flags it). And the all-60,000 run at the end of the block: one number moves, and they should write down which.
+      The checkpoint is theirs now, so state it as a test they can apply alone: the drill workspace passes its grader, and they can name their worst digit pair - typically 4/9 or 3/5. Anyone who cannot is not finished. Say the Slack thread is open tonight and that a stuck notebook at 21:00 is a normal event, not an admission.
     </aside>
   </section>
-  <section data-label="Reading drill">
+  <section data-label="Tonight · block 1 · the drill">
     <div class="vsp-slide">
       <div class="vsp-orb yellow" style="width:500px;height:500px;top:-180px;right:-130px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:14px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 3, second half · the drill, asked out loud · 10 min</div>
+          <div class="vsp-kicker">Tonight · block 1's graded drill · three questions, in the notebook workspace, with its grader</div>
           <h2 class="vsp-h2" style="font-size:35px">"Would you ship this for reading<br><span class="vsp-glow">handwritten invoice totals?"</span></h2>
         </div>
         <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:13px">
@@ -621,37 +630,36 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
               <tr class="hi"><td>a 5-digit invoice total, all five right</td><td><b>0.9277<sup>5</sup> = 68.7%</b></td></tr>
               <tr><td>same, with the best model here (97.04%)</td><td><b>86.1%</b></td></tr>
             </table>
-            <p style="font-size:12.5px;margin-top:9px">One 4 read as a 9 turns <b style="color:#fff">$4,231</b> into <b style="color:var(--vsp-accent)">$9,231</b> — and nothing downstream flags it, because the model was confident. <b style="color:#fff">Per-digit accuracy compounds.</b></p>
+            <p style="font-size:12.5px;margin-top:9px">One 4 read as a 9 turns <b style="color:#fff">$4,231</b> into <b style="color:var(--vsp-accent)">$9,231</b> — and nothing downstream flags it, because the model was confident. <b style="color:#fff">Per-digit accuracy compounds.</b> No numeric answer here — <b style="color:var(--vsp-accent)">an answer with a number attached</b> is the bar.</p>
           </div>
           <div class="vsp-card" style="padding:14px 17px 12px"><span class="topbar green"></span>
             <h3 style="font-size:15.5px">The plan expected ≥95%. We got 92.77%.</h3>
-            <p style="font-size:12.5px;margin-bottom:8px">Not a bug — <b style="color:#fff">the first finding of the lab.</b> Same architecture, same 3 epochs, all <b>60,000</b> digits instead of 10,000:</p>
+            <p style="font-size:12.5px;margin-bottom:8px">Not a bug — <b style="color:#fff">the first finding of the lab</b>, and the last cell of block 1. Same architecture, same 3 epochs, all <b>60,000</b> digits instead of 10,000:</p>
             <table class="p-tbl tight" style="font-size:13px">
               <tr><td style="width:52%">10,000 digits</td><td><b>92.77%</b> · 723 errors</td></tr>
               <tr class="hi"><td>60,000 digits</td><td><b>97.04%</b> · 296 errors</td></tr>
             </table>
-            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">Nobody tuned anything. <b style="color:var(--vsp-accent)">Data did that</b> — and it is exactly the next 30 minutes.</p>
+            <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px">Nobody tuned anything. <b style="color:var(--vsp-accent)">Data did that</b> — and it is exactly what block 2 measures.</p>
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 3 · the reading drill · and the ≥95% finding</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Homework block 1 · the graded reading drill · and the ≥95% finding</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      12 min, the tail of segment 3's 30. Three questions, asked live, answered by people not by you.
-      Q1 first, and make them read the matrix rather than remember the slide. The answer is 4, twenty-nine of them, read DOWN the "said 9" column. Half the room will read the row instead and answer 4 as well - which happens to be right here, so make the distinction explicit anyway: the column is what gets mistaken FOR a 9, the row is what a 9 gets turned INTO.
-      Q2 is the one that earns the LSN-1.3 callback. Fours called 9 are false positives for class 9, so precision. Nines called 4 are misses, so recall. Same two digits, two different metrics, and which one the client cares about depends entirely on what happens downstream. If a participant answers "both", that is DEFENSIBLE and worth saying so - the notebook's grader gives exactly that verdict.
-      Q3 is the pre-sales question and it has no numeric answer. Let two or three people answer before you show the arithmetic. Then show it: 0.9277 to the fifth power is 68.7%. Their model reads a five-digit invoice total correctly about two times in three. Even the 97% model gets 86%. Per-digit accuracy compounds, and almost nobody does that multiplication in a meeting.
-      Then the money: a 4 read as a 9 turns $4,231 into $9,231, and the model was confident, so nothing flags it. Both directions are defensible here - "no, not unattended, ship it behind a confidence threshold with human review" or "yes, as a first pass, since a human checks every total anyway". What fails is either answer with no number attached. Say that; it is the grading standard.
-      NOW THE ≥95% BEAT, and frame it as a finding, not an apology. The lesson plan said expect ≥95%. Their model got 92.77% because it saw a sixth of the data. Run the all-60,000 cell live - it takes a second - and get 97.04%. Same architecture, same epochs, nobody tuned anything. Ask the room what changed. The answer they give you is the thesis of the next thirty minutes, and it is much better coming from them.
+      2 min of the closing 10. This was 12 live minutes of Socratic questioning; tonight they answer the same three questions into a graded workspace, alone. So do not ask them here - show them the shape of a passing answer and let them do the work at home.
+      Q1 and Q2 are mechanical matrix-reading and the grader checks them, so give the reading rule rather than the answer: the COLUMN is what gets mistaken FOR a 9, the ROW is what a 9 gets turned INTO. The numbers on this slide are the reference run - twenty-nine 4s called 9, thirty-six 9s called 4 - and theirs will be close, not identical. On Q2, tell them "both" is DEFENSIBLE and the grader says so: a 4 called 9 is a false positive for class 9, so precision; a 9 called 4 is a miss, so recall. Same two digits, two different complaints, and which one the client cares about depends entirely on what happens downstream.
+      Q3 is the graded one and it has no numeric answer, so spend your sixty seconds here. Do the compounding arithmetic on screen once, because it is the beat that changes a client's mind and it is what their answer has to use: 0.9277 to the fifth power is 68.7%, so their model reads a five-digit invoice total correctly about two times in three; even the 97% model gets 86%. Almost nobody does that multiplication in a meeting. Then the money - a 4 read as a 9 turns $4,231 into $9,231, and the model was confident, so nothing flags it.
+      State the grading standard out loud, because it is the whole point of the block: both directions pass - "no, not unattended, ship it behind a confidence threshold with human review" or "yes, as a first pass, since a human checks every total anyway". What fails is either answer with no number attached.
+      Last, the ≥95% beat, and frame it as a finding rather than an apology: the lesson plan said expect ≥95%, they will get 92.77% because they trained on a sixth of the data, and the last cell of block 1 runs all 60,000 and returns 97.04% with nobody tuning anything. Tell them to write down what changed. Their own one-word answer - data - is the thesis of block 2, and it lands harder for having been theirs.
     </aside>
   </section>
-  <section data-label="Break it">
+  <section data-label="Tonight · block 2 · break it">
     <div class="vsp-slide">
       <div class="vsp-orb green" style="width:430px;height:430px;top:-150px;left:-110px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:13px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 4 · 30 min · notebook §"Break it on purpose" · built for GAP-8</div>
+          <div class="vsp-kicker">Tonight · homework block 2 · 25 min · cells 41–47 · <b>this is your graded one-change artifact</b></div>
           <h2 class="vsp-h2" style="font-size:35px">Starve it. Same model, same epochs — <span class="vsp-glow">only the data shrinks.</span></h2>
         </div>
         <div class="p-run">
@@ -679,32 +687,31 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
           </div>
         </div>
         <div class="p-lab">
-          <div class="box chk"><div class="h">Lab checkpoint</div><p>The <b>4-row size-vs-accuracy table</b> and the degradation curve plotted.</p></div>
-          <div class="box fail"><div class="h">Likely failure</div><p>Forgetting to re-initialise, so run <i>n</i> fine-tunes run <i>n−1</i> — <b>the curve comes out flat</b>.</p></div>
-          <div class="box rec"><div class="h">Recovery</div><p><span class="p-io">fresh_model()</span> on every run, and check the first-batch-loss column: <b>2.31 · 2.34 · 2.34 · 2.34</b>. If time is tight, drop the 10,000 row.</p></div>
+          <div class="box chk"><div class="h">Your checkpoint</div><p>The <b>4-row size-vs-accuracy table</b>, the control run, and the curve <b>saved to disk</b>.</p></div>
+          <div class="box fail"><div class="h">The trap, run it first</div><p>Forgetting to re-initialise, so run <i>n</i> fine-tunes run <i>n−1</i> — <b>the curve comes out flat</b>.</p></div>
+          <div class="box rec"><div class="h">The fix, on your own</div><p><span class="p-io">fresh_model()</span> on every run, and check the first-batch-loss column: <b>2.31 · 2.34 · 2.34 · 2.34</b>. Compute is ~6 s — <b>run every row.</b></p></div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 4 · break it on purpose · sets up LSN-1.6</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Homework block 2 · break it on purpose · graded · sets up LSN-1.6</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      16 min of segment 4's 30. This half hour is the one they keep. Do not let the build overrun into it.
-      RUN THE TRAP FIRST, before the four honest runs, because a mistake you have seen is not a mistake you make twice. The notebook takes a throwaway clone of the trained lab model and "retrains" it on 100 examples without re-initialising: 91.16%. Then fresh_model() and the same 100 examples: 53.38%. Ask what the difference is. Then name the diagnostic, because it is one line and it generalises: an honest run's first batch loss is ~2.30. If run 2 starts at 0.19, run 2 is not a new model.
-      Then the four runs. Everything held fixed - architecture, epochs, batch size, learning rate, seed, test set - and only the data shrinks. 92.77, 84.23, 53.38, 23.88. Point at the first-batch-loss column and say it is their proof they did not fall into the trap.
-      Read the deltas out loud in order, because the SHAPE is the lesson: dropping 90% of the data costs 8.5 points, the next 90% costs 30.8. It is not linear, it is a cliff, and the cliff is exactly where most client conversations live.
-      NOW TAKE THE OBJECTION SERIOUSLY, because an engineer in the room is about to make it: "you only gave them three epochs." Correct, and the notebook answers it with a control run - every size retrained to the same ~471 gradient steps. 100 examples with 236 epochs goes from 53.4% to 75.6%. So the objection is half right, and the half it gets wrong is the important half.
-      Then land the memorisation beat, which is the best thing in this segment: that 236-epoch model scores 100.00% on its own 100 images. Perfect. THAT is the "99.8%" people report - not a lie and not a bug, because there was nothing else in 100 examples to learn, so learning and memorising became the same operation.
-      Finish with the sentence, and make them write it down: you cannot buy your way out of a small dataset with compute. The missing thing is not GPU hours, it is labelled examples.
-      TIMING: if you arrived at this slide with less than 20 minutes left, drop the 10,000-example row (start the table at 1,000) and keep the control run. The control run is what makes the argument unanswerable.
+      2 min of the closing 10, and of the four blocks this is the one to sell hardest: it is the graded artifact, it is the chart LSN-1.6 opens on, and it is the block they will still be using in client meetings next year.
+      Say the grading change explicitly, because the old homework was different and people remember: the "re-run with exactly one change" assignment is THIS. Training-set size is the single isolated change, the four-row table is its comparison, and the write-up in block 3 is its three sentences. One notebook, not two - which is why homework is 75 minutes and not 100.
+      TELL THEM TO RUN THE TRAP FIRST, before the four honest runs, because a mistake you have seen is not a mistake you make twice - and tonight nobody is standing behind them to spot it. The cell takes a throwaway clone of their trained model and "retrains" it on 100 examples without re-initialising: 91.16%. Then fresh_model() and the same 100 examples: 53.38%. That is a 38-point lie that never raises, never warns and just flattens the curve - which is exactly the shape that would tell a client data volume does not matter. Then hand them the diagnostic, one line and it generalises: an honest run's first batch loss is ~2.30. If run 2 starts at 0.19, run 2 is not a new model. This is the plant from the build slide being cashed - fresh_model() every time.
+      Then the four runs, everything held fixed - architecture, epochs, batch size, learning rate, seed, test set - and only the data shrinking: 92.77, 84.23, 53.38, 23.88. Tell them to read the deltas in order, because the SHAPE is the lesson: dropping 90% of the data costs 8.5 points, the next 90% costs 30.8. Not linear - a cliff, and the cliff is exactly where most client conversations live.
+      Then pre-empt the objection they will make to themselves, or that a client will make to them: "you only gave them three epochs". Correct, and the control run answers it - every size retrained to the same ~471 gradient steps, and 100 examples with 236 epochs goes from 53.4% to 75.6%. Half right, and the half it gets wrong is the important half. That 236-epoch model scores 100.00% on its own 100 images: perfect, and not a bug - with 100 examples there was nothing else to learn, so learning and memorising became the same operation. THAT is the "99.8%" a colleague reports.
+      The sentence to make them write down: you cannot buy your way out of a small dataset with compute. The missing thing is not GPU hours, it is labelled examples.
+      Compute is not the constraint tonight - all eleven trainings in this notebook total about six seconds - so the old "if time is tight, drop the 10,000 row" valve is gone. Every row gets run.
     </aside>
   </section>
-  <section data-label="The curve">
+  <section data-label="Tonight · block 2 · the curve">
     <div class="vsp-slide">
       <div class="vsp-orb yellow" style="width:540px;height:540px;top:-200px;right:-150px"></div>
       <div class="vsp-orb navy" style="width:380px;height:380px;bottom:-140px;left:-100px"></div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:12px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 4, second half · the artifact of the whole lab · <b>reused in LSN-1.6</b></div>
+          <div class="vsp-kicker">Tonight · what block 2 plots · the artifact of the whole lab · <b>LSN-1.6 opens on it</b></div>
           <h2 class="vsp-h2" style="font-size:36px">No data, no model. <span class="vsp-glow">And here is the chart.</span></h2>
         </div>
         <div class="vsp-card" style="padding:13px 18px 11px"><span class="topbar yellow"></span>
@@ -720,7 +727,7 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.02fr 0.98fr;align-items:start;gap:17px">
           <div class="p-quote">
-            <div class="meta">Vlad · on what he carried out of 6MAP · Dorel's rule in action</div>
+            <div class="meta">The program sponsor · on what he carried out of Project Atlas · the director's rule in action</div>
             <p>"I need data in order for the model — it was a truism, but it's the truth. It can only infer to a certain point."</p>
           </div>
           <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar green"></span>
@@ -730,16 +737,16 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
         </div>
         <div class="p-callout" style="font-size:14.5px;padding:13px 18px">Straight line against a <b>log</b> x-axis: every <b>10×</b> more labelled data buys a roughly constant number of points — and costs 10× more to label. <b>That is the economics of every supervised ML proposal VSP will ever write.</b></div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Segment 4 · the degradation curve · bring it to LSN-1.6</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Homework block 2 · the degradation curve · bring it to LSN-1.6</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      14 min, the tail of segment 4's 30. Slow down here; this is the slide they will quote back to a client.
-      Put the plotted figure on screen from the notebook, not just this table, and read the SHAPE first: it is close to a straight line against a log x-axis. Say what that means in business terms - every 10x more labelled data buys roughly the same number of points, and every 10x costs about 10x more to label. That single sentence is the economics of every supervised ML proposal we will ever write.
-      The 200-example row is not interpolated - the notebook trains it, because the LSN-1.6 prospect says "a few hundred site photos". 64.41% at the lab's budget, 82.90% trained to exhaustion, on a problem VASTLY easier than construction photos: ten classes, centred, 28x28, no lighting, no occlusion, no camera angle, and every label already correct by hand.
-      Then the client move, and this is the pre-sales skill the module exists for. When a client says "we have some data", our next question is not a raised eyebrow, it is arithmetic: how much, how labelled, how fresh, and who decides what the label means? Asked from a chart you plotted yourself, that sounds like competence. Asked from a slide, it sounds like a stall.
-      Read Vlad's 6MAP quote out loud, once, and let it sit. Everyone in this room has now measured the thing he is describing.
-      CRITICAL - do not let the segment end on pessimism, because a "no" loses the deal and it is also not true. Every point on that curve was trained from scratch, and nobody does that on images any more. Transfer learning shifts the whole curve left. So the honest answer to "we only have 200 photos" is not "impossible", it is "not from scratch - here is what a pilot with a pre-trained backbone would look like, and here is the labelling we would need alongside it". Flag that this is the same prompt / RAG / fine-tune trade-off they meet in MOD-2.
-      Last thirty seconds, and it is administrative but it matters: the curve is saved to outputs/lsn-1.4/degradation_curve_<user>.json AND printed as a table in the notebook. LSN-1.6 opens on it. Tell them to keep it.
+      2 min of the closing 10 - the payoff slide of the homework, and the one thing on it you actually deliver live is the shape and the "keep it" instruction. This was fourteen live minutes; it is now two, so pick the three sentences below and say only those.
+      Put this table up (the plotted figure is in their notebook, they will see it tonight) and read the SHAPE, not the points: close to a straight line against a log x-axis, so every 10x more labelled data buys roughly the same number of points and every 10x costs about 10x more to label. Linear cost, sub-linear benefit. That single sentence is the economics of every supervised ML proposal VSP will ever write, and it is the sentence they are plotting tonight.
+      Say the two rows that matter for their write-up. The 200-example row is not interpolated - block 2 trains it, because the LSN-1.6 prospect arrives with "a few hundred site photos": 64.41% at the lab's budget, 82.90% trained to exhaustion, on a problem VASTLY easier than construction photos - ten classes, centred, 28x28, no lighting, no occlusion, no camera angle, every label already correct by hand. So 64% is a CEILING, not a forecast.
+      Then the client move, which is the pre-sales skill the module exists for, in one line: when a client says "we have some data", the next question is not a raised eyebrow, it is arithmetic - how much, how labelled, how fresh, and who decides what the label means. Asked from a chart you plotted yourself that sounds like competence; asked from a slide it sounds like a stall.
+      Read the program sponsor's Project Atlas quote out loud, once, and let it sit. By tomorrow morning everyone in this room will have measured the thing he is describing.
+      DO NOT END ON PESSIMISM - and put this in their heads before they go home with a collapsing accuracy curve, because a "no" loses the deal and it is also not true. Every point on that curve was trained from scratch, and nobody does that on images any more; transfer learning shifts the whole curve left. So the honest answer to "we only have 200 photos" is not "impossible", it is "not from scratch - here is what a pilot with a pre-trained backbone would look like, and here is the labelling we would need alongside it". Same prompt / RAG / fine-tune trade-off they meet in MOD-2.
+      Last fifteen seconds, administrative and load-bearing: the curve saves to outputs/lsn-1.4/degradation_curve_<user>.json and prints as a table. LSN-1.6's pre-work task 3 is that file, and that session opens on it. Tell them to keep it.
     </aside>
   </section>
   <section data-label="Wrap">
@@ -749,7 +756,7 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:13px">
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="vsp-kicker">Segment 5 · 15 min · the vocabulary, the homework, and what is next</div>
+          <div class="vsp-kicker">Segment 4 · 10 min · the mapping, tonight's four blocks, and what is next</div>
           <h2 class="vsp-h2" style="font-size:35px">What you just did <span class="vsp-glow">is the whole supervised-learning story.</span></h2>
         </div>
         <div class="p-grid2" style="grid-template-columns:1.06fr 0.94fr;align-items:start;gap:17px">
@@ -765,43 +772,43 @@ pixel range = [0.0, 1.0]   dtype = float32</div>
               <tr><td>the 10×10 table</td><td><b>confusion matrix</b> · LSN-1.3</td></tr>
               <tr><td>the accuracy-vs-size curve</td><td><b>data requirements</b> · LSN-1.6</td></tr>
             </table>
+            <p style="font-size:11.5px;color:var(--vsp-on-dark-muted);margin-top:7px">First five rows: <b style="color:#fff">this room</b>. Last three: <b style="color:var(--vsp-accent)">tonight</b>.</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:11px">
             <div class="vsp-card" style="padding:13px 16px 11px"><span class="topbar yellow"></span>
-              <h3 style="font-size:15px">Homework — graded · this <i>is</i> the ASM-1 artifact</h3>
-              <p style="font-size:12.5px;margin-bottom:7px">Re-run with <b style="color:var(--vsp-accent)">exactly one change</b> — layer width, epochs, or training-set size — plus <b style="color:#fff">three sentences</b>:</p>
-              <ul class="p-chk" style="gap:6px">
-                <li style="font-size:12.5px">what you changed, and to what</li>
-                <li style="font-size:12.5px">what moved — <b style="color:#fff">which</b> digits, <b style="color:#fff">which</b> direction</li>
-                <li style="font-size:12.5px">why — attribute the shift to the change</li>
+              <h3 style="font-size:15px">Tonight — 75 min, four blocks · graded · this <i>is</i> the ASM-1 artifact</h3>
+              <ul class="p-chk" style="gap:6px;margin-top:6px">
+                <li style="font-size:12.5px"><b style="color:#fff">1 · 25 min</b> — evaluate: accuracy, your matrix, the drill</li>
+                <li style="font-size:12.5px"><b style="color:#fff">2 · 25 min</b> — break it: 4 runs + control + curve. <b style="color:var(--vsp-accent)">Graded</b></li>
+                <li style="font-size:12.5px"><b style="color:#fff">3 · 15 min</b> — the write-up + the exit question</li>
+                <li style="font-size:12.5px"><b style="color:#fff">4 · 10 min</b> — one forward pass by hand, three ways</li>
               </ul>
-              <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px"><b style="color:var(--vsp-accent)">"It got better" fails.</b> The notebook prints per-digit recall deltas — the sentence is in that column.</p>
+              <p style="font-size:12px;color:var(--vsp-on-dark-muted);margin-top:8px"><b style="color:var(--vsp-accent)">"It got better" fails</b> — <i>which</i> digits, <i>which</i> direction, why. Pre-work 45 + homework 75 = the <b style="color:#fff">2 h</b> out-of-session budget.</p>
             </div>
-            <div class="p-callout" style="font-size:13.5px;padding:12px 16px">Exit question, one sentence each, round the room: <b>"a client says they have 200 labelled photos — what does your curve say?"</b></div>
+            <div class="p-callout" style="font-size:13.5px;padding:12px 16px">Block 3 ends on the exit question, one sentence, submitted with the rest: <b>"a client says they have 200 labelled photos — what does your curve say?"</b></div>
           </div>
         </div>
         <div class="p-pipe" style="grid-template-columns:1fr 1fr;gap:13px">
           <div class="vsp-card" style="padding:12px 16px 11px"><span class="topbar green"></span>
-            <h3 style="font-size:14.5px">Next: <span class="code-chip">LSN-1.5</span> — conversational deep learning · 1 h</h3>
-            <p style="font-size:12.5px">You have <i>trained</i> a neural network, so <i>layers</i> are the two Linears and <i>learning</i> is <span class="p-io">optimizer.step()</span>. The one thing ours could not do — know that pixel 100 sits above pixel 128 — is exactly what a <b style="color:#fff">CNN</b> adds.</p>
+            <h3 style="font-size:14.5px">Next: <span class="code-chip">LSN-1.5</span> — conversational deep learning · Mon 5 Oct · 1 h</h3>
+            <p style="font-size:12.5px">The words for what you just built — NN, CNN, deep learning, RL, two plain minutes each, peer-graded. <b style="color:#fff">Pre-work 40 min</b>, and one task is <b style="color:var(--vsp-accent)">your loss curve and matrix open on screen</b>: you narrate them.</p>
           </div>
           <div class="vsp-card" style="padding:12px 16px 11px"><span class="topbar yellow"></span>
-            <h3 style="font-size:14.5px">Then: <span class="code-chip">LSN-1.6</span> — data requirements · 1 h</h3>
-            <p style="font-size:12.5px"><b style="color:var(--vsp-accent)">Bring the degradation curve.</b> That session opens on it, and the construction-site case is the point you marked at 200 examples.</p>
+            <h3 style="font-size:14.5px">Then: <span class="code-chip">LSN-1.6</span> — data requirements · Mon 12 Oct · 1 h</h3>
+            <p style="font-size:12.5px"><b style="color:var(--vsp-accent)">Bring the degradation curve</b> — its pre-work asks at what size your model became useless. That session opens on your chart, and the construction case sits at your 200-example point.</p>
           </div>
         </div>
       </div>
-      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Wrap + homework · serves OUT-1.4, verified by ASM-1 (artifact)</span><span>15 tour · 60 build · 30 evaluate · 30 break it · 15 wrap</span></div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-1.4 · Wrap + homework · serves OUT-1.4, verified by ASM-1 (artifact)</span><span>10 tour · 20 build · 20 the loss falls · 10 wrap + launch · 75 tonight</span></div>
     </div>
     <aside class="notes">
-      15 min, segment 5, and hard-stop at 150. Two things happen here: the mapping, and the homework.
-      Walk the mapping table row by row, and after each one say the session number out loud. This is the payoff of the whole module ordering - eight rows, and they built every one of them today rather than being shown it. When you reach gradient descent, note it is the only genuinely new word of the day.
+      2 min, and hard-stop at 60. This is the last two minutes of the closing segment: the mapping, the deadline, the tee-up. The four homework blocks were the previous four slides.
+      Walk the mapping table fast, and say the session number after each row - eight rows, and this is the payoff of the whole module ordering. Then make the split explicit, because it is the honest shape of the rescope: the first five rows they built in this room in the last fifty minutes; the last three they finish tonight on the model they trained here. When you reach gradient descent, note it is the only genuinely new word of the day.
       Then the sentence that is the point of the lesson: everything else is scale. A frontier model swaps 784 inputs for text tokens, 101,770 parameters for hundreds of billions, 10,000 examples for a large slice of the public internet, and 471 gradient steps for months of GPU time. The loop is the same five lines, and they have read them. So "we trained a model" is no longer a sentence that should impress anybody in this room.
-      HOMEWORK, and be precise because it is graded and it is the ASM-1 artifact for OUT-1.4. Exactly one change. Three sentences. The grading standard: the notebook runs top to bottom, the change is isolated and named, and the sentences attribute the metric shift to the change. "It got better" fails - which digits, which direction, why.
-      Point them at the machinery: the notebook has a worked example (hidden 128 to 32, accuracy 92.77 to 91.38) with a full before/after comparison and three model sentences, then their own cell that runs their variant and prints the same comparison. It also refuses politely if they change two things at once, because then no sentence can honestly attribute anything.
-      Tell them the interesting submissions are often the deliberately bad ones - hidden=1 is a genuinely instructive experiment - and that the per-digit recall column is where the third sentence comes from.
-      Then the exit question, round the room, one sentence each, no discussion. "A client says they have 200 labelled photos - what does your curve say?" What you want to hear is a number and a next step. If somebody only says "not enough", ask them "and then what?" - that follow-up is the actual outcome of the session.
-      Close on LSN-1.5 and LSN-1.6 in two sentences, and say "bring the curve" last so it is the thing they walk out holding.
+      DEADLINE AND GRADING, thirty seconds and be precise, because block 2 plus block 3 is the ASM-1 artifact for OUT-1.4: notebook runs top to bottom, the change is isolated and named, and the three sentences attribute the metric shift to the change. "It got better" fails - which digits, which direction, why. Give the date and the submission channel out loud; do not leave it on a slide only.
+      One pointer at the machinery, since nobody is in the room when they use it: the notebook carries a worked example (hidden 128 to 32, accuracy 92.77 to 91.38) with a full before/after comparison and three model sentences, and it refuses politely if two things change at once, because then no sentence can honestly attribute anything. The per-digit recall column is where the third sentence comes from.
+      The exit question is now part of block 3 rather than a round-the-room - read it out anyway so they hear the standard: what you want on the page is a number and a next step. "Not enough" alone is a fail; "not enough for X, so here is what I would scope" is the outcome of the session.
+      Close on LSN-1.5 and LSN-1.6 in two sentences - both are one hour with two hours out of session, and 1.5's pre-work now includes re-opening tonight's charts because segment 1 asks them to narrate their own. Say "bring the curve" last, so it is the thing they walk out holding.
     </aside>
   </section>
 
