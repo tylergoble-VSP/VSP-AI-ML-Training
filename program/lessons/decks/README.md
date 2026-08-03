@@ -10,9 +10,15 @@ names in deck text or speaker notes.** The lesson plans and module specs keep th
 they are internal working documents; the decks deliberately diverge from plan wording on names
 only. When building or editing a deck from a plan, apply this standing mapping:
 
+**Project Atlas is more than an alias (Tyler's decision, 2026-08-03):** it is the program's
+*fictional running client case study* — a made-up client whose engagement threads through the
+entire training (triage → data → RAG → agent → production, run end to end in LSN-3.6). Teach
+anything real-but-unnameable through the Atlas storyline. A real client, prospect, or engagement
+name must never appear in a deck, even anonymized-sounding ones.
+
 | Internal (plans/specs/notebooks) | Public (decks) |
 |---|---|
-| 6MAP | **Project Atlas** |
+| 6MAP | **Project Atlas** (folded into the running case study) |
 | Andrei Ciobanu / "the Ciobanu failure" | "a previous training attempt" (no name) |
 | Vlad | the program sponsor |
 | Dorel / "Dorel's rule" | one of our directors / "the director's rule" |
@@ -38,7 +44,13 @@ The **notebooks are NOT yet anonymized** — they still carry the internal names
   headless before accepting; harness variance is real (~5–20 px between methods), so target
   ≥30 px headroom.
 - **Links:** only verified URLs (see the 2026-08-03 link-verification pass); YouTube titles are
-  clickable anchors styled with the deck's accent variable.
+  clickable anchors styled with the deck's accent variable. Any document a participant needs
+  (repo, setup guides, notebooks, SCHEDULE.md) gets a clickable GitHub link — repo URL
+  `https://github.com/tylergoble-VSP/VSP-AI-ML-Training`, `blob/main/...` paths. LSN-0.1
+  carries the program-wide reference slide (appendix, 0 min) with every link; keep it current.
+- **Bullets over paragraphs (Tyler's feedback, LSN-0.1 round):** card and callout body copy
+  should be scannable `p-chk` bullets, not prose paragraphs. Single-line `p-callout` punch
+  lines are fine as-is.
 
 ## Known issues (cosmetic overflow, pre-existing in accepted decks — measured 2026-08-03)
 
