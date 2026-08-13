@@ -25,7 +25,7 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 - **SI-7** — Open with a lesson-metadata markdown table (lesson ID, module, serves, verified-by, lesson-plan path) and a "how to run this" paragraph.
 - **SI-8** — Comment imports with a one-line purpose (repo convention); markdown-heavy explanations between code cells; friendly `[PASS]/[FAIL]/[TODO]`-style prints for anything checkable.
 - **SI-9** — The notebook mirrors the lesson plan's structure: pre-work section(s) → session segments in order → homework section. Every drill from the lesson plan appears **with its exact specified numbers and scenarios** — no substituting generic examples for the plan's scripted ones.
-- **SI-10** — Charts use the VSP palette (`#59709c` navy-light, `#65a74e` green, `#ffe86b` yellow, `#97f377` green-lightest), labeled axes, `ax.spines[["top","right"]].set_visible(False)`, `plt.tight_layout()`.
+- **SI-10** — Charts use the VSP palette (`#59709c` navy-light, `#65a74e` green, `#ffe86b` yellow, `#97f377` green-lightest), labeled axes, `ax.spines[["top","right"]].set_visible(False)`, `plt.tight_layout()`. **Read `SI-30` before choosing which two palette entries encode which two categories — `yellow` and `mint` are the same colour to a viewer with protanopia.**
 - **SI-11** — Fill-in/homework cells must never raise when unfilled: validate-and-instruct (see LSN-0.1's self-rating cell). A fresh `Run All` of the whole notebook must complete with zero errors.
 
 ### Decks (exemplar: `program/lessons/decks/LSN-0.1-orientation.html`)
@@ -62,6 +62,12 @@ substantive fixes go back to the builder; findings are recorded here → artifac
 
 ### Added after Round 9
 - **SI-29** — Advisory graders (LSN-1.5's drill advisor, LSN-1.6's bank pre-check) are pre-checks, never gates: saving/submitting is gated only on substance minimums (SI-18), the advisor verdict is recorded as metadata, and the notebook must disclose the advisor's limits in print (what beats it, what it under-scores). Verdict text must name the missing cue family with an actionable remedy, because cue lexicons under-score legitimate paraphrase (LL-48) and the real grader is the human checkpoint (ASM-1).
+
+### Added after the supplement-integration pass (2026-08-11)
+- **SI-30** — Colour never carries a distinction alone. (a) **`yellow` `#ffe86b` and `mint` `#97f377` must never be the only thing separating two categories in one view** — measured CIEDE2000 distance 1.7 under protanopia and 5.5 under deuteranopia (i.e. the same colour), and only 0.08 apart in greyscale, so it fails on screen *and* in print. Pair `yellow` with `navy` or `green` instead; `mint` is safe against everything except `yellow`. Every other pair in the seven-colour palette scores ≥10 worst-case, so **the palette is fine and this is one rule, not a redesign**. (b) More generally, any distinction that matters gets a second encoding — position, marker shape, line style, a direct label, or the printed value. The exemplar is `LSN-1.4`'s confusion matrix (cell 32): it runs a ramp *through* the unsafe pair but prints the count in every cell, so the colour is redundant and the flattening costs nothing. (c) A conjunction of two channels is not pre-attentive — if a reader has to find "the yellow circles" among yellow squares and navy circles, that is a serial search, and in a 60-minute session it is a slide nobody reads. One channel per question.
+- **SI-30 (tooling)** — Re-run `scripts/check_palette_accessibility.py` (repo `.venv`, stdlib + numpy only) whenever a palette colour is added or changed. It simulates protanopia / deuteranopia / tritanopia, reports pairwise CIEDE2000 distances and greyscale separation, and names any pair that falls below the usable threshold. Twenty minutes of measurement beat a redesign argument — the 2026-08-11 run found the palette sound and exactly one pair unusable.
+- **SI-32** — Diff the working tree against `HEAD` before you edit an executed notebook, and rebuild from `HEAD` if the working copy has been stripped. A notebook can lose every output and several cell ids without erroring, without looking wrong, and without anyone noticing (`LL-55`). `git diff --stat` on a notebook is not enough — compare output and figure counts.
+- **SI-31** — Cite the primary source, not the secondary one that showed it to you. Several supplement items (Anscombe's quartet, Tukey's box-plot fences, Tufte's chart principles, ColorBrewer) reached us through a teaching kit licensed non-commercially, but each is a citable primary source we can build from directly. Check whether the thing you want is the intermediary's own work before you inherit its licence — see `program/sources/README.md`, Licensing.
 
 ### Added after Round 8
 - **SI-28** — Notebook naming + warning hygiene: (a) never use `_`-prefixed cross-cell variables — `_i`, `_`, `__`, `_ih` are IPython-reserved input/output-history names, so a cross-cell `_i` silently becomes the *previous cell's source text* (LL-41; plain-Python execution cannot reproduce it — name cross-cell values in CAPS); (b) any warning emitted during execution is an SI-22 byte-identity hazard — warning *text* can embed PIDs and ipykernel temp paths (`tight_layout` over a gridspec containing a `twinx` axes does, LL-42); fix the cause (explicit margins), never just suppress the display.
@@ -224,3 +230,88 @@ brief dependency; LSN-1.4 is `GAP-8` (a synthesis, not an adaptation — see Rou
 | LL-47 | process | Naive SI-28a/SI-26b detectors false-positive on within-cell `_`-prefixed loop/comprehension variables and on the anti-Styler compliance docstring. AST load-before-store per cell is the correct cross-cell test (three flags on this notebook, all comprehension targets — zero real leaks) | Context-aware checks codified in the battery | reviewer battery |
 | LL-48 | content | Advisor cue lexicons under-score legitimate paraphrase: reviewer's semantically complete `fresh`/`legal` answers ("lands nightly", "state law limits…") scored 1/2 for missing cue words. Non-blocking here because the advisor never gates the save, prints its own limits, and its remedy text names exactly what to add — the behaviors now required by SI-29 | Codified | SI-29 |
 | LL-49 | content | Keeper beats: inherited-labeller prop (two honest managers, 82%/κ≈0.6, one signs off 1.58× the other → model inherits +8.0 points of optimism — "a model does not learn 'complete', it learns whoever labelled it"); confidence-doesn't-fall drift prop (accuracy −25.5 pts, confidence +0.6 — monitoring becomes a line item); the five-row "no → work package" commercial inversion ("you cannot lose a deal by asking"); `recorded ≠ exists` four-way; the κ audit as a first-meeting ask; the bank coverage matrix as a workshop instrument (gold-flags `enough`/`legal` at one question each); figure pattern — when a panel has no free interior space, move the number into the title | Kept as house patterns | — |
+
+---
+
+## Supplement-integration pass — 2026-08-11 (not a build round)
+
+An external course corpus was processed into `SUP-1`–`SUP-12` (`program/sources/`) and attached to
+existing lesson plans by ID. No artifact was rebuilt. This entry records the findings that touch built
+material, so the next builder inherits them rather than rediscovering them.
+
+**Deliberate scope limit:** executed, reviewed, committed notebooks were **not** hot-patched here. Fixing
+them outside a sanctioned round would bypass `SI-2` re-execution and `SI-22` byte-identity verification,
+which is what makes them trustworthy. Every defect below is named down to the cell so the fix is
+mechanical rather than investigative.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-50 | design | **Measured colour-vision defect in the palette, four confirmed artifact hits.** `yellow` and `mint` are perceptually the same colour under protanopia (CIEDE2000 = 1.7) and near-identical under deuteranopia (5.5), and are the palette's closest pair in greyscale (0.08 luminance apart). Confirmed sole-encoding failures: `LSN-1.5` cell 14 (a two-category `ListedColormap` of exactly this pair — the figure conveys nothing), `LSN-0.3` cell 17 (two of five legend bands, in the figure whose *point* is that bands separate), `LSN-1.4` cell 12 (title reads "yellow = rarest, mint = most common"), `LSN-1.6` cell 32 (two of four phases). Marginal, review only: `LSN-1.4` cell 46, `LSN-1.6` cell 14, `LSN-1.5` cell 24. Already-safe exemplar: `LSN-1.4` cell 32 prints the count in every cell, so its ramp through the unsafe pair costs nothing | Rule adopted; four fixes carried as `COLOUR-1` in the MOD-0/MOD-1 build lists | SI-30 |
+| LL-51 | process | **Every palette colour was fine; the defect was in one pair.** The initial hypothesis ("three of four are green-ish, they probably all collide") was wrong in a way that would have caused a needless palette redesign. Simulating and measuring took twenty minutes and converted a vague accessibility worry into one testable rule and four one-line fixes | Measure before redesigning; the check script pattern is reusable for any future palette change | SI-30 |
+| LL-52 | process | **A citation can be inherited along with a licence you do not want.** Several of the strongest supplement items reached us through a non-commercially-licensed teaching kit but are primary sources in their own right (Anscombe 1973; Tukey's fences; Tufte's principles; ColorBrewer). Building from the primary source removes the licence constraint entirely | Check provenance before inheriting terms | SI-31 |
+| LL-53 | content | **The corpus's best single item was one slide of a thirty-slide graduate lecture** (the reducible/irreducible uncertainty split, now `SUP-11`) — from a kit the first pass had logged as "nothing at basics level." Depth of source and value to the program are uncorrelated; the first pass's summary judgement was wrong and is corrected in the source catalog | Second-pass every source dismissed wholesale | note |
+| LL-54 | content | **Four lessons were independently teaching one idea** — the average lies (`LSN-0.2`), the aggregate lies (`LSN-0.3`), the confidence lies (`LSN-0.4`), the MAE lies (`LSN-1.3`) — with no plan calling forward or back to the others. Named as the "refuse the aggregate" spine and cross-referenced in all four plans and both module specs | Look for accidental spines when adding material; they are cheaper to connect than to build | note |
+
+---
+
+## Round 10 — MOD-0 supplement-integration build (LSN-0.1 – LSN-0.4) — 2026-08-11 — **ACCEPTED WITH FIXES**
+
+The 2026-08-11 supplement pass adopted eleven content changes; this round put them into the artifacts and
+closed the MOD-0 half of the `GAP-11` notebook debt. **Decks were already on the 60-min contract** (retimed
+2026-08-03) — only the notebooks were carrying the old 90-min structure, which is the opposite of what the
+module spec's wording implied and is worth correcting there.
+
+**Artifacts.** All four notebooks executed end to end, zero errors, cell ids normalised:
+`LSN-0.1` 17 cells · `LSN-0.2` 42 cells / 8 figures · `LSN-0.3` 35 cells / 7 figures ·
+`LSN-0.4` 41 cells / 5 figures. Decks: `LSN-0.2` (+5 edits), `LSN-0.3` (+3), `LSN-0.4` (+1 slide),
+all four render clean at 1280×720.
+
+**What changed, by lesson.**
+
+| Lesson | Notebook | Deck |
+|---|---|---|
+| `LSN-0.1` | Removed a stray empty cell left by an editor; re-executed | — |
+| `LSN-0.2` | Segment headers retimed 20/25/20/25 → **12/15/13/20 = 60**; six named bias types + the CRM-export drill; the 1.5 × IQR fence added as fix 3 **with a computation cell** (flags only the $2M whale, mean $208,000 → $80,000, median unmoved); Anscombe lifted out of segment 3 into homework task 2 behind a **commit-your-prediction** cell; homework restructured into the plan's five tasks | Six bias types + the CRM drill on the sampling slide; "four cheap fixes" incl. the fence; Anscombe reframed as predict-then-reveal |
+| `LSN-0.3` | Headers retimed 25/25/20/20 → **12/15/13/20 = 60**; **`COLOUR-1` fixed** (see below); homework Q1 swapped to the disaggregation question, with the answer-key cell rewritten around it; the five test strategies added ahead of the holdout task | Q1 swapped on the close slide; holdout task now names the strategy choice; spine labelled on the base-rates slide |
+| `LSN-0.4` | **The "no homework — checkpoint week" closing was contradicting its own plan** and is replaced by the four-task, 100-min homework, including the calibration check (bucket by stated confidence, compare to observed); segment 1 gained the reducible/irreducible second axis with a measured demo | New slide, "If we send you more data, will it get better?", 3 min bought from the misfiles; segment-1 timings rebalanced to hold at 25 |
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-55 | process | **An executed notebook had been silently stripped of every output** (`LSN-0.4`: 26 outputs and 4 figures → 0, and 5 cells lost their ids) in the working tree, uncommitted and unrelated to any build. Caught only by diffing working against `HEAD` before editing. A stripped notebook still opens, still runs, and looks fine in a diff summary | Rebuilt from `HEAD` rather than the working copy; re-executed | see SI-32 |
+| LL-56 | content | **`SI-17` earns its keep again.** Both new `LSN-0.4` constructions failed on first computation: the reducible/irreducible fit converged at n=10 (a 2-parameter fit on a strong signal has nothing to learn), and the calibration set came out a coin flip in every bucket (the "correct" flag was built from the wrong comparison). Rebuilt at 8 parameters and with the prediction/label comparison fixed — the published numbers (floor 4.83, 34.86 → 4.83; honest gap 3.4 pts vs overconfident 15.3 pts) are the second attempt | Both pre-computed in a scratch script before embedding | SI-17 (holds) |
+| LL-57 | design | **`SI-19` caught a fresh illegible figure.** The reducible/irreducible curve on a linear y-axis let the n=10 point (34.86) crush the interesting region (4.8–6.8) into a strip — the `LL-10` failure, reproduced exactly. Fixed with log-log axes plus a second panel showing the reducible part alone | Redesigned and re-inspected | SI-19 (holds) |
+| LL-58 | design | **`SI-23` caught a fresh overflow.** The six-bias-type block plus a drill callout pushed `LSN-0.2` slide 4 past 720 px, clipping the callout's last line. Fixed by compressing the type list to one line and tightening callout padding — not by shrinking type | Re-rendered and re-inspected | SI-23 (holds) |
+| LL-59 | content | `COLOUR-1` fix pattern, now the house answer: `LSN-0.3`'s five-band scatter keeps its colours and adds **marker shape and size** per band (circle · circle · square · triangle · diamond), so the mint and yellow bands survive protanopia. Colour was not removed — a second channel was added, per `SI-30(b)`. Remaining yellow/mint co-uses in MOD-0 are all double-encoded and were re-checked | Applied; the other three `COLOUR-1` defects (`LSN-1.4` c12, `LSN-1.5` c14, `LSN-1.6` c32) remain open in the MOD-1 build list | SI-30 |
+
+**Still open after this round:** MOD-0 notebooks are **not yet anonymised** (the other half of `GAP-11`);
+`ASM-0` remains `GAP-6`; the three MOD-1 `COLOUR-1` defects are unfixed; and this round has **not been
+independently reviewed** — it was built and self-verified in one pass, which is not the two-agent process
+this file specifies.
+
+### Round 10 review — 2026-08-11
+
+**Independence caveat, stated up front:** this review was run in the same session as the build, not by a
+separate reviewer agent. It re-executed every notebook from scratch, recomputed the mathematics
+independently, and audited against the contracts — but it does not carry the independence the two-agent
+process is designed to give. **A genuine second-agent pass is still worth running before delivery.**
+
+**Battery results.** Fresh in-repo re-execution of all four notebooks: **zero errors**. `SI-22`
+byte-identity: `LSN-0.2` (8 figures), `LSN-0.3` (7), `LSN-0.4` (5) all **0 mismatches**. Segment minutes
+in notebooks: 0.2 and 0.3 both **12+15+13+20 = 60**, 0.4 **25+20+15 = 60**. Deck speaker-note minutes:
+all four decks sum to **60**. Every number quoted in the `LSN-0.4` deck confirmed present in that
+notebook's executed output. `SI-1` clean, `SI-3` seeded throughout (9 / 7 / 17 generators), `SI-26b` no
+Styler, `SI-30` colour compliant. Links in `program/`: **0 broken**.
+
+Four defects found and fixed during review; two accepted as-is with reasons.
+
+| ID | Category | Finding | Action | Promoted to |
+|---|---|---|---|---|
+| LL-60 | content | **The Anscombe prediction table overstated the agreement.** The restaged homework asks participants to commit to a prediction from six statistics quoted as exact — but the reveal in the very next cell prints variance 4.127 / 4.128 / 4.123 / 4.123 and correlation 0.816 / 0.816 / 0.816 / **0.817**. Two of four disagree at the precision the table claimed. A participant who reads carefully catches the artifact contradicting itself at the exact moment it asks for their trust | Quoted as ≈ 4.13 / ≈ 0.816 with the third decimal disclosed, in the notebook, the plan, the deck **and** `SUP-10`; the reveal's own summary line now says "variance 4.123–4.128, correlation 0.816–0.817" | see SI-33 |
+| LL-61 | content | **The disaggregation question was unanswerable as posed.** "91% overall, 95% majority, 32% minority" is consistent only for a specific split (~94/6), and the material never stated it. A participant asking "how big is each group?" got nothing — and the naive reading (91 is the average of 95 and 32) is arithmetically impossible, so the item risked *teaching* a misconception | Group sizes stated (94% / 6%) with the check shown: 0.94 × 95 + 0.06 × 32 = 91.2%. It also sharpens the lesson — a subgroup does not have to be large to be badly served, only small enough to hide | — |
+| LL-62 | content | **Two inherited facts were carried at the source's precision rather than checked.** `SUP-10` stated the *Challenger* launch temperature as a flat 31°F (air temperature was ~36°F; the ~28–31°F figure is the estimated joint-seal temperature), and repeated the teaching kit's "one in ten men" for red-green colour deficiency (the standard figure is ~8%, roughly 1 in 12) | Both corrected. **Inheriting a source's rounding is inheriting its errors** — `SI-31` said cite the primary source; this extends it to the numbers | see SI-33 |
+| LL-63 | process | **`LSN-0.1` cannot satisfy `SI-22` and never will.** Its checkpoint cell deliberately stamps `datetime.now(timezone.utc)` into the setup-evidence output, so re-execution always differs by one line. This is intended behaviour that `SI-22` does not carve out, so every future reviewer will rediscover it as a failure | Documented as a standing exception. Also noted: the committed output embeds the builder's `user@hostname`, which ships to participants — cosmetic, pre-existing, left alone | see SI-33 |
+| LL-64 | process | **The review battery false-positived twice**, both previously documented: it flagged `seaborn` as a heavy `SI-1` import (`SI-1` explicitly permits it), and flagged four `_`-prefixed comprehension targets as cross-cell leaks — the exact `LL-47` trap. A correct free-variable analysis (loads before first store, per cell, with comprehension and for-targets bound properly) found **zero** real leaks | Battery corrected; the load-before-store implementation is the one to reuse | reviewer battery |
+| — | design | **Accepted, not changed:** `LSN-0.2` deck slide 6 draws the Anscombe fit line in `yellow` over data points in `mint` — the `SI-30` unsafe pair. Accepted because the two are separated by form (a thin dashed line versus filled circles), which is exactly the double-encoding `SI-30(b)` requires. Logged so the next reviewer does not re-open it | — | — |
+
+### Added after the Round 10 review
+- **SI-33** — Three precision rules, all learned the same way. (a) **Never quote a statistic more precisely than it is true**: if an artifact claims several things are identical, quote them at the precision at which they actually agree and disclose the next decimal — the reveal will print it anyway (`LL-60`). (b) **A scenario built from part-and-whole numbers must state the weights**, or it is unanswerable and may teach a misconception (`LL-61`). (c) **Facts inherited from a source get checked, not copied** — its rounding becomes your error (`LL-62`). And note the standing `SI-22` exception: `LSN-0.1` deliberately stamps a UTC timestamp, so it is exempt from byte-identity on that one cell (`LL-63`).

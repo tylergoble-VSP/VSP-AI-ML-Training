@@ -111,6 +111,8 @@ ASM-2 quiz scenarios draw directly from the drill format; task 1's memo is the c
 | Current vendor price sheets (input/output/embedding per-token) | build (refresh at delivery prep — prices move) — **participants now source these themselves in pre-work task 3;** Tyler brings a reference set to arbitrate disagreements | vendor pricing pages — verify at delivery prep |
 | Decision-memo template + grading note (one page) | build (light — **new**, supports graded homework task 1) | program/materials/ — to create |
 | Cost-calculator starter (blank sheet with the input/output rows labelled) | build (light — **new**, supports homework task 2) | program/materials/ — to create |
+| Supplement — six reasons prompt-first is a defensible default + three triggers to stop iterating (framework opening panel) | supplement | [`program/sources/SUP-9-prompt-and-inference-controls.md`](../sources/SUP-9-prompt-and-inference-controls.md) §5 |
+| Supplement — where RAG's per-query cost actually goes (query rewriting, decomposition, expansion, re-ranking) | supplement | [`program/sources/SUP-5-rag-optimization-ladder.md`](../sources/SUP-5-rag-optimization-ladder.md) knobs 7–11 |
 
 ## Delivery Notes
 

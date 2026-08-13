@@ -297,9 +297,11 @@
               <li><b style="color:#fff">Wald's WWII bombers.</b> Armour where the returning planes were <i>not</i> hit — the ones hit elsewhere never came back.</li>
             </ul>
             <p style="margin-top:10px">30,000 biased samples are worse than 30 fair ones: <b style="color:#fff">more data made the wrong answer tighter, not truer.</b></p>
+            <p style="margin-top:8px;font-size:13px;color:var(--vsp-on-dark-muted);line-height:1.45">Six named types, because <i>"watch out for bias"</i> is unactionable: <b style="color:#fff">reporting · selection · temporal · in-group · out-group homogeneity · confirmation</b>.</p>
           </div>
         </div>
       </div>
+      <div class="p-callout" style="margin-top:2px;padding-top:11px;padding-bottom:11px">Drill, 4 min: <i>"18 months of won and lost deals, exported from the CRM."</i> <b>Which of the six are in there?</b></div>
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 2 of 4</span><span>Pre-work §2 debrief + the EU-hours dashboard</span></div>
     </div>
     <aside class="notes">
@@ -333,7 +335,7 @@
             <p>The median moves $73.5k → $75k. Set next quarter's quota on the mean and you have set it <b style="color:#fff">above 14 of your last 15 deals.</b></p>
           </div>
         </div>
-        <div class="p-callout">Three cheap fixes: <b>report the median</b> when it's skewed · <b>report p50/p90/p99</b> instead of the centre · <b>plot it before you summarise it.</b></div>
+        <div class="p-callout">Four cheap fixes: <b>report the median</b> when it's skewed · <b>report p50/p90/p99</b> instead of the centre · <b>exclude by rule, not by eye</b> — the 1.5 × IQR fence flags the $2M deal on its own, and answers <i>"by what rule did you exclude it?"</i> · <b>plot it before you summarise it.</b></div>
       </div>
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.2 · Segment 3 of 4</span><span>Notebook: cycle times + deal sizes</span></div>
     </div>
@@ -351,9 +353,9 @@
       <div class="vsp-grid"></div>
       <div class="vsp-stage" style="justify-content:center;gap:18px">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="vsp-kicker">Segment 3 · Anscombe's Quartet · 1973 · You Plot These Tonight</div>
+          <div class="vsp-kicker">Segment 3 · Anscombe's Quartet · 1973 · Tonight You Predict First, Then Plot</div>
           <h2 class="vsp-h2" style="font-size:38px">Identical statistics. <span class="vsp-glow">Four different worlds.</span></h2>
-          <p class="vsp-lead" style="max-width:1000px;font-size:17px">All four: mean x = 9.00 · mean y = 7.50 · same variance · correlation 0.816 · same best-fit line, <b style="color:#fff">y = 3.00 + 0.50x</b> (dashed).</p>
+          <p class="vsp-lead" style="max-width:1000px;font-size:17px">All four: mean x = 9.00 · mean y = 7.50 · variance y ≈ 4.13 · correlation ≈ 0.816 · same best-fit line, <b style="color:#fff">y = 3.00 + 0.50x</b> (dashed). <b style="color:#fff">Tonight the notebook shows you those six numbers first and makes you commit to a sketch before it reveals these four.</b></p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
           <div class="vsp-card" style="padding:14px 14px 10px">

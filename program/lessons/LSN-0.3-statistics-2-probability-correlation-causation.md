@@ -41,6 +41,8 @@ Rescoped from a 90 min session to 60 min. The base-rate counts were already pre-
 
 Two misconceptions die here: that "99% accurate" means an alert is 99% likely to be real, and that a chart moving with revenue proves the feature caused the revenue. Every model output the cohort will ever read is a conditional probability, and confusing P(alert | fraud) with P(fraud | alert) — or correlation with causation — is exactly how a pre-sales conversation goes wrong. Builds on the sampling skepticism from `LSN-0.2`; the fraud detector built here is deliberately reused in `LSN-1.3`, where "fraction of alerts that are real" gets its formal name: precision.
 
+**Spine — "refuse the aggregate" (2 of 4).** `LSN-0.2` established that the average lies when the spread is wide. This lesson adds the second form: **the aggregate lies when subgroups differ.** A screening model reporting 91% accuracy can be 95% on the majority group and 32% on the minority group — every number arithmetically correct, and the headline describing neither group. It is the same move as the base-rate flip: refuse the summary, ask for the decomposition. Continues in `LSN-0.4` (confidence) and `LSN-1.3` (MAE).
+
 ## Pre-work (mandatory — no pre-work, no seat) — 30 min
 
 Unchanged by the rescope, and deliberately so: it is already at the boot week's ≤ 30 min ceiling, and Thursday evening carries `LSN-0.2`'s 90 min homework as well. Task 2 now carries more weight than before — the live session checks it rather than rebuilding it, which is where 10 of the session's recovered minutes come from, so arriving without a filled table costs you the segment.
@@ -88,7 +90,7 @@ Async, graded pass/fail; submissions reference LSN-0.3. Feeds `ASM-0`.
 | 1 | The three scenario questions (below) | 25 min | Written answers — question 3 needs the counts shown |
 | 2 | **Relocated from live segment 2:** run the session notebook's threshold cells and answer the "what would you do" question with numbers instead of instinct — what alert threshold gets the queue to 20% real, what recall do you give up to get there, and would you sell that trade to the client? | 20 min | The threshold/recall pair + three sentences of recommendation |
 | 3 | **Relocated from live segment 3:** browse [Tyler Vigen's spurious correlations](https://tylervigen.com/spurious-correlations), pick two pairs, and add one correlation from your own project's reporting. For each of the three, name which of the four explanations you believe and why | 15 min | Three classified pairs with one-line justifications |
-| 4 | Finish the drill properly: design the phase-two holdout you told the CTO they needed. What traffic is split and how, what is measured, for how long, and what result would make you say the widget does nothing? | 20 min | ~5 sentences — this is the GOAL-1 pass bar, asking for the counterfactual rather than reciting the slogan |
+| 4 | Finish the drill properly: design the phase-two holdout you told the CTO they needed. What traffic is split and how, what is measured, for how long, and what result would make you say the widget does nothing? **Structure it with the five test strategies (`SUP-12` §3) so the design is a choice rather than a guess:** *quick* (check the extremes — always, it is nearly free) · *targeted* (the cases you already suspect) · *comprehensive* (enough traffic in every segment you will report on) · *ecologically valid* (real conditions, and newer data than the model saw) · *adversarial* (the rare but expensive failure). Name which two you are buying and which three you are declining, and why | 20 min | ~5 sentences + the two-bought/three-declined line — this is the GOAL-1 pass bar, asking for the counterfactual rather than reciting the slogan |
 | 5 | The 6MAP translation: an AI engineer hands you "the model scores 0.93." Write the sentence you would say to a delivery engineer that is both true and useful — no jargon, no false precision | 10 min | One sentence, plus one line on what you had to ask the AI engineer first |
 
 **Time accounting:** pre-work 30 min + homework 90 min = 2 h out-of-session budget.
@@ -97,9 +99,11 @@ Thursday evening also carries `LSN-0.4`'s 20 min pre-work (~110 min total). Task
 
 ### The three scenario questions
 
-1. A prospect: "our churn model is right 95% of the time." Their churn rate is 5%. What single question do you ask first, and why might 95% be worth nothing? (Pass: names the always-predict-"no-churn" baseline or class balance.)
+1. **(Swapped in 2026-08-11 for the disaggregation question — see note below.)** A vendor reports their screening model is **91% accurate**. Broken out by group it is **95% on the majority group and 32% on the minority group**; every one of those three numbers is arithmetically correct. (a) What has the 91% done to the 32%? (b) Write the one sentence you would say to the client. (c) Name one other headline number from this week's material that hides the same shape. (Pass: recognizes that an aggregate over unequal subgroups describes neither, asks for the breakdown by the segments the client cares about, and connects it to `LSN-0.2`'s average-lies beat.)
 2. A vendor's chart shows teams using their AI code-review tool ship 30% faster. Give two explanations for the correlation that aren't "the tool causes speed." (Pass: any two of self-selection, confounder such as team seniority or project type, reverse causation.)
 3. A security scanner: 98% detection rate, 3% false-positive rate; real intrusions hit 1 in 500 sessions. Out of 50,000 sessions, roughly what fraction of alerts are real? (Pass: works the counts — ~98 real of ~1,595 alerts, ≈ 6% — arithmetic within reason.)
+
+**Swap note (2026-08-11).** Question 1 was previously the churn-model base-rate question ("95% right, 5% churn rate"). It duplicated question 3's skill — both are base-rate arithmetic — so it was replaced with the disaggregation question, which is the second form of the same refuse-the-aggregate move and was otherwise untaught. Base-rate coverage is unchanged: question 3 still carries it, and segment 2 works the fraud counts live. No time change (task 1 stays 25 min for three questions).
 
 ## Materials
 
@@ -112,6 +116,8 @@ Thursday evening also carries `LSN-0.4`'s 20 min pre-work (~110 min total). Task
 | 3Blue1Brown — "The medical test paradox, and redesigning Bayes' rule" | exists | [youtube.com/watch?v=lG4VkPoG3ko](https://www.youtube.com/watch?v=lG4VkPoG3ko) |
 | StatQuest with Josh Starmer — "Conditional Probabilities, Clearly Explained!!!" (optional reinforcement) | exists | [youtube.com/watch?v=_IgyaD7vOOA](https://www.youtube.com/watch?v=_IgyaD7vOOA) |
 | Tyler Vigen — Spurious Correlations | exists | [tylervigen.com/spurious-correlations](https://tylervigen.com/spurious-correlations) |
+| Supplement — the 91% / 95% / 32% disaggregation as the third member of the base-rate family; five test strategies for the holdout-design homework; competing fairness definitions as one worked exchange | supplement | [`program/sources/SUP-12-bias-and-disaggregation.md`](../sources/SUP-12-bias-and-disaggregation.md) |
+| Supplement — the IQR fence rule ("by what rule did you exclude it?") for the client-chart drill | supplement | [`program/sources/SUP-10-charts-that-communicate.md`](../sources/SUP-10-charts-that-communicate.md) §3 |
 
 ## Delivery Notes
 

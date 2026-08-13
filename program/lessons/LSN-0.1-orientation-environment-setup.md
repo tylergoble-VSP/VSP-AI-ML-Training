@@ -89,6 +89,7 @@ Task 3 is deliberately the module's shock absorber: it is the only MOD-0 homewor
 | **Session notebook** — 5 checkpoints + ASM-0 evidence + baseline self-rating, executed end to end | exists | `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb` |
 | **Program walkthrough deck** — 10 slides w/ speaker notes, VSP design system (reveal.js) | exists | `program/lessons/decks/LSN-0.1-orientation.html` |
 | Baseline self-rating form | exists | final cells of the session notebook (all 21 outcomes, saves to `outputs/lsn-0.1/`) |
+| Supplement (optional pre-work reading only — the external corpus yields little for this lesson, by design) — third-wave framing, narrow vs general capability, and "be cautiously optimistic" as the program's posture | supplement | [`program/sources/README.md`](../sources/README.md) (Where the corpus turned out to be thin) |
 
 ## Delivery Notes
 

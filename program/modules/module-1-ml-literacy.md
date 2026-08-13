@@ -206,7 +206,7 @@ Spreadsheet alias: **"Data Requirements for ML."**
 | **Format** | Async quiz (~15 scenario questions, 30 min) **+ live mock pre-sales conversation** (15 min/participant, Vlad or Dorel plays the client) |
 | **Delivery date** | **Unscheduled** (not on the program spreadsheet — needs a calendar slot at the next review call; proposed: week of Oct 12–16, after LSN-1.6) |
 | **Verifies** | `OUT-1.1`–`OUT-1.3`, `OUT-1.5`, `OUT-1.6` (conversation, rubric-graded); `OUT-1.4` (LSN-1.4 homework artifact) |
-| **Pass bar** | Quiz 80% + rubric "client-ready" on triage and honesty-about-limitations dimensions |
+| **Pass bar** | Quiz 80% + rubric "client-ready" on triage and honesty-about-limitations dimensions. **The honesty dimension is now operational (adopted 2026-08-11, `SUP-8` §4):** *"names at least one thing the approach or model does badly, unprompted, with evidence, and states what they would do about it."* Gradeable, impossible to bluff, and the closest available proxy for client-ready |
 | **Gate** | Must pass to start `MOD-2` |
 | **Status** | **BUILD — GAP-6** (quiz + conversation rubric) |
 
@@ -223,6 +223,21 @@ The mock conversation is the point of the module — it rehearses the exact skil
 | `OUT-1.5` | LSN-1.5 | ASM-1 (conversation) |
 | `OUT-1.6` | LSN-1.6 | ASM-1 (conversation + question bank) |
 
+## Supplements
+
+External-corpus material attached to this module ([`../sources/`](../sources/README.md)). All placements are swaps inside existing segments or additions to question banks — no contract changes.
+
+| Supplement | Lands on | What it adds |
+|---|---|---|
+| [`SUP-3`](../sources/SUP-3-metric-literacy-extension.md) | `LSN-1.3` | Panel-inspection precision/recall worked example; "find out what positive means"; the AUC-at-a-usable-operating-point caveat; F-beta and cross-validation bank questions |
+| [`SUP-7`](../sources/SUP-7-failure-and-trust-catalog.md) §2 | `LSN-1.5` | The traffic-sign adversarial result as a CNN closing beat — the model was never using the features you assumed |
+| [`SUP-1`](../sources/SUP-1-project-qualification-gates.md) | `LSN-1.6` | The "is this a good task for AI at all" screen, the ten qualification questions, and the three-layer bank cover sheet (should it exist / can it be built / will it survive) |
+| [`SUP-2`](../sources/SUP-2-data-reality-catalog.md) | `LSN-1.6` | The data reality catalog — formats, organizational obstacles, missing/incorrect values, identity resolution, encoding, sampling. Doubles as a walkthrough spine while `GAP-5` is open |
+| [`SUP-7`](../sources/SUP-7-failure-and-trust-catalog.md) §1 | `LSN-1.6` | Six structural weaknesses of learned systems, each with its pre-sales question |
+| [`SUP-10`](../sources/SUP-10-charts-that-communicate.md) §4 | `LSN-1.3` | Why a confusion matrix is read as a matrix — encoding-accuracy findings behind chart choice |
+| [`SUP-11`](../sources/SUP-11-uncertainty-decomposition.md) §2 | `LSN-1.6` | The honest answer to "how much data do we need?" — the LSN-1.4 degradation curve flattens because the reducible part is exhausted and the irreducible part is not. Names the mechanism participants have already felt |
+| [`SUP-12`](../sources/SUP-12-bias-and-disaggregation.md) | `LSN-1.3`, `LSN-1.6` | The 91% / 95% / 32% disaggregation as the classification sibling of the per-segment MAE beat (`LL-36`); §1.2 names the mechanism the inherited-labeller prop demonstrates (`LL-49`); model cards and dataset datasheets as question-bank additions |
+
 ## Build List
 
 | ID | Item | Owner | Needed by |
@@ -232,3 +247,5 @@ The mock conversation is the point of the module — it rehearses the exact skil
 | `GAP-6` (share) | ASM-1 quiz + mock-conversation rubric | Tyler | **Mon 12 Oct 2026** — before the ASM-1 slot, once that slot exists |
 | `RETIME-1.3` | LSN-1.3 deck + notebook retimed from 90 min to the 60-min session | Tyler | before Mon 21 Sep 2026 |
 | `RETIME-1.4` | LSN-1.4 deck + lab notebook resequenced for the 60-min live hour and the two relocated homework blocks | Tyler (+ Stefana review) | before Mon 28 Sep 2026 |
+| `COLOUR-1` (share) | **Colour-encoding fixes** (`SI-30`, `LL-50`): `LSN-1.4` cell 12 (bar chart whose title reads "yellow = rarest, mint = most common"), `LSN-1.5` cell 14 (a two-category colormap of exactly the unsafe pair — the worst of the four), `LSN-1.6` cell 32 (two of four phase colours). One-line swaps + re-execute per `SI-2`/`SI-22`. `LSN-1.4`'s fix folds into `RETIME-1.4`; **`LSN-1.5` and `LSN-1.6` have no other pending rebuild, so they need one small joint round** | Tyler | `LSN-1.4` with RETIME-1.4; `LSN-1.5`/`1.6` before Mon 5 Oct 2026 |
+| — | **Content adopted 2026-08-11:** `LSN-1.3` narrative now names the four-lesson "refuse the aggregate" spine and closes it in segment 1 — folds into `RETIME-1.3` at no extra cost | Tyler | with RETIME-1.3, before Mon 21 Sep 2026 |

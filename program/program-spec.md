@@ -32,9 +32,12 @@ graph TD
 
     ASSESS -.->|retro learnings| SPEC
     EXPERT["Expert-tier deep dives"] -.->|new lessons & resources| SPEC
+    CORPUS["External course corpus<br/><i>sources/ — SRC-n → SUP-n</i>"] -.->|supplements, never lessons| LESSONS
 ```
 
 Feedback loops are first-class: module retros and expert-tier discoveries flow back into the spec ("this shit here feeds" — Vlad), and the spec regenerates its views.
+
+External material enters through one door only. A donated course corpus is catalogued as `SRC-n` and processed into `SUP-n` supplements in [`sources/`](sources/README.md) — build-ready checklists, drills, and rubrics attached to existing `LSN-n.m` by ID. A supplement enriches a lesson or shortens a `GAP-n` build; it never becomes a lesson, never re-times a session, and never grows a homework budget. Anything the corpus contains that no outcome claims is either an advanced/expert-tier candidate or it is dropped.
 
 ---
 
@@ -66,6 +69,8 @@ graph LR
 | `LSN-n.m` | Lesson | module spec (inventory) → `lessons/LSN-n.m-*.md` (full plan) | notebooks, homework, spreadsheet rows |
 | `ASM-n` | Assessment (checkpoint / final) | module spec | gate decisions |
 | `GAP-n` | Content that must be built | module specs; aggregated in `modules/README.md` | build stories |
+| `SRC-n` | External source absorbed into the program (donated course corpus) | `sources/README.md` | supplements |
+| `SUP-n` | Supplement — build-ready material extracted from a `SRC-n`, attached to existing lessons | `sources/SUP-n-*.md` | lesson plans (Materials), gap builds |
 
 Advanced/expert tiers extend the registry later (`ADV-n`, `EXP-n`) using the same format — one module spec per module, same ID discipline.
 

@@ -108,6 +108,8 @@ Drill scenario D1 is the real construction-site completion prospect Dorel raised
 | Trace walkthrough script | exists | This file; optional live run from notebook 06 "Implementation" section |
 | **Homework task 1 dependency: the four framework cards** | build (`GAP-2`) | Needed **Mon 30 Nov**, not Tue — the cards are now read as *this* lesson's homework. Pulls the GAP-2 deadline forward by one day |
 | **Homework task 3: trace-annotation exercise — supplied question + annotation template** | build (part of `GAP-2b`) | New requirement created by this restructure: the slow trace read moved out of the live hour, so it needs a self-serve worksheet and a runnable notebook-06 path |
+| Supplement — the agent architecture ladder (four rungs) and the five environment properties, as a scoring rubric for the workflow-vs-agent drill and the homework memo | supplement | [`program/sources/SUP-4-agent-architecture-ladder.md`](../sources/SUP-4-agent-architecture-ladder.md) |
+| Supplement — the workflow-to-agent continuum, five design patterns with maturity ratings, the when-not-to table, and the four routes to unsafe execution (threat model for the harness segment) | supplement | [`program/sources/SUP-6-agentic-patterns-and-limits.md`](../sources/SUP-6-agentic-patterns-and-limits.md) |
 
 ## Delivery Notes
 

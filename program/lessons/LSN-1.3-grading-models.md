@@ -39,6 +39,8 @@ Spreadsheet row title: **"Grading Models"** (matches the lesson name).
 
 Kills the misconception that one headline number ("99% accurate!") settles whether a model is good. Installs the judging skill: MAE as the average miss in units the client cares about; precision and recall as two different kinds of wrong with two different price tags; the confusion matrix as the raw truth behind every metric; AUC in one picture. Builds directly on LSN-0.3's base-rate lesson — the 99%-accurate fraud detector that is mostly false alarms returns here as the precision/recall centerpiece — and arms the homework: three report cards, ship-or-don't-ship.
 
+**Spine — "refuse the aggregate" (4 of 4, and the payoff).** `LSN-0.2`: the average lies when the spread is wide. `LSN-0.3`: the aggregate lies when subgroups differ (91% overall is 95% and 32%). `LSN-0.4`: the confidence lies when the spread varies by region. Here it closes on the metric they will actually be handed: **the MAE lies when the error concentrates** — the 38-hour headline hiding 330-hour epic misses, with 85.9% of the error living in 10% of the items. Name the spine explicitly in segment 1; this is the fourth time the cohort meets one idea, and it is the moment it becomes a reflex they can use in a room rather than four remembered examples.
+
 ## Pre-work (mandatory — no pre-work, no seat)
 
 | # | Task | Time | Artifact to bring |
@@ -97,6 +99,7 @@ Every metric is priced in a delivery-company scenario: MAE on effort estimates t
 | Three model report cards + answer key | exists | This plan (Homework, above) + notebook homework cells (pinned arithmetic) |
 | Confusion-matrix drill slides (two vendor matrices incl. the always-say-no case) | exists | Deck + notebook drill section — vendor A hand-computed live, both completed in homework task 2 |
 | **Mandatory** pre-work video: StatQuest with Josh Starmer — "ROC and AUC, Clearly Explained!" (promoted from optional by the 2026-08-03 rescope) | exists | [youtube.com/watch?v=4jRBRDbJemM](https://www.youtube.com/watch?v=4jRBRDbJemM) |
+| Supplement — panel-inspection precision/recall worked example, "find out what positive means", the AUC-at-a-usable-operating-point caveat, F-beta and cross-validation bank questions | supplement | [`program/sources/SUP-3-metric-literacy-extension.md`](../sources/SUP-3-metric-literacy-extension.md) |
 
 ## Delivery Notes
 

@@ -22,6 +22,7 @@ Full lesson plans, one file per `LSN-n.m`, built from the module specs using `le
 | `PROGRAM_PLAN.md` | The narrative plan from the July 28 meeting analysis (incl. advanced/expert outlines, logistics, asset map) | `README.md` overview + roadmap |
 | `modules/` | Module specs, one per `MOD-n`, plus a catalog `README.md` | `skills/` catalog |
 | `lessons/` | Lesson plans (`LSN-n.m`), built from module specs via `TEMPLATE.md` | `SKILL.md` files |
+| `sources/` | External course corpus catalogued (`SRC-n`) and processed into build-ready supplements (`SUP-n`) attached to existing lessons | curated external references |
 | `../meetings/` | Raw Circleback transcripts + notes — the requirements inputs | meeting transcripts in the App Spec |
 
 ## The rules
@@ -31,6 +32,7 @@ Full lesson plans, one file per `LSN-n.m`, built from the module specs using `le
 3. **Coverage is queryable.** Every outcome needs ≥1 serving lesson and ≥1 verifying assessment; every gap needs an owner. Check before each curriculum review.
 4. **Pre-work is load-bearing.** Every lesson ships with mandatory pre-work — this is the design fix for the failure mode Vlad flagged (audience lost by minute 20).
 5. **No dictionary definitions.** Every concept is anchored to an exercise or a real VSP case (Dorel's rule).
+6. **External material is a supplement, never a lesson.** Donated course material enters through [`sources/`](sources/README.md), is re-cast into VSP's commercial vocabulary, and attaches to an existing `LSN-n.m` by ID. It may sharpen a segment, add to a question bank, or shorten a `GAP-n` build — it may not re-time a session or grow a homework budget.
 
 ## Regenerating the spreadsheet view
 

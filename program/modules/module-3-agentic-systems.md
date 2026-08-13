@@ -213,7 +213,7 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 | Field | Value |
 |---|---|
 | **Proposed date** | Week of Dec 7–11 2026 — **unscheduled**, not on the spreadsheet |
-| **Format** | Written exam (~25 scenario questions across all four modules, 45 min) **+ mock client conversation** (20 min/participant: a realistic ask spanning ML/LLM/agentic; Vlad or Dorel plays the client; rubric-graded) **+ artifact review** (MNIST, RAG, agent — all three submitted and working) |
+| **Format** | Written exam (~25 scenario questions across all four modules, 45 min) **+ mock client conversation** (20 min/participant: a realistic ask spanning ML/LLM/agentic; Vlad or Dorel plays the client; rubric-graded) **+ artifact review** (MNIST, RAG, agent — all three submitted and working). The artifact review is graded as *demonstration + design explanation + honest performance assessment* (`SUP-8` §4), the third of which carries a named rubric dimension — **"honest limitation": names at least one thing their own system does badly, unprompted, with evidence from their own traces or eval set, and states what they would do about it.** Adopted 2026-08-11 |
 | **Verifies** | `OUT-3.1`–`OUT-3.5` directly; samples MOD-0/1/2 outcomes for retention |
 | **Pass bar** | Exam 80% + conversation rubric "client-ready" + all three artifacts accepted |
 | **Gate** | Basics graduation → seat at the **Phase-4 capstone (Dec 14–17, "Build an Agentic Harness that Scores Leads")** + advanced tier eligibility. MOD-3 ends the taught basics tier; the capstone ends the program |
@@ -228,6 +228,19 @@ This is the module the program exists for. Vlad: "The lion's share should be age
 | `OUT-3.3` | LSN-3.4 | ASM-3 (artifact) |
 | `OUT-3.4` | LSN-3.5 | ASM-3 (conversation + question-bank homework) |
 | `OUT-3.5` | LSN-3.6 | ASM-3 (conversation) |
+
+## Supplements
+
+External-corpus material attached to this module ([`../sources/`](../sources/README.md)). This module is where the donated corpus pays for itself: three of its six lessons are unbuilt, and four supplements supply structure for those builds. **No gap is closed** — `GAP-2`/`2b`/`3`/`4`/`5` keep their owners and dates.
+
+| Supplement | Lands on | What it adds |
+|---|---|---|
+| [`SUP-4`](../sources/SUP-4-agent-architecture-ladder.md) | `LSN-3.1`, `LSN-3.2` | The four-rung agent architecture ladder and the five environment properties that force you up it — a framework-independent definition of "agent" and a scoring rubric for the workflow-vs-agent drill |
+| [`SUP-6`](../sources/SUP-6-agentic-patterns-and-limits.md) | `LSN-3.1`, `LSN-3.2`, `LSN-3.4`, `LSN-3.5` | The workflow-to-agent continuum; five patterns with maturity ratings; anatomy of a tool and the three-way failure partition; the four routes to unsafe execution; the guardrail checklist; the when-not-to table |
+| [`SUP-1`](../sources/SUP-1-project-qualification-gates.md) | `LSN-3.5`, `LSN-3.6` | The three-stage go/no-go as the TL question bank's spine, and the ten qualification questions as a reserve case segment |
+| [`SUP-7`](../sources/SUP-7-failure-and-trust-catalog.md) §2–3 | `LSN-3.5` | Explainability by method — "how does this system explain a decision to someone who disagrees?" — and monitoring requirements justified by a threat model |
+| [`SUP-5`](../sources/SUP-5-rag-optimization-ladder.md) | `LSN-3.5` | The two RAG failure surfaces and their metrics, for eval-suite design |
+| [`SUP-8`](../sources/SUP-8-assessment-item-seed.md) | `ASM-3` | Coverage map, item-quality rules, worked scenario items, and the proposed "honest limitation" rubric dimension |
 
 ## Build List
 
