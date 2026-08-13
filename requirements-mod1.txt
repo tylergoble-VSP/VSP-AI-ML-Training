@@ -1,0 +1,26 @@
+# Stage 2 — MOD-1 ML Literacy (adds the hands-on MNIST lab, LSN-1.4)
+#
+# Needed by:  Monday 28 September 2026
+# Footprint:  ~650 MB on top of stage 1 (PyTorch alone is ~515 MB)
+# Install:    .venv/bin/python -m pip install -r requirements-mod1.txt
+#
+# Installing this file also installs stage 1, so it is safe to run on its own.
+# Together, stage 1 + stage 2 reproduce the environment the MOD-0 and MOD-1
+# notebooks were built and verified against.
+#
+# Do not install this before you need it. It is a large download, and MOD-0
+# neither uses nor imports any of it (SI-1).
+
+-r requirements-mod0.txt
+
+# --- Classical ML -------------------------------------------------------------
+# scikit-learn: the classifier/metrics work behind LSN-1.2 and LSN-1.3
+scikit-learn>=1.9.0
+
+# --- Deep learning ------------------------------------------------------------
+# PyTorch: Vlad's explicit ask — everyone trains a real model in LSN-1.4.
+# CPU wheels are the default and are what the lab is pinned to (SI-27a);
+# Apple Silicon MPS is available but deliberately not used for committed runs.
+torch>=2.13.0
+# torchvision: MNIST loading, via the warm cache at ~/.cache/vsp-training-data (SI-24b)
+torchvision>=0.28.0

@@ -51,16 +51,21 @@ brew install uv
 Then, from the repo root:
 
 ```bash
-uv venv --python 3.12 .venv
-uv pip install --python .venv/bin/python numpy pandas matplotlib seaborn jupyterlab
+uv venv --seed --python 3.12 .venv
+.venv/bin/python -m pip install -r requirements.txt
 ```
+
+> **`--seed` matters.** Without it, `uv` creates the environment *without `pip` inside it*, and every
+> `python -m pip ...` command on this page fails with `No module named pip`. `--seed` puts pip in.
+> (If you prefer uv's own installer, `uv pip install --python .venv/bin/python -r requirements.txt`
+> works too and does not need the seed.)
 
 ### Option B — the standard library, no extra tooling
 
 ```bash
 python3.12 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install numpy pandas matplotlib seaborn jupyterlab
+.venv/bin/python -m pip install -r requirements.txt
 ```
 
 **On Windows**, replace `.venv/bin/python` with `.venv\Scripts\python.exe` in every command on this page.
@@ -99,29 +104,64 @@ Newer point releases are fine. If a notebook behaves oddly, this table is what t
 
 ## Installing packages in stages — and why
 
-**Do not run `pip install -r requirements.txt`.** That file is the *full-program* dependency list: it
-pulls PyTorch, transformers, sentence-transformers, `llama-cpp-python`, `bitsandbytes` (which needs CUDA
-and will fail on a Mac), FAISS, Neo4j and more. It is slow, it is failure-prone on a laptop, and
-**`MOD-0` needs none of it.** Installing it on 31 August is the most common way to arrive at `LSN-0.1`
-blocked.
+Installing everything up front is the most common way to arrive at `LSN-0.1` blocked. The original
+single dependency list pulled PyTorch, transformers, sentence-transformers, `llama-cpp-python`,
+`bitsandbytes` (which needs CUDA and fails outright on a Mac), FAISS and Neo4j — slow, failure-prone on a
+laptop, and **`MOD-0` needs none of it.**
 
-Instead, install what the module in front of you actually needs:
+That list has been retired to **`requirements-full.txt`**, marked do-not-install and kept only for
+reference. What you install now is staged to the module in front of you.
 
-| Stage | When | Install | Adds |
+**`requirements.txt` is now the safe default** — it installs stage 1 and nothing else, so the command
+above cannot leave you worse off. The heavy list still exists as `requirements-full.txt`, clearly marked,
+for reference only.
+
+| Stage | File | When | Adds |
 |---|---|---|---|
-| **1 — `MOD-0`** | Before **1 Sep** | `numpy pandas matplotlib seaborn jupyterlab` | ~350 MB |
-| **2 — `MOD-1`** | Before **28 Sep** (`LSN-1.4`, the MNIST lab) | `scikit-learn torch torchvision` | ~650 MB more (PyTorch alone is ~515 MB) |
-| **3 — `MOD-2`/`MOD-3`** | From **October** | Announced with the lesson | The LLM stack |
+| **1 — `MOD-0`** | `requirements.txt` | Before **1 Sep** | ~350 MB |
+| **2 — `MOD-1`** | `requirements-mod1.txt` | Before **28 Sep** (`LSN-1.4`, the MNIST lab) | ~650 MB more — PyTorch alone is ~515 MB |
+| **3 — `MOD-2`/`MOD-3`** | announced with the lesson | From **October** | The LLM stack |
 
-Stage 2, when you get there:
+Stage 2, when you get there — it includes stage 1, so it is safe to run on its own:
 
 ```bash
-uv pip install --python .venv/bin/python scikit-learn torch torchvision
-# or:  .venv/bin/python -m pip install scikit-learn torch torchvision
+.venv/bin/python -m pip install -r requirements-mod1.txt
 ```
 
 **Datasets live outside the repo**, at `~/.cache/vsp-training-data` — the MNIST lab writes there rather
 than into your clone, so training data never lands in a commit. The notebook creates it for you.
+
+---
+
+## Use this environment inside Jupyter
+
+Opening a notebook is not the same as running it against *this* environment. If your Jupyter or VS Code is
+running from somewhere else, it will happily execute the notebook against a different Python and give you
+import errors that make no sense. Register this environment once and it becomes selectable everywhere:
+
+```bash
+.venv/bin/python -m ipykernel install --user --name vsp-training --display-name "VSP AI/ML Training (.venv)"
+```
+
+Now **VSP AI/ML Training (.venv)** appears in JupyterLab's kernel picker and in VS Code's *Select Kernel*
+dialog. Pick it before running anything. To check what is registered:
+
+```bash
+.venv/bin/jupyter kernelspec list
+```
+
+### Installing packages from inside a notebook
+
+If you are already in a notebook and something is missing, install it into the **running kernel** from a
+cell:
+
+```python
+%pip install -r requirements.txt
+```
+
+Use `%pip`, not `!pip`. The `%pip` magic installs into the interpreter the notebook is actually running
+on; `!pip` shells out and can install into a completely different Python — which is the most common way
+to "install" a package and still get `ModuleNotFoundError` on the next line. Restart the kernel afterwards.
 
 ---
 

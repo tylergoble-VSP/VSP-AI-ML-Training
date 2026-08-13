@@ -62,7 +62,8 @@ echo "Upgrading pip..."
 pip install --upgrade pip
 
 # Install dependencies
-echo "Installing dependencies from requirements.txt..."
+echo "Installing MOD-0 dependencies from requirements.txt..."
+echo "  (staged by module — see ACTIVATE_VENV.md; requirements-mod1.txt adds PyTorch for LSN-1.4)"
 pip install -r requirements.txt
 
 # Create output directories

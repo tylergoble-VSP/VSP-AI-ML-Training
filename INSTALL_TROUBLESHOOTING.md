@@ -1,5 +1,11 @@
 # Installation Troubleshooting
 
+> **Scope note.** This file covers a Linux build-headers failure hit by the *legacy* full dependency
+> list (`requirements-full.txt`). The training program no longer installs that list — see
+> [`ACTIVATE_VENV.md`](ACTIVATE_VENV.md) for the staged setup, which does not compile anything from
+> source and is what you should be following. If you are on macOS or Windows and stuck, the fastest
+> path is to bring the error to `LSN-0.1`; 25 minutes of that session exist for exactly this.
+
 ## Issue: Failed to build scikit-survival and ecos
 
 If you see errors like:
@@ -34,12 +40,12 @@ sudo pacman -S python python-pip base-devel
 1. Retry the installation:
    ```bash
    source .venv/bin/activate
-   pip install -r requirements.txt
+   .venv/bin/python -m pip install -r requirements-full.txt
    ```
 
-2. If you want to install scikit-survival (optional), uncomment it in requirements.txt:
+2. If you want to install scikit-survival (optional), uncomment it in requirements-full.txt:
    ```bash
-   # Edit requirements.txt and uncomment:
+   # Edit requirements-full.txt and uncomment:
    # scikit-survival>=0.19.0
    ```
 

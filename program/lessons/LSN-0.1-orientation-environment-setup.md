@@ -47,7 +47,7 @@ Held at 45 min rather than the boot week's ≤ 30 min norm: this pre-work lands 
 |---|---|---|---|
 | 1 | Read `program/README.md` and the **Ceremonies** + **Enrollment Gate** sections of `program/program-spec.md` | 10 min | One written question or concern about the cadence (pre-work → session → homework → checkpoint) |
 | 2 | Clone the `VSP-AI-ML-Training` repo | 5 min | Local clone path |
-| 3 | Create the virtualenv and install dependencies per `ACTIVATE_VENV.md` + `requirements.txt` | 15 min | Terminal output: activated venv prompt + `python --version` + clean `pip install` finish (or the failure output) |
+| 3 | Create the virtualenv and install MOD-0 dependencies per `ACTIVATE_VENV.md` + `requirements.txt`, then register the kernel so the venv is selectable in Jupyter/VS Code | 15 min | Terminal output: activated venv prompt + `python --version` + clean `pip install` finish (or the failure output) |
 | 4 | If step 3 failed: work through `INSTALL_TROUBLESHOOTING.md` | 10 min | The exact error message, copied as text — this is a valid pre-work artifact; broken setups get fixed live |
 | 5 | Launch Jupyter and open `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb`; run the first cells if you can | 5 min | Screenshot of the open notebook (executed cell if it worked) |
 
@@ -83,7 +83,7 @@ Task 3 is deliberately the module's shock absorber: it is the only MOD-0 homewor
 | Material | Status | Path / source |
 |---|---|---|
 | Environment setup guide | exists | `ACTIVATE_VENV.md` |
-| Dependency list | exists | `requirements.txt` |
+| Dependency list — staged by module | exists | `requirements.txt` (MOD-0) · `requirements-mod1.txt` (adds PyTorch for LSN-1.4) · `requirements-full.txt` (legacy, do not install) |
 | Troubleshooting guide (living doc — updated during triage) | exists | `INSTALL_TROUBLESHOOTING.md` |
 | Python foundations notebooks | exists | `notebooks/foundations/01_Beginning_Python.ipynb`, `02_Intermediate_Python.ipynb`, `03_Advanced_Python.ipynb` |
 | **Session notebook** — 5 checkpoints + ASM-0 evidence + baseline self-rating, executed end to end | exists | `notebooks/lessons/LSN-0.1_Orientation_Environment_Setup.ipynb` |
