@@ -95,6 +95,7 @@ Your notebook must run end-to-end (embeddings + nearest-neighbour query) before 
 | 50-ticket sentence set (CSV, 5×10 clusters as specced above) | build (light — write from spec above) | program/materials/ — to create |
 | Lab notebook: embed → query → k-means (adapts foundations/10) | adapt — **scope changed:** the k-means stage and the own-corpus/granularity/model-comparison stages now run **solo out of session**, so the notebook needs its own guidance and self-checks for those cells (a bring-your-own-corpus loader cell, expected-shape asserts, and a "what good looks like" note per homework task) rather than relying on the instructor being present | notebooks/foundations/10_Embedding_Models.ipynb — trim to lab flow |
 | "Where embeddings show up" catalogue one-pager | build (light — **new**, carries relocated live segment 3 into pre-work) | program/materials/ — to create |
+| Supplement — embedding-model selection axes and the sparse/dense/hybrid contrast (explains the scripted polarity miss) | supplement | [`program/sources/SUP-5-rag-optimization-ladder.md`](../sources/SUP-5-rag-optimization-ladder.md) knobs 4–5 |
 
 ## Delivery Notes
 

@@ -108,6 +108,7 @@ Previously none. The spreadsheet's 2 h out-of-session budget leaves **80 min** a
 | RL reference notebook | exists | `notebooks/reinforcement/01_Reinforcement_QLearning.ipynb` |
 | Optional: 3Blue1Brown — "But what is a neural network?" (Deep Learning, Chapter 1) | exists | [youtube.com/watch?v=aircAruvnKk](https://www.youtube.com/watch?v=aircAruvnKk) |
 | Pair-drill prompts + rubric | exists | This plan (above) |
+| Supplement — the traffic-sign adversarial result as a CNN closing beat (the model was never using the features you assumed) | supplement | [`program/sources/SUP-7-failure-and-trust-catalog.md`](../sources/SUP-7-failure-and-trust-catalog.md) §2 |
 
 ## Delivery Notes
 

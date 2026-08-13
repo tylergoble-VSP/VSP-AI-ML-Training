@@ -120,6 +120,9 @@ The centerpiece *is* the real construction-site completion prospect, walked end 
 | Starter pre-sales question bank (draft) | exists | This plan (above) |
 | Question bank template (blank, for homework submissions) | exists — starter template; refined live at delivery, updated after first delivery | Fill-in homework cell in `notebooks/lessons/LSN-1.6_Data_Requirements_Presales_Question_Bank.ipynb` (saves to `outputs/lsn-1.6/`; advisor pre-checks against the pass bar without gating the save) |
 | ML literacy deck (limitations section) | exists | ML literacy deck (see PROGRAM_PLAN.md §8) — not in repo |
+| Supplement — project qualification gates: the four-property "is this a good task for AI" screen, the ten qualification questions, the three-layer bank cover sheet | supplement | [`program/sources/SUP-1-project-qualification-gates.md`](../sources/SUP-1-project-qualification-gates.md) |
+| Supplement — data reality catalog: source formats, organizational obstacles, missing/incorrect values, identity resolution, encoding, sampling. Doubles as a walkthrough spine while `GAP-5` is open | supplement | [`program/sources/SUP-2-data-reality-catalog.md`](../sources/SUP-2-data-reality-catalog.md) |
+| Supplement — six structural weaknesses of learned systems, each with its pre-sales question (bank additions) | supplement | [`program/sources/SUP-7-failure-and-trust-catalog.md`](../sources/SUP-7-failure-and-trust-catalog.md) §1 |
 
 ## Delivery Notes
 

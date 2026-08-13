@@ -35,6 +35,12 @@ One file per lesson, named `LSN-<n>.<m>-<kebab-title>.md`, authored from [`TEMPL
 
 Status vocabulary (matches `TEMPLATE.md` frontmatter): `not started → draft → reviewed → approved → delivered`. Update this board whenever a plan changes status.
 
+## Supplements — read before building
+
+Fifteen of the plans below now carry `supplement` rows in their Materials tables, pointing at [`../sources/`](../sources/README.md). A supplement is build-ready raw material — a checklist, a decision ladder, a drill rubric, a question bank — extracted from a donated external course corpus and re-cast into VSP's commercial vocabulary. **Builders: read the supplement rows in your lesson's Materials table before writing anything.** They will not change your contract (no supplement re-times a session or grows a homework budget), but several of them replace a generic illustration with a sharper one or supply a rubric where the plan currently says "drill."
+
+**All supplement proposals were resolved on 2026-08-11** — eleven content changes adopted, every one a swap or reframe inside an existing time budget, plus one build-standards change (`SI-30`: colour never carries a distinction alone) and the artifact debt it exposed (`COLOUR-1`). The full decision table is in [`../modules/README.md`](../modules/README.md). Nothing is pending your approval; what is pending is the rebuild work, and it is carried in the module build lists.
+
 ## Suggested build order (recalibrated 2026-08-03 to the locked calendar)
 
 1. **Retiming debt** (`GAP-11`) — LSN-0.2/0.3/1.3/1.4 decks + notebooks are built for the old 90/150-min contracts; first delivery is Sep 2.

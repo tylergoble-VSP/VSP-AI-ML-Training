@@ -102,6 +102,8 @@ ASM-2 (quiz + whiteboard) verifies OUT-2.1–OUT-2.6; this lesson's taxonomy and
 | Mata v. Avianca overview | exists | [en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.](https://en.wikipedia.org/wiki/Mata_v._Avianca%2C_Inc.) |
 | Samsung source-code / enterprise-paste incident details | pending — **verify at delivery prep before it goes in the pack** | to confirm |
 | Evals deep-dive (forward reference) | exists (spec) | program/modules/module-3-agentic-systems.md — LSN-3.5 |
+| Supplement — metrics for generated text, the judged-quality caveat, and the benchmark/leaderboard failure modes that motivate a golden set | supplement | [`program/sources/SUP-3-metric-literacy-extension.md`](../sources/SUP-3-metric-literacy-extension.md) §6–7 |
+| Supplement — six structural weaknesses, adversarial manipulation, the explainability-by-method catalog, why testing a generative system is genuinely harder | supplement | [`program/sources/SUP-7-failure-and-trust-catalog.md`](../sources/SUP-7-failure-and-trust-catalog.md) |
 
 ## Delivery Notes
 

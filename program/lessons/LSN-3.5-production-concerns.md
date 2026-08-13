@@ -113,6 +113,10 @@ This is the lesson Vlad described when he described the whole program: "I know t
 | Add observability to AgentCore resources (AWS docs) | exists | [docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html) |
 | Anthropic — "Building Effective Agents" | exists | [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) |
 | LangSmith evaluation docs | exists | [docs.langchain.com/langsmith/evaluation](https://docs.langchain.com/langsmith/evaluation) |
+| Supplement — the three-stage go/no-go (planning / development / deployment) as the TL question bank's spine | supplement | [`program/sources/SUP-1-project-qualification-gates.md`](../sources/SUP-1-project-qualification-gates.md) |
+| Supplement — six agentic failure modes, the guardrail checklist, cost as a distribution rather than a number | supplement | [`program/sources/SUP-6-agentic-patterns-and-limits.md`](../sources/SUP-6-agentic-patterns-and-limits.md) §4–6 |
+| Supplement — explainability by method ("how does this system explain a decision to someone who disagrees?") and monitoring justified by a threat model | supplement | [`program/sources/SUP-7-failure-and-trust-catalog.md`](../sources/SUP-7-failure-and-trust-catalog.md) §2–3 |
+| Supplement — the two RAG failure surfaces and their metrics, for eval-suite design | supplement | [`program/sources/SUP-5-rag-optimization-ladder.md`](../sources/SUP-5-rag-optimization-ladder.md) (Evaluating the pipeline) |
 
 ## Delivery Notes
 

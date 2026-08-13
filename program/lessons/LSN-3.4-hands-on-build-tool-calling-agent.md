@@ -97,6 +97,7 @@ Thursday evening is the module's heaviest: it carries this homework **and** the 
 | Fallback mini-corpus + pre-built index (for broken LSN-2.4 artifacts) | build (part of `GAP-2b`) | repo — location set at delivery prep. **Now load-bearing at pre-work time:** Stage A2 tells participants to switch to it Wednesday evening rather than discovering the problem in the live hour |
 | Pre-work reading: Anthropic, "Building effective agents" | exists | [anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents) |
 | Rigged system-prompt variant for the break-it drill + reference `gated_execute()` cell | build (part of GAP-2) | lab notebook appendix |
+| Supplement — anatomy of a tool and the three-way failure partition (selection / arguments / execution) as the break-it drill and Stage-C rubric | supplement | [`program/sources/SUP-6-agentic-patterns-and-limits.md`](../sources/SUP-6-agentic-patterns-and-limits.md) §3 |
 
 ## Delivery Notes
 

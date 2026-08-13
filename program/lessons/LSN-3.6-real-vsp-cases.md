@@ -134,6 +134,8 @@ The walk practiced here (ask → triage → architecture → production question
 | TL production question bank | build (`GAP-4`) | Delivered in LSN-3.5 **the same morning** — hard dependency, and the tightest one in the module: the bank must be handout-ready, not draft, by Fri 4 Dec |
 | Phase-4 capstone brief (homework task 3) | exists (skeleton) | `program/modules/module-4-capstone.md` — configuration is locked (Dec 14–17, 5 h/day, no pre-work/homework), the rest is a provisional skeleton awaiting its own planning round. Only the title and dates are needed for the carry-in note; if the full brief slips, task 3 falls back to "name your carry-in artifacts" alone |
 | Whiteboard or shared canvas | exists | Room logistics; one marker-holder per case, rotate |
+| Supplement — the ten qualification questions applied live to a case (reserve segment if a walkthrough runs short) | supplement | [`program/sources/SUP-1-project-qualification-gates.md`](../sources/SUP-1-project-qualification-gates.md) §1 |
+| Supplement — the retrieval-corpus-as-injection-surface question, live for any case involving external text | supplement | [`program/sources/SUP-6-agentic-patterns-and-limits.md`](../sources/SUP-6-agentic-patterns-and-limits.md) §5 |
 
 ## Delivery Notes
 

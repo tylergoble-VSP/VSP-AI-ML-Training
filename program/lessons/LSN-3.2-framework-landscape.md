@@ -112,6 +112,7 @@ The in-production meeting-RAG system is the grounding case: segment 3 closes by 
 | LangGraph product/docs page | exists | [langchain.com/langgraph](https://www.langchain.com/langgraph) |
 | "What is Haystack?" (deepset) | exists | [haystack.deepset.ai/overview/intro](https://haystack.deepset.ai/overview/intro) |
 | LangSmith observability & evals docs | exists | [LangSmith observability docs](https://docs.langchain.com/langsmith/observability) · [LangSmith evaluation docs](https://docs.langchain.com/langsmith/evaluation) |
+| Supplement — card row structure that ages well: which architecture rung it assumes, which of the five patterns it implements, whether it speaks the standard tool protocol | supplement | [`program/sources/SUP-4-agent-architecture-ladder.md`](../sources/SUP-4-agent-architecture-ladder.md) + [`SUP-6`](../sources/SUP-6-agentic-patterns-and-limits.md) |
 
 ## Delivery Notes
 

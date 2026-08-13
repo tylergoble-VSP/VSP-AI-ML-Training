@@ -214,6 +214,17 @@ All six lessons run the same spreadsheet contract: **1 h live + 4 h out-of-sessi
 | `OUT-2.5` | LSN-2.5 | ASM-2 (quiz) |
 | `OUT-2.6` | LSN-2.6 | ASM-2 (quiz) |
 
+## Supplements
+
+External-corpus material attached to this module ([`../sources/`](../sources/README.md)). Two placements are candidate swaps needing lesson-owner approval (marked); the rest are framing and bank additions.
+
+| Supplement | Lands on | What it adds |
+|---|---|---|
+| [`SUP-9`](../sources/SUP-9-prompt-and-inference-controls.md) | `LSN-2.1`, `LSN-2.2` | Inference settings (temperature, top-k, top-p, penalties, max tokens); prompt component checklists; the six-technique ladder with a cost column. **Candidate swap:** the five-step escalation drill replaces the "run the 5 provided prompts" pre-work task — same 30 min, controlled sequence |
+| [`SUP-5`](../sources/SUP-5-rag-optimization-ladder.md) | `LSN-2.3`, `LSN-2.4`, `LSN-2.5` | The twelve-knob optimization ladder, each knob with its symptom and cost; the retrieval-vs-generation diagnostic order. **Candidate reframe:** `LSN-2.4`'s homework paragraph becomes a before-and-after shortfall list |
+| [`SUP-3`](../sources/SUP-3-metric-literacy-extension.md) §6–7 | `LSN-2.6` | Metrics for generated text; the judged-quality caveat; the four benchmark/leaderboard failure modes that motivate a golden set |
+| [`SUP-7`](../sources/SUP-7-failure-and-trust-catalog.md) | `LSN-2.6` | Six structural weaknesses; adversarial manipulation and its countermeasures; the explainability-by-method catalog; why testing a generative system is genuinely harder |
+
 ## Build List
 
 Needed-by dates are **pre-work ship dates**, not session dates: with a 4 h out-of-session budget, participants start a week before the room.

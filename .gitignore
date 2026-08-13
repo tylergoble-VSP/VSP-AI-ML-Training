@@ -3,3 +3,8 @@ __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 outputs/lsn-*/
+
+# Donated external course corpus — reference only, never committed.
+# 16 GB, includes binaries and third-party material with no redistribution grant.
+# See program/sources/README.md (Licensing).
+AI-ML Courses/

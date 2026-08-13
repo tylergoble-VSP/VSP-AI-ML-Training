@@ -39,9 +39,9 @@ Every lesson runs on the same contract: **1 h live + 2 h out-of-session** (pre-w
 | ID | Lesson (spreadsheet alias) | Delivery date | Live | Out-of-session | Owner | Format | Material status |
 |---|---|---|---|---|---|---|---|
 | `LSN-0.1` | Orientation & environment setup (= "Orientation") | Tue 1 Sep 2026 | 1 h | 2 h (45 pre + 75 hw) | Tyler + Marius | Live, hands-on | Exists (repo); live session already timed to 60 |
-| `LSN-0.2` | Statistics I — distributions, sampling, variance (= "Statistics 1") | Wed 2 Sep 2026 | 1 h | 2 h (30 pre + 90 hw) | Tyler | Live | Built (deck + notebook); **timed to 90 — retiming round required** |
-| `LSN-0.3` | Statistics II — probability, conditioning, correlation ≠ causation (= "Statistics 2") | Thu 3 Sep 2026 | 1 h | 2 h (30 pre + 90 hw) | Tyler | Live | Built (deck + notebook); **timed to 90 — retiming round required** |
-| `LSN-0.4` | Deterministic, probabilistic, stochastic — reading uncertainty (= "Deterministic vs Probablistic vs Stocastic", sic) | Fri 4 Sep 2026 | 1 h | 2 h (20 pre + 100 hw) | Tyler | Live or recorded | Built (deck + notebook, timed to 60) |
+| `LSN-0.2` | Statistics I — distributions, sampling, variance (= "Statistics 1") | Wed 2 Sep 2026 | 1 h | 2 h (30 pre + 90 hw) | Tyler | Live | Built (deck + notebook), **both on the 60-min contract** — deck retimed 2026-08-03, notebook retimed + supplement content added Round 10 (2026-08-11). Anonymisation still pending |
+| `LSN-0.3` | Statistics II — probability, conditioning, correlation ≠ causation (= "Statistics 2") | Thu 3 Sep 2026 | 1 h | 2 h (30 pre + 90 hw) | Tyler | Live | Built (deck + notebook), **both on the 60-min contract** — retimed Round 10 (2026-08-11), incl. the `COLOUR-1` fix. Anonymisation still pending |
+| `LSN-0.4` | Deterministic, probabilistic, stochastic — reading uncertainty (= "Deterministic vs Probablistic vs Stocastic", sic) | Fri 4 Sep 2026 | 1 h | 2 h (20 pre + 100 hw) | Tyler | Live or recorded | Built (deck + notebook, timed to 60). Round 10 replaced the notebook's contradictory "no homework" closing with the plan's four tasks and added the reducible/irreducible axis + calibration check |
 | — | `ASM-0` checkpoint quiz | **unscheduled** (not on the program spreadsheet — needs a calendar slot at the next review call; proposed: async within LSN-0.4's homework budget, weekend of Sep 5–6) | — | 30 min, inside LSN-0.4's homework budget | Tyler | Async | **BUILD — GAP-6** |
 
 **Module totals:** 4 × 1 h live = 4 h; 4 × 2 h out-of-session = 8 h; **12 h total**, with `ASM-0`'s 30 min already counted inside LSN-0.4's homework.
@@ -104,11 +104,11 @@ Presenter Tyler · Reviewer Vlad · Guinea pig Mazilu (TBC).
 
 **Session outline (60 min):**
 1. Distributions as pictures of uncertainty — participants' pre-work plots on screen, then the latency-vs-heights contrast (12 min)
-2. Sampling debrief + bias, which no sample size fixes — discussion, not simulation (15 min)
-3. Variance and outliers: when the average lies — the client-commitment decision (13 min)
+2. Sampling debrief + bias, which no sample size fixes — discussion, not simulation; six named bias types with commercial tells, worked on a CRM-export drill (15 min)
+3. Variance and outliers: when the average lies — the client-commitment decision, closing on the 1.5 × IQR fence so an exclusion is a rule rather than an opinion (13 min)
 4. Client-conversation drill: "our model is 92% accurate" — the three questions to ask before believing it (20 min)
 
-**Homework (90 min):** The 32-row schedule-slip notebook (mean/median/variance, histogram, outlier recompute, trust write-up, 30 min); the outlier arithmetic and Anscombe's quartet cells relocated out of the live session (25 min); write the three questions as an email to the prospect's PM (15 min); apply the two sampling questions to a number from your own current project (10 min); notebook extension — sampling on the right-skewed latency population (10 min).
+**Homework (90 min):** The 32-row schedule-slip notebook (mean/median/variance, histogram, outlier recompute, trust write-up, 30 min); the outlier arithmetic and Anscombe's quartet — the quartet staged as a written prediction made *before* the plot — relocated out of the live session (25 min); write the three questions as an email to the prospect's PM (15 min); apply the two sampling questions to a number from your own current project (10 min); notebook extension — sampling on the right-skewed latency population (10 min).
 
 **Support material:** Built — deck `program/lessons/decks/LSN-0.2-statistics-1.html`; session notebook `notebooks/lessons/LSN-0.2_Statistics_1_Distributions_Sampling_Variance.ipynb` (pre-work + session + self-checking homework, executed end to end). **Both are timed to the previous 90-min session — a retiming round is required before delivery** (resection the notebook into pre-work / live / homework blocks matching the new split). Candidate companions: Stanford intro-stats excerpts (Tyler pulling from academic contacts).
 
@@ -153,11 +153,11 @@ Presenter Tyler · Reviewer Vlad · Guinea pig Mazilu (TBC).
 **Pre-work (~20 min):** Re-read the keywords section of the ML literacy deck; write one example of each term from your own project experience.
 
 **Session outline (60 min — already on contract, content unchanged):**
-1. Deterministic (2+2) vs probabilistic (a guess with confidence) vs stochastic (randomness in the process) — participants' own examples reviewed live (25 min)
+1. Deterministic (2+2) vs probabilistic (a guess with confidence) vs stochastic (randomness in the process) — participants' own examples reviewed live, then re-sorted on a second axis: *would more data fix this?* (25 min)
 2. Why this matters commercially: setting client expectations when outputs vary between runs (20 min)
 3. Bridge to MOD-1: the five ML jobs all produce probabilistic answers — preview (15 min)
 
-**Homework (100 min, runs into the weekend of Sep 5–6):** was "none — checkpoint week", which no longer fits a 2 h out-of-session contract. Now: consolidation pass over the week's three notebooks as `ASM-0` prep (25 min); three-bucket sort applied to a live VSP system, with a SOW acceptance criterion per probabilistic/stochastic behaviour (25 min); eval-set sizing from the notebook's acceptance-arithmetic cell (20 min); **`ASM-0` itself (30 min)** — the quiz is not on the program spreadsheet, so this budget is where it is proposed to live.
+**Homework (100 min, runs into the weekend of Sep 5–6):** was "none — checkpoint week", which no longer fits a 2 h out-of-session contract. Now: consolidation pass over the week's three notebooks as `ASM-0` prep (25 min); three-bucket sort applied to a live VSP system, with a SOW acceptance criterion per probabilistic/stochastic behaviour (25 min); the two halves of one acceptance criterion — eval-set sizing from the notebook's acceptance-arithmetic cell, plus a calibration check that turns the overconfident-twin prop into a checkable criterion (20 min); **`ASM-0` itself (30 min)** — the quiz is not on the program spreadsheet, so this budget is where it is proposed to live.
 
 **Support material:** Built — deck `program/lessons/decks/LSN-0.4-deterministic-probabilistic-stochastic.html` (slide 2 carries the keywords, the pre-work target); session notebook `notebooks/lessons/LSN-0.4_Deterministic_Probabilistic_Stochastic.ipynb` (executed end to end). Original ML literacy deck keywords section remains the source (not yet in repo).
 
@@ -183,6 +183,33 @@ Presenter Tyler · Reviewer Vlad · Guinea pig Mazilu (TBC).
 | `OUT-0.3` | LSN-0.2, LSN-0.3 | ASM-0 |
 | `OUT-0.4` | LSN-0.3 | ASM-0 |
 
+## Supplements
+
+External-corpus material attached to this module ([`../sources/`](../sources/README.md)). Supplements enrich existing lessons; none re-times a session or grows a homework budget.
+
+| Supplement | Lands on | What it adds |
+|---|---|---|
+| [`SUP-2`](../sources/SUP-2-data-reality-catalog.md) §4–5 | `LSN-0.2` | Log transform for wide-ranging values; the 1/√n law ("four times the data to halve the error") — optional homework extensions to the existing sampling notebook |
+| [`SUP-7`](../sources/SUP-7-failure-and-trust-catalog.md) §4 | `LSN-0.4` | Why a generative system's acceptance criterion must be statistical — the justification for the existing SOW-criterion homework |
+| [`SUP-10`](../sources/SUP-10-charts-that-communicate.md) | `LSN-0.2`, `LSN-0.3` | The decision case where a correct analysis lost to its own charts; Anscombe restaged as predict-then-reveal; the 1.5 × IQR fence as a defensible outlier rule (pure numpy, `SI-1`-clean); the chart rules participants' own figures are graded against; **an accessibility check the VSP palette needs before delivery** |
+| [`SUP-11`](../sources/SUP-11-uncertainty-decomposition.md) | `LSN-0.4`, `LSN-0.2` | Reducible vs irreducible uncertainty and the one question that separates them — *"will more data fix this?"*; varying spread; **calibration**, which names the already-built overconfident-twin prop (`LL-23`) and yields a checkable acceptance criterion; out-of-depth detection |
+| [`SUP-12`](../sources/SUP-12-bias-and-disaggregation.md) | `LSN-0.2`, `LSN-0.3` | Six named bias types with commercial tells (replaces generic "bias" in LSN-0.2 segment 2); the 91% / 95% / 32% disaggregation as the third member of the base-rate family; five test strategies; competing fairness definitions as a client choice |
+
+**`LSN-0.1` yield is deliberately near-zero.** The external corpus is content courses; `LSN-0.1` is a contract-and-a-working-machine lesson. One optional pre-work reading survives — see `sources/README.md`, "Where the corpus turned out to be thin."
+
+### The spine these supplements expose
+
+`SUP-11` §3 and `SUP-12` §2 both land on an idea this module already teaches once and the program then re-teaches three more times at increasing resolution:
+
+| Lesson | Form of the same idea | Status |
+|---|---|---|
+| `LSN-0.2` | The **average** lies when variance is high or outliers dominate | built |
+| `LSN-0.3` | The **aggregate** lies when subgroups differ — 91% is 95% and 32% | supplement adds the worked example |
+| `LSN-0.4` | The **confidence** lies when spread varies by region | supplement adds the vocabulary |
+| `LSN-1.3` | The **MAE** lies when error concentrates — 38 h headline, 330 h misses (`LL-36`) | built |
+
+Naming this explicitly in each plan — so every lesson calls forward and back — would make four good separate beats read as one compounding argument. **Proposed, not made:** it is a spec edit across two modules and wants Curriculum Lead sign-off.
+
 ## Build List
 
 | ID | Item | Owner | Needed by |
@@ -190,3 +217,5 @@ Presenter Tyler · Reviewer Vlad · Guinea pig Mazilu (TBC).
 | `GAP-1` | ~~Stats I & II decks + exercise notebooks + drills~~ **CLOSED** — built Rounds 1–2 (see `program/lessons/BUILD_LOG.md`) | Tyler | done |
 | `GAP-6` (share) | ASM-0 quiz | Tyler | Fri 4 Sep 2026 (live for the proposed Sep 5–6 async window) |
 | — | Retiming round (no GAP id — rescope debt, not a content gap): `LSN-0.2` and `LSN-0.3` decks + notebooks rebuilt to the 60 min live split, with the relocated cells re-labelled pre-work / homework. Both were built to 90 min | Tyler | Tue 1 Sep 2026 |
+| `COLOUR-1` (share) | **Colour-encoding fixes** (`SI-30`, `LL-50`): `yellow` and `mint` are the same colour under protanopia, and are used as a sole category encoding in `LSN-0.3` cell 17 (two of five legend bands) — plus `LSN-1.4` cell 12, `LSN-1.5` cell 14 and `LSN-1.6` cell 32 in MOD-1. One-line swaps (`yellow` → pair with `navy` or `green`), then re-execute and re-verify per `SI-2`/`SI-22`. `LSN-0.3`'s fix folds into the retiming round above at no extra cost | Tyler | with the retiming round, Tue 1 Sep 2026 |
+| — | **Content adopted 2026-08-11** (folds into the same retiming round, no extra round needed): `LSN-0.2` — six named bias types + CRM-export drill in segment 2, the 1.5 × IQR fence in segment 3 and homework task 1, Anscombe restaged as predict-then-reveal in homework task 2. `LSN-0.3` — scenario question 1 swapped to the disaggregation question, five test strategies structuring homework task 4. `LSN-0.4` — the reducible/irreducible second axis in segment 1, the calibration check as homework task 3(b). **`LSN-0.4` had no prior rebuild debt, so it now needs one small round** | Tyler | `LSN-0.2`/`0.3` Tue 1 Sep; `LSN-0.4` before Fri 4 Sep |

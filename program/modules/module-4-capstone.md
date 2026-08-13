@@ -59,6 +59,18 @@ Passing basics + demoing the capstone = program graduation.
 | `OUT-4.2` | D3 | `ASM-4` |
 | `OUT-4.3` | D4 | `ASM-4` |
 
+## Supplements
+
+External-corpus material attached to this module ([`../sources/`](../sources/README.md)) — both feed the `GAP-10` build, neither closes it.
+
+| Supplement | Lands on | What it adds |
+|---|---|---|
+| [`SUP-1`](../sources/SUP-1-project-qualification-gates.md) | D1 brief; `ASM-4` | Gate A (task defined with metrics · data ownership and provenance · named stakeholders · harm modeling · rollback and error detection) is the natural shape for the capstone scoping session; Gate C is the demo's "what would it take to run this for real" question |
+| [`SUP-8`](../sources/SUP-8-assessment-item-seed.md) §4 | `ASM-4` rubric | The demo rubric shape — demonstration + design explanation + **honest performance assessment**, where "states what it does badly, with evidence" is a scored dimension rather than a hope |
+
+Note for the planning round: the capstone scores leads from external text, so `SUP-6` §5's
+retrieval-corpus-as-injection-surface point is a live design constraint, not a theoretical one.
+
 ## Build list
 
 | ID | Item | Needs | Priority |
