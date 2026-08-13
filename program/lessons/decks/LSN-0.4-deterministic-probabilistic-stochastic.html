@@ -172,7 +172,7 @@
       <div class="vsp-footer"><span>MOD-0 Foundations · Deterministic, Probabilistic, Stochastic · serves OUT-0.2</span><span>60 min · 25 / 20 / 15</span></div>
     </div>
     <aside class="notes">
-      2 min, and the session budget must hold: the three-bucket sort 25 min (this slide + slides 2–4) · commercial expectations 20 min (slides 5–8) · bridge to MOD-1 15 min (slides 9–11) = 60 min. There is no slack anywhere; the sort is the segment that overruns.
+      2 min, and the session budget must hold: the three-bucket sort 25 min (this slide + slides 2–5, ending on the reducible/irreducible split) · commercial expectations 20 min (slides 6–9) · bridge to MOD-1 15 min (slides 10–12) = 60 min. There is no slack anywhere; the sort is the segment that overruns.
       The 2026-08-03 rescope left this live hour completely alone — no segment was cut, moved or retimed. What changed is the evening: homework went from "none, checkpoint week" to 100 min across the weekend of Sep 5–6, and ASM-0 now sits inside that budget as task 4. Slide 10 is that homework; do not let the session end without it.
       Open with the headline and a real story if you have one: a client (or a colleague) filing "it gave a different answer" as a defect. Do not resolve it yet. The whole session is the answer, and the answer is "which part are you pointing at?"
       Say the frame out loud once: senior engineers spend careers making systems deterministic, so this instinct is not stupidity — it is professional reflex pointed at the wrong kind of system. Nobody gets mocked today.
@@ -256,7 +256,7 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 1 of 3</span><span>Notebook: buckets 1–3, executed</span></div>
     </div>
     <aside class="notes">
-      11 min, and this is the segment that overruns — keep a clock visible. Roughly 7 min sorting examples, 4 min on the three notebook anchor cells.
+      9 min, and this is the segment that overruns — keep a clock visible. Roughly 7 min sorting examples, 4 min on the three notebook anchor cells.
       Sort the board fast and out loud. When two people disagree, do not adjudicate from the front: ask both to say which of the three tests their example passes. The tests decide, not seniority.
       Run the notebook's deterministic cell live (the GROUP BY and the hash) and the sampler cell live (the eight runs). The sampler table is the moment the room stops treating "stochastic" as an abstraction: same code, same question, three different sentences.
       Explain the seed trick explicitly — it is on the slide because it is itself a teachable point, not a notebook convenience. Ask: "if every request is a fresh roll of the dice, how would you reproduce a customer's bad answer next Tuesday?" Answer: you log the seed and pin everything else. That question comes back in segment 2.
@@ -306,7 +306,7 @@
       <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 1 of 3</span><span>OUT-0.2 · notebook: calibration, misfiles, eight retrains</span></div>
     </div>
     <aside class="notes">
-      7 min, the rest of segment 1: about 4 on the two scorers, 2 on the misfiles, 1 on the retrain fan.
+      6 min of segment 1: about 4 on the two scorers, 1 naming the misfiles (do not debate them — that is where the next slide's 3 minutes came from), 1 on the retrain fan.
       Run the calibration cell live and let the accuracy row land before you show the 0.95 row. Two vendors, identical decisions, identical accuracy — and one of them is selling a confidence number that is off by nearly ten points. That is why OUT-0.2 exists.
       The question to hand them for the rest of their careers: "when your model says 0.9, how often is it right?" It takes five minutes to answer if anyone has ever looked. The silence when nobody has is the diagnostic.
       Misfiles: run the temperature-0 cell, show the 4.5e-13 gap and the flipped argmax, and then STOP — the lesson plan caps this at two minutes and LSN-2.1 owns the rest. If someone wants to argue vendor guarantees, park it on the board.
@@ -315,6 +315,50 @@
   </section>
 
   <!-- 05 · SEGMENT 2 · THE TICKET -->
+  <section data-label="Reducible">
+    <div class="vsp-slide">
+      <div class="vsp-orb green" style="width:400px;height:400px;bottom:-160px;left:-130px"></div>
+      <div class="vsp-grid"></div>
+      <div class="vsp-stage" style="justify-content:center;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="vsp-kicker">Segment 1 · The Second Axis</div>
+          <h2 class="vsp-h2" style="font-size:40px">"If we send you more data,<br><span class="vsp-glow">will it get better?"</span></h2>
+        </div>
+        <div class="p-grid2" style="grid-template-columns:0.95fr 1.05fr;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div class="vsp-card" style="padding:15px 19px 13px"><span class="topbar green"></span>
+              <h3 style="font-size:16px">Reducible — yes, and by roughly this much</h3>
+              <p style="font-size:13.5px">The model hasn't seen enough, or is the wrong shape. <b style="color:#fff">More data shrinks it.</b></p>
+            </div>
+            <div class="vsp-card" style="padding:15px 19px 13px"><span class="topbar navy"></span>
+              <h3 style="font-size:16px">Irreducible — no, and here's why</h3>
+              <p style="font-size:13.5px">Variation in the process itself. Two identical jobs really do take different times. <b style="color:#fff">Nothing to learn, so nothing to buy.</b> The stochastic bucket, seen from the client's side.</p>
+            </div>
+          </div>
+          <div class="vsp-card" style="padding:20px 22px 18px"><span class="topbar yellow"></span>
+            <h3 style="font-size:17.5px">Measured, on a rule we wrote ourselves</h3>
+            <table class="p-tbl" style="font-size:14.5px;margin-top:6px">
+              <tr><th>Training rows</th><th>Average miss</th><th>Reducible left</th></tr>
+              <tr><td>10</td><td><b>34.86</b></td><td><b>30.03</b></td></tr>
+              <tr><td>80</td><td>5.07</td><td>0.24</td></tr>
+              <tr><td>2,000</td><td>4.84</td><td>0.01</td></tr>
+              <tr class="hi"><td>10,000</td><td><b>4.83</b></td><td><b>0.00</b></td></tr>
+            </table>
+            <p style="font-size:13.5px;color:var(--vsp-on-dark-muted);line-height:1.5;margin-top:11px">The floor is <b style="color:#fff">4.83</b> — the miss a <i>perfect</i> model still makes. Everything above it got bought with data. <b style="color:#fff">In LSN-1.4 you train a real model and watch this curve flatten.</b></p>
+          </div>
+        </div>
+        <div class="p-callout">Every vendor says <i>"more data always helps."</i> The credible version: <b>"more data will move about this much of your error — and this much is variation in your own process, which no model removes. Let's design around it instead of paying to chase it."</b></div>
+      </div>
+      <div class="vsp-footer"><span>VSP AI/ML Training · LSN-0.4 · Segment 1 of 3</span><span>OUT-0.2 · notebook: the reducible / irreducible split</span></div>
+    </div>
+    <aside class="notes">
+      3 min, bought from the misfiles on the previous slide — name those, do not debate them. This is the slide that pays rent in a pre-sales meeting.
+      Run the notebook's reducible/irreducible cell live. The 34.86 at ten rows and the 4.83 at ten thousand are the whole story: the fall is what money bought, and the 4.83 is the client's own process.
+      Ask the room: "a client asks whether more data will improve the model — what do you need before you can answer?" You need to know how much of the current error is which kind, and you can measure it if you have a held-out set.
+      Forward reference, one sentence: in LSN-1.4 they train on 10 / 100 / 1,000 / 10,000 digits and get this same shape. Do not explain further — the point is that the shape has a reason and they have met it.
+    </aside>
+  </section>
+
   <section data-label="SUP-2291">
     <div class="vsp-slide">
       <div class="vsp-orb green" style="width:380px;height:380px;bottom:-150px;left:-110px"></div>
