@@ -90,7 +90,9 @@ VSP-AI-ML-Training/
 │       └── Traditional_ML_Interview_Section.md
 ├── config/                             # YAML configs (no hard-coded model IDs)
 │   └── llm_interview.yaml
-├── requirements.txt                   # Python dependencies
+├── requirements.txt                   # MOD-0 dependencies (safe default; see ACTIVATE_VENV.md)
+├── requirements-mod1.txt              # + scikit-learn / PyTorch, from LSN-1.4
+├── requirements-full.txt              # legacy full-program list — do not install to get started
 ├── README.md                          # This file
 ├── pytest.ini                         # Pytest configuration
 ├── src/                               # Helper functions and utilities
@@ -164,7 +166,7 @@ source .venv/bin/activate
 ### 3. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+.venv/bin/python -m pip install -r requirements.txt   # see ACTIVATE_VENV.md
 ```
 
 ### 4. Run Notebooks

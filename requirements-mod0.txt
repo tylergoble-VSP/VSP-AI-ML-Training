@@ -1,0 +1,35 @@
+# Stage 1 — MOD-0 Foundations (LSN-0.1 – LSN-0.4)
+#
+# Needed by:  Tuesday 1 September 2026
+# Footprint:  ~350 MB
+# Install:    .venv/bin/python -m pip install -r requirements-mod0.txt
+#             (or, from inside a notebook cell:  %pip install -r requirements-mod0.txt)
+#
+# This is the whole environment MOD-0 needs. It is deliberately small: every MOD-0
+# notebook is verified to execute end to end against exactly this set, and nothing
+# heavier is installed until the module that needs it (see requirements-mod1.txt).
+#
+# Lower bounds are the versions the committed notebook outputs were produced with,
+# so a fresh install gets at least what was verified. Newer point releases are fine.
+
+# --- Core numerical + data stack ---------------------------------------------
+# NumPy: arrays, seeded random generators — every lesson uses it
+numpy>=2.5.1
+# pandas: the tables and drill workspaces
+pandas>=3.0.5
+
+# --- Plotting -----------------------------------------------------------------
+# matplotlib: every figure in every notebook
+matplotlib>=3.11.1
+# seaborn: used from LSN-0.2 on (the banded scatter in LSN-0.3, for instance)
+seaborn>=0.13.2
+
+# --- Jupyter ------------------------------------------------------------------
+# JupyterLab: how you open and run the notebooks
+jupyterlab>=4.6.2
+# ipykernel: the kernel itself. JupyterLab pulls this in, but it is pinned
+# explicitly because registering this venv as a selectable Jupyter kernel
+# depends on it (see ACTIVATE_VENV.md, "Use this environment inside Jupyter").
+ipykernel>=7.3.0
+# nbconvert: executes notebooks headlessly — how artifacts are verified (SI-2)
+nbconvert>=7.17.1
